@@ -192,12 +192,12 @@ function LoginPageContent() {
 
                 {/* Header */}
                 <div className="relative z-10">
-                    <div className="flex items-center gap-2 text-white/90 font-medium mb-8">
+                    <Link href="/" className="flex items-center gap-2 text-white/90 font-medium mb-8 hover:opacity-80 transition-opacity w-fit">
                         <div className="bg-white/10 p-2 rounded-lg backdrop-blur-sm border border-white/10">
                             <Brain className="w-6 h-6" />
                         </div>
                         EnglishGyani
-                    </div>
+                    </Link>
 
                     <h1 className="text-5xl font-bold leading-tight mb-6 bg-gradient-to-r from-blue-200 to-indigo-200 bg-clip-text text-transparent">
                         Master Professional English with AI

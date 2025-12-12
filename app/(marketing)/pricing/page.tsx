@@ -1,7 +1,6 @@
 'use client';
 
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+
 import { Check, X } from "lucide-react";
 import { useState } from "react";
 import { PRICING_PLANS, getMonthlyEquivalent, calculateSavings, getDiscountPercentage } from "@/lib/pricing";
@@ -11,7 +10,7 @@ export default function PricingPage() {
 
     return (
         <div className="min-h-screen bg-slate-50 flex flex-col">
-            <Navbar />
+
 
             <main className="flex-1 py-20 px-4">
                 <div className="container max-w-6xl mx-auto">
@@ -29,8 +28,8 @@ export default function PricingPage() {
                             <button
                                 onClick={() => setDuration('monthly')}
                                 className={`px-6 py-2 rounded-md font-medium transition-all ${duration === 'monthly'
-                                        ? 'bg-blue-600 text-white shadow-md'
-                                        : 'text-slate-600 hover:text-slate-900'
+                                    ? 'bg-blue-600 text-white shadow-md'
+                                    : 'text-slate-600 hover:text-slate-900'
                                     }`}
                             >
                                 Monthly
@@ -38,8 +37,8 @@ export default function PricingPage() {
                             <button
                                 onClick={() => setDuration('quarterly')}
                                 className={`px-6 py-2 rounded-md font-medium transition-all ${duration === 'quarterly'
-                                        ? 'bg-blue-600 text-white shadow-md'
-                                        : 'text-slate-600 hover:text-slate-900'
+                                    ? 'bg-blue-600 text-white shadow-md'
+                                    : 'text-slate-600 hover:text-slate-900'
                                     }`}
                             >
                                 Quarterly
@@ -48,8 +47,8 @@ export default function PricingPage() {
                             <button
                                 onClick={() => setDuration('yearly')}
                                 className={`px-6 py-2 rounded-md font-medium transition-all ${duration === 'yearly'
-                                        ? 'bg-blue-600 text-white shadow-md'
-                                        : 'text-slate-600 hover:text-slate-900'
+                                    ? 'bg-blue-600 text-white shadow-md'
+                                    : 'text-slate-600 hover:text-slate-900'
                                     }`}
                             >
                                 Yearly
@@ -236,7 +235,7 @@ export default function PricingPage() {
                 </div>
             </main>
 
-            <Footer />
+
         </div>
     );
 }

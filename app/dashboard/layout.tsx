@@ -68,7 +68,7 @@ export default function DashboardLayout({
         const timeout = setTimeout(() => {
             console.error("Auth check timed out");
             setLoading(false);
-            router.push("/login");
+            router.replace("/login");
         }, 5000);
 
         if (!auth) {
@@ -76,7 +76,7 @@ export default function DashboardLayout({
             clearTimeout(timeout);
             setLoading(false);
             const currentPath = window.location.pathname;
-            router.push(`/login?redirect=${encodeURIComponent(currentPath)}`);
+            router.replace(`/login?redirect=${encodeURIComponent(currentPath)}`);
             return;
         }
 
@@ -128,7 +128,7 @@ export default function DashboardLayout({
                 clearTimeout(timeout);
                 // Redirect with return URL
                 const currentPath = window.location.pathname;
-                router.push(`/login?redirect=${encodeURIComponent(currentPath)}`);
+                router.replace(`/login?redirect=${encodeURIComponent(currentPath)}`);
             }
         });
 

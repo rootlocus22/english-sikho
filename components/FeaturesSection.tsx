@@ -1,84 +1,125 @@
-import { Check, Bot, Mail, Mic, Terminal } from "lucide-react";
+import { Check, Bot, Mail, Mic, Terminal, ArrowRight } from "lucide-react";
 import Image from "next/image";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export default function FeaturesSection() {
     const features = [
         {
-            icon: <Terminal className="w-12 h-12 text-purple-600" />,
-            title: "Tone Changer (Style Badlo)",
-            desc: "Ek second mein apne message ki politeness change karo. Rude se professional tak - sirf ek slider!",
+            id: "tone-changer",
+            icon: <Terminal className="w-8 h-8 text-primary" />,
+            title: "Tone Changer",
+            subtitle: "Fix Your Tone Instantly",
+            desc: "Don't sound rude. Turn 'Do this now' into 'Could you please help with this?' in one click. 4 levels of politeness.",
             image: "/images/tone-changer-demo.png",
+            link: "/dashboard/tools/tone-changer",
             checks: [
-                "4 tone levels: Rude → Casual → Professional → Butter-Polite",
-                "Instant rewriting with explanation",
-                "Perfect for office emails"
+                "4 Politeness Levels (Rude → Professional)",
+                "Instant Rewrite with Explanations",
+                "Perfect for tricky emails"
             ]
         },
         {
-            icon: <Bot className="w-12 h-12 text-blue-600" />,
-            title: "Roleplay Gym (Practice Kamra)",
-            desc: "AI boss, AI client, AI interviewer ke saath practice karo. Real scenarios mein confident bano!",
+            id: "roleplay",
+            icon: <Bot className="w-8 h-8 text-indigo-500" />,
+            title: "Roleplay Gym",
+            subtitle: "Practice Real Scenarios",
+            desc: "Simulate a salary negotiation, a difficult client call, or a job interview. Make mistakes here so you don't make them in real life.",
             image: "/images/roleplay-gym-demo.png",
+            link: "/dashboard/gym",
             checks: [
-                "Salary negotiation practice",
-                "Difficult conversation simulation",
-                "Unlimited retries - mistakes se sikho!"
+                "Realistic AI Personas (Boss, Client, Recruiter)",
+                "Real-time feedback on your answers",
+                "Unlimited retries in a safe space"
             ]
         },
         {
-            icon: <Mail className="w-12 h-12 text-orange-600" />,
-            title: "Reply Helper (Jawab Dhundho)",
-            desc: "Confusing email/message ka screenshot upload karo. AI batayega real meaning kya hai aur kaise reply karna hai.",
+            id: "reply-helper",
+            icon: <Mail className="w-8 h-8 text-rose-500" />,
+            title: "Reply Helper",
+            subtitle: "Decode & Reply Smartly",
+            desc: "Confused by a passive-aggressive email? Upload a screenshot. AI explains the hidden meaning and drafts 3 professional replies.",
             image: "/images/reply-helper-demo.png",
+            link: "/dashboard/tools/reply-helper",
             checks: [
-                "Image analysis powered by AI",
-                "Hidden meaning decoder",
-                "3 ready-to-use reply options"
+                "Analyzes screenshots & text",
+                "Decodes hidden meanings",
+                "Drafts 3 distinct reply options"
             ]
         },
         {
-            icon: <Mic className="w-12 h-12 text-green-600" />,
-            title: "Speaking Coach (Bolne ka Practice)",
-            desc: "Mic on karo, English mein bolo - AI turant feedback dega pronunciation aur grammar par.",
+            id: "speaking",
+            icon: <Mic className="w-8 h-8 text-teal-500" />,
+            title: "Speaking Coach",
+            subtitle: "Fix Your Pronunciation",
+            desc: "Speak freely. The AI listens, transcribes, and corrects your grammar and pronunciation instantly. It's like a tutor in your pocket.",
             image: "/images/speaking-coach-demo.png",
+            link: "/dashboard/coach",
             checks: [
-                "Real-time voice analysis",
-                "Pronunciation correction",
-                "Confidence scoring"
+                "Live Grammar Correction",
+                "Pronunciation Analysis",
+                "Fluency Scoring"
             ]
         }
     ];
 
     return (
-        <section className="py-16 px-4">
-            <div className="container max-w-6xl mx-auto space-y-24">
+        <section className="py-0 px-4">
+            <div className="container max-w-6xl mx-auto space-y-32">
                 {features.map((f, i) => (
-                    <div key={i} className={`flex flex-col md:flex-row gap-12 items-center ${i % 2 === 1 ? 'md:flex-row-reverse' : ''}`}>
-                        <div className="flex-1 space-y-6">
-                            <div className="bg-slate-50 w-20 h-20 rounded-2xl flex items-center justify-center">
-                                {f.icon}
+                    <div key={i} className={`flex flex-col md:flex-row gap-16 items-center ${i % 2 === 1 ? 'md:flex-row-reverse' : ''}`}>
+                        <div className="flex-1 space-y-8">
+                            <div className="flex items-center gap-4">
+                                <div className="p-3 rounded-2xl bg-secondary/50 border border-secondary shadow-sm">
+                                    {f.icon}
+                                </div>
+                                <span className="text-sm font-bold text-primary tracking-widest uppercase">{f.subtitle}</span>
                             </div>
-                            <h2 className="text-3xl font-bold text-slate-900">{f.title}</h2>
-                            <p className="text-lg text-slate-600 leading-relaxed">{f.desc}</p>
+
+                            <div>
+                                <h2 className="text-4xl font-extrabold text-foreground mb-4">{f.title}</h2>
+                                <p className="text-xl text-muted-foreground leading-relaxed">{f.desc}</p>
+                            </div>
+
                             <ul className="space-y-4">
                                 {f.checks.map((c, j) => (
-                                    <li key={j} className="flex items-start gap-3 text-slate-700">
-                                        <div className="bg-green-100 p-1.5 rounded-full mt-1">
+                                    <li key={j} className="flex items-center gap-3 text-foreground/80 font-medium">
+                                        <div className="bg-green-500/10 p-1 rounded-full">
                                             <Check className="w-4 h-4 text-green-600" />
                                         </div>
-                                        <span className="text-base">{c}</span>
+                                        <span>{c}</span>
                                     </li>
                                 ))}
                             </ul>
+
+                            <Link href={f.link}>
+                                <Button variant="outline" className="mt-4 border-primary/20 text-primary hover:bg-primary/5 group">
+                                    Try {f.title} Free <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                                </Button>
+                            </Link>
                         </div>
-                        <div className="flex-1 relative h-[400px] w-full rounded-2xl overflow-hidden shadow-2xl shadow-slate-200 border border-slate-100 group hover:shadow-3xl transition-all duration-500">
-                            <div className="absolute inset-0 bg-gradient-to-tr from-slate-50/50 to-white/20 z-10" />
-                            <Image
-                                src={f.image}
-                                alt={f.title}
-                                fill
-                                className="object-cover object-center group-hover:scale-105 transition-transform duration-700"
-                            />
+
+                        <div className="flex-1 relative w-full aspect-[4/3]">
+                            {/* Abstract decorative blobs */}
+                            <div className={`absolute -inset-4 bg-gradient-to-r ${i % 2 === 0 ? 'from-primary/20 to-purple-500/20' : 'from-blue-500/20 to-teal-500/20'} rounded-[2rem] blur-2xl opacity-50`} />
+
+                            <div className="relative h-full w-full rounded-2xl overflow-hidden shadow-2xl border border-white/20 bg-white/50 backdrop-blur-sm dark:bg-black/50 ring-1 ring-black/5">
+                                {/* Mock Browser Header */}
+                                <div className="h-8 bg-muted/80 backdrop-blur-md border-b flex items-center px-4 gap-2">
+                                    <div className="w-3 h-3 rounded-full bg-red-400/80" />
+                                    <div className="w-3 h-3 rounded-full bg-yellow-400/80" />
+                                    <div className="w-3 h-3 rounded-full bg-green-400/80" />
+                                </div>
+                                <div className="relative w-full h-[calc(100%-2rem)] bg-muted/20">
+                                    {/* Use a placeholder if image missing, or actual image */}
+                                    <Image
+                                        src={f.image}
+                                        alt={f.title}
+                                        fill
+                                        className="object-cover object-top"
+                                    />
+                                </div>
+                            </div>
                         </div>
                     </div>
                 ))}

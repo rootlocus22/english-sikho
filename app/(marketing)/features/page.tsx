@@ -1,11 +1,9 @@
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import FeaturesSection from "@/components/FeaturesSection";
 
 export default function FeaturesPage() {
     return (
         <div className="min-h-screen bg-white flex flex-col">
-            <Navbar />
+
 
             <div className="flex-1">
                 {/* Hero */}
@@ -39,7 +37,7 @@ export default function FeaturesPage() {
                 </section>
             </div>
 
-            <Footer />
+
         </div>
     );
 }

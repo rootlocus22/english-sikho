@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Brain, Menu } from "lucide-react";
+import { Menu, Sparkles } from "lucide-react";
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -10,34 +10,35 @@ import {
 
 export default function Navbar() {
     return (
-        <header className="sticky top-0 z-50 w-full border-b border-white/20 bg-white/70 backdrop-blur-md shadow-sm">
+        <header className="fixed top-0 z-50 w-full border-b border-white/10 bg-background/60 backdrop-blur-xl supports-[backdrop-filter]:bg-background/60">
             <div className="container flex h-16 items-center justify-between max-w-7xl mx-auto px-4">
-                <Link href="/" className="flex items-center gap-3 font-bold text-2xl text-slate-900 hover:text-blue-600 transition-colors">
-                    <img src="/logo.png" alt="EnglishGyani" className="h-14 w-14 rounded-xl shadow-md" />
-                    EnglishGyani
+                <Link href="/" className="flex items-center gap-2 font-bold text-xl tracking-tight text-foreground hover:opacity-80 transition-opacity">
+                    <div className="bg-primary/10 p-1.5 rounded-lg text-primary">
+                        <Sparkles className="w-5 h-5 fill-primary/20" />
+                    </div>
+                    <span>EnglishGyani</span>
                 </Link>
-                <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-700">
-                    <Link href="/" className="hover:text-blue-600 transition-colors">Home</Link>
-                    <Link href="/features" className="hover:text-blue-600 transition-colors">Features</Link>
-                    <Link href="/pricing" className="hover:text-blue-600 transition-colors">Pricing</Link>
+                <nav className="hidden md:flex items-center gap-6 text-sm font-medium text-muted-foreground">
+                    <Link href="/features" className="hover:text-primary transition-colors">Features</Link>
+                    <Link href="/pricing" className="hover:text-primary transition-colors">Pricing</Link>
+                    <div className="h-4 w-px bg-border" />
                     <Link href="/login">
-                        <Button variant="ghost" className="text-slate-700">Login</Button>
+                        <Button variant="ghost" className="hover:bg-primary/5 hover:text-primary">Log in</Button>
                     </Link>
                     <Link href="/signup">
-                        <Button className="shadow-lg">Free mein shuru karo</Button>
+                        <Button className="rounded-full shadow-lg shadow-primary/20 hover:shadow-primary/30 transition-all hover:scale-105">Free mein Start karein</Button>
                     </Link>
                 </nav>
                 <div className="md:hidden">
                     <DropdownMenu>
                         <DropdownMenuTrigger asChild>
-                            <Button variant="ghost" size="icon"><Menu /></Button>
+                            <Button variant="ghost" size="icon"><Menu className="w-5 h-5" /></Button>
                         </DropdownMenuTrigger>
-                        <DropdownMenuContent align="end">
-                            <DropdownMenuItem asChild><Link href="/">Home</Link></DropdownMenuItem>
+                        <DropdownMenuContent align="end" className="w-48">
                             <DropdownMenuItem asChild><Link href="/features">Features</Link></DropdownMenuItem>
                             <DropdownMenuItem asChild><Link href="/pricing">Pricing</Link></DropdownMenuItem>
-                            <DropdownMenuItem asChild><Link href="/login">Login</Link></DropdownMenuItem>
-                            <DropdownMenuItem asChild><Link href="/dashboard">Dashboard</Link></DropdownMenuItem>
+                            <DropdownMenuItem asChild><Link href="/login">Log in</Link></DropdownMenuItem>
+                            <DropdownMenuItem asChild><Link href="/signup" className="text-primary font-bold">Sign up Free</Link></DropdownMenuItem>
                         </DropdownMenuContent>
                     </DropdownMenu>
                 </div>
