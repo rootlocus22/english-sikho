@@ -68,7 +68,10 @@ export default function ChatSimulator() {
         try {
             const response = await fetch("/api/ai/coach", {
                 method: "POST",
-                headers: { "Content-Type": "application/json" },
+                headers: {
+                    "Content-Type": "application/json",
+                    "x-user-id": userId || ""
+                },
                 body: JSON.stringify({
                     type: "roleplay-chat",
                     history: newMessages,
@@ -77,6 +80,18 @@ export default function ChatSimulator() {
             });
 
             const data = await response.json();
+
+            if (response.status === 403 && data.needsUpgrade) {
+                toast.error(data.error);
+                openPaywall();
+                return;
+            }
+
+            if (response.status === 401) {
+                toast.error("Please login to continue");
+                return;
+            }
+
             if (data.error) throw new Error(data.error);
 
             const aiMessage = { role: "model" as const, content: data.reply };

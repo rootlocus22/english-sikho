@@ -14,7 +14,7 @@ export default function EmailDecoder() {
     const [loading, setLoading] = useState(false);
     const [result, setResult] = useState<any>(null);
     const [preview, setPreview] = useState<string | null>(null);
-    const { credits, decrementCredits, openPaywall } = useUserStore();
+    const { userId, credits, decrementCredits, openPaywall } = useUserStore();
 
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
@@ -39,22 +39,39 @@ export default function EmailDecoder() {
         setResult(null);
 
         try {
-            // Extract base64 content
-            const base64Data = preview.split(',')[1];
+            const headers: Record<string, string> = {
+                'Content-Type': 'application/json'
+            };
+
+            // Add userId for authenticated users
+            if (userId) {
+                headers['x-user-id'] = userId;
+            }
 
             const response = await fetch("/api/ai/coach", {
                 method: "POST",
-                headers: { "Content-Type": "application/json" },
+                headers,
                 body: JSON.stringify({
                     type: "image-analysis",
-                    imageBase64: base64Data
-                }),
+                    imageBase64: preview.split(",")[1]
+                })
             });
 
             const data = await response.json();
+
+            if (response.status === 403 && data.needsUpgrade) {
+                toast.error(data.error || "No credits remaining");
+                openPaywall();
+                return;
+            }
+
+            if (response.status === 401) {
+                toast.error("Please login to continue");
+                return;
+            }
+
             if (data.error) throw new Error(data.error);
 
-            setResult(data);
             setResult(data);
             decrementCredits();
 
@@ -65,9 +82,9 @@ export default function EmailDecoder() {
             });
 
             toast.success("Analysis complete!");
-        } catch (error) {
+        } catch (error: any) {
             console.error(error);
-            toast.error("Failed to analyze image. Try a smaller image.");
+            toast.error(error.message || "Failed to analyze image. Try a smaller image.");
         } finally {
             setLoading(false);
         }

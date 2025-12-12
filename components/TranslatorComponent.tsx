@@ -48,9 +48,18 @@ export default function TranslatorComponent() {
 
         setLoading(true);
         try {
+            const headers: Record<string, string> = {
+                'Content-Type': 'application/json'
+            };
+
+            // Add userId for authenticated users
+            if (userId) {
+                headers['x-user-id'] = userId;
+            }
+
             const response = await fetch('/api/ai/coach', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers,
                 body: JSON.stringify({
                     type: 'translator',
                     input: input
@@ -61,12 +70,13 @@ export default function TranslatorComponent() {
 
             if (response.ok) {
                 setResult(data);
-                if (!userId) {
-                    incrementGuestUsage();
-                } else {
-                    setCredits(credits - 1);
-                }
+                // Credits are decremented on backend now, but keep client state in sync
                 toast.success("Translation ready!");
+            } else if (response.status === 403 && data.needsUpgrade) {
+                setPaywallOpen(true);
+                toast.error(data.error || "No credits remaining");
+            } else if (response.status === 401) {
+                toast.error("Please login to continue");
             } else {
                 toast.error("Something went wrong. Try again!");
             }

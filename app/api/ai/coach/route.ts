@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { generateContent } from '@/lib/gemini';
+import { trackActivity } from '@/lib/analytics-server';
 
 const TRANSLATOR_SYSTEM_PROMPT = `You are an expert Corporate English Coach for Indian professionals. You understand Hindi, Tamil, Telugu, and 'Hinglish'. Your goal is to take informal or broken input and output perfectly grammatically correct, professional English options.
 Output ONLY a valid JSON object with the following keys:
@@ -40,11 +41,75 @@ Output ONLY a valid JSON object with:
 }
 Do not include \`\`\`json.`;
 
+const INTERVIEW_COACH_SYSTEM_PROMPT = `You are an expert Interview Coach and Career Counselor. You evaluate interview answers and provide constructive feedback.
+
+Your task:
+1. Evaluate the user's answer to the interview question
+2. Provide a score from 0-100 based on:
+   - Clarity and structure (STAR method if applicable)
+   - Relevance to the question
+   - Professionalism and confidence
+   - Specific examples and details
+   - Language quality
+
+3. Identify strengths in the answer
+4. Suggest improvements
+5. Optionally provide a better version of the answer
+
+Output ONLY a valid JSON object with:
+{
+  "score": number (0-100),
+  "feedback": "Overall feedback on the answer",
+  "strengths": ["strength 1", "strength 2"],
+  "improvements": ["suggestion 1", "suggestion 2"],
+  "betterAnswer": "An improved version of their answer (optional)"
+}
+Do not include \`\`\`json.`;
+
 export async function POST(req: NextRequest) {
     try {
+        // Extract userId from headers (set by middleware or client)
+        const userId = req.headers.get('x-user-id');
+
+        if (!userId) {
+            return NextResponse.json({
+                error: "Unauthorized - Please login to continue",
+                requiresAuth: true
+            }, { status: 401 });
+        }
+
+        // Use Admin SDK to fetch user data (server-side)
+        const { adminDb } = await import('@/lib/firebase-admin');
+
+        if (!adminDb) {
+            return NextResponse.json({
+                error: "Server configuration error"
+            }, { status: 500 });
+        }
+
+        const userDoc = await adminDb.collection('users').doc(userId).get();
+
+        if (!userDoc.exists) {
+            return NextResponse.json({
+                error: "User not found",
+                requiresAuth: true
+            }, { status: 404 });
+        }
+
+        const userData = userDoc.data();
+
+        // Enforce credit limits for non-premium users
+        if (!userData?.isPremium && (userData?.credits || 0) <= 0) {
+            return NextResponse.json({
+                error: "No credits remaining. Upgrade to Pro for unlimited access!",
+                needsUpgrade: true,
+                credits: 0
+            }, { status: 403 });
+        }
+
         // Read body ONCE and destructure all possible fields
         const body = await req.json();
-        const { type, input, target, toneLevel, history, scenarioId, imageBase64 } = body;
+        const { type, input, target, toneLevel, history, scenarioId, imageBase64, question, userAnswer, category } = body;
 
         if (!process.env.GEMINI_API_KEY) {
             return NextResponse.json({ error: "Gemini API Key missing" }, { status: 500 });
@@ -71,6 +136,14 @@ export async function POST(req: NextRequest) {
             ${historyText}
             
             Manager:`;
+        } else if (type === 'interview-coach') {
+            prompt = `${INTERVIEW_COACH_SYSTEM_PROMPT}
+
+Interview Question: "${question}"
+Candidate's Answer: "${userAnswer}"
+Interview Category: ${category}
+
+Evaluate this answer and provide constructive feedback to help the candidate improve.`;
         } else if (type === 'image-analysis') {
             // Multimodal prompt
             prompt = [
@@ -100,6 +173,35 @@ export async function POST(req: NextRequest) {
         }
 
         const text = await generateContent(prompt);
+
+        // Update usage stats for all users (Premium & Free)
+        if (userId) {
+            const updates: any = {
+                totalSessionsUsed: (userData?.totalSessionsUsed || 0) + 1,
+                lastSessionAt: new Date().toISOString(),
+                updatedAt: new Date().toISOString()
+            };
+
+            // Only decrement credits if NOT premium
+            if (!userData?.isPremium) {
+                updates.credits = (userData?.credits || 0) - 1;
+                console.log(`Credit decremented for user ${userId}. Remaining: ${updates.credits}`);
+            }
+
+            await adminDb.collection('users').doc(userId).update(updates);
+        }
+
+        // Log analytics for ALL users (Premium and Free)
+        await trackActivity({
+            userId,
+            feature: type, // e.g., 'translator', 'coach'
+            creditsUsed: userData?.isPremium ? 0 : 1,
+            metadata: {
+                hasImage: !!imageBase64,
+                scenarioId,
+                toneLevel
+            }
+        });
 
         // For chat, we might just return text, not JSON, or wrap it
         if (type === 'roleplay-chat') {

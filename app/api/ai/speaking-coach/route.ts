@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { generateContent } from '@/lib/gemini';
+import { trackActivity } from '@/lib/analytics-server';
 
 const COACH_SYSTEM_PROMPT = `You are an expert English Speaking Coach for Indian professionals. Your goal is to analyze spoken English transcripts and provide constructive feedback.
 CRITICAL: You must provide a VARIABLY DYNAMIC SCORE (0-100) based on specific criteria. Do NOT default to safe numbers like 65, 70, or 75.
@@ -38,6 +39,31 @@ Do not include \`\`\`json or any other text.`;
 
 export async function POST(req: NextRequest) {
   try {
+    // Extract userId from headers (optional for guests)
+    const userId = req.headers.get('x-user-id');
+    let userData = null;
+
+    if (userId) {
+      // Use Admin SDK to fetch user data (server-side)
+      const { adminDb } = await import('@/lib/firebase-admin');
+
+      if (adminDb) {
+        const userDoc = await adminDb.collection('users').doc(userId).get();
+        if (userDoc.exists) {
+          userData = userDoc.data();
+        }
+      }
+    }
+
+    // Enforce credit limits ONLY if we have a valid logged-in user
+    if (userId && userData && !userData.isPremium && (userData.credits || 0) <= 0) {
+      return NextResponse.json({
+        error: "No credits remaining. Upgrade to Pro for unlimited access!",
+        needsUpgrade: true,
+        credits: 0
+      }, { status: 403 });
+    }
+
     const body = await req.json();
     const { transcript } = body;
 
@@ -60,6 +86,38 @@ export async function POST(req: NextRequest) {
 
     try {
       const jsonResponse = JSON.parse(cleanText);
+
+      // Update usage stats (Premium & Free)
+      if (userId && userData) {
+        const { adminDb } = await import('@/lib/firebase-admin');
+        if (adminDb) {
+          const updates: any = {
+            totalSessionsUsed: (userData.totalSessionsUsed || 0) + 1,
+            lastSessionAt: new Date().toISOString(),
+            updatedAt: new Date().toISOString()
+          };
+
+          if (!userData.isPremium) {
+            updates.credits = (userData.credits || 0) - 1;
+            console.log(`Credit decremented for user ${userId}. Remaining: ${updates.credits}`);
+          }
+
+          await adminDb.collection('users').doc(userId).update(updates);
+        }
+      }
+
+      // Log analytics (only for logged-in users)
+      if (userId) {
+        await trackActivity({
+          userId,
+          feature: 'speaking-coach',
+          creditsUsed: userData?.isPremium ? 0 : 1,
+          metadata: {
+            score: jsonResponse.score
+          }
+        });
+      }
+
       return NextResponse.json(jsonResponse);
     } catch (e) {
       console.error("JSON Parse Error", cleanText);

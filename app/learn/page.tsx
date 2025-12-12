@@ -34,10 +34,10 @@ export default function LearnPage() {
                                             </span>
                                         ))}
                                     </div>
-                                    <h3 className="text-xl font-bold text-slate-900 mb-2 group-hover:text-blue-600 transition-colors">
+                                    <h3 className="text-xl font-bold text-slate-900 mb-2 group-hover:text-blue-600 transition-colors line-clamp-2">
                                         {title}
                                     </h3>
-                                    <p className="text-slate-600 text-sm leading-relaxed mb-4">
+                                    <p className="text-slate-600 text-sm leading-relaxed mb-4 line-clamp-3">
                                         {description}
                                     </p>
                                 </div>

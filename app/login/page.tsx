@@ -57,16 +57,37 @@ function LoginPageContent() {
                 });
             } else {
                 // If user doesn't exist (e.g. first login via Google without explicit signup flow), create doc
+                const now = new Date();
                 const newUserData = {
                     email: user.email || "",
                     displayName: user.displayName,
                     photoURL: user.photoURL,
                     isPremium: false,
                     credits: 10,
-                    createdAt: new Date().toISOString()
+                    totalSessionsUsed: 0,
+                    createdAt: now.toISOString(),
+                    updatedAt: now.toISOString(),
+                    lastSessionAt: now.toISOString(),
+                    subscription: {
+                        tier: 'free',
+                        plan: null,
+                        status: 'active',
+                        startDate: now.toISOString(),
+                        endDate: null,
+                        renewalDate: null,
+                        amount: 0,
+                        currency: 'INR',
+                        autoRenew: false
+                    }
                 };
                 await setDoc(userDocRef, newUserData);
-                setUserData(newUserData);
+                setUserData({
+                    email: newUserData.email,
+                    displayName: newUserData.displayName,
+                    photoURL: newUserData.photoURL,
+                    isPremium: newUserData.isPremium,
+                    credits: newUserData.credits
+                });
             }
 
             toast.success(`Swagat hai ${user.displayName || 'Gyani'}!`);
@@ -109,16 +130,37 @@ function LoginPageContent() {
                 });
             } else {
                 // Fallback if doc missing
+                const now = new Date();
                 const newUserData = {
                     email: user.email || "",
                     displayName: user.displayName,
                     photoURL: user.photoURL,
                     isPremium: false,
                     credits: 10,
-                    createdAt: new Date().toISOString()
+                    totalSessionsUsed: 0,
+                    createdAt: now.toISOString(),
+                    updatedAt: now.toISOString(),
+                    lastSessionAt: now.toISOString(),
+                    subscription: {
+                        tier: 'free',
+                        plan: null,
+                        status: 'active',
+                        startDate: now.toISOString(),
+                        endDate: null,
+                        renewalDate: null,
+                        amount: 0,
+                        currency: 'INR',
+                        autoRenew: false
+                    }
                 };
                 await setDoc(userDocRef, newUserData);
-                setUserData(newUserData);
+                setUserData({
+                    email: newUserData.email,
+                    displayName: newUserData.displayName,
+                    photoURL: newUserData.photoURL,
+                    isPremium: newUserData.isPremium,
+                    credits: newUserData.credits
+                });
             }
 
             toast.success(`Welcome back ${user.displayName || 'Gyani'}!`);

@@ -4,7 +4,7 @@ import Razorpay from "razorpay";
 
 export async function POST(req: NextRequest) {
     try {
-        const { amount, currency = "INR" } = await req.json();
+        const { amount, currency = "INR", userId, tier, duration } = await req.json();
 
         // Initialize Razorpay
         const razorpay = new Razorpay({
@@ -19,6 +19,28 @@ export async function POST(req: NextRequest) {
         };
 
         const order = await razorpay.orders.create(options);
+
+        // Log pending payment
+        if (userId) {
+            try {
+                const { adminDb } = await import("@/lib/firebase-admin");
+                await adminDb?.collection("payment_logs").doc(order.id).set({
+                    userId,
+                    orderId: order.id,
+                    razorpayOrderId: order.id,
+                    amount,
+                    currency,
+                    status: 'pending',
+                    tier: tier || 'pro',
+                    duration: duration || 'monthly',
+                    timestamp: new Date().toISOString(),
+                    metadata: {}
+                });
+            } catch (logError) {
+                console.error("Payment log error:", logError);
+                // Don't fail the order creation if logging fails
+            }
+        }
 
         return NextResponse.json(order);
     } catch (error: any) {

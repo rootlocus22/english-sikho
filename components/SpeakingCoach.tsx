@@ -31,9 +31,12 @@ export default function SpeakingCoach() {
     const [isAnalyzing, setIsAnalyzing] = useState(false);
     const [feedback, setFeedback] = useState<FeedbackData | null>(null);
     const recognitionRef = useRef<any>(null);
-    const { credits, decrementCredits, openPaywall } = useUserStore();
+    const { credits, userId, decrementCredits, openPaywall } = useUserStore();
 
     useEffect(() => {
+        if (!isSpeechRecognitionSupported()) {
+            toast.error("Your browser doesn't support speech recognition. Try Chrome or Edge!");
+        }
         return () => {
             if (recognitionRef.current) {
                 recognitionRef.current.stop();
@@ -92,13 +95,28 @@ export default function SpeakingCoach() {
         try {
             const response = await fetch('/api/ai/speaking-coach', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: {
+                    'Content-Type': 'application/json',
+                    'x-user-id': userId || ''
+                },
                 body: JSON.stringify({ transcript: transcript.trim() })
             });
 
+            const data = await response.json();
+
+            if (response.status === 403 && data.needsUpgrade) {
+                toast.error(data.error);
+                openPaywall();
+                return;
+            }
+
+            if (response.status === 401) {
+                toast.error("Please login to continue");
+                return;
+            }
+
             if (!response.ok) throw new Error("Analysis failed");
 
-            const data = await response.json();
             setFeedback(data);
             decrementCredits();
 

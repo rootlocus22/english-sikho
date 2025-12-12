@@ -100,23 +100,41 @@ export default function SpeechCoachComponent({ targetText }: SpeechCoachProps) {
         try {
             const response = await fetch('/api/ai/coach', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: {
+                    'Content-Type': 'application/json',
+                    'x-user-id': userId || ''
+                },
                 body: JSON.stringify({
-                    type: 'coach',
-                    input: textToAnalyze,
-                    target: targetText
-                })
+                    type: "speech-coach",
+                    text: textToAnalyze
+                }),
             });
 
             const data = await response.json();
 
-            if (response.ok) {
-                setResult(data);
-                if (!userId) {
-                    incrementGuestUsage();
+            if (response.status === 403 && data.needsUpgrade) {
+                toast.error(data.error);
+                setPaywallOpen(true); // Changed from openPaywall() to setPaywallOpen(true)
+                return;
+            }
+
+            if (response.status === 401) {
+                toast.error("Please login to continue");
+                return;
+            }
+
+            if (!response.ok) { // Check for non-OK responses after specific error handling
+                if (data.error) {
+                    throw new Error(data.error);
                 } else {
-                    setCredits(credits - 1);
+                    throw new Error("Failed to analyze speech.");
                 }
+            }
+
+            // If response is OK and no specific errors, proceed
+            setResult(data);
+            if (!userId) {
+                incrementGuestUsage();
             } else {
                 toast.error("Failed to analyze speech.");
             }

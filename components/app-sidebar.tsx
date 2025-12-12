@@ -11,6 +11,10 @@ import {
     SlidersHorizontal,
     Sparkles,
     Mic,
+    User,
+    Briefcase,
+    TrendingUp,
+    Award,
 } from "lucide-react"
 
 import {
@@ -30,6 +34,7 @@ import {
 import { useUserStore } from "@/lib/store";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
 import { auth } from "@/lib/firebase";
 import { signOut } from "firebase/auth";
@@ -68,6 +73,33 @@ const navMain = [
         titleHindi: "Ready Templates",
         url: "/dashboard/templates",
         icon: BookOpen,
+    },
+    {
+        title: "Interview Prep",
+        titleHindi: "Interview Prep",
+        url: "/dashboard/interview-prep",
+        icon: Briefcase,
+        isPro: true
+    },
+    {
+        title: "Analytics",
+        titleHindi: "Analytics",
+        url: "/dashboard/analytics",
+        icon: TrendingUp,
+        isPro: true
+    },
+    {
+        title: "Certificates",
+        titleHindi: "Certificates",
+        url: "/dashboard/certificates",
+        icon: Award,
+        isPro: true
+    },
+    {
+        title: "My Profile",
+        titleHindi: "Mera Profile",
+        url: "/dashboard/profile",
+        icon: User,
     },
 ];
 
@@ -155,6 +187,9 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                                         <Link href={item.url} onClick={handleNavClick}>
                                             <item.icon />
                                             <span>{item.title}</span>
+                                            {item.isPro && (
+                                                <Badge className="ml-auto bg-blue-600 text-white text-[10px]">PRO</Badge>
+                                            )}
                                         </Link>
                                     </SidebarMenuButton>
                                 </SidebarMenuItem>

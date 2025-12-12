@@ -49,7 +49,10 @@ export default function ToneRewriter({ initialValue = "" }: ToneRewriterProps) {
         try {
             const response = await fetch("/api/ai/coach", {
                 method: "POST",
-                headers: { "Content-Type": "application/json" },
+                headers: {
+                    "Content-Type": "application/json",
+                    "x-user-id": userId || ""
+                },
                 body: JSON.stringify({
                     type: "tone-rewrite",
                     input,
@@ -58,6 +61,18 @@ export default function ToneRewriter({ initialValue = "" }: ToneRewriterProps) {
             });
 
             const data = await response.json();
+
+            if (response.status === 403 && data.needsUpgrade) {
+                toast.error(data.error);
+                openPaywall();
+                return;
+            }
+
+            if (response.status === 401) {
+                toast.error("Please login to continue");
+                return;
+            }
+
             if (data.error) throw new Error(data.error);
 
             setOutput(data);
