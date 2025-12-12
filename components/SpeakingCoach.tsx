@@ -6,6 +6,7 @@ import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Mic, StopCircle, RefreshCw, Loader2, Award, Zap, BookOpen } from 'lucide-react';
 import { startListening, stopSpeaking, isSpeechRecognitionSupported } from '@/lib/audioUtils';
 import { toast } from 'sonner';
+import { event } from '@/lib/analytics';
 
 interface FeedbackData {
     score: number;
@@ -92,6 +93,14 @@ export default function SpeakingCoach() {
 
             const data = await response.json();
             setFeedback(data);
+            setFeedback(data);
+
+            event({
+                action: "generate_content",
+                category: "ai_tool",
+                label: "speaking_coach"
+            });
+
             toast.success("Analysis complete!");
         } catch (error) {
             console.error(error);

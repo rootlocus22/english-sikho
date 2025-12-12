@@ -6,6 +6,7 @@ import { Brain, CheckCircle2, Globe2, Sparkles, Star, Zap } from "lucide-react";
 import { signInWithPopup, GoogleAuthProvider, signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "@/lib/firebase";
 import { useUserStore } from "@/lib/store";
+import { event } from "@/lib/analytics";
 import { useRouter, useSearchParams } from "next/navigation";
 import { toast } from "sonner";
 import Link from "next/link";
@@ -69,6 +70,11 @@ function LoginPageContent() {
             }
 
             toast.success(`Swagat hai ${user.displayName || 'Gyani'}!`);
+            event({
+                action: "login",
+                category: "engagement",
+                label: "google_login"
+            });
             router.push(redirectUrl);
         } catch (error: any) {
             console.error("Login error:", error);
@@ -116,6 +122,11 @@ function LoginPageContent() {
             }
 
             toast.success(`Welcome back ${user.displayName || 'Gyani'}!`);
+            event({
+                action: "login",
+                category: "engagement",
+                label: "email_login"
+            });
             router.push(redirectUrl);
         } catch (error: any) {
             console.error("Login error:", error);

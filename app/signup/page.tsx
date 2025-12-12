@@ -6,6 +6,7 @@ import { Brain, CheckCircle2, Globe2, Sparkles, Star, Zap, Rocket } from "lucide
 import { signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from "@/lib/firebase";
 import { useUserStore } from "@/lib/store";
+import { event, getClickId } from "@/lib/analytics";
 import { useRouter, useSearchParams } from "next/navigation";
 import { toast } from "sonner";
 import Link from "next/link";
@@ -49,6 +50,14 @@ function SignupPageContent() {
 
             setUserData(newUserData);
 
+            const clickId = getClickId();
+            event({
+                action: "sign_up",
+                category: "engagement",
+                label: "google_signup",
+                click_id: clickId
+            });
+
             toast.success(`Account created! Welcome, ${user.displayName || 'Friend'}!`);
             router.push(redirectUrl);
         } catch (error: any) {
@@ -83,6 +92,14 @@ function SignupPageContent() {
 
             await setDoc(doc(db, "users", user.uid), newUserData);
             setUserData(newUserData);
+
+            const clickId = getClickId();
+            event({
+                action: "sign_up",
+                category: "engagement",
+                label: "email_signup",
+                click_id: clickId
+            });
 
             toast.success(`Welcome, ${name}!`);
             router.push(redirectUrl);

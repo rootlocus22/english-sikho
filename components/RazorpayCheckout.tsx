@@ -8,6 +8,7 @@ import { useUserStore } from "@/lib/store";
 import { toast } from "sonner";
 import Script from "next/script";
 import { useRouter } from "next/navigation";
+import { event, getClickId } from "@/lib/analytics";
 
 interface RazorpayCheckoutProps {
     amount: number; // Amount in INR
@@ -43,8 +44,12 @@ export default function RazorpayCheckout({
         }
 
         setLoading(true);
-
         try {
+            event({
+                action: "begin_checkout",
+                category: "ecommerce",
+                label: "premium_upgrade"
+            });
             // 1. Create Order
             const res = await fetch("/api/payment/create-order", {
                 method: "POST",
@@ -87,6 +92,16 @@ export default function RazorpayCheckout({
                                 // Small delay to allow Firestore propagation if needed (though typically fast)
                                 await fetchUserProfile(userId);
                             }
+
+                            const clickId = getClickId();
+                            event({
+                                action: "purchase",
+                                category: "ecommerce",
+                                label: "premium_upgrade",
+                                value: 499,
+                                currency: "INR",
+                                click_id: clickId
+                            });
 
                             if (onSuccess) onSuccess();
                         } else {

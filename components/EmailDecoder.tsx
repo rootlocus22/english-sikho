@@ -8,6 +8,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Loader2, Upload, FileImageIcon } from "lucide-react";
 import { useUserStore } from "@/lib/store";
 import { toast } from "sonner";
+import { event } from "@/lib/analytics";
 
 export default function EmailDecoder() {
     const [loading, setLoading] = useState(false);
@@ -54,7 +55,15 @@ export default function EmailDecoder() {
             if (data.error) throw new Error(data.error);
 
             setResult(data);
+            setResult(data);
             decrementCredits();
+
+            event({
+                action: "generate_content",
+                category: "ai_tool",
+                label: "reply_helper"
+            });
+
             toast.success("Analysis complete!");
         } catch (error) {
             console.error(error);
