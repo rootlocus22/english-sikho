@@ -10,6 +10,7 @@ import { Send, Bot, Loader2, MessageCircle } from "lucide-react";
 import { useUserStore } from "@/lib/store";
 import { toast } from "sonner";
 import { speakText } from "@/lib/audioUtils";
+import { event } from "@/lib/analytics";
 
 interface Message {
     role: "user" | "model";
@@ -81,6 +82,12 @@ export default function ChatSimulator() {
             const aiMessage = { role: "model" as const, content: data.reply };
             setMessages(prev => [...prev, aiMessage]);
             decrementCredits();
+
+            event({
+                action: "generate_content",
+                category: "ai_tool",
+                label: "roleplay_chat"
+            });
 
             // Auto-play AI response with voice
             setTimeout(() => {

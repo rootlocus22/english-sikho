@@ -9,6 +9,7 @@ import { Loader2, ArrowRight, Copy, SlidersHorizontal, Volume2, Mic, Square } fr
 import { useUserStore } from "@/lib/store";
 import { toast } from "sonner";
 import { speakText, stopSpeaking, isSpeaking, startListening, isSpeechRecognitionSupported } from "@/lib/audioUtils";
+import { event } from "@/lib/analytics";
 
 const TONE_LABELS = {
     1: { label: "Rude", color: "text-red-600" },
@@ -29,7 +30,7 @@ export default function ToneRewriter({ initialValue = "" }: ToneRewriterProps) {
     const [isListening, setIsListening] = useState(false);
     const [recognition, setRecognition] = useState<any>(null);
     const [isPlaying, setIsPlaying] = useState(false);
-    const { credits, userId, openPaywall, setCredits, voicePreferences } = useUserStore();
+    const { credits, userId, openPaywall, decrementCredits, voicePreferences } = useUserStore();
 
     const handleRewrite = async () => {
         if (!input.trim()) return;
@@ -60,7 +61,14 @@ export default function ToneRewriter({ initialValue = "" }: ToneRewriterProps) {
             if (data.error) throw new Error(data.error);
 
             setOutput(data);
-            setCredits(credits - 1);
+            decrementCredits();
+
+            event({
+                action: "generate_content",
+                category: "ai_tool",
+                label: "tone_rewriter"
+            });
+
             toast.success("Rewrite complete!");
         } catch (error) {
             toast.error("Something went wrong. Try again!");

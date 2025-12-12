@@ -7,6 +7,7 @@ import { Mic, StopCircle, RefreshCw, Loader2, Award, Zap, BookOpen } from 'lucid
 import { startListening, stopSpeaking, isSpeechRecognitionSupported } from '@/lib/audioUtils';
 import { toast } from 'sonner';
 import { event } from '@/lib/analytics';
+import { useUserStore } from '@/lib/store';
 
 interface FeedbackData {
     score: number;
@@ -30,6 +31,7 @@ export default function SpeakingCoach() {
     const [isAnalyzing, setIsAnalyzing] = useState(false);
     const [feedback, setFeedback] = useState<FeedbackData | null>(null);
     const recognitionRef = useRef<any>(null);
+    const { credits, decrementCredits, openPaywall } = useUserStore();
 
     useEffect(() => {
         return () => {
@@ -81,6 +83,11 @@ export default function SpeakingCoach() {
             return;
         }
 
+        if (credits <= 0) {
+            openPaywall();
+            return;
+        }
+
         setIsAnalyzing(true);
         try {
             const response = await fetch('/api/ai/speaking-coach', {
@@ -93,7 +100,7 @@ export default function SpeakingCoach() {
 
             const data = await response.json();
             setFeedback(data);
-            setFeedback(data);
+            decrementCredits();
 
             event({
                 action: "generate_content",
