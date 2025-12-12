@@ -99,5 +99,65 @@ export const TOPIC_KEYWORDS = [
     "group-discussion-topics-with-answers",
     "debate-topics-for-students",
     "speech-topics-for-students",
-    "tongue-twisters-in-english"
+    "tongue-twisters-in-english",
+
+    // Career & Interview Preparation (10 keywords)
+    "english-for-job-interviews",
+    "interview-english-preparation",
+    "english-speaking-for-interview",
+    "job-interview-english-tips",
+    "english-for-campus-placements",
+    "hr-interview-questions-in-english",
+    "group-discussion-english-topics",
+    "english-for-job-seekers",
+    "career-english-speaking-course",
+    "professional-english-for-interviews",
+
+    // Business & Professional English (10 keywords)
+    "business-english-communication-skills",
+    "corporate-english-speaking",
+    "english-for-it-professionals",
+    "english-for-sales-professionals",
+    "professional-email-writing-in-english",
+    "business-english-vocabulary",
+    "office-english-conversation",
+    "english-for-client-meetings",
+    "presentation-skills-in-english",
+    "negotiation-skills-in-english",
+
+    // Conversational & Daily English (10 keywords)
+    "daily-english-conversation-practice",
+    "english-speaking-practice-online-free",
+    "how-to-speak-fluent-english",
+    "improve-english-speaking-confidence",
+    "conversation-english-for-beginners",
+    "everyday-english-phrases",
+    "spoken-english-for-daily-use",
+    "english-fluency-tips",
+    "speak-english-without-hesitation",
+    "natural-english-conversation",
+
+    // Grammar & Writing Skills (10 keywords)
+    "english-grammar-for-competitive-exams",
+    "advanced-english-grammar-course",
+    "english-writing-skills-improvement",
+    "professional-writing-in-english",
+    "english-grammar-mistakes-to-avoid",
+    "tense-in-english-grammar",
+    "english-sentence-formation",
+    "email-writing-skills-in-english",
+    "formal-english-writing",
+    "english-composition-skills",
+
+    // AI & Technology-Enhanced Learning (10 keywords)
+    "ai-english-tutor-online",
+    "ai-powered-english-learning",
+    "english-learning-app-with-ai",
+    "best-ai-english-speaking-app",
+    "chatbot-for-english-practice",
+    "virtual-english-teacher",
+    "ai-english-pronunciation-coach",
+    "automated-english-feedback",
+    "smart-english-learning-platform",
+    "ai-conversation-practice-english"
 ];

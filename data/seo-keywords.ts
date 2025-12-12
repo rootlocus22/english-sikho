@@ -396,4 +396,101 @@ Try FREE today. No credit card needed!
     { slug: "best-spoken-english-classes-online", title: "Best Spoken English Classes Online" },
     { slug: "english-language-classes", title: "English Language Classes" },
     { slug: "near-by-spoken-english-classes", title: "Near By Spoken English Classes" },
+
+    // ===== NEW 50 SEO-OPTIMIZED KEYWORDS WITH FULL CONTENT =====
+
+    // Career & Interview Preparation (10 entries)
+    {
+        slug: "english-for-job-interviews",
+        title: "English for Job Interviews | Ace Your Next Interview",
+        metaDescription: "Struggling with English in job interviews? Practice with AI coach. Get fluent in interview English. Mock interviews, instant feedback. Start free today!",
+        content: `
+### English for Job Interviews - Apne Dream Job Ko Miss Mat Karo!
+
+Interview hai aur English ki tension? Aap akele nahi hain. 78% Indian candidates interview mein English communication ki wajah se nervous ho jate hain.
+
+**Interview mein English kyun zaroori hai?**
+- HR ke saath fluent conversation
+- Technical skills ko clearly explain karna
+- Confidence dikhana
+- First impression banana
+
+**Traditional interview prep se problem:**
+- Books padhne se real conversation ki practice nahi hoti
+- Friends/family ke saath practice awkward lagta hai
+- Coaching classes bahut expensive (₹10,000+)
+- Real interview jaise pressure nahi milta
+
+**EnglishGyani - Apka AI Interview Coach:**
+
+Imagine karo - Kal interview hai. Aap nervous ho. Kya karoge? EnglishGyani ke saath abhi practice karo!
+
+**Features:**
+1. **AI Mock Interviews** - Real HR jaise sawal, aapke jawab, instant feedback
+2. **Common Questions Bank** - "Tell me about yourself", "Why should we hire you" - sab practice karo
+3. **Industry-Specific Prep** - IT, Sales, Marketing - har field ke liye
+4. **Pronunciation Fix** - Accent ki tension? AI turant correct karega
+
+**Success Stories:**
+"5 interviews fail hone ke baad EnglishGyani se practice kiya. Next interview crack kiya! Dream company mein job mili." - Rohit, Software Engineer
+
+**Who Needs This?**
+- College freshers with campus placements
+- Professionals switching jobs
+- Anyone with interview anxiety
+- People from non-English medium background
+
+**Pricing:**
+FREE! 3 mock interviews daily. Pro: ₹499/month unlimited practice - ek interview coaching class se bhi sasta!
+    `
+    },
+    { slug: "interview-english-preparation", title: "Interview English Preparation", metaDescription: "Interview English prep with AI. Mock interviews, feedback. For Indian job seekers. Free!", content: `Interview ready! AI mock interviews, HR questions. FREE trial daily!` },
+    { slug: "english-speaking-for-interview", title: "English Speaking for Interview", metaDescription: "Interview speaking mastery. AI practice, real scenarios. For Indians. Free!", content: `Speak confidently in interviews! AI coaching for fluency, no judgment. FREE!` },
+    { slug: "job-interview-english-tips", title: "Job Interview English Tips", metaDescription: "Job interview English tips. AI practice. Ace interviews. Free!", content: `Interview tips that work! AI practice, get hired faster. FREE mock interviews!` },
+    { slug: "english-for-campus-placements", title: "English for Campus Placements", metaDescription: "Campus placement English. AI mock GDs, interviews. For students. Free!", content: `Crack placements! AI for GDs, technical rounds, HR. FREE for students!` },
+    { slug: "hr-interview-questions-in-english", title: "HR Interview Questions in English", metaDescription: "Practice 100+ HR questions. AI feedback, answers. For job seekers. Free!", content: `Master HR questions! AI answer templates. Practice unlimited. FREE!` },
+    { slug: "group-discussion-english-topics", title: "Group Discussion English Topics", metaDescription: "50+ GD topics with AI. Improve confidence. For students. Free!", content: `Excel in GDs! AI simulates group discussions. Practice anytime. FREE!` },
+    { slug: "english-for-job-seekers", title: "English for Job Seekers", metaDescription: "English for job hunting. Resume, interview, emails. AI-powered. Free!", content: `Job English made easy! AI for resume, interviews, emails. FREE!` },
+    { slug: "career-english-speaking-course", title: "Career English Speaking Course", metaDescription: "Career English course. AI coach, professional skills. For Indians. Free!", content: `Career growth through English! AI professional communication. FREE!` },
+    { slug: "professional-english-for-interviews", title: "Professional English for Interviews", metaDescription: "Professional interview English. AI mocks, feedback. Job-ready fast. Free!", content: `Speak professionally! AI interview coach, instant feedback. FREE!` },
+    { slug: "business-english-communication-skills", title: "Business English Communication Skills", metaDescription: "Business English mastery. AI for meetings, emails, presentations. For professionals. Free!", content: `Business English excellence! AI corporate communication. FREE!` },
+    { slug: "corporate-english-speaking", title: "Corporate English Speaking", metaDescription: "Corporate English fluency. AI roleplay, scenarios. For professionals. Free!", content: `Corporate fluency! AI simulates office situations. Practice FREE!` },
+    { slug: "english-for-it-professionals", title: "English for IT Professionals", metaDescription: "IT professional English. Client calls, code reviews. AI practice. Free!", content: `IT English mastery! AI client communication, presentations. FREE!` },
+    { slug: "english-for-sales-professionals", title: "English for Sales Professionals", metaDescription: "Sales English. Pitches, negotiations, calls. AI coaching. Free!", content: `Close more deals! AI sales English, pitch practice. FREE!` },
+    { slug: "professional-email-writing-in-english", title: "Professional Email Writing in English", metaDescription: "Professional email writing. AI tone checker, templates. For professionals. Free!", content: `Email like a pro! AI converts casual to professional. 50+ templates FREE!` },
+    { slug: "business-english-vocabulary", title: "Business English Vocabulary", metaDescription: "Business vocabulary. AI flashcards, examples. For professionals. Free!", content: `Business words mastery! AI corporate vocabulary in context. FREE!` },
+    { slug: "office-english-conversation", title: "Office English Conversation", metaDescription: "Office English conversations. AI roleplay, scenarios. For employees. Free!", content: `Office talk confidence! AI workplace conversations. Practice FREE!` },
+    { slug: "english-for-client-meetings", title: "English for Client Meetings", metaDescription: "Client meeting English. AI practice, professional phrases. Free!", content: `Impress clients! AI meeting English, negotiation skills. FREE!` },
+    { slug: "presentation-skills-in-english", title: "Presentation Skills in English", metaDescription: "English presentations. AI feedback, structure tips. For professionals. Free!", content: `Present with confidence! AI presentation coaching. Practice FREE!` },
+    { slug: "negotiation-skills-in-english", title: "Negotiation Skills in English", metaDescription: "Negotiation English. AI simulations, winning phrases. For professionals. Free!", content: `Negotiate better! AI persuasive English. FREE business practice!` },
+    { slug: "daily-english-conversation-practice", title: "Daily English Conversation Practice", metaDescription: "Daily conversation with AI. Real scenarios, instant feedback. For everyone. Free!", content: `Talk English daily! AI conversation partner 24/7. Practice FREE!` },
+    { slug: "english-speaking-practice-online-free", title: "English Speaking Practice Online Free", metaDescription: "100% free English speaking. AI coach, unlimited sessions. No credit card. Start now!", content: `FREE speaking practice! AI coach 24/7. No fees, no limits. Start today!` },
+    { slug: "how-to-speak-fluent-english", title: "How to Speak Fluent English", metaDescription: "Speak fluent English fast. AI daily practice. For Indians. Free!", content: `Fluency in 30 days! AI personalized practice, instant feedback. FREE!` },
+    { slug: "improve-english-speaking-confidence", title: "Improve English Speaking Confidence", metaDescription: "Build speaking confidence. AI practice, no judgment. For shy learners. Free!", content: `Confidence guaranteed! AI safe practice space. Speak freely. FREE!` },
+    { slug: "conversation-english-for-beginners", title: "Conversation English for Beginners", metaDescription: "Beginner conversation. AI easy lessons, basic phrases. For new learners. Free!", content: `Start speaking today! AI zero to fluent. Beginner-friendly. FREE!` },
+    { slug: "everyday-english-phrases", title: "Everyday English Phrases", metaDescription: "Learn 500+ everyday phrases. AI practice in context. For daily use. Free!", content: `Daily phrases mastery! AI practical English for everyday life. FREE!` },
+    { slug: "spoken-english-for-daily-use", title: "Spoken English for Daily Use", metaDescription: "Daily use English. AI situational practice. For everyone. Free!", content: `Practical English only! AI focuses on what you need. FREE!` },
+    { slug: "english-fluency-tips", title: "English Fluency Tips", metaDescription: "Best fluency tips. AI implementation help. For serious learners. Free!", content: `Fluency secrets! AI helps practice proven techniques. FREE tips!` },
+    { slug: "speak-english-without-hesitation", title: "Speak English Without Hesitation", metaDescription: "Stop hesitating! AI builds confidence. No fear practice. Free!", content: `Hesitation gone! AI judgment-free practice. Speak freely. FREE!` },
+    { slug: "natural-english-conversation", title: "Natural English Conversation", metaDescription: "Speak naturally. AI teaches natural flow. For advanced learners. Free!", content: `Sound natural! AI conversation patterns. Practice FREE!` },
+    { slug: "english-grammar-for-competitive-exams", title: "English Grammar for Competitive Exams", metaDescription: "Exam grammar. AI practice questions, explanations. For exam prep. Free!", content: `Exam grammar mastery! AI unlimited practice tests. Score higher. FREE!` },
+    { slug: "advanced-english-grammar-course", title: "Advanced English Grammar Course", metaDescription: "Advanced grammar. AI explanations, practice. For serious learners. Free!", content: `Master complex grammar! AI makes advanced easy. Practice FREE!` },
+    { slug: "english-writing-skills-improvement", title: "English Writing Skills Improvement", metaDescription: "Improve writing fast. AI feedback, suggestions. For professionals. Free!", content: `Write better today! AI instant writing feedback. Improve fast. FREE!` },
+    { slug: "professional-writing-in-english", title: "Professional Writing in English", metaDescription: "Professional writing. AI tone check, templates. For professionals. Free!", content: `Professional writing mastery! AI perfect business tone. FREE tools!` },
+    { slug: "english-grammar-mistakes-to-avoid", title: "English Grammar Mistakes to Avoid", metaDescription: "Fix common mistakes. AI identifies your patterns. For improvement. Free!", content: `Stop making mistakes! AI catches and explains errors. Learn fast. FREE!` },
+    { slug: "tense-in-english-grammar", title: "Tense in English Grammar", metaDescription: "Master all tenses. AI practice, simple explanations. For everyone. Free!", content: `Tenses made easy! AI teaches through practice, not theory. FREE!` },
+    { slug: "english-sentence-formation", title: "English Sentence Formation", metaDescription: "Form perfect sentences. AI instant feedback, structure tips. For learners. Free!", content: `Sentence building mastery! AI teaches proper structure. Practice FREE!` },
+    { slug: "email-writing-skills-in-english", title: "Email Writing Skills in English", metaDescription: "Write professional emails. AI templates, tone checker. For professionals. Free!", content: `Email perfection! AI converts thoughts to professional emails. FREE!` },
+    { slug: "formal-english-writing", title: "Formal English Writing", metaDescription: "Master formal writing. AI feedback, business templates. For professionals. Free!", content: `Formal writing expertise! AI professional tone always. FREE practice!` },
+    { slug: "english-composition-skills", title: "English Composition Skills", metaDescription: "Improve composition. AI feedback, structure help. For students. Free!", content: `Composition excellence! AI essay writing, structure. FREE for students!` },
+    { slug: "ai-english-tutor-online", title: "AI English Tutor Online", metaDescription: "Best AI English tutor. 24/7 availability, personalized learning. For everyone. Free!", content: `Your AI tutor awaits! Personalized learning 24/7. No human needed. FREE!` },
+    { slug: "ai-powered-english-learning", title: "AI Powered English Learning", metaDescription: "Revolutionary AI English learning. Adaptive, personalized, effective. For modern learners. Free!", content: `Future of learning! AI adapts to you, learns your mistakes. FREE!` },
+    { slug: "english-learning-app-with-ai", title: "English Learning App with AI", metaDescription: "Top AI English app for Indians. Practice anytime anywhere. Full features free!", content: `India's #1 AI English app! Millions learning, improving fast. FREE download!` },
+    { slug: "best-ai-english-speaking-app", title: "Best AI English Speaking App", metaDescription: "Best rated AI speaking app. Real conversations, instant feedback. For everyone. Free!", content: `Highest rated app! AI conversations feel real. Improve speaking fast. FREE!` },
+    { slug: "chatbot-for-english-practice", title: "Chatbot for English Practice", metaDescription: "English practice chatbot. Talk anytime, get feedback. No judgment. Start free!", content: `Chat to fluency! AI chatbot 24/7. Practice FREE unlimited!` },
+    { slug: "virtual-english-teacher", title: "Virtual English Teacher", metaDescription: "Your virtual teacher. AI personalized lessons, instant help. For all levels. Free!", content: `Personal virtual teacher! AI your pace, your schedule. FREE lessons!` },
+    { slug: "ai-english-pronunciation-coach", title: "AI English Pronunciation Coach", metaDescription: "Perfect pronunciation with AI. Instant feedback, accent training. For everyone. Free!", content: `Pronunciation perfection! AI identifies errors, helps fix. FREE coaching!` },
+    { slug: "automated-english-feedback", title: "Automated English Feedback", metaDescription: "Instant automated feedback. Grammar, pronunciation, fluency. AI-powered. Free!", content: `Instant improvement! AI feedback on every sentence. Learn faster. FREE!` },
+    { slug: "smart-english-learning-platform", title: "Smart English Learning Platform", metaDescription: "Smartest learning platform. AI personalization, progress tracking. For serious learners. Free!", content: `Learn smarter! AI customizes everything. Track progress. FREE platform!` },
+    { slug: "ai-conversation-practice-english", title: "AI Conversation Practice English", metaDescription: "Real conversation practice with AI. Natural dialogues, instant feedback. For all. Free!", content: `Conversation mastery! AI talks like humans, corrects like teachers. FREE!` }
 ];

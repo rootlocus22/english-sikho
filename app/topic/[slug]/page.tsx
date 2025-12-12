@@ -17,7 +17,11 @@ const formatSlug = (slug: string) => {
 // Logic to determine intent based on keywords
 const getIntent = (slug: string) => {
     if (slug.includes('classes') || slug.includes('course') || slug.includes('institute')) return 'learning';
-    if (slug.includes('interview') || slug.includes('job') || slug.includes('career')) return 'career';
+    if (slug.includes('interview') || slug.includes('job') || slug.includes('career') || slug.includes('placement') || slug.includes('hr-interview')) return 'interview';
+    if (slug.includes('business') || slug.includes('corporate') || slug.includes('professional') || slug.includes('sales') || slug.includes('client')) return 'business';
+    if (slug.includes('ai') || slug.includes('chatbot') || slug.includes('virtual') || slug.includes('automated') || slug.includes('smart')) return 'ai';
+    if (slug.includes('grammar') || slug.includes('writing') || slug.includes('composition') || slug.includes('tense') || slug.includes('sentence')) return 'grammar';
+    if (slug.includes('conversation') || slug.includes('fluent') || slug.includes('daily') || slug.includes('phrases') || slug.includes('speaking-practice')) return 'conversation';
     if (slug.includes('app') || slug.includes('tool') || slug.includes('tutor')) return 'tool';
     return 'general';
 };
@@ -59,7 +63,11 @@ export default async function TopicPage({ params }: Props) {
                     </h1>
                     <p className="text-xl text-slate-600 mb-10 max-w-2xl mx-auto">
                         {intent === 'learning' && "Local classes are expensive, time-consuming, and outdated. Switch to AI-powered practice that works 24/7."}
-                        {intent === 'career' && "Don't let poor English cost you your dream job. Practice interview fluency with our AI coach."}
+                        {intent === 'interview' && "Don't let poor English cost you your dream job. Practice interview fluency with our AI coach - crack interviews confidently!"}
+                        {intent === 'business' && "Corporate success needs professional English. Master business communication with AI - emails, meetings, presentations."}
+                        {intent === 'ai' && "Experience the future of learning. AI personalizes every lesson, adapts to you, and accelerates your fluency journey."}
+                        {intent === 'grammar' && "Grammar made simple! Stop memorizing rules. Practice with AI and see instant improvement in writing and speaking."}
+                        {intent === 'conversation' && "Speak English naturally every day. AI conversation partner available 24/7 - no judgment, just progress."}
                         {intent === 'tool' && "Apps like Duolingo are for beginners. EnglishGyani is built for Indian Professionals who want career growth."}
                         {intent === 'general' && "Mastering English doesn't take years. With the right AI tools, you can improve your fluency in 30 days."}
                     </p>
@@ -87,12 +95,22 @@ export default async function TopicPage({ params }: Props) {
                     <div className="bg-white p-8 rounded-2xl border border-slate-100 shadow-xl shadow-slate-200/50">
                         <div className="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mb-6 text-2xl">⚡</div>
                         <h3 className="text-xl font-bold mb-3 text-slate-900">
-                            {intent === 'learning' ? 'Faster than Classes' : 'Instant Feedback'}
+                            {intent === 'learning' && 'Faster than Classes'}
+                            {intent === 'interview' && 'Mock Interviews 24/7'}
+                            {intent === 'business' && 'Real Business Scenarios'}
+                            {intent === 'ai' && 'Personalizes to You'}
+                            {intent === 'grammar' && 'Instant Error Detection'}
+                            {intent === 'conversation' && 'Unlimited Practice'}
+                            {(intent === 'tool' || intent === 'general') && 'Instant Feedback'}
                         </h3>
                         <p className="text-slate-600">
-                            {intent === 'learning'
-                                ? "Why travel 2 hours for a 1-hour class? Practice anytime, anywhere with our AI gym."
-                                : "Get real-time corrections on your pronunciation and grammar as you speak."}
+                            {intent === 'learning' && "Why travel 2 hours for a 1-hour class? Practice anytime, anywhere with our AI gym."}
+                            {intent === 'interview' && "Practice unlimited mock interviews. Get feedback on answers, body language tips, confidence building."}
+                            {intent === 'business' && "AI simulates client meetings, presentations, negotiations - just like your real office environment."}
+                            {intent === 'ai' && "Our AI learns your mistakes, adapts to your level, focuses on YOUR specific weaknesses."}
+                            {intent === 'grammar' && "AI catches every grammar mistake instantly and explains why it's wrong - learn 10x faster."}
+                            {intent === 'conversation' && "Talk with AI anytime - morning coffee, lunch break, late night. Zero judgment, pure practice."}
+                            {(intent === 'tool' || intent === 'general') && "Get real-time corrections on your pronunciation and grammar as you speak."}
                         </p>
                     </div>
 
