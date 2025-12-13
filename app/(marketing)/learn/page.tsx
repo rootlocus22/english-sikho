@@ -28,7 +28,7 @@ export default function LearnPage() {
                             <div className="h-full bg-white rounded-2xl p-6 shadow-sm border border-slate-200 transition-all duration-200 hover:shadow-md hover:-translate-y-1 flex flex-col">
                                 <div className="flex-1">
                                     <div className="flex gap-2 mb-3 flex-wrap">
-                                        {tags.slice(0, 2).map((tag) => (
+                                        {tags.slice(0, 2).map((tag: string) => (
                                             <span key={tag} className="bg-blue-50 text-blue-700 px-2.5 py-0.5 rounded-full text-xs font-semibold">
                                                 {tag}
                                             </span>

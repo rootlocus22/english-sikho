@@ -308,7 +308,7 @@ Try FREE today. No credit card needed!
         slug: "english-speaking-classes-near-me",
         title: "English Speaking Classes Near Me",
         metaDescription: "Find the best English speaking classes near you. EnglishGyani brings the classroom to your home. 24/7 AI practice. Join free today!",
-        content: \`
+        content: `
 ### English Speaking Classes Near Me - Best Choice Kya Hai?
 
 "English Speaking Classes Near Me" search karke thak gaye? Traffic, high fees, aur fixed timings ki tension?
@@ -337,13 +337,13 @@ Kyun na aapka phone hi aapka classroom ban jaye?
 
 **Aaj hi join karein:**
 Free plan mein 3 sessions daily milte hain. Abhi start karein!
-        \`
+        `
     },
     {
         slug: "near-me-english-speaking-classes",
         title: "Near Me English Speaking Classes | Learn from Home",
         metaDescription: "Looking for near me English speaking classes? Stop searching, start practicing. EnglishGyani AI coach is always near you. Try free!",
-        content: \`
+        content: `
 ### Near Me English Speaking Classes - Aapke Ghar Se Paas Kuch Nahi!
 
 Jab aap "Near me English speaking classes" dhoondhte hain, toh aap convenience dhoondh rahe hote hain. Isse zyada convenient kya hoga ki teacher aapke mobile mein ho?
@@ -362,13 +362,13 @@ Humara AI Coach aapke saath 24/7 hai.
 *   **Tone:** Polite aur professional kaise sound karein.
 
 Aaj hi **free account** banayein aur pehla session try karein!
-        \`
+        `
     },
     {
         slug: "speaking-english-course-near-me",
         title: "Speaking English Course Near Me",
         metaDescription: "Best speaking English course near me? It's on your phone! EnglishGyani offers AI-powered practice. Fluent English in 30 days. Free trial.",
-        content: \`
+        content: `
 ### Speaking English Course Near Me - The Future is Online
 
 Local coaching centers mein wohi purane methods use hote hain. Grammar translation, board pe likhna... par speaking ki practice kahan hai?
@@ -385,13 +385,13 @@ Yahan sirf **Speaking** pe focus hai.
 "Maine local class join ki thi, par wahan sirf grammar padhate the. EnglishGyani pe maine actually bolna seekha." - Priya S.
 
 Start your **Speaking Journey** today. It's Free!
-        \`
+        `
     },
     {
         slug: "speaking-english-classes-near-me",
         title: "Speaking English Classes Near Me",
         metaDescription: "Searching for speaking English classes near me? Save travel time. Learn with India's top AI coach. Personalized lessons. Start free!",
-        content: \`
+        content: `
 ### Speaking English Classes Near Me - Don't Just Search, Speak!
 
 Google Maps pe classes dhoondhne se English improve nahi hogi. EnglishGyani app kholne se hogi!
@@ -412,13 +412,13 @@ Google Maps pe classes dhoondhne se English improve nahi hogi. EnglishGyani app 
 *   Casual Conversation
 
 **Abhi shuru karein** aur dekhein kaise 1 week mein confidence badhta hai!
-        \`
+        `
     },
     {
         slug: "english-spoken-english",
         title: "English Spoken English | Master Fluency",
         metaDescription: "Master English spoken English skills. Move from broken sentences to fluent conversations with EnglishGyani AI. Free practice sessions.",
-        content: \`
+        content: `
 ### English Spoken English - Fluency Ka Raaz
 
 "Written English theek hai, par Spoken English mein atakta hoon."
@@ -436,13 +436,13 @@ EnglishGyani ke 'Rapid Fire' sessions aapko majboor karte hain ki aap English me
 3.  **Daily Diary:** Apne din ke baare mein AI ko batao.
 
 Aaj hi **EnglishGyani** try karein aur spoken English ka darr bhagayein!
-        \`
+        `
     },
     {
         slug: "english-writing",
         title: "English Writing Skills | Email & Chat Perfection",
         metaDescription: "Improve English writing for office. Professional emails, chat messages, and reports. EnglishGyani AI tone corrector. Try for free!",
-        content: \`
+        content: `
 ### English Writing Skills - Office Mein Impression Jamayein
 
 Sirf bolna kaafi nahi, likhna bhi aana chahiye! Emails, Slack messages, WhatsApp updates - professional writing zaroori hai.
@@ -458,13 +458,13 @@ Sirf bolna kaafi nahi, likhna bhi aana chahiye! Emails, Slack messages, WhatsApp
 *   **Grammar Check:** Send karne se pehle ek baar check kar lein.
 
 Apni **Writing Skills** ko upgrade karein free mein!
-        \`
+        `
     },
     {
         slug: "basic-english-story",
         title: "Basic English Story Learning | Learn with Fun",
         metaDescription: "Learn English through basic English stories. Fun and easy way to improve vocabulary. Read, listen, and speak. Free access!",
-        content: \`
+        content: `
 ### Basic English Story - Kahaniyon Se Seekhein
 
 Bachpan mein humne kahaniyon se hi apni mother tongue seekhi thi. English bhi waise hi seekhein!
@@ -486,13 +486,13 @@ Humari app mein aapko choti-choti interesting stories milengi.
 *   Advanced: Business case studies.
 
 Start reading your first **Basic English Story** now!
-        \`
+        `
     },
     {
         slug: "english-speaking-english",
         title: "English Speaking English | Direct Method",
         metaDescription: "Learn English speaking English directly. No translation, just pure practice. Best way to become fluent fast. Join EnglishGyani free.",
-        content: \`
+        content: `
 ### English Speaking English - Translation Band, Direty Speaking Shuru
 
 Agar aap English seekhne ke liye Hindi grammar book padh rahe hain, toh aap galat raaste pe hain. "English Speaking English" method ka matlab hai - English ko English mein hi seekhna.
@@ -509,13 +509,13 @@ AI (Feedback): Great! You can also say "I'm planning to watch a movie."
 Is tarah choti-choti corrections se aap natural English bolna seekh jayenge.
 
 **Try Direct Method Now - Free Signup!**
-        \`
+        `
     },
     {
         slug: "speak-english-speak-english",
         title: "Speak English Speak English | Practice Mantra",
         metaDescription: "The only way to learn is to speak English, speak English, and speak English! AI practice partner available 24/7. unlimited sessions.",
-        content: \`
+        content: `
 ### Speak English, Speak English - Bas Bolte Raho!
 
 Swimming seekhne ke liye paani mein utarna padta hai. Kitab padh ke swimming nahi aati. Waise hi, English bolne ke liye muh kholna padta hai!
@@ -531,13 +531,13 @@ Log darte hain galti karne se. Par EnglishGyani pe galti karna allowed hai!
 Dekhte hi dekhte aapki tongue open ho jayegi.
 
 **Don't wait. Start Speaking Today!**
-        \`
+        `
     },
     {
         slug: "practicing-english-speaking",
         title: "Practicing English Speaking | Daily Habits",
         metaDescription: "Practicing English speaking made easy. Daily topics, roleplays, and challenges. Build a habit with EnglishGyani. Start for free.",
-        content: \`
+        content: `
 ### Practicing English Speaking - Consistency is Key
 
 Body banane ke liye gym roz jaana padta hai. English fluency ke liye bhi roz practice zaroori hai.
@@ -555,13 +555,13 @@ Humara app aapko roz naye challenges deta hai taaki aap bore na hon.
 Sirf 15 minute roz. **Practicing English Speaking** has never been this fun!
 
 **Join the challenge today - It's Free!**
-        \`
+        `
     },
     {
         slug: "new-word-of-english",
         title: "New Word Of English | Vocabulary Builder",
         metaDescription: "Learn a new word of English every day. Improve your vocabulary with meaning, usage, and pronunciation. EnglishGyani Daily Words. Free.",
-        content: \`
+        content: `
 ### New Word Of English - Vocabulary Booster
 
 Kya aap wahi limited 50-100 words baar baar use karte hain? "Good", "Bad", "Nice" se aage badhein!
@@ -579,13 +579,13 @@ Hum aapko roz ek naya word sikhaate hain, sirf meaning nahi, balki:
 3.  **Practice:** Us word ko use karke AI ke saath sentence banayein.
 
 Apni vocabulary upgrade karein. **Get your New Word today!**
-        \`
+        `
     },
     {
         slug: "english-classes-near-me",
         title: "English Classes Near Me | AI vs Offline",
         metaDescription: "Comparing English classes near me vs AI coaching. Why EnglishGyani is the better, faster, and cheaper choice for Indian learners. Free trial.",
-        content: \`
+        content: `
 ### English Classes Near Me vs EnglishGyani
 
 Aap "English Classes Near Me" dhoondh rahe hain? Rukhiye aur sochiye. Kya aapko sach mein classroom chahiye ya result?
@@ -602,13 +602,13 @@ Aap "English Classes Near Me" dhoondh rahe hain? Rukhiye aur sochiye. Kya aapko 
 Technology ka zamana hai. Puraane tareeke chhodhein aur AI ke saath seekhein.
 
 **Try it Risk-Free:** 3 sessions daily bilkul free.
-        \`
+        `
     },
     {
         slug: "english-courses-near-me",
         title: "English Courses Near Me | Professional Training",
         metaDescription: "Find professional English courses near me. Business English, Interview prep, and more. Certified curriculum with AI practice. Start free.",
-        content: \`
+        content: `
 ### English Courses Near Me - Professional Growth Ke Liye
 
 Agar aap "English Courses Near Me" dhoondh rahe hain promotion ya nayi job ke liye, toh aapko **Business English** chahiye, school waali grammar nahi.
@@ -625,13 +625,13 @@ Humne industry experts ke saath mil kar courses design kiye hain:
 Aapka phone hi aapka institute hai. Office aate-jaate, lunch break mein - kabhi bhi seekhein.
 
 **Start your Professional Course today!**
-        \`
+        `
     },
     {
         slug: "spoken-english-classes",
         title: "Spoken English Classes | Online & Effective",
         metaDescription: "Spoken English classes that actually work. Focus on speaking, not just reading rules. Interactive AI sessions. Join for free.",
-        content: \`
+        content: `
 ### Spoken English Classes - Bolna Seekhein, Padhna Nahi
 
 Zyadatar "Spoken English Classes" mein teacher board pe Grammar padhate hain aur students copy mein note karte hain. Yeh Spoken English class hai ya writing class?
@@ -651,13 +651,13 @@ EnglishGyani mein:
 Jitna zyada bologe, utna seekhoge. Simple logic.
 
 **Join the revolution. Start Speaking!**
-        \`
+        `
     },
     {
         slug: "english-lessons-near-me",
         title: "English Lessons Near Me | Personalized Tutor",
         metaDescription: "Personalized English lessons near me. Get a private AI tutor who understands Indian English challenges. 24/7 availability. Free signup.",
-        content: \`
+        content: `
 ### English Lessons Near Me - Aapka Personal Tutor
 
 Classroom mein teacher sabko same lesson padhata hai. Par aapki English problems unique hain. Shayad aapko 'Tenses' aate hain par 'Vocabulary' weak hai.
@@ -672,13 +672,13 @@ Humara AI pehle aapka level check karta hai, phir wahi lessons deta hai jiski aa
 Aisa personal attention kisi offline class mein nahi milega.
 
 **Experience personalized learning. Start Free!**
-        \`
+        `
     },
     {
         slug: "english-language-classes-near-me",
         title: "English Language Classes Near Me | Complete Solution",
         metaDescription: "Complete English language classes near me. Speaking, reading, writing, and listening covered. Holistic AI learning. Try EnglishGyani free.",
-        content: \`
+        content: `
 ### English Language Classes Near Me - 360 Degree Learning
 
 Language seekhna sirf bolna nahi hota. Read, Write, Listen, Speak - chaaron zaroori hain.
@@ -692,13 +692,13 @@ Language seekhna sirf bolna nahi hota. Read, Write, Listen, Speak - chaaron zaro
 Ek hi app mein poora solution. Alag alag books ya classes ki zaroorat nahi.
 
 **All-in-One Learning. Sign up today!**
-        \`
+        `
     },
     {
         slug: "english-language-course-near-me",
         title: "English Language Course Near Me | Certified Learning",
         metaDescription: "English language course near me with structured curriculum. Beginner to Advanced levels. Track your progress. Join EnglishGyani for free.",
-        content: \`
+        content: `
 ### English Language Course Near Me - Structured Path to Fluency
 
 Random videos dekhne se English nahi aayegi. Aapko ek structured rasta (roadmap) chahiye.
@@ -714,13 +714,13 @@ Humara AI test karega aap kahan stand karte hain aur wahin se course shuru kareg
 Har hafte report dekhein ki aap next level ke kitne kareeb hain.
 
 **Start your structured course now!**
-        \`
+        `
     },
     {
         slug: "near-me-spoken-english-classes",
         title: "Near Me Spoken English Classes | Convenience First",
         metaDescription: "For those prioritizing convenience: Near me Spoken English classes that live in your pocket. AI English Coach available everywhere. Free trial.",
-        content: \`
+        content: `
 ### Near Me Spoken English Classes - Convenience is King
 
 Aaj ki busy life mein, class jaane ka time kiske paas hai? "Near me" search karna band karein aur "In my pocket" shuru karein.
@@ -733,13 +733,13 @@ Aaj ki busy life mein, class jaane ka time kiske paas hai? "Near me" search karn
 EnglishGyani aapki life mein fit ho jata hai, aapko time nikalne ki zaroorat nahi.
 
 **Most Convenient Class ever. Try for Free!**
-        \`
+        `
     },
     {
         slug: "basic-english-grammar",
         title: "Basic English Grammar | Easy Explanation",
         metaDescription: "Learn basic English grammar easily. No complex rules, just practical usage. Tenses, prepositions, and articles explained simply. Free practice.",
-        content: \`
+        content: `
 ### Basic English Grammar - Rules Ratto Mat, Samjho!
 
 "Present Perfect Continuous Tense" - naam sunte hi a नींद aane lagti hai na?
@@ -755,13 +755,13 @@ Jab aap galti karenge ("I go to market yesterday"), AI bolega: "Oh, you **went**
 Aap natural tarike se grammar seekh jayenge, bina rules yaad kiye.
 
 **Learn Grammar Naturally. Start Free!**
-        \`
+        `
     },
     {
         slug: "online-english-speaking-classes",
         title: "Online English Speaking Classes | Flexible Learning",
         metaDescription: "Best online English speaking classes for busy Indian professionals. Flexible timings, AI-powered coach, and instant results. Join for free.",
-        content: \`
+        content: `
 ### Online English Speaking Classes - Aapke Schedule ke Hisaab se
 
 "Online classes" ka matlab boring zoom calls nahi hona chahiye. EnglishGyani brings **Active Learning**.
@@ -778,13 +778,13 @@ Hum video lectures nahi dete. Hum **Real-Time Simulation** karate hain.
 *   Presentation simulator
 
 **Abhi online aao aur free try karo!**
-        \`
+        `
     },
     {
         slug: "spoken-english-classes-online",
         title: "Spoken English Classes Online | Speak Confidently",
         metaDescription: "Join spoken English classes online. Remove hesitation and speak fluently. AI-based practice for real-world scenarios. Free trial.",
-        content: \`
+        content: `
 ### Spoken English Classes Online - Hichkichana Band!
 
 Online class dhoondh rahe ho kyunki offline jaane ka time nahi? Great decision!
@@ -804,13 +804,13 @@ Par EnglishGyani baaki online classes se alag hai.
 Cricket, Politics, Office, Movies - apne favourite topic pe chat karein.
 
 **Start your online journey today!**
-        \`
+        `
     },
     {
         slug: "english-vocabulary",
         title: "English Vocabulary | Learn New Words",
         metaDescription: "Boost your English vocabulary. Learn synonyms, antonyms, and idioms. Use better words in daily conversation. Free AI practice.",
-        content: \`
+        content: `
 ### English Vocabulary - Shabd Shakti Badhayein
 
 "Woh... kya kehte hain..." - agar aap bhi words dhoondhte reh jate hain, toh aapki vocabulary weak hai.
@@ -827,13 +827,13 @@ Hum aapko dictionary nahi ratwayenge. Hum aapko **Context** sikhayenge.
 AI ke saath daily conversation karke naye words automatically seekh jayenge.
 
 **Build your Vocabulary. Start Free!**
-        \`
+        `
     },
     {
         slug: "spoken-english-course-online",
         title: "Spoken English Course Online | Result Oriented",
         metaDescription: "Result-oriented spoken English course online. Track your fluency score daily. Improve grammar and pronunciation. Join EnglishGyani free.",
-        content: \`
+        content: `
 ### Spoken English Course Online - Results Dikhne Chahiye
 
 Courses toh bahut hain, par result kahan hai?
@@ -847,13 +847,13 @@ EnglishGyani pe hum aapko **Data** dete hain.
  Jab improvement dikhti hai, toh confidence apne aap aata hai.
 
 **Join the most transparent course online. Sign up Free!**
-        \`
+        `
     },
     {
         slug: "bbclearningenglish",
         title: "BBC Learning English vs EnglishGyani",
         metaDescription: "BBC Learning English is great, but EnglishGyani offers active speaking practice tailored for Indians. Compare and choose the best. Free trial.",
-        content: \`
+        content: `
 ### BBC Learning English vs EnglishGyani
 
 BBC Learning English legendary hai - content bahut achha hai.
@@ -866,13 +866,13 @@ Par problem wahi hai - **Passive Learning**. Aap sun rahe hain, bol nahi rahe.
 Agar aapko *bolna* seekhna hai, toh *bolna* padega. Sirf sunne se swimming nahi aati, paani mein utarna padta hai.
 
 **Active learning start karein EnglishGyani ke saath!**
-        \`
+        `
     },
     {
         slug: "basic-english-words",
         title: "Basic English Words | Foundation Stones",
         metaDescription: "Master basic English words. The 100 most used words in daily English conversation. Learn via AI practice. Free access.",
-        content: \`
+        content: `
 ### Basic English Words - Neev Mazboot Karein
 
 English bolne ke liye hazaron words nahi chahiye. Sirf **300-500 basic words** se aap 80% daily conversation kar sakte hain.
@@ -887,13 +887,13 @@ Hum aapko wahi words sikhate hain jo sach mein use hote hain.
 Inhi simple words ko combine karke fluent sentences banana seekhein.
 
 **Start with Basics. Join Free!**
-        \`
+        `
     },
     {
         slug: "learn-english-speaking",
         title: "Learn English Speaking | Step by Step",
         metaDescription: "Learn English speaking step-by-step. From hesitation to confidence using AI. Personalized journey. Start your free trial.",
-        content: \`
+        content: `
 ### Learn English Speaking - Ek Nayi Shuruwat
 
 Bachpan mein English medium school nahi mila? Koi baat nahi.
@@ -908,13 +908,13 @@ Ab English seekhne ka style badal gaya hai.
 EnglishGyani aapka supportive partner hai is journey mein.
 
 **Resume your learning today!**
-        \`
+        `
     },
     {
         slug: "english-spoken",
         title: "English Spoken Practice | Daily Drill",
         metaDescription: "Daily English spoken practice drills. Improve pronunciation and speed. EnglishGyani AI coach helps you speak naturally. Free.",
-        content: \`
+        content: `
 ### English Spoken Practice - Zubaan Ki Warzish
 
 English hamari tongue (jeebh) ke liye nayi hai. Isliye words atak jate hain.
@@ -929,13 +929,13 @@ Humara AI aapko exercises dega taaki aapki tongue English sounds ke liye comfort
 Mazedaar tarike se fluency badhayein.
 
 **Start Daily Drill Now!**
-        \`
+        `
     },
     {
         slug: "english-speaking-training",
         title: "English Speaking Training | Skill Development",
         metaDescription: "Professional English speaking training for career growth. Learn presentation skills, public speaking, and corporate communication. Join free.",
-        content: \`
+        content: `
 ### English Speaking Training - Skill Updation
 
 Training ka matlab hai "Practice under Supervision".
@@ -949,13 +949,13 @@ EnglishGyani aapka digital trainer hai jo aapki har move (sentence) ko watch kar
 Corporate level training ab aapke phone pe available hai free mein.
 
 **Start your Training!**
-        \`
+        `
     },
     {
         slug: "spoken-english-in-hindi",
         title: "Spoken English In Hindi | Matribhasha se Mastery",
         metaDescription: "Learn spoken English in Hindi. Best course for Hindi speakers to learn English easily. Zero confusion method. Start EnglishGyani for free.",
-        content: \`
+        content: `
 ### Spoken English In Hindi - Samajh Aayega Tabhi Toh Bol Paoge
 
 English seekhne ka sabse bada barrier hai "Samajh nahi aa raha".
@@ -969,13 +969,13 @@ Isliye hum Hindi ka sahara lete hain shuruwat mein.
 Dheere dheere hum Hindi kam karte jayenge aur aap English mein comfortable Hote jayenge.
 
 **Hindi se English ki journey shuru karein!**
-        \`
+        `
     },
     {
         slug: "english-talking-words",
         title: "English Talking Words | Starter Pack",
         metaDescription: "Essential English talking words to start conversations. Learn conversation starters and fillers to sound natural. Free AI practice.",
-        content: \`
+        content: `
 ### English Talking Words - Baat Kaise Shuru Karein?
 
 Sabse mushkil hota hai pehla shabd bolna.
@@ -990,13 +990,13 @@ Sabse mushkil hota hai pehla shabd bolna.
 In words ko use karne se aap fluent lagte hain, bhale hi baaki sentence simple ho.
 
 **Learn Magic Words. Join Free!**
-        \`
+        `
     },
     {
         slug: "rapidex-english",
         title: "Rapidex English vs AI Learning",
         metaDescription: "Is Rapidex English course enough? Combine traditional books with modern AI practice on EnglishGyani for best results. Start free.",
-        content: \`
+        content: `
 ### Rapidex English vs AI Learning - Kitab vs Computer
 
 Rapidex ek classic kitab hai. Hum sabne kabhi na kabhi dekhi hai. Par kya kitab aapse baat kar sakti hai?
@@ -1012,13 +1012,13 @@ Jo padha, usey bol ke test karo.
 Rapidex se basics padhein + EnglishGyani pe practice karein = Guaranteed Success.
 
 **Experience the Upgrade. Free Trial!**
-        \`
+        `
     },
     {
         slug: "speak-words-in-english",
         title: "Speak Words In English | Pronunciation Guide",
         metaDescription: "Learn to speak words in English correctly. Improve pronunciation of difficult words with AI feedback. Free EnglishGyani access.",
-        content: \`
+        content: `
 ### Speak Words In English - Sahi Ucharan (Pronunciation)
 
 "Station" ko "Istation" bolte hain? "School" ko "Ischool"?
@@ -1031,13 +1031,13 @@ Humara AI aapko sunta hai aur batata hai:
 Apni pronunciation polish karein taaki log aapko clearly samajh sakein.
 
 **Fix your Pronunciation. Start Now!**
-        \`
+        `
     },
     {
         slug: "spoken-english-course",
         title: "Spoken English Course | For Everyone",
         metaDescription: "A universal spoken English course for students, housewives, and professionals. Tailored levels for everyone. Join EnglishGyani for free.",
-        content: \`
+        content: `
 ### Spoken English Course - Sabke Liye
 
 English kisi ek group ki jagir nahi hai.
@@ -1048,13 +1048,13 @@ English kisi ek group ki jagir nahi hai.
 Humara course flexible hai. Aap apne interest ke hisaab se seekhein.
 
 **English for All. Join the movement!**
-        \`
+        `
     },
     {
         slug: "best-english-speaking-course-online",
         title: "Best English Speaking Course Online | Rated #1",
         metaDescription: "Why EnglishGyani is rated the best English speaking course online in India. AI technology + Human empathy. Try it to believe it. Free.",
-        content: \`
+        content: `
 ### Best English Speaking Course Online - Kyun Hai Hum No. 1?
 
 "Best" bolna aasaan hai, prove karna mushkil.
@@ -1067,7 +1067,7 @@ EnglishGyani ko users "Best" kyun kehte hain?
 Hum grammar ke rules nahi, **Confidence** bech rahe hain. Aur wo bhi free trial ke saath.
 
 **Khud try karein aur decide karein!**
-        \`
+        `
     },
     { slug: "spoken-english-near-me", title: "Spoken English Near Me" },
     { slug: "english-talking-sentence", title: "English Talking Sentence" },
@@ -1123,7 +1123,7 @@ Hum grammar ke rules nahi, **Confidence** bech rahe hain. Aur wo bhi free trial 
         slug: "online-english-classes",
         title: "Online English Classes | Learn Anytime",
         metaDescription: "Premium online English classes for Indian students and professionals. Live sessions, recording access, and notes. Improve skills from home. Join free.",
-        content: \`
+        content: `
 ### Online English Classes - Modern Learning
 
 Traditional tuition ka zamana gaya. Ab zamana hai **Smart Online Classes** ka.
@@ -1136,13 +1136,13 @@ Traditional tuition ka zamana gaya. Ab zamana hai **Smart Online Classes** ka.
 Humari classes sirf "lecture" nahi hoti, "discussion" hoti hain.
 
 **Join the smartest class online!**
-        \`
+        `
     },
     {
         slug: "english-course-online",
         title: "English Course Online | Comprehensive Guide",
         metaDescription: "Looking for a complete English course online? Covers grammar, vocabulary, speaking, and writing. All-in-one solution for fluency. Free trial available.",
-        content: \`
+        content: `
 ### English Course Online - Sab Kuch Ek Jagah
 
 Alag-alag skills ke liye alag course kyun?
@@ -1157,13 +1157,13 @@ EnglishGyani aapko deta hai **All-in-One Package**.
 Complete package ke saath complete fluency payein.
 
 **All-in-One course try karein!**
-        \`
+        `
     },
     {
         slug: "english-language-course",
         title: "English Language Course | Global Standard",
         metaDescription: "International standard English language course. Learn British and American accents. Enhance your global career prospects. Start EnglishGyani for free.",
-        content: \`
+        content: `
 ### English Language Course - Global Bano
 
 English sirf ek bhaasha nahi, ek **Global Passport** hai.
@@ -1177,13 +1177,13 @@ USA ho ya UK, English aapko duniya se jodti hai.
 Local institute mein kyun phasna jab global standard available hai?
 
 **Go Global with EnglishGyani!**
-        \`
+        `
     },
     {
         slug: "basic-english-learning",
         title: "Basic English Learning | Start from Zero",
         metaDescription: "Start basic English learning from scratch. ABC to sentences. Perfect for absolute beginners. Hindi to English teaching method. Free access.",
-        content: \`
+        content: `
 ### Basic English Learning - Zero se Hero
 
 Agar aapko lagta hai ki aapko "kuch nahi aata", toh aap sahi jagah hain.
@@ -1198,13 +1198,13 @@ Hum **Absolute Beginners** ko experts banate hain.
 Sharam chhodiye, seekhna shuru kijiye. Koi judge nahi karega.
 
 **Start your Zero Level Journey!**
-        \`
+        `
     },
     {
         slug: "improve-spoken-english",
         title: "Improve Spoken English | Daily Tips",
         metaDescription: "Want to improve spoken English quickly? 5 simple tips to boost fluency. Daily exercises and challenges on EnglishGyani. Start for free.",
-        content: \`
+        content: `
 ### Improve Spoken English - Rozana Sudhaar
 
 English ek din mein nahi aati, par har din thoda seekhne se zaroor aati hai.
@@ -1217,13 +1217,13 @@ English ek din mein nahi aati, par har din thoda seekhne se zaroor aati hai.
 EnglishGyani app aapko daily reminders deta hai taaki aap bhool na jayein.
 
 **Improve 1% Daily. Start Now!**
-        \`
+        `
     },
     {
         slug: "best-spoken-english-classes-online",
         title: "Best Spoken English Classes Online | Users Choice",
         metaDescription: "Voted best spoken English classes online by 10,000+ students. Highest completion rate. Real results, detailed feedback. Experience EnglishGyani free.",
-        content: \`
+        content: `
 ### Best Spoken English Classes Online - Public Choice
 
 Internet pe "Best" likhna aasaan hai. Par banana mushkil.
@@ -1236,13 +1236,13 @@ Hum "Best" kyun hain?
 Humara content experts ne banaya hai, par verify trusted users ne kiya hai.
 
 **Join the Community of Achievers!**
-        \`
+        `
     },
     {
         slug: "english-language-classes",
         title: "English Language Classes | Holistic Approach",
         metaDescription: "Holistic English language classes focused on reading, writing, speaking, and listening. Balanced growth for total fluency. Join EnglishGyani free.",
-        content: \`
+        content: `
 ### English Language Classes - Chaaron Taraf Vikas
 
 Sirf bolna kaafi nahi. Ek complete speaker **LSRW** follow karta hai.
@@ -1256,13 +1256,13 @@ Sirf bolna kaafi nahi. Ek complete speaker **LSRW** follow karta hai.
 Humari classes mein chaaron skills pe barabar focus hota hai.
 
 **Complete Learning Shuru Karein!**
-        \`
+        `
     },
     {
         slug: "near-by-spoken-english-classes",
         title: "Nearby Spoken English Classes | Digital Is Near",
         metaDescription: "Looking for nearby spoken English classes? Your phone is the nearest class. Save travel time and money with EnglishGyani. Free trial available.",
-        content: \`
+        content: `
 ### Nearby Spoken English Classes - Pocket Mein Class
 
 "Nearby" ka matlab kya hai? 2 km door? 5 km door?
@@ -1276,7 +1276,7 @@ Sabse paas toh aapka **Mobile Phone** hai.
 Nearby center dhoondhne mein time waste na karein.
 
 **Open your Class now!**
-        \`
+        `
     },
 
     // ===== NEW 50 SEO-OPTIMIZED KEYWORDS WITH FULL CONTENT =====

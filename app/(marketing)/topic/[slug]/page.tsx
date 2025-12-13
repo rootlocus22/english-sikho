@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { TOPIC_KEYWORDS } from "@/lib/seo-keywords";
+import { SEO_KEYWORDS } from "@/data/seo-keywords";
 
 interface Props {
     params: Promise<{
@@ -36,8 +36,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export function generateStaticParams() {
-    return TOPIC_KEYWORDS.map((slug) => ({
-        slug: slug,
+    return SEO_KEYWORDS.map((item) => ({
+        slug: item.slug,
     }));
 }
 
@@ -45,7 +45,7 @@ export default async function TopicPage({ params }: Props) {
     const { slug } = await params;
 
     // Optional: Validating if slug exists in our targeted list
-    // if (!TOPIC_KEYWORDS.includes(slug)) return notFound();
+    // if (!SEO_KEYWORDS.includes(slug)) return notFound();
 
     const title = formatSlug(slug);
     const intent = getIntent(slug);

@@ -1,6 +1,6 @@
 import { MetadataRoute } from 'next'
 import { getAllPostSlugs } from '@/lib/blog'
-import { TOPIC_KEYWORDS } from '@/lib/seo-keywords'
+import { SEO_KEYWORDS } from '@/data/seo-keywords'
 
 export default function sitemap(): MetadataRoute.Sitemap {
     const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://englishgyani.com'
@@ -45,15 +45,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
     // Blog pages (SEO content) - dynamic from markdown
     const blogPages: MetadataRoute.Sitemap = blogPosts.map((post) => ({
-        url: `${baseUrl}/learn/${post.params.slug}`,
+        url: `${baseUrl}/learn/${post.slug}`,
         lastModified: now, // Could ideally read file mtime
         changeFrequency: 'monthly' as const,
         priority: 0.8,
     }))
 
     // Topic pages (Programmatic SEO)
-    const topicPages: MetadataRoute.Sitemap = TOPIC_KEYWORDS.map((slug) => ({
-        url: `${baseUrl}/topic/${slug}`,
+    const topicPages: MetadataRoute.Sitemap = SEO_KEYWORDS.map((item) => ({
+        url: `${baseUrl}/topic/${item.slug}`,
         lastModified: now,
         changeFrequency: 'weekly' as const,
         priority: 0.7,
