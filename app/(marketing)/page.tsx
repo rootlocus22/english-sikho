@@ -64,6 +64,54 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Free Tools Section (High Intent) */}
+      <section className="py-10 bg-blue-50/50 border-y border-blue-100">
+        <div className="container mx-auto px-4 max-w-6xl">
+          <div className="flex flex-col md:flex-row items-center justify-between mb-8 gap-4">
+            <div>
+              <h2 className="text-2xl font-bold text-slate-900">Most Popular Free Tools 🔥</h2>
+              <p className="text-slate-600">No login required. Just use and improve.</p>
+            </div>
+            {/* <Link href="/tools" className="text-blue-600 font-bold text-sm hover:underline">View All Tools →</Link> */}
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            {/* Tool 1 */}
+            <Link href="/tools/self-introduction-generator" className="group">
+              <div className="bg-white p-5 rounded-xl border border-blue-100 shadow-sm hover:shadow-md transition-all h-full">
+                <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mb-3">
+                  <span className="text-xl">👋</span>
+                </div>
+                <h3 className="font-bold text-slate-800 mb-1 group-hover:text-blue-600">Self Introduction Generator</h3>
+                <p className="text-sm text-slate-500">For Freshers. Create a professional intro script in 10 seconds.</p>
+              </div>
+            </Link>
+
+            {/* Tool 2 */}
+            <Link href="/interview/top-10-interview-questions" className="group">
+              <div className="bg-white p-5 rounded-xl border border-blue-100 shadow-sm hover:shadow-md transition-all h-full">
+                <div className="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center mb-3">
+                  <span className="text-xl">🎤</span>
+                </div>
+                <h3 className="font-bold text-slate-800 mb-1 group-hover:text-purple-600">Top 10 Interview Questions</h3>
+                <p className="text-sm text-slate-500">With sample answers for "Why should we hire you?" & more.</p>
+              </div>
+            </Link>
+
+            {/* Tool 3 (Bucket 2) */}
+            <Link href="/templates/sick-leave-email" className="group">
+              <div className="bg-white p-5 rounded-xl border border-blue-100 shadow-sm hover:shadow-md transition-all h-full">
+                <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center mb-3">
+                  <span className="text-xl">✉️</span>
+                </div>
+                <h3 className="font-bold text-slate-800 mb-1 group-hover:text-green-600">Professional Email Writer</h3>
+                <p className="text-sm text-slate-500">Sick leave, Resignation, or Salary Hike - Write it perfectly.</p>
+              </div>
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* Social Proof Stats */}
       <section className="py-12 border-y bg-accent/30 backdrop-blur-sm">
         <div className="container mx-auto px-4">
