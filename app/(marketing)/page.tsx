@@ -4,22 +4,50 @@ import { SEO_KEYWORDS } from "@/data/seo-keywords";
 import { SCENARIO_DATA } from "@/data/scenarios";
 import Link from "next/link";
 import FeaturesSection from "@/components/FeaturesSection";
-import { ArrowRight, CheckCircle2, Star, Users, Bot, Mic, ShieldCheck, Zap, Globe, BrainCircuit } from "lucide-react";
+import { ArrowRight, CheckCircle2, Star, Users, Bot, Mic, ShieldCheck, Zap, Globe, BrainCircuit, Sparkles } from "lucide-react";
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-background flex flex-col font-sans selection:bg-primary/20 selection:text-primary">
       {/* Hero Section */}
       <section className="relative overflow-hidden pt-20 pb-32 lg:pt-32 lg:pb-48">
-        {/* Abstract Background Elements */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-7xl -z-10 pointer-events-none">
-          <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-primary/20 rounded-full blur-[100px] opacity-50 animate-pulse" />
-          <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-secondary/40 rounded-full blur-[100px] opacity-50 delay-1000" />
+        {/* innovative Background: Neural Grid + Floating Language Elements */}
+        <div className="absolute inset-0 z-0 h-full w-full bg-gradient-to-b from-indigo-50/80 via-white to-white overflow-hidden">
+          {/* Grid Pattern - High Contrast */}
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,#cbd5e1_1px,transparent_1px),linear-gradient(to_bottom,#cbd5e1_1px,transparent_1px)] bg-[size:40px_40px] opacity-100"></div>
+
+          {/* Central Glow */}
+          <div className="absolute left-1/2 top-0 -translate-x-1/2 z-0 h-[600px] w-[600px] rounded-full bg-indigo-500/10 blur-[100px]"></div>
+
+          {/* Floating Elements - Animated & Colorful */}
+          {/* English 'Aa' - Top Left */}
+          <div className="absolute top-24 left-[5%] lg:left-[10%] p-6 bg-white shadow-xl shadow-indigo-200/40 rounded-3xl border border-indigo-100 -rotate-12 animate-bounce duration-[8000ms] z-10">
+            <span className="text-6xl font-extrabold text-indigo-600 drop-shadow-sm">Aa</span>
+          </div>
+
+          {/* Mic Icon - Bottom Right */}
+          <div className="absolute bottom-32 right-[5%] lg:right-[10%] p-6 bg-white shadow-xl shadow-purple-200/40 rounded-3xl border border-purple-100 rotate-12 animate-pulse duration-[4000ms] z-10">
+            <Mic className="w-12 h-12 text-purple-600 drop-shadow-sm" />
+          </div>
+
+          {/* Hindi 'अ' - Top Right */}
+          <div className="absolute top-32 right-[8%] lg:right-[15%] p-6 bg-white shadow-xl shadow-pink-200/40 rounded-full border border-pink-100 rotate-6 animate-bounce duration-[10000ms] z-10">
+            <span className="text-5xl font-extrabold text-pink-500 drop-shadow-sm">अ</span>
+          </div>
+
+          {/* Bot Icon - Bottom Left */}
+          <div className="absolute bottom-24 left-[8%] lg:left-[15%] p-5 bg-white shadow-xl shadow-blue-200/40 rounded-2xl border border-blue-100 -rotate-6 animate-pulse duration-[5000ms] z-10">
+            <Bot className="w-10 h-10 text-blue-600 drop-shadow-sm" />
+          </div>
+
+          {/* Decoration Circles */}
+          <div className="absolute top-1/2 left-0 transform -translate-y-1/2 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl z-0" />
+          <div className="absolute top-1/2 right-0 transform -translate-y-1/2 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl z-0" />
         </div>
 
-        <div className="container mx-auto px-4 text-center max-w-5xl">
+        <div className="container mx-auto px-4 text-center max-w-5xl relative z-20">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-8 border border-primary/20 hover:bg-primary/15 transition-colors cursor-default">
-            <SparklesIcon className="w-4 h-4" />
+            <Sparkles className="w-4 h-4" />
             <span>India's First AI-Powered English Coach</span>
           </div>
 

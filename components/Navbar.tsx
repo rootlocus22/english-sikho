@@ -10,7 +10,7 @@ import {
 
 export default function Navbar() {
     return (
-        <header className="fixed top-0 z-50 w-full border-b border-white/10 bg-background/60 backdrop-blur-xl supports-[backdrop-filter]:bg-background/60">
+        <header className="fixed top-0 z-50 w-full border-b border-white/5 bg-background/50 backdrop-blur-xl supports-[backdrop-filter]:bg-background/50 transition-all duration-300">
             <div className="container flex h-16 items-center justify-between max-w-7xl mx-auto px-4">
                 <Link href="/" className="flex items-center gap-2 font-bold text-xl tracking-tight text-foreground hover:opacity-80 transition-opacity">
                     <div className="bg-primary/10 p-1.5 rounded-lg text-primary">

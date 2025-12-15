@@ -80,45 +80,79 @@ export default async function BlogPost({ params }: Props) {
                     </div>
                 </div>
 
-                {/* Content Container */}
-                <div className="container max-w-3xl mx-auto px-4 -mt-10 relative z-10">
-                    <article className="bg-card rounded-3xl shadow-xl shadow-black/5 border border-border/50 p-8 md:p-12">
-                        <div
-                            className="prose prose-lg prose-slate dark:prose-invert max-w-none 
-                            prose-headings:font-bold prose-headings:tracking-tight prose-headings:text-foreground
-                            prose-p:text-muted-foreground prose-p:leading-relaxed
-                            prose-strong:text-foreground prose-strong:font-semibold
-                            prose-a:text-primary prose-a:font-medium prose-a:no-underline hover:prose-a:underline
-                            prose-li:text-muted-foreground
-                            prose-img:rounded-2xl prose-img:shadow-lg"
-                            dangerouslySetInnerHTML={{ __html: postData.contentHtml }}
-                        />
-                    </article>
 
-                    {/* CTA Section */}
-                    <div className="mt-12 bg-gradient-to-br from-primary to-purple-600 rounded-3xl p-1 relative overflow-hidden group">
-                        <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity" />
-                        <div className="bg-background/95 backdrop-blur-xl rounded-[22px] p-8 md:p-12 text-center relative overflow-hidden">
-                            <div className="absolute top-0 right-0 p-8 opacity-5">
-                                <Sparkles className="w-32 h-32" />
+
+                {/* Content Container with Sidebar */}
+                <div className="container max-w-6xl mx-auto px-4 -mt-10 relative z-10 pb-20">
+                    <div className="grid lg:grid-cols-3 gap-8">
+                        {/* Main Content */}
+                        <div className="lg:col-span-2">
+                            <article className="bg-card rounded-3xl shadow-xl shadow-black/5 border border-border/50 p-8 md:p-12 h-full">
+                                <div
+                                    className="prose prose-lg prose-slate dark:prose-invert max-w-none 
+                                    prose-headings:font-bold prose-headings:tracking-tight prose-headings:text-foreground
+                                    prose-p:text-muted-foreground prose-p:leading-relaxed
+                                    prose-strong:text-foreground prose-strong:font-semibold
+                                    prose-a:text-primary prose-a:font-medium prose-a:no-underline hover:prose-a:underline
+                                    prose-li:text-muted-foreground
+                                    prose-img:rounded-2xl prose-img:shadow-lg"
+                                    dangerouslySetInnerHTML={{ __html: postData.contentHtml }}
+                                />
+                            </article>
+                        </div>
+
+                        {/* Sidebar */}
+                        <div className="lg:col-span-1 space-y-6">
+                            {/* Author Card */}
+                            <div className="bg-card rounded-2xl border border-border/50 p-6 shadow-sm">
+                                <h3 className="font-bold text-foreground mb-4 uppercase text-xs tracking-wider">Written By</h3>
+                                <div className="flex items-center gap-4">
+                                    <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold text-xl">
+                                        E
+                                    </div>
+                                    <div>
+                                        <p className="font-bold text-foreground">EnglishGyani Team</p>
+                                        <p className="text-xs text-muted-foreground">Expert English Coaches & AI</p>
+                                    </div>
+                                </div>
                             </div>
 
-                            <h3 className="text-3xl font-bold text-foreground mb-4">Ready to put this into practice?</h3>
-                            <p className="text-lg text-muted-foreground mb-8 max-w-xl mx-auto">
-                                Don't just read about English. Practice with India's best AI coach. It's free, fun, and judgment-free.
-                            </p>
+                            {/* Popular Tools Widget */}
+                            <div className="bg-gradient-to-br from-indigo-900 to-slate-900 rounded-2xl p-6 text-white shadow-lg sticky top-24">
+                                <div className="flex items-center gap-2 mb-6">
+                                    <Sparkles className="w-5 h-5 text-yellow-400" />
+                                    <h3 className="font-bold">Free Tools for You</h3>
+                                </div>
 
-                            <div className="flex flex-col sm:flex-row justify-center gap-4">
-                                <Link href="/signup">
-                                    <Button size="lg" className="h-14 px-8 text-base rounded-full shadow-lg shadow-primary/20 hover:shadow-primary/30 w-full sm:w-auto">
-                                        Free mein Start karein <ArrowRight className="ml-2 w-4 h-4" />
-                                    </Button>
-                                </Link>
+                                <div className="space-y-4">
+                                    <Link href="/tools/self-introduction-generator" className="block group">
+                                        <div className="bg-white/10 hover:bg-white/20 transition-colors rounded-xl p-4 border border-white/10">
+                                            <h4 className="font-semibold mb-1 group-hover:text-yellow-300 transition-colors">Self Intro Generator</h4>
+                                            <p className="text-xs text-white/60">Introduce yourself perfectly in interviews.</p>
+                                        </div>
+                                    </Link>
+
+                                    <Link href="/templates/sick-leave-email" className="block group">
+                                        <div className="bg-white/10 hover:bg-white/20 transition-colors rounded-xl p-4 border border-white/10">
+                                            <h4 className="font-semibold mb-1 group-hover:text-yellow-300 transition-colors">Email Writer</h4>
+                                            <p className="text-xs text-white/60">Write professional emails in seconds.</p>
+                                        </div>
+                                    </Link>
+
+                                    <Link href="/dashboard/gym" className="block group">
+                                        <div className="bg-gradient-to-r from-blue-600 to-indigo-600 rounded-xl p-4 shadow-lg transform group-hover:scale-105 transition-all">
+                                            <h4 className="font-bold mb-1 flex items-center gap-2">
+                                                Practice Speaking <ArrowRight className="w-4 h-4" />
+                                            </h4>
+                                            <p className="text-xs text-white/80">Join AI Gym for free.</p>
+                                        </div>
+                                    </Link>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </div >
         );
     } catch (error) {
         notFound();

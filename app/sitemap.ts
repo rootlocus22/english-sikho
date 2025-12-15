@@ -1,6 +1,7 @@
 import { MetadataRoute } from 'next'
 import { getAllPostSlugs } from '@/lib/blog'
 import { SEO_KEYWORDS } from '@/data/seo-keywords'
+import { VERNACULAR_DICTIONARY } from '@/data/vernacular-dictionary'
 
 export default function sitemap(): MetadataRoute.Sitemap {
     const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://englishgyani.com'
@@ -62,7 +63,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         priority: 0.8,
     }))
 
-    // Topic pages (Programmatic SEO)
+    // Topic pages (Programmatic SEO - Keywords)
     const topicPages: MetadataRoute.Sitemap = SEO_KEYWORDS.map((item) => ({
         url: `${baseUrl}/topic/${item.slug}`,
         lastModified: now,
@@ -70,5 +71,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
         priority: 0.7,
     }))
 
-    return [...staticPages, ...blogPages, ...topicPages]
+
+    // Dictionary pages (Programmatic SEO - Word Meanings)
+    const dictionaryPages: MetadataRoute.Sitemap = VERNACULAR_DICTIONARY.map((item) => ({
+        url: `${baseUrl}/meaning/${item.slug}`,
+        lastModified: now,
+        changeFrequency: 'monthly' as const,
+        priority: 0.8,
+    }))
+
+    return [...staticPages, ...blogPages, ...topicPages, ...dictionaryPages]
 }
