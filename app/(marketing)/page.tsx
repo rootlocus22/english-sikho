@@ -136,7 +136,7 @@ export default function Home() {
               <h2 className="text-2xl font-bold text-slate-900">Most Popular Free Tools 🔥</h2>
               <p className="text-slate-600">No login required. Just use and improve.</p>
             </div>
-            {/* <Link href="/tools" className="text-blue-600 font-bold text-sm hover:underline">View All Tools →</Link> */}
+            <Link href="/tools" className="text-blue-600 font-bold text-sm hover:underline">View All Tools →</Link>
           </div>
 
           <div className="grid md:grid-cols-3 gap-6">
