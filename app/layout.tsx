@@ -17,20 +17,90 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "EnglishGyani - Master Professional English with AI",
-  description: "AI-powered English coaching for Indian professionals. Practice speaking, writing, and professional communication with personalized AI feedback.",
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://englishgyani.com'),
+  title: {
+    default: "EnglishGyani - Master Corporate English with AI Coach",
+    template: "%s | EnglishGyani"
+  },
+  description: "AI-powered English coaching for Indian professionals. Practice speaking, writing, corporate communication, and interviews with personalized AI feedback.",
+  keywords: [
+    "English Speaking Course",
+    "Corporate English",
+    "Business Communication",
+    "AI English Coach",
+    "Interview Preparation",
+    "Soft Skills Training",
+    "EnglishGyani",
+    "English Sikho"
+  ],
+  authors: [{ name: "EnglishGyani Team" }],
+  creator: "EnglishGyani",
+  publisher: "EnglishGyani",
   icons: {
     icon: '/favicon.png',
     apple: '/logo.png',
   },
   openGraph: {
-    title: "EnglishGyani - Master Professional English",
-    description: "AI-powered English coaching for Indian professionals",
-    images: ['/logo.png'],
+    type: 'website',
+    locale: 'en_IN',
+    url: 'https://englishgyani.com',
+    title: "EnglishGyani - Master Corporate English",
+    description: "AI-powered English coaching for Indian professionals. Practice real-world scenarios.",
+    siteName: 'EnglishGyani',
+    images: [{
+      url: '/og-image.png', // Ensure this exists or fallback to logo
+      width: 1200,
+      height: 630,
+      alt: 'EnglishGyani AI Coach'
+    }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: "EnglishGyani - Master Corporate English with AI",
+    description: "Practice speaking, writing, and interviews with personalized AI feedback.",
+    images: ['/og-image.png'],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  alternates: {
+    canonical: '/',
   },
   verification: {
     google: "cojYuKe6Efu6cfNXRZOCgTh4p_8pK1SRheDQZ9wZCSo",
   },
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "EnglishGyani",
+  "url": "https://englishgyani.com",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://englishgyani.com/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+};
+
+const organizationJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "EnglishGyani",
+  "url": "https://englishgyani.com",
+  "logo": "https://englishgyani.com/logo.png",
+  "sameAs": [
+    "https://twitter.com/englishgyani",
+    "https://linkedin.com/company/englishgyani"
+  ]
 };
 
 export default function RootLayout({
@@ -63,6 +133,8 @@ export default function RootLayout({
             })(window, document, "clarity", "script", "uk7o7reurn");
           `}
         </Script>
+        <Script id="json-ld-website" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+        <Script id="json-ld-org" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }} />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground min-h-screen`}
