@@ -4,7 +4,7 @@ import { SEO_KEYWORDS } from '@/data/seo-keywords'
 import { VERNACULAR_DICTIONARY } from '@/data/vernacular-dictionary'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-    const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://englishgyani.com'
+    const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.englishgyani.com'
     const now = new Date()
 
     // Get dynamic blog slugs from file system
@@ -65,7 +65,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
     // Topic pages (Programmatic SEO - Keywords)
     const topicPages: MetadataRoute.Sitemap = SEO_KEYWORDS.map((item) => ({
-        url: `${baseUrl}/topic/${item.slug}`,
+        url: `${baseUrl}/learn/${item.slug}`,
         lastModified: now,
         changeFrequency: 'weekly' as const,
         priority: 0.7,

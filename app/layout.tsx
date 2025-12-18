@@ -17,7 +17,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://englishgyani.com'),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://www.englishgyani.com'),
   title: {
     default: "EnglishGyani - Master Corporate English with AI Coach",
     template: "%s | EnglishGyani"
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_IN',
-    url: 'https://englishgyani.com',
+    url: 'https://www.englishgyani.com',
     title: "EnglishGyani - Master Corporate English",
     description: "AI-powered English coaching for Indian professionals. Practice real-world scenarios.",
     siteName: 'EnglishGyani',
@@ -83,7 +83,7 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "WebSite",
   "name": "EnglishGyani",
-  "url": "https://englishgyani.com",
+  "url": "https://www.englishgyani.com",
   "potentialAction": {
     "@type": "SearchAction",
     "target": "https://englishgyani.com/search?q={search_term_string}",
@@ -95,8 +95,8 @@ const organizationJsonLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
   "name": "EnglishGyani",
-  "url": "https://englishgyani.com",
-  "logo": "https://englishgyani.com/logo.png",
+  "url": "https://www.englishgyani.com",
+  "logo": "https://www.englishgyani.com/logo.png",
   "sameAs": [
     "https://twitter.com/englishgyani",
     "https://linkedin.com/company/englishgyani"
