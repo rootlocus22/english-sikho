@@ -1503,8 +1503,13 @@ import { INDIAN_CITIES, JOB_ROLES } from './programmatic-data';
 
 const generateCityKeywords = () => {
     return INDIAN_CITIES.map(city => {
+        const citySlug = city.name.toLowerCase()
+            .replace(/&/g, 'and')
+            .replace(/[^a-z0-9]+/g, '-')
+            .replace(/^-+|-+$/g, '');
+
         return {
-            slug: `english-speaking-course-in-${city.name.toLowerCase().replace(/ /g, '-')}`,
+            slug: `english-speaking-course-in-${citySlug}`,
             title: `English Speaking Course in ${city.name} | AI-Powered Training`,
             metaDescription: `Join India's best English Speaking Course in ${city.name}. Specialized for ${city.industry} professionals. Overcome ${city.painPoint} with AI practice. 100% Online.`,
             content: `
@@ -1557,8 +1562,13 @@ We have built India's first **AI-Powered English Coach** that fits in your pocke
 
 const generateJobKeywords = () => {
     return JOB_ROLES.map(job => {
+        const jobSlug = job.role.toLowerCase()
+            .replace(/&/g, 'and')
+            .replace(/[^a-z0-9]+/g, '-')
+            .replace(/^-+|-+$/g, '');
+
         return {
-            slug: `english-for-${job.role.toLowerCase().replace(/ /g, '-')}`,
+            slug: `english-for-${jobSlug}`,
             title: `English for ${job.role} | Career Growth & Communication`,
             metaDescription: `Master English for ${job.role}. Learn specific vocabulary, handle scenarios like '${job.scenario}', and master ${job.focus} with AI practice.`,
             content: `
