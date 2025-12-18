@@ -1,5 +1,14 @@
 import Link from 'next/link';
+import { Metadata } from 'next';
 import { ArrowLeft } from 'lucide-react';
+
+export const metadata: Metadata = {
+    title: 'Privacy Policy | EnglishGyani',
+    description: 'How we protect your data and privacy at EnglishGyani.',
+    alternates: {
+        canonical: '/privacy',
+    },
+};
 
 export default function PrivacyPage() {
     return (

@@ -1,4 +1,13 @@
 import FeaturesSection from "@/components/FeaturesSection";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: 'Features - EnglishGyani | AI Speaking Coach, Tone Rewriter & More',
+    description: 'Explore all EnglishGyani features: AI Speaking Coach, Tone Rewriter, Interview Simulator, and Vocabulary Gym.',
+    alternates: {
+        canonical: '/features',
+    },
+};
 
 export default function FeaturesPage() {
     return (

@@ -5,6 +5,9 @@ import { Mic, ChevronRight } from 'lucide-react';
 export const metadata: Metadata = {
     title: 'Top 10 Interview Questions and Answers for Freshers | EnglishGyani',
     description: 'Prepare for your first job interview with the top 10 most asked questions. Sample answers for "Tell me about yourself", "Salary expectations", and more.',
+    alternates: {
+        canonical: '/interview/top-10-interview-questions',
+    },
 };
 
 const questions = [

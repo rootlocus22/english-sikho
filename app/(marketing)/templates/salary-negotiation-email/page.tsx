@@ -4,6 +4,9 @@ import EmailGenerator from '@/components/tools/EmailGenerator';
 export const metadata: Metadata = {
     title: 'Salary Negotiation Email Template: Ask for a Hike Professionaly | EnglishGyani',
     description: 'Scared to ask for a salary hike? Use our AI Email Generator to write a data-backed salary negotiation email. Get the raise you deserve.',
+    alternates: {
+        canonical: '/templates/salary-negotiation-email',
+    },
 };
 
 export default function SalaryPage() {

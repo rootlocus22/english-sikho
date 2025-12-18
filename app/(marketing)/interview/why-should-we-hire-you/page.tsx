@@ -5,6 +5,9 @@ import Link from 'next/link';
 export const metadata: Metadata = {
     title: '"Why Should We Hire You?" Best Answer for Freshers (2025) | EnglishGyani',
     description: 'Stuck on "Why should we hire you?" Get 3 perfect answers for freshers. Generative AI tool to practice your answer for free. Best for Indian graduates.',
+    alternates: {
+        canonical: '/interview/why-should-we-hire-you',
+    },
 };
 
 export default function HiringQuestionPage() {

@@ -1,5 +1,14 @@
 import Link from 'next/link';
+import { Metadata } from 'next';
 import { ArrowLeft } from 'lucide-react';
+
+export const metadata: Metadata = {
+    title: 'Terms and Conditions | EnglishGyani',
+    description: 'Terms of service for EnglishGyani platform usage.',
+    alternates: {
+        canonical: '/terms',
+    },
+};
 
 export default function TermsPage() {
     return (

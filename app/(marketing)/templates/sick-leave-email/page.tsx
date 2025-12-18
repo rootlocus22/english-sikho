@@ -4,6 +4,9 @@ import EmailGenerator from '@/components/tools/EmailGenerator';
 export const metadata: Metadata = {
     title: 'Sick Leave Email Generator for Office (Professional Format) | EnglishGyani',
     description: 'Write a professional sick leave email in 10 seconds. AI Email Writer for office employees. Free sick leave templates for fever, viral infection, and emergency.',
+    alternates: {
+        canonical: '/templates/sick-leave-email',
+    },
 };
 
 export default function SickLeavePage() {

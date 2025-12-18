@@ -28,6 +28,9 @@ export async function generateMetadata(
     return {
         title: `${entry.word} Meaning in Hindi & Tamil - Business English | EnglishGyani`,
         description: `What is the meaning of "${entry.word}" in Hindi and Tamil? Learn how to use "${entry.word}" in office emails and meetings. Practice pronunciation for free.`,
+        alternates: {
+            canonical: `/meaning/${entry.slug}`,
+        },
     };
 }
 

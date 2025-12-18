@@ -4,6 +4,9 @@ import EmailGenerator from '@/components/tools/EmailGenerator';
 export const metadata: Metadata = {
     title: 'Resignation Letter Generator: Professional & Polite Format | EnglishGyani',
     description: 'Generate a professional resignation letter instantly. Free AI tool for notice period, reason for leaving, and handover details. Best for Indian corporate employees.',
+    alternates: {
+        canonical: '/templates/resignation-letter-generator',
+    },
 };
 
 export default function ResignationPage() {

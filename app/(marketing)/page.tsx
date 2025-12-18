@@ -13,6 +13,11 @@ export const metadata: Metadata = {
   alternates: {
     canonical: '/',
   },
+  openGraph: {
+    title: "EnglishGyani - Master Corporate English with AI Coach",
+    description: "AI-powered English coaching for Indian professionals. Practice speaking, writing, corporate communication, and interviews with personalized AI feedback.",
+    url: 'https://www.englishgyani.com',
+  },
 };
 
 export default function Home() {

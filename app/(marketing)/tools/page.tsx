@@ -5,6 +5,9 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
     title: "Free English Tools | EnglishGyani",
     description: "Access our collection of free AI-powered tools to improve your corporate English. Generators, Templates, and Practice Exercises.",
+    alternates: {
+        canonical: '/tools',
+    },
 };
 
 const TOOLS = [

@@ -1,5 +1,14 @@
 import Link from 'next/link';
+import { Metadata } from 'next';
 import { ArrowLeft } from 'lucide-react';
+
+export const metadata: Metadata = {
+    title: 'Refund Policy | EnglishGyani',
+    description: 'EnglishGyani refund and cancellation policy details.',
+    alternates: {
+        canonical: '/refund-policy',
+    },
+};
 
 export default function RefundPolicy() {
     return (

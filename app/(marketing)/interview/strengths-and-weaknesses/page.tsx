@@ -5,6 +5,9 @@ import Link from 'next/link';
 export const metadata: Metadata = {
     title: 'List of Strengths and Weaknesses for Interview (With Examples) | EnglishGyani',
     description: 'What are your strengths and weaknesses? Best answers for freshers. List of safe weaknesses to mention in interviews. AI Practice Tool.',
+    alternates: {
+        canonical: '/interview/strengths-and-weaknesses',
+    },
 };
 
 export default function StrengthsWeaknessesPage() {

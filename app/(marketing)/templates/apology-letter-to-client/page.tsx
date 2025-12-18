@@ -4,6 +4,9 @@ import EmailGenerator from '@/components/tools/EmailGenerator';
 export const metadata: Metadata = {
     title: 'Apology Letter to Client/Boss: Professional Format | EnglishGyani',
     description: 'Made a mistake at work? Write a sincere apology email to client or boss. Save your reputation with our AI Email Writer.',
+    alternates: {
+        canonical: '/templates/apology-letter-to-client',
+    },
 };
 
 export default function ApologyPage() {

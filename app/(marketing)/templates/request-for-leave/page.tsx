@@ -4,6 +4,9 @@ import EmailGenerator from '@/components/tools/EmailGenerator';
 export const metadata: Metadata = {
     title: 'Leave Application for Office: Copy-Paste Templates | EnglishGyani',
     description: 'Write a professional leave application for office. Free AI tool for casual leave, planned vacation, or personal emergency. Get copy-paste format.',
+    alternates: {
+        canonical: '/templates/request-for-leave',
+    },
 };
 
 export default function LeaveRequestPage() {
