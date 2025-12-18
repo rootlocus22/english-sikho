@@ -1447,9 +1447,172 @@ Check our **Vernacular Bridge** to learn business words from Hindi/Tamil:
 
 1. **Daily 10 Mins:** EnglishGyani AI Gym mein kisi bhi topic par bole.
 2. **Weekly 1 Email:** Professional Email Writer use karke ek formal email likhein.
-3. **Monthly Review:** Apna purana recording sunkar improvement dekhein.
-
-**Aaj hi shuru karein. Kal kabhi nahi aata!**
         `
+    },
+    {
+        slug: "online-english-speaking-classes",
+        title: "Online English Speaking Classes | Flexible Learning",
+        metaDescription: "Best online English speaking classes for busy Indian professionals. Flexible timings, AI-powered coach, and instant results. Join for free.",
+        content: `
+### Online English Speaking Classes - Aapke Schedule ke Hisaab se
+
+"Online classes" ka matlab boring zoom calls nahi hona chahiye.EnglishGyani brings ** Active Learning **.
+
+** Why Online is Better:**
+*   ** Time Saver:** Travel time zero.
+*   ** Money Saver:** Offline coaching se 10x cheaper.
+*   ** Energy Saver:** Ghar ke comfort mein seekhein.
+
+** Our Online Method:**
+    Hum video lectures nahi dete.Hum ** Real - Time Simulation ** karate hain.
+* Interview simulator
+    * Office meeting simulator
+    * Presentation simulator
+
+    ** Abhi online aao aur free try karo! **
+        `
+    },
+    {
+        slug: "spoken-english-classes-online",
+        title: "Spoken English Classes Online | Speak Confidently",
+        metaDescription: "Join spoken English classes online. Remove hesitation and speak fluently. AI-based practice for real-world scenarios. Free trial.",
+        content: `
+### Spoken English Classes Online - Hichkichana Band!
+
+Online class dhoondh rahe ho kyunki offline jaane ka time nahi ? Great decision!
+Par EnglishGyani baaki online classes se alag hai.
+
+** Problem with Zoom Classes:**
+* Teacher 40 min bolta hai.
+* Aap sirf 2 min bolte hain.
+* Sudhaar kaise hoga ?
+
+** EnglishGyani Solution:**
+* AI 1 min bolega.
+* Aap 10 min bologe.
+*   ** Monthly Review:** Apna purana recording sunkar improvement dekhein.
+
+** Aaj hi shuru karein.Kal kabhi nahi aata! **
+    `
     }
 ];
+
+
+// PROGRAMMATIC INJECTION START
+import { INDIAN_CITIES, JOB_ROLES } from './programmatic-data';
+
+const generateCityKeywords = () => {
+    return INDIAN_CITIES.map(city => {
+        return {
+            slug: `english-speaking-course-in-${city.name.toLowerCase().replace(/ /g, '-')}`,
+            title: `English Speaking Course in ${city.name} | AI-Powered Training`,
+            metaDescription: `Join India's best English Speaking Course in ${city.name}. Specialized for ${city.industry} professionals. Overcome ${city.painPoint} with AI practice. 100% Online.`,
+            content: `
+### English Speaking Course in ${city.name} - The Modern Way to Learn
+
+Are you living in **${city.name}** and feeling stuck in your career because of English? You are not alone. As **${city.name}** grows rapidly in sectors like **${city.industry}**, the demand for fluent English speakers is at an all-time high.
+
+Traditional coaching centers in ${city.name} typically focus on grammar rules (Noun, Pronoun, Adjectives). But does knowing the definition of a "Verb" help you speak confidently in an interview? **No.**
+
+**The Core Problem: ${city.painPoint}**
+In ${city.name}, many learners suffer from **${city.painPoint}**. This is often because we think in our mother tongue and try to translate it into English. This results in:
+*   Slow speech (too many "aaa... umm..." pauses).
+*   Incorrect sentence structures.
+*   Lack of confidence when speaking to seniors or clients.
+
+### Why ${city.name} Needs a New Approach
+The old way of learning (Blackboard + Notebook) is dead. You need **Active Speaking Practice**.
+EnglishGyani brings the "Gym Method" to ${city.name}:
+1.  **Don't memorize rules:** Learn patterns by listening and speaking.
+2.  **Mistakes are good:** Our AI corrects you privately, so you never feel embarrassed.
+3.  **Industry Specific:** Since you are likely aiming for jobs in **${city.industry}**, general English isn't enough. You need vocabulary specific to your field.
+
+### 3 Hidden Costs of Weak English in ${city.name}
+If you ignore your communication skills, you are paying a "hidden tax" every year:
+*   **The Salary Cap:** Professionals with good communication in ${city.name} earn **30-50% more** than their technical peers who can't speak well.
+*   **Missed Promotions:** You do all the hard work, but the guy who speaks well presents it to the boss and gets the credit.
+*   **Social Confidence:** Avoiding parties or networking events in ${city.state} because you are afraid someone will speak to you in English.
+
+### How EnglishGyani Solves This for You
+We have built India's first **AI-Powered English Coach** that fits in your pocket.
+*   **Daily AI Roleplays:** Practice negotiation scenarios, interview answers, and casual small talk.
+*   **Regional Support:** We understand the specific accent and compilation challenges faced by people in ${city.state}.
+*   **Cost Effective:** Why pay ₹10,000 for a local institute when you can practice unlimited for a fraction of the cost?
+
+**Student Success Story:**
+>"I work in the ${city.industry} sector in ${city.name}. I used to freeze when my manager asked for updates. After 30 days of practicing with EnglishGyani AI, specifically focusing on ${city.painPoint}, I engaged in a 20-minute debate with my client yesterday!"
+> — *Ankit, ${city.name}*
+
+### Your 7-Day Action Plan
+1.  Download the EnglishGyani App.
+2.  Take the free "Speaking Assessment" to know your current level.
+3.  Spend just 15 minutes a day practicing specifically on **${city.painPoint}**.
+4.  Record your voice and compare it with the AI's pronunciation.
+
+**Take the first step today. Don't let language be the barrier between you and your dreams in ${city.name}.**
+            `
+        };
+    });
+};
+
+const generateJobKeywords = () => {
+    return JOB_ROLES.map(job => {
+        return {
+            slug: `english-for-${job.role.toLowerCase().replace(/ /g, '-')}`,
+            title: `English for ${job.role} | Career Growth & Communication`,
+            metaDescription: `Master English for ${job.role}. Learn specific vocabulary, handle scenarios like '${job.scenario}', and master ${job.focus} with AI practice.`,
+            content: `
+### English for ${job.role} - Unlock Your Career Potential
+
+As a **${job.role.slice(0, -1)}**, your technical skills are likely excellent. You know your job inside out. But in today's global market, technical skills get you the job, but **communication skills get you the promotion.**
+
+Why is English specifically crucial for **${job.role}**?
+Because this role demands high proficiency in **${job.focus}**. Whether you are dealing with international clients, senior management, or cross-functional teams, your ability to articulate ideas clearly is your biggest asset.
+
+### The Challenge: Handling "${job.scenario}"
+Let's look at a specific real-world scenario you face often: **${job.scenario}**.
+
+**The Wrong Way to Handle It:**
+*   **Mumbling:** Speaking softy because you are unsure of your grammar.
+*   **Over-explaining:** Using 100 words when 10 would do, because you can't find the right vocabulary.
+*   **Translating:** Thinking in Hindi/Vernacular and speaking in English often leads to rude-sounding direct translations.
+
+**The Right Way (The EnglishGyani Way):**
+*   **Precise Vocabulary:** Using industry-standard terms that make you sound like an expert.
+*   **Confident Tone:** Modulating your voice to sound authoritative yet polite.
+*   **Active Listening:** Understanding the nuance of what is being asked before replying.
+
+### 5 Vocabulary Words Every ${job.role.slice(0, -1)} Must Know
+To sound professional, you need to replace basic words with "Power Words".
+1.  **Instead of "Change":** Use "Optimize" or "Transform" (e.g., "We need to optimize this process").
+2.  **Instead of "Problem":** Use "Challenge" or "Bottleneck".
+3.  **Instead of "Do":** Use "Execute" or "Implement".
+4.  **Instead of "Think":** Use "Analyze" or "Evaluate".
+5.  **Instead of "Help":** Use "Facilitate" or "Assist".
+
+*Learning these words isn't enough. You must practice using them in sentences. That's where our AI Roleplay helps.*
+
+### Customized Training for ${job.role}
+EnglishGyani offers a specialized module designed strictly for **${job.role}**:
+*   **Scenario Training:** We simulate **"${job.scenario}"** repeatedly until you can handle it in your sleep.
+*   **Tone Analysis:** Our AI listens to you and tells you if you sound aggressive, passive, or assertive.
+*   **Focus Area:** We drill down on **${job.focus}** exercises daily.
+
+### Practical Exercise: The "STAR" Method
+When answering interview questions or explaining your work as a ${job.role.slice(0, -1)}, use the STAR method:
+*   **S (Situation):** Briefly describe the context.
+*   **T (Task):** What was your responsibility?
+*   **A (Action):** What specific action did **you** take? (Use "I", not "We").
+*   **R (Result):** What was the positive outcome? (Use numbers/data).
+
+**Don't let poor communication hold back your brilliant career as a ${job.role.slice(0, -1)}. Start practicing with your personal AI Coach today.**
+            `
+        };
+    });
+};
+
+// Combine Manual + Programmatic
+const PROGRAMMATIC_KEYWORDS = [...generateCityKeywords(), ...generateJobKeywords()];
+
+// Re-export combined list (mutable push for compatibility if needed, or spread)
+SEO_KEYWORDS.push(...PROGRAMMATIC_KEYWORDS);

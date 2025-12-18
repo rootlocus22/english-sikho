@@ -1,0 +1,112 @@
+[
+    {
+        "word": "Attrition",
+        "slug": "attrition",
+        "hindiMeaning": "Karmachariyon ka jana (कर्मचारियों का जाना)",
+        "tamilMeaning": "Velai Vittu Selluthal (வேலை விட்டு செல்லுதல்)",
+        "pronunciation": "uh-trish-un",
+        "exampleSentence": "The attrition rate in our team is high.",
+        "businessContext": "Rate at which employees leave a company.",
+        "type": "noun"
+    },
+    {
+        "word": "Bandwidth",
+        "slug": "bandwidth",
+        "hindiMeaning": "Kaam karne ki shamta (काम करने की क्षमता)",
+        "tamilMeaning": "Velai Thiran (வேலை திறன்)",
+        "pronunciation": "band-width",
+        "exampleSentence": "I don't have the bandwidth to take on a new project.",
+        "businessContext": "Capacity or time available to do work.",
+        "type": "noun"
+    },
+    {
+        "word": "Deploy",
+        "slug": "deploy",
+        "hindiMeaning": "Tainat karna (तैनात करना) / Live karna",
+        "tamilMeaning": "Payanpaduthu (பயன்படுத்து)",
+        "pronunciation": "dih-ploy",
+        "exampleSentence": "We will deploy the code tonight.",
+        "businessContext": "To bring a resource or software into action.",
+        "type": "verb"
+    },
+    {
+        "word": "Sync",
+        "slug": "sync",
+        "hindiMeaning": "Taal-mail (ताल-मेल) / Discussion",
+        "tamilMeaning": "Inai (இணை)",
+        "pronunciation": "sink",
+        "exampleSentence": "Let's sync up later today.",
+        "businessContext": "A short meeting to align on updates.",
+        "type": "verb"
+    },
+    {
+        "word": "Deliverable",
+        "slug": "deliverable",
+        "hindiMeaning": "Parinam (परिणाम) / Output",
+        "tamilMeaning": "Mudivu (முடிவு)",
+        "pronunciation": "dih-liv-er-uh-bul",
+        "exampleSentence": "The report is a key deliverable for this week.",
+        "businessContext": "A tangible result required by the project.",
+        "type": "noun"
+    },
+    {
+        "word": "Scalable",
+        "slug": "scalable",
+        "hindiMeaning": "Badhane yogya (बढ़ाने योग्य)",
+        "tamilMeaning": "Virivakka Koodiya (விரிவாக்கக்கூடிய)",
+        "pronunciation": "skay-luh-bul",
+        "exampleSentence": "We need a scalable solution for future growth.",
+        "businessContext": "Able to handle growth without breaking.",
+        "type": "adjective"
+    },
+    {
+        "word": "Benchmark",
+        "slug": "benchmark",
+        "hindiMeaning": "Manak (मानक)",
+        "tamilMeaning": "Tharam (தரம்)",
+        "pronunciation": "bench-mark",
+        "exampleSentence": "This sales figure is the new benchmark.",
+        "businessContext": "A standard point of reference.",
+        "type": "noun"
+    },
+    {
+        "word": "Incentive",
+        "slug": "incentive",
+        "hindiMeaning": "Protsahan (प्रोत्साहन)",
+        "tamilMeaning": "Ookkuvippu (ஊக்குவிப்பு)",
+        "pronunciation": "in-sen-tiv",
+        "exampleSentence": "The sales team got a huge incentive this month.",
+        "businessContext": "Reward to encourage better performance.",
+        "type": "noun"
+    },
+    {
+        "word": "Pipeline",
+        "slug": "pipeline",
+        "hindiMeaning": "Prakriya mein (प्रक्रिया में)",
+        "tamilMeaning": "Kuzhai (குழாய் - Literal) / Process",
+        "pronunciation": "pipe-line",
+        "exampleSentence": "We have 3 new deals in the pipeline.",
+        "businessContext": "Work or deals that are in progress.",
+        "type": "noun"
+    },
+    {
+        "word": "Stakeholder",
+        "slug": "stakeholder",
+        "hindiMeaning": "Hitdharak (हितधारक)",
+        "tamilMeaning": "Pangudharar (பங்குதாரர்)",
+        "pronunciation": "stake-hold-er",
+        "exampleSentence": "We need to update all key stakeholders.",
+        "businessContext": "Anyone interested or affected by the project.",
+        "type": "noun"
+    },
+    {
+        "word": "Bottleneck",
+        "slug": "bottleneck",
+        "hindiMeaning": "Badha (बाधा)",
+        "tamilMeaning": "Thadai (தடை)",
+        "pronunciation": "bot-ul-nek",
+        "exampleSentence": "The approval process is a major bottleneck.",
+        "businessContext": "A point of congestion delaying the process.",
+        "type": "noun"
+    }
+]

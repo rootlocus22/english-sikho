@@ -8,8 +8,32 @@ import { PRICING_PLANS, getMonthlyEquivalent, calculateSavings, getDiscountPerce
 export default function PricingPage() {
     const [duration, setDuration] = useState<'monthly' | 'quarterly' | 'yearly'>('yearly');
 
+
+    // FAQ Schema
+    const schema = {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "Can I get a refund?",
+                "acceptedAnswer": { "@type": "Answer", "text": "Yes, if you are not satisfied, you can request a full refund within 7 days. No questions asked." }
+            },
+            {
+                "@type": "Question",
+                "name": "Can I cancel anytime?",
+                "acceptedAnswer": { "@type": "Answer", "text": "Absolutely. You can cancel your subscription anytime from your dashboard." }
+            }
+        ]
+    };
+
     return (
         <div className="min-h-screen bg-slate-50 flex flex-col">
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+            />
+
 
 
             <main className="flex-1 py-20 px-4">
@@ -208,6 +232,8 @@ export default function PricingPage() {
                                 <p className="text-slate-600 text-sm mb-2">Traditional Coaching</p>
                                 <p className="text-3xl font-bold text-slate-900">₹5,000+</p>
                                 <p className="text-xs text-slate-500 mt-1">per month</p>
+
+
                             </div>
                             <div>
                                 <p className="text-slate-600 text-sm mb-2">Other Apps</p>
@@ -222,7 +248,35 @@ export default function PricingPage() {
                         </div>
                     </div>
 
+
+                    {/* Enterprise Section */}
+                    <div className="mt-20 bg-slate-900 rounded-2xl p-10 text-center text-white max-w-5xl mx-auto">
+                        <h2 className="text-3xl font-bold mb-4">Looking for Team Access?</h2>
+                        <p className="text-slate-300 text-lg max-w-2xl mx-auto mb-8">
+                            We provide centralized billing, employee progress tracking, and custom scenario creation for companies.
+                            Perfect for BPOs, Sales Teams, and Universities.
+                        </p>
+                        <div className="grid md:grid-cols-3 gap-6 text-left max-w-3xl mx-auto mb-8">
+                            <div className="flex gap-3">
+                                <Check className="w-6 h-6 text-green-400 shrink-0" />
+                                <span>Admin Dashboard</span>
+                            </div>
+                            <div className="flex gap-3">
+                                <Check className="w-6 h-6 text-green-400 shrink-0" />
+                                <span>Bulk Discounts</span>
+                            </div>
+                            <div className="flex gap-3">
+                                <Check className="w-6 h-6 text-green-400 shrink-0" />
+                                <span>Custom Branded Examples</span>
+                            </div>
+                        </div>
+                        <a href="/contact" className="inline-block bg-white text-slate-900 px-8 py-3 rounded-lg font-bold hover:bg-blue-50 transition-colors">
+                            Contact Sales
+                        </a>
+                    </div>
+
                     {/* FAQ */}
+
                     <div className="max-w-3xl mx-auto mt-20">
                         <h2 className="text-2xl font-bold text-center mb-8">Frequently Asked Questions</h2>
                         <div className="space-y-4">

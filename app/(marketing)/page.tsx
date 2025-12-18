@@ -3,12 +3,48 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { SEO_KEYWORDS } from "@/data/seo-keywords";
 import { SCENARIO_DATA } from "@/data/scenarios";
 import Link from "next/link";
+import { Metadata } from 'next';
 import FeaturesSection from "@/components/FeaturesSection";
 import { ArrowRight, CheckCircle2, Star, Users, Bot, Mic, ShieldCheck, Zap, Globe, BrainCircuit, Sparkles } from "lucide-react";
 
+export const metadata: Metadata = {
+  title: 'EnglishGyani - AI English Speaking Coach for Indian Professionals',
+  description: 'Master Corporate English without fear. EnglishGyani is India\'s first AI-powered speaking coach that helps you practice interviews, emails, and daily conversation. Start for free.',
+  alternates: {
+    canonical: '/',
+  },
+};
+
 export default function Home() {
+  // Generate FAQ Schema
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How does EnglishGyani improve my speaking?",
+        "acceptedAnswer": { "@type": "Answer", "text": "We use AI roleplays to simulate real-life scenarios like job interviews and client meetings. You speak, AI listens and gives instant feedback on grammar and tone." }
+      },
+      {
+        "@type": "Question",
+        "name": "Is it free to use?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes! You get 3 free practice sessions every single day. No credit card required to start." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does it support Hindi speakers?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Absolutely. Our AI understands Indian accents and Hinglish, helping you transition smoothly to professional global English." }
+      }
+    ]
+  };
+
   return (
     <div className="min-h-screen bg-background flex flex-col font-sans selection:bg-primary/20 selection:text-primary">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      />
       {/* Hero Section */}
       <section className="relative overflow-hidden pt-20 pb-32 lg:pt-32 lg:pb-48">
         {/* innovative Background: Neural Grid + Floating Language Elements */}

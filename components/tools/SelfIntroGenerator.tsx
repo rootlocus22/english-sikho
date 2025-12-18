@@ -132,6 +132,18 @@ Thank you for giving me this opportunity to introduce myself.`;
                             <div className="mt-6 p-3 bg-yellow-50 border border-yellow-100 rounded-lg text-sm text-yellow-800">
                                 💡 <strong>Pro Tip:</strong> Don't just read it. Memorize the flow, but speak naturally.
                             </div>
+
+                            <div className="mt-6 pt-4 border-t border-slate-200">
+                                <p className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3 text-center">Share with Friends</p>
+                                <a
+                                    href={`https://wa.me/?text=${encodeURIComponent("Hey! I just created my professional self-introduction for FREE using EnglishGyani. It's awesome for freshers! Check it out: https://englishgyani.com/tools/self-introduction-generator")}`}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="flex items-center justify-center gap-2 w-full py-2.5 bg-[#25D366] hover:bg-[#20bd5a] text-white rounded-lg font-semibold transition-colors"
+                                >
+                                    Share on WhatsApp
+                                </a>
+                            </div>
                         </div>
                     ) : (
                         <div className="h-full flex flex-col items-center justify-center text-slate-400 min-h-[200px]">

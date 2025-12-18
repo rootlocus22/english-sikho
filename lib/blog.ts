@@ -19,6 +19,7 @@ export interface BlogPost {
 export function getAllPostSlugs() {
     let filePaths: { slug: string }[] = [];
 
+
     // 1. Get slugs from file system if directory exists
     if (fs.existsSync(postsDirectory)) {
         const fileNames = fs.readdirSync(postsDirectory);
@@ -29,12 +30,7 @@ export function getAllPostSlugs() {
         });
     }
 
-    // 2. Get slugs from SEO_KEYWORDS
-    const seoPaths = SEO_KEYWORDS.map((item) => ({
-        slug: item.slug,
-    }));
-
-    return [...filePaths, ...seoPaths];
+    return filePaths;
 }
 
 export function getSortedPostsData() {
@@ -57,17 +53,6 @@ export function getSortedPostsData() {
         allPostsData = [...allPostsData, ...filePosts];
     }
 
-    // 2. Get SEO posts
-    const seoPosts = SEO_KEYWORDS.map(item => ({
-        slug: item.slug,
-        title: item.title,
-        date: new Date().toISOString(), // Default date for SEO pages
-        description: item.metaDescription,
-        tags: ['guide', 'english-learning'], // Default tags
-    }));
-
-    allPostsData = [...allPostsData, ...seoPosts];
-
     return allPostsData.sort((a, b) => {
         if (a.date < b.date) {
             return 1;
@@ -78,26 +63,7 @@ export function getSortedPostsData() {
 }
 
 export async function getPostData(slug: string) {
-    // 1. Check if it's an SEO keyword post
-    const seoItem = SEO_KEYWORDS.find(k => k.slug === slug);
-
-    if (seoItem) {
-        const processedContent = await remark()
-            .use(html)
-            .process(seoItem.content || '');
-        const contentHtml = processedContent.toString();
-
-        return {
-            slug,
-            contentHtml,
-            title: seoItem.title,
-            description: seoItem.metaDescription,
-            date: new Date().toISOString(),
-            tags: ['guide', 'english-learning']
-        };
-    }
-
-    // 2. Fallback to File System
+    // 1. Fallback to File System
     const fullPath = path.join(postsDirectory, `${slug}.md`);
 
     // Ensure file exists before trying to read to provide a cleaner error

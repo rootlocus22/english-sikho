@@ -2,6 +2,8 @@ import Link from "next/link";
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { SEO_KEYWORDS } from "@/data/seo-keywords";
+import { remark } from 'remark';
+import html from 'remark-html';
 
 interface Props {
     params: Promise<{
@@ -9,12 +11,12 @@ interface Props {
     }>;
 }
 
-// Logic to format slug into readable text
+// Logic to format slug into readable text (Fallback title)
 const formatSlug = (slug: string) => {
     return slug.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
 };
 
-// Logic to determine intent based on keywords
+// Logic to determine intent based on keywords (Keep this for UI customization)
 const getIntent = (slug: string) => {
     if (slug.includes('classes') || slug.includes('course') || slug.includes('institute')) return 'learning';
     if (slug.includes('interview') || slug.includes('job') || slug.includes('career') || slug.includes('placement') || slug.includes('hr-interview')) return 'interview';
@@ -26,12 +28,66 @@ const getIntent = (slug: string) => {
     return 'general';
 };
 
+// Logic to generate FAQ Schema based on intent
+const generateSchema = (title: string, intent: string) => {
+    const faqs = [
+        {
+            question: `Is this ${title} course suitable for beginners?`,
+            answer: "Yes, our AI coach adapts to your level, whether you are a fresher or a working professional. You start with basic scenarios and move to advanced business communication."
+        },
+        {
+            question: "How is this different from offline coaching classes?",
+            answer: "Unlike crowded classes where you get 2 minutes to speak, EnglishGyani's AI gives you 24/7 speaking practice with instant feedback on grammar and pronunciation."
+        },
+        {
+            question: "Can I practice specifically for job interviews?",
+            answer: "Absolutely. We have dedicated modules for HR rounds, technical explanations, and salary negotiations tailored to the Indian job market."
+        }
+    ];
+
+    if (intent === 'business') {
+        faqs.push({
+            question: "Does this cover email writing and presentation skills?",
+            answer: "Yes, we focus heavily on corporate communication including formal emails, meeting etiquette, and presentation delivery."
+        });
+    }
+
+    return {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": faqs.map(faq => ({
+            "@type": "Question",
+            "name": faq.question,
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": faq.answer
+            }
+        }))
+    };
+};
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const { slug } = await params;
-    const title = formatSlug(slug);
+    const keywordData = SEO_KEYWORDS.find(k => k.slug === slug);
+
+    if (!keywordData) {
+        return {
+            title: 'Topic Not Found | EnglishGyani',
+        };
+    }
+
     return {
-        title: `${title} | EnglishGyani`,
-        description: `Looking for ${title}? EnglishGyani provides AI-powered English training tailored for Indian professionals. Better than local classes, cheaper than tutors.`,
+        title: `${keywordData.title} | EnglishGyani`,
+        description: keywordData.metaDescription,
+        alternates: {
+            canonical: `/topic/${slug}`,
+        },
+        openGraph: {
+            title: keywordData.title,
+            description: keywordData.metaDescription,
+            type: 'article',
+            url: `/topic/${slug}`,
+        }
     };
 }
 
@@ -43,23 +99,64 @@ export function generateStaticParams() {
 
 export default async function TopicPage({ params }: Props) {
     const { slug } = await params;
+    const keywordData = SEO_KEYWORDS.find(k => k.slug === slug);
 
-    // Optional: Validating if slug exists in our targeted list
-    // if (!SEO_KEYWORDS.includes(slug)) return notFound();
+    if (!keywordData) {
+        return notFound();
+    }
 
-    const title = formatSlug(slug);
+    const title = keywordData.title; // Use rich title from data
     const intent = getIntent(slug);
+    const schema = generateSchema(title, intent);
+
+    // Process Markdown Content
+    const processedContent = await remark()
+        .use(html)
+        .process(keywordData.content || '');
+    const contentHtml = processedContent.toString();
+
+    // Interlinking Logic
+    const relatedLinks = (() => {
+        // If City, show Jobs. If Job, show Cities.
+        const isCity = slug.includes('in-');
+        const isJob = slug.includes('for-');
+
+        return SEO_KEYWORDS
+            .filter(k => {
+                if (isCity) return k.slug.includes('english-for-'); // Show Jobs on City pages
+                if (isJob) return k.slug.includes('course-in-');   // Show Cities on Job pages
+                return Math.random() > 0.5; // Random mix for others
+            })
+            .sort(() => 0.5 - Math.random()) // Shuffle
+            .slice(0, 6); // Take 6
+    })();
 
     return (
         <div className="min-h-screen bg-white">
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+            />
+
+            {/* Breadcrumb */}
+            <div className="bg-slate-50 px-6 py-4 border-b border-slate-200">
+                <div className="max-w-4xl mx-auto text-sm text-slate-500">
+                    <Link href="/" className="hover:text-slate-900">Home</Link>
+                    <span className="mx-2">/</span>
+                    <Link href="/topic" className="hover:text-slate-900">Topics</Link>
+                    <span className="mx-2">/</span>
+                    <span className="text-slate-800 font-medium truncate">{title}</span>
+                </div>
+            </div>
+
             {/* Hero Section */}
             <div className="bg-slate-50 border-b border-slate-200">
-                <div className="max-w-4xl mx-auto px-6 py-16 md:py-24 text-center">
+                <div className="max-w-4xl mx-auto px-6 py-12 md:py-20 text-center">
                     <div className="inline-block px-4 py-1.5 bg-blue-100 text-blue-700 rounded-full text-sm font-semibold mb-6">
-                        Showing Results for: {title}
+                        Topic: {formatSlug(slug)}
                     </div>
-                    <h1 className="text-4xl md:text-6xl font-extrabold text-slate-900 mb-6 leading-tight">
-                        Stop Searching for <span className="text-blue-600 block mt-2">"{title}"</span>
+                    <h1 className="text-3xl md:text-5xl font-extrabold text-slate-900 mb-6 leading-tight">
+                        {title}
                     </h1>
                     <p className="text-xl text-slate-600 mb-10 max-w-2xl mx-auto">
                         {intent === 'learning' && "Local classes are expensive, time-consuming, and outdated. Switch to AI-powered practice that works 24/7."}
@@ -136,29 +233,41 @@ export default async function TopicPage({ params }: Props) {
                 </div>
             </div>
 
-            {/* SEO Content Injection */}
-            <div className="bg-slate-50 py-20">
-                <div className="max-w-3xl mx-auto px-6 prose prose-lg prose-slate">
-                    <h2>Why {title} is the wrong goal</h2>
-                    <p>
-                        When people search for <strong>{title}</strong>, they are usually looking for a result: confidence.
-                        They want to speak without hesitation, write emails without errors, and get promoted.
-                    </p>
-                    <p>
-                        But traditional methods like memorizing grammar rules or attending crowded classes often fail because they lack
-                        <strong> active practice</strong>.
-                    </p>
-                    <h3>The EnglishGyani Approach</h3>
-                    <ul>
-                        <li><strong>No Judgment:</strong> Practice with an AI that never gets tired or annoyed.</li>
-                        <li><strong>Roleplay Real Scenarios:</strong> Practice for interviews, salary negotiations, or client meetings.</li>
-                        <li><strong>Tone Correction:</strong> Convert your casual thoughts into professional emails instantly.</li>
-                    </ul>
+            {/* SEO Content Injection - DYNAMIC */}
+            <div className="bg-slate-50 py-20 border-t border-slate-200">
+                <div className="max-w-3xl mx-auto px-6">
+                    <div
+                        className="prose prose-lg prose-slate prose-headings:text-slate-900 prose-a:text-blue-600 prose-strong:text-slate-900 prose-li:text-slate-700"
+                        dangerouslySetInnerHTML={{ __html: contentHtml }}
+                    />
+                </div>
+            </div>
+
+            {/* Related Topics (Interlinking) */}
+            <div className="bg-white py-16 border-t border-slate-200">
+                <div className="max-w-6xl mx-auto px-6">
+                    <h3 className="text-2xl font-bold text-slate-900 mb-8">
+                        Explore Related Topics
+                    </h3>
+                    <div className="grid md:grid-cols-3 gap-6">
+                        {relatedLinks.map((link) => (
+                            <Link
+                                key={link.slug}
+                                href={`/topic/${link.slug}`}
+                                className="block p-4 border border-slate-200 rounded-xl hover:border-blue-300 hover:shadow-md transition-all group"
+                            >
+                                <h4 className="font-semibold text-slate-800 group-hover:text-blue-600 line-clamp-2">
+                                    {link.title.split('|')[0].trim()}
+                                </h4>
+                                <span className="text-sm text-slate-400 mt-2 block">Read More →</span>
+                            </Link>
+                        ))}
+                    </div>
                 </div>
             </div>
 
             {/* Final CTA */}
-            <div className="py-20 text-center px-6">
+            <div className="py-20 text-center px-6 bg-slate-50">
                 <h2 className="text-3xl font-bold text-slate-900 mb-6">Ready to upgrade your career?</h2>
                 <Link
                     href="/dashboard"
@@ -170,3 +279,4 @@ export default async function TopicPage({ params }: Props) {
         </div>
     );
 }
+
