@@ -95,7 +95,7 @@ export default function PricingPage() {
                             <ul className="space-y-3 mb-8">
                                 <li className="flex gap-3 text-slate-700 text-sm">
                                     <Check className="w-5 h-5 text-green-500 shrink-0" />
-                                    <span>3 AI sessions daily</span>
+                                    <span>10 free credits for trial</span>
                                 </li>
                                 <li className="flex gap-3 text-slate-700 text-sm">
                                     <Check className="w-5 h-5 text-green-500 shrink-0" />
@@ -283,7 +283,7 @@ export default function PricingPage() {
                             <FaqItem q="Kya refund mil sakta hai?" a="Haan, agar aap khush nahi hain toh 7 days ke andar full refund maang sake hain. No questions asked." />
                             <FaqItem q="Kya main kabhi bhi cancel kar sakta hoon?" a="Bilkul! Aap kabhi bhi cancel kar sakte hain. Quarterly aur yearly plans ka remaining amount refund nahi hoga, but monthly plan kabhi bhi cancel ho sakta hai." />
                             <FaqItem q="Payment methods kya hain?" a="UPI (GPay, PhonePe), Credit/Debit Card, Net Banking - sab chalta hai. Razorpay ke through 100% secure payment." />
-                            <FaqItem q="Free vs Starter vs Pro - kya difference hai?" a="Free mein 3 sessions daily. Starter mein unlimited sessions with basic features. Pro mein everything unlimited plus advanced AI features for interviews and business English." />
+                            <FaqItem q="Free vs Starter vs Pro - kya difference hai?" a="Free mein 10 credits milte hain trial ke liye. Starter mein unlimited sessions with basic features. Pro mein everything unlimited plus advanced AI features for interviews and business English." />
                         </div>
                     </div>
                 </div>
