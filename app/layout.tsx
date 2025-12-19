@@ -120,6 +120,7 @@ export default function RootLayout({
             gtag('js', new Date());
 
             gtag('config', 'G-PWJGKD3QD7');
+            gtag('config', 'AW-17492039594');
           `}
         </Script>
         <Script id="microsoft-clarity" strategy="afterInteractive">
