@@ -12,7 +12,7 @@ export default function FeaturesSection() {
             subtitle: "Fix Your Tone Instantly",
             desc: "Don't sound rude. Turn 'Do this now' into 'Could you please help with this?' in one click. 4 levels of politeness.",
             image: "/images/tone-changer-demo.png",
-            link: "/dashboard/tools/tone-changer",
+            link: "/dashboard",
             checks: [
                 "4 Politeness Levels (Rude → Professional)",
                 "Instant Rewrite with Explanations",
@@ -40,7 +40,7 @@ export default function FeaturesSection() {
             subtitle: "Decode & Reply Smartly",
             desc: "Confused by a passive-aggressive email? Upload a screenshot. AI explains the hidden meaning and drafts 3 professional replies.",
             image: "/images/reply-helper-demo.png",
-            link: "/dashboard/tools/reply-helper",
+            link: "/dashboard/reply-helper",
             checks: [
                 "Analyzes screenshots & text",
                 "Decodes hidden meanings",
