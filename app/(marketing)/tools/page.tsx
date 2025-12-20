@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { TrackedLink } from "@/components/ui/tracked-elements";
-import { ArrowRight, MessageSquare, Mic, PenTool, Sparkles } from "lucide-react";
+import { ArrowRight, MessageSquare, Mic, PenTool, Sparkles, Languages } from "lucide-react";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -14,31 +14,38 @@ export const metadata: Metadata = {
 const TOOLS = [
     {
         title: "Self Introduction Generator",
-        description: "Create a professional introduction for interviews in 10 seconds.",
+        description: "Create a professional introduction for interviews in 10 seconds. (English mein Introduce karo)",
         href: "/tools/self-introduction-generator",
         icon: Sparkles,
         color: "bg-blue-100 text-blue-600"
     },
     {
         title: "Top 10 Interview Questions",
-        description: "Prepare for the most common HR questions with simplified answers.",
+        description: "Prepare for HR questions with simplified answers. (Ratta mat maaro, samjho)",
         href: "/interview/top-10-interview-questions",
         icon: Mic,
         color: "bg-purple-100 text-purple-600"
     },
     {
         title: "Professional Email Writer",
-        description: "Templates for sick leave, resignation, salary negotiation, and more.",
+        description: "Templates for sick leave, resignation, salary negotiation. (Boss ko impress karo)",
         href: "/templates/sick-leave-email",
         icon: MessageSquare,
         color: "bg-green-100 text-green-600"
     },
     {
         title: "Resignation Letter Generator",
-        description: "Generate a polite and professional resignation letter instantly.",
+        description: "Generate a polite quitting letter instantly. (Professional exit lo)",
         href: "/templates/resignation-letter-generator",
         icon: PenTool,
         color: "bg-orange-100 text-orange-600"
+    },
+    {
+        title: "WhatsApp to Professional Email",
+        description: "Convert casual Hinglish messages into professional office emails. (Toota-phoota likho, perfect paao)",
+        href: "/tools/whatsapp-to-email",
+        icon: Languages,
+        color: "bg-teal-100 text-teal-600"
     }
 ];
 
@@ -50,7 +57,7 @@ export default function ToolsPage() {
             <div className="container mx-auto px-4 py-20 relative z-10 max-w-5xl">
                 <div className="text-center mb-16">
                     <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900 mb-6">
-                        Free English Tools
+                        Free English Tools (Muft Saadhan)
                     </h1>
                     <p className="text-xl text-slate-600 max-w-2xl mx-auto">
                         Powerful, free utilities to help you navigate your career with confidence.

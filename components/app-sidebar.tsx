@@ -46,45 +46,45 @@ import { LogOut } from "lucide-react";
 // Menu items
 const navMain = [
     {
-        title: "Fix My English",
-        titleHindi: "Apni English Sudharo",
+        title: "Apna English Coach",
+        titleHindi: "Bolne ka Practice",
         url: "/dashboard",
-        icon: SlidersHorizontal,
+        icon: Mic,
     },
     {
-        title: "Reply Helper",
+        title: "Real-Life Practice",
+        titleHindi: "Practice Kamra", // "Gym" -> "Kamra/Room" or "Arena" ? "Practice Gym" was "Practice Kamra". "Real-Life Practice" -> "Asli Practice"? Let's stick to "Real Roleplay".
+        url: "/dashboard/gym",
+        icon: Dumbbell,
+    },
+    {
+        title: "Boss-Friendly Emailer",
+        titleHindi: "Professional Emails",
+        url: "/dashboard/tone",
+        icon: Sparkles,
+    },
+    {
+        title: "Smart Reply",
         titleHindi: "Reply Dhundho",
         url: "/dashboard/reply-helper",
         icon: ImageIcon,
     },
     {
-        title: "Practice Gym",
-        titleHindi: "Practice Kamra",
-        url: "/dashboard/gym",
-        icon: Dumbbell,
-    },
-    {
-        title: "Speaking Coach",
-        titleHindi: "Bolne ka Practice",
-        url: "/dashboard/coach",
-        icon: Mic,
-    },
-    {
-        title: "Templates",
+        title: "Templates Library",
         titleHindi: "Ready Templates",
         url: "/dashboard/templates",
         icon: BookOpen,
     },
     {
-        title: "Interview Prep",
-        titleHindi: "Interview Prep",
+        title: "Interview Simulator",
+        titleHindi: "Mock Interview",
         url: "/dashboard/interview-prep",
         icon: Briefcase,
         isPro: true
     },
     {
         title: "Analytics",
-        titleHindi: "Analytics",
+        titleHindi: "Aapki Progress",
         url: "/dashboard/analytics",
         icon: TrendingUp,
         isPro: true

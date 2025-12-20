@@ -9,14 +9,14 @@ import { ArrowRight, CheckCircle2, Star, Users, Bot, Mic, ShieldCheck, Zap, Glob
 import { TrackedLink } from "@/components/ui/tracked-elements";
 
 export const metadata: Metadata = {
-  title: 'EnglishGyani - AI English Speaking Coach for Indian Professionals',
-  description: 'Master Corporate English without fear. EnglishGyani is India\'s first AI-powered speaking coach that helps you practice interviews, emails, and daily conversation. Start for free.',
+  title: 'EnglishGyani - Don\'t Let English Hold Your Career Back',
+  description: 'Stop translating in your head. Start speaking with confidence. India\'s first AI Coach that fixes MTI, grammar, and hesitation for professionals.',
   alternates: {
     canonical: '/',
   },
   openGraph: {
-    title: "EnglishGyani - Master Corporate English with AI Coach",
-    description: "AI-powered English coaching for Indian professionals. Practice speaking, writing, corporate communication, and interviews with personalized AI feedback.",
+    title: "EnglishGyani - Master Corporate English & Crack Interviews",
+    description: "AI-powered English coaching for Indian professionals. Fix MTI, practice interviews, and speak fluently without fear of judgment.",
     url: 'https://www.englishgyani.com',
   },
 };
@@ -29,18 +29,18 @@ export default function Home() {
     "mainEntity": [
       {
         "@type": "Question",
-        "name": "How does EnglishGyani improve my speaking?",
-        "acceptedAnswer": { "@type": "Answer", "text": "We use AI roleplays to simulate real-life scenarios like job interviews and client meetings. You speak, AI listens and gives instant feedback on grammar and tone." }
+        "name": "Can this fix my MTI (Mother Tongue Influence)?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. Our AI is specifically trained on Indian accents. It identifies MTI patterns (like 'v' vs 'w' sounds) and gives you specific drills to fix them." }
       },
       {
         "@type": "Question",
-        "name": "Is it free to use?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Yes! You get 3 free practice sessions every single day. No credit card required to start." }
+        "name": "Is it better than watching YouTube videos?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Watching videos is passive. You forget them in 10 minutes. EnglishGyani makes you *speak*. It's like a gym for your tongue - you build muscle memory through practice." }
       },
       {
         "@type": "Question",
         "name": "Does it support Hindi speakers?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Absolutely. Our AI understands Indian accents and Hinglish, helping you transition smoothly to professional global English." }
+        "acceptedAnswer": { "@type": "Answer", "text": "Absolutely. Our AI understands distinct Indian accents and Hinglish, helping you transition smoothly to professional global English." }
       }
     ]
   };
@@ -88,20 +88,18 @@ export default function Home() {
         </div>
 
         <div className="container mx-auto px-4 text-center max-w-5xl relative z-20">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-8 border border-primary/20 hover:bg-primary/15 transition-colors cursor-default">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-red-50 text-red-600 text-sm font-bold mb-8 border border-red-200 hover:bg-red-100/80 transition-colors cursor-default animate-pulse">
             <Sparkles className="w-4 h-4" />
-            <span>India's First AI-Powered English Coach</span>
+            <span>Warning: Poor English costs 34% less salary (Sach hai ye!)</span>
           </div>
 
           <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight text-foreground mb-8 leading-[1.1]">
-            Master Corporate English <br className="hidden md:block" />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-indigo-500 to-purple-600">
-              Without The Fear.
-            </span>
+            English Seekho, <br className="hidden md:block" />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-indigo-500 to-purple-600">Career Badhao.</span>
           </h1>
 
           <p className="text-xl md:text-2xl text-muted-foreground mb-12 max-w-3xl mx-auto leading-relaxed">
-            Forget boring video lectures. Practice <strong>real conversations</strong>, emails, and interviews with an AI that judges your grammar, not you.
+            India's smartest AI English Coach. <strong>Sharmao mat, bas shuru karo.</strong> Fix MTI, Grammar, and Hesitation specifically for Indian professionals.
           </p>
 
 
@@ -110,8 +108,8 @@ export default function Home() {
               href="/signup"
               eventData={{ action: 'click_hero_cta', category: 'onboarding', label: 'start_practice_free' }}
             >
-              <Button size="lg" className="h-16 px-10 text-lg rounded-full shadow-xl shadow-primary/25 hover:shadow-2xl hover:shadow-primary/40 transition-all hover:-translate-y-1">
-                Free mein Practice Karein <ArrowRight className="ml-2 w-5 h-5" />
+              <Button size="lg" className="h-16 px-10 text-lg rounded-full shadow-xl shadow-primary/25 hover:shadow-2xl hover:shadow-primary/40 transition-all hover:-translate-y-1 bg-gradient-to-r from-primary to-indigo-600 border-none">
+                Start Speaking (Bilkul Free) <ArrowRight className="ml-2 w-5 h-5" />
               </Button>
             </TrackedLink>
             <TrackedLink
@@ -119,23 +117,23 @@ export default function Home() {
               eventData={{ action: 'click_hero_secondary', category: 'navigation', label: 'see_features' }}
             >
               <Button size="lg" variant="outline" className="h-16 px-10 text-lg rounded-full border-2 hover:bg-accent/50 transition-all">
-                See How It Works
+                Kaise Kaam Karta Hai?
               </Button>
             </TrackedLink>
           </div>
 
-          <div className="flex flex-wrap justify-center gap-x-8 gap-y-4 text-sm font-medium text-muted-foreground">
+          <div className="flex flex-wrap justify-center gap-x-8 gap-y-4 text-sm font-medium text-muted-foreground bg-white/50 backdrop-blur-sm py-4 px-8 rounded-full border border-slate-200 inline-flex">
             <div className="flex items-center gap-2">
-              <ShieldCheck className="w-5 h-5 text-primary" />
-              <span>No Credit Card Req</span>
+              <ShieldCheck className="w-5 h-5 text-green-600" />
+              <span>Judgment Free Zone</span>
             </div>
             <div className="flex items-center gap-2">
-              <Zap className="w-5 h-5 text-primary" />
-              <span>3 Free Daily Sessions</span>
+              <span className="text-xl">🇮🇳</span>
+              <span>Made for Bharat</span>
             </div>
             <div className="flex items-center gap-2">
-              <Globe className="w-5 h-5 text-primary" />
-              <span>Indian Accent Support</span>
+              <Zap className="w-5 h-5 text-yellow-500" />
+              <span>Fix 'V vs W' & MTI</span>
             </div>
           </div>
         </div>
@@ -146,8 +144,8 @@ export default function Home() {
         <div className="container mx-auto px-4 max-w-6xl">
           <div className="flex flex-col md:flex-row items-center justify-between mb-8 gap-4">
             <div>
-              <h2 className="text-2xl font-bold text-slate-900">Most Popular Free Tools 🔥</h2>
-              <p className="text-slate-600">No login required. Just use and improve.</p>
+              <h2 className="text-2xl font-bold text-slate-900">Most Popular Free Tools (Muft) 🔥</h2>
+              <p className="text-slate-600">Login ki zaroorat nahi. Bas use karo aur seekho.</p>
             </div>
             <Link href="/tools" className="text-blue-600 font-bold text-sm hover:underline">View All Tools →</Link>
           </div>
@@ -160,7 +158,7 @@ export default function Home() {
                   <span className="text-xl">👋</span>
                 </div>
                 <h3 className="font-bold text-slate-800 mb-1 group-hover:text-blue-600">Self Introduction Generator</h3>
-                <p className="text-sm text-slate-500">For Freshers. Create a professional intro script in 10 seconds.</p>
+                <p className="text-sm text-slate-500">Fresher ho? 10 second mein deadly introduction banao.</p>
               </div>
             </Link>
 
@@ -171,7 +169,7 @@ export default function Home() {
                   <span className="text-xl">🎤</span>
                 </div>
                 <h3 className="font-bold text-slate-800 mb-1 group-hover:text-purple-600">Top 10 Interview Questions</h3>
-                <p className="text-sm text-slate-500">With sample answers for "Why should we hire you?" & more.</p>
+                <p className="text-sm text-slate-500">"Why should we hire you?" ka perfect jawaab yahan hai.</p>
               </div>
             </Link>
 
@@ -181,8 +179,8 @@ export default function Home() {
                 <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center mb-3">
                   <span className="text-xl">✉️</span>
                 </div>
-                <h3 className="font-bold text-slate-800 mb-1 group-hover:text-green-600">Professional Email Writer</h3>
-                <p className="text-sm text-slate-500">Sick leave, Resignation, or Salary Hike - Write it perfectly.</p>
+                <h3 className="font-bold text-slate-800 mb-1 group-hover:text-green-600">Boss-Friendly Emailer</h3>
+                <p className="text-sm text-slate-500">Sick leave, Resignation, Salary Hike - bina dare likho.</p>
               </div>
             </Link>
           </div>
@@ -218,9 +216,9 @@ export default function Home() {
       <section className="py-24 bg-background relative">
         <div className="container mx-auto px-4 max-w-6xl">
           <div className="text-center mb-20">
-            <h2 className="text-3xl md:text-5xl font-bold mb-6 text-foreground">Stop Watching. Start Speaking.</h2>
+            <h2 className="text-3xl md:text-5xl font-bold mb-6 text-foreground">Band karo "Yaad" karna. Shuru karo "Bolna".</h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Most apps sell you videos. We give you a gym. Build muscle memory through active practice, not passive listening.
+              Grammar rules ratt ne se interview clear nahi hota. Boss ke saamne bolne se hota hai. <strong>Confidence</strong> ki problem hai, knowledge ki nahi.
             </p>
           </div>
 
@@ -230,26 +228,26 @@ export default function Home() {
               <div className="absolute inset-0 bg-red-100 rounded-3xl transform rotate-2 transition-transform group-hover:rotate-3 opacity-50"></div>
               <Card className="relative bg-white border-2 border-red-100 shadow-sm rounded-3xl h-full">
                 <CardHeader>
-                  <CardTitle className="text-2xl text-red-600/80 font-semibold mb-2">Passive Learning</CardTitle>
-                  <p className="text-muted-foreground text-sm font-medium uppercase tracking-wide">The Usual Way</p>
+                  <CardTitle className="text-2xl text-red-600/80 font-semibold mb-2">Puraana Tareeka</CardTitle>
+                  <p className="text-muted-foreground text-sm font-medium uppercase tracking-wide">Standard Institutes</p>
                 </CardHeader>
                 <CardContent>
                   <ul className="space-y-4">
                     <li className="flex items-start gap-4 opacity-70">
-                      <span className="text-2xl">😴</span>
-                      <span>Watching boring grammar videos</span>
+                      <span className="text-2xl">📺</span>
+                      <span>Sirf Videos dekhte raho (No Speaking)</span>
                     </li>
                     <li className="flex items-start gap-4 opacity-70">
-                      <span className="text-2xl">💸</span>
-                      <span>Expensive tutors (₹1000/hr)</span>
+                      <span className="text-2xl">🦜</span>
+                      <span>Aise Idioms jo kabhi use nahi hote</span>
                     </li>
                     <li className="flex items-start gap-4 opacity-70">
-                      <span className="text-2xl">😨</span>
-                      <span>Fear of making mistakes in public</span>
+                      <span className="text-2xl">😰</span>
+                      <span>Jab bolne ki baari aayi, toh freeze ho gaye</span>
                     </li>
                     <li className="flex items-start gap-4 opacity-70">
-                      <span className="text-2xl">📅</span>
-                      <span>Fixed schedules & travel time</span>
+                      <span className="text-2xl">🇬🇧</span>
+                      <span>Nakli Accent jo fake lagta hai</span>
                     </li>
                   </ul>
                 </CardContent>
@@ -265,26 +263,26 @@ export default function Home() {
                   <BrainCircuit className="w-32 h-32" />
                 </div>
                 <CardHeader>
-                  <CardTitle className="text-2xl text-primary font-bold mb-2">Active AI Coaching</CardTitle>
-                  <p className="text-primary/70 text-sm font-bold uppercase tracking-wide">The EnglishGyani Way</p>
+                  <CardTitle className="text-2xl text-primary font-bold mb-2">EnglishGyani Way</CardTitle>
+                  <p className="text-primary/70 text-sm font-bold uppercase tracking-wide">Active Career Training</p>
                 </CardHeader>
                 <CardContent>
                   <ul className="space-y-5">
                     <li className="flex items-start gap-4">
                       <span className="flex items-center justify-center w-8 h-8 rounded-full bg-green-100 text-green-600 font-bold text-sm">✓</span>
-                      <span className="text-lg text-slate-800 font-medium">Speak & get instant feedback</span>
+                      <span className="text-lg text-slate-800 font-medium">Practice <strong>Interviews & Salary Negotation</strong></span>
                     </li>
                     <li className="flex items-start gap-4">
                       <span className="flex items-center justify-center w-8 h-8 rounded-full bg-green-100 text-green-600 font-bold text-sm">✓</span>
-                      <span className="text-lg text-slate-800 font-medium">Unlimited practice for ₹0</span>
+                      <span className="text-lg text-slate-800 font-medium">Fix "V vs W" & MTI issues</span>
                     </li>
                     <li className="flex items-start gap-4">
                       <span className="flex items-center justify-center w-8 h-8 rounded-full bg-green-100 text-green-600 font-bold text-sm">✓</span>
-                      <span className="text-lg text-slate-800 font-medium">100% Private & Judgment Free</span>
+                      <span className="text-lg text-slate-800 font-medium">Socho Hindi mein, BOLO English mein</span>
                     </li>
                     <li className="flex items-start gap-4">
                       <span className="flex items-center justify-center w-8 h-8 rounded-full bg-green-100 text-green-600 font-bold text-sm">✓</span>
-                      <span className="text-lg text-slate-800 font-medium">Practice anytime, anywhere</span>
+                      <span className="text-lg text-slate-800 font-medium">100% Judgment Free (AI kisi ko nahi batayega)</span>
                     </li>
                   </ul>
                 </CardContent>
@@ -298,8 +296,8 @@ export default function Home() {
       <section className="py-24 bg-accent/20">
         <div className="container mx-auto px-4 max-w-7xl">
           <div className="text-center mb-20 max-w-3xl mx-auto">
-            <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-6">A Complete Gym for Your English</h2>
-            <p className="text-xl text-muted-foreground">Every tool you need to sound professional, fluent, and confident.</p>
+            <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-6">Complete Gym for Your English</h2>
+            <p className="text-xl text-muted-foreground">Logon se baat karne ka darr khatam karo. Aaj hi.</p>
           </div>
           <FeaturesSection />
         </div>
@@ -310,7 +308,7 @@ export default function Home() {
         <div className="container mx-auto px-4 max-w-6xl">
           <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
             <div>
-              <h2 className="text-3xl font-bold mb-4">Start with a Scenario</h2>
+              <h2 className="text-3xl font-bold mb-4">Templates Library (Copy-Paste)</h2>
               <p className="text-muted-foreground text-lg">Kya bolein samajh nahi aa raha? Pick a template - bas edit karo aur bhejo!</p>
             </div>
             <Link href="/dashboard/templates">
@@ -363,7 +361,7 @@ export default function Home() {
         </div>
 
         <div className="container mx-auto px-4 relative z-10 text-center max-w-4xl">
-          <h2 className="text-4xl md:text-6xl font-bold text-white mb-8 tracking-tight">Ready to Find Your Voice?</h2>
+          <h2 className="text-4xl md:text-6xl font-bold text-white mb-8 tracking-tight">Ab English Banegi Aapki Taqat.</h2>
           <p className="text-xl text-blue-100 mb-12 max-w-2xl mx-auto">
             Join 10,000+ professionals mastering English with AI. Bilkul free hai, aur bas 2 minute lagenge start karne mein.
           </p>
@@ -373,7 +371,7 @@ export default function Home() {
               eventData={{ action: 'click_bottom_cta', category: 'onboarding', label: 'get_started_free_bottom' }}
             >
               <Button size="lg" variant="secondary" className="h-16 px-12 text-xl font-bold rounded-full shadow-2xl hover:shadow-white/20 hover:shadow-white/20 hover:scale-105 transition-all">
-                Get Started for Free
+                Shuru Karein (Free)
               </Button>
             </TrackedLink>
           </div>

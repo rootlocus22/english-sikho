@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { TrackedLink } from "@/components/ui/tracked-elements";
 import { Button } from "@/components/ui/button";
 import { Menu, Sparkles } from "lucide-react";
 import {
@@ -19,6 +20,42 @@ export default function Navbar() {
                     <span>EnglishGyani</span>
                 </Link>
                 <nav className="hidden md:flex items-center gap-6 text-sm font-medium text-muted-foreground">
+                    <div className="relative group">
+                        <button className="flex items-center gap-1 hover:text-primary transition-colors focus:outline-none">
+                            Free Tools
+                        </button>
+                        {/* Hover Dropdown */}
+                        <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 invisible group-hover:visible opacity-0 group-hover:opacity-100 transition-all duration-200">
+                            <div className="bg-white rounded-xl shadow-xl border border-slate-100 p-2 w-64 grid gap-1">
+                                <TrackedLink
+                                    href="/tools/whatsapp-to-email"
+                                    className="flex flex-col p-3 hover:bg-slate-50 rounded-lg transition-colors"
+                                    eventData={{ action: 'click_nav_tool', category: 'navigation', label: 'whatsapp_tool' }}
+                                >
+                                    <span className="text-slate-900 font-semibold mb-0.5">WhatsApp to Email</span>
+                                    <span className="text-xs text-slate-500">Fix Hinglish messages</span>
+                                </TrackedLink>
+                                <TrackedLink
+                                    href="/tools/self-introduction-generator"
+                                    className="flex flex-col p-3 hover:bg-slate-50 rounded-lg transition-colors"
+                                    eventData={{ action: 'click_nav_tool', category: 'navigation', label: 'intro_generator' }}
+                                >
+                                    <span className="text-slate-900 font-semibold mb-0.5">Self Introduction</span>
+                                    <span className="text-xs text-slate-500">For Interviews</span>
+                                </TrackedLink>
+                                <div className="h-px bg-slate-100 my-1" />
+                                <TrackedLink
+                                    href="/tools"
+                                    className="flex items-center justify-between p-3 hover:bg-slate-50 rounded-lg transition-colors text-blue-600"
+                                    eventData={{ action: 'click_nav_all_tools', category: 'navigation', label: 'view_all' }}
+                                >
+                                    <span className="font-semibold">View All Tools</span>
+                                    <span className="text-lg">→</span>
+                                </TrackedLink>
+                            </div>
+                        </div>
+                    </div>
+
                     <Link href="/features" className="hover:text-primary transition-colors">Features</Link>
                     <Link href="/pricing" className="hover:text-primary transition-colors">Pricing</Link>
                     <div className="h-4 w-px bg-border" />
@@ -35,6 +72,8 @@ export default function Navbar() {
                             <Button variant="ghost" size="icon"><Menu className="w-5 h-5" /></Button>
                         </DropdownMenuTrigger>
                         <DropdownMenuContent align="end" className="w-48">
+                            <DropdownMenuItem asChild><Link href="/tools">Free Tools</Link></DropdownMenuItem>
+                            <DropdownMenuItem asChild><Link href="/tools/whatsapp-to-email">WhatsApp to Email</Link></DropdownMenuItem>
                             <DropdownMenuItem asChild><Link href="/features">Features</Link></DropdownMenuItem>
                             <DropdownMenuItem asChild><Link href="/pricing">Pricing</Link></DropdownMenuItem>
                             <DropdownMenuItem asChild><Link href="/login">Log in</Link></DropdownMenuItem>

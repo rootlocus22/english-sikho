@@ -71,41 +71,40 @@ export async function POST(req: NextRequest) {
         // Extract userId from headers (set by middleware or client)
         const userId = req.headers.get('x-user-id');
 
-        if (!userId) {
-            return NextResponse.json({
-                error: "Unauthorized - Please login to continue",
-                requiresAuth: true
-            }, { status: 401 });
+        // Use Admin SDK to fetch user data if userId exists
+        let userData: any = null;
+
+        if (userId) {
+            const { adminDb } = await import('@/lib/firebase-admin');
+
+            if (!adminDb) {
+                return NextResponse.json({
+                    error: "Server configuration error"
+                }, { status: 500 });
+            }
+
+            const userDoc = await adminDb.collection('users').doc(userId).get();
+
+            if (!userDoc.exists) {
+                return NextResponse.json({
+                    error: "User not found",
+                    requiresAuth: true
+                }, { status: 404 });
+            }
+
+            userData = userDoc.data();
+
+            // Enforce credit limits for non-premium users
+            if (!userData?.isPremium && (userData?.credits || 0) <= 0) {
+                return NextResponse.json({
+                    error: "No credits remaining. Upgrade to Pro for unlimited access!",
+                    needsUpgrade: true,
+                    credits: 0
+                }, { status: 403 });
+            }
         }
+        // If no userId, we treat as "Guest" and allow usage (client manages the 3-limit locally)
 
-        // Use Admin SDK to fetch user data (server-side)
-        const { adminDb } = await import('@/lib/firebase-admin');
-
-        if (!adminDb) {
-            return NextResponse.json({
-                error: "Server configuration error"
-            }, { status: 500 });
-        }
-
-        const userDoc = await adminDb.collection('users').doc(userId).get();
-
-        if (!userDoc.exists) {
-            return NextResponse.json({
-                error: "User not found",
-                requiresAuth: true
-            }, { status: 404 });
-        }
-
-        const userData = userDoc.data();
-
-        // Enforce credit limits for non-premium users
-        if (!userData?.isPremium && (userData?.credits || 0) <= 0) {
-            return NextResponse.json({
-                error: "No credits remaining. Upgrade to Pro for unlimited access!",
-                needsUpgrade: true,
-                credits: 0
-            }, { status: 403 });
-        }
 
         // Read body ONCE and destructure all possible fields
         const body = await req.json();
@@ -125,17 +124,28 @@ export async function POST(req: NextRequest) {
         } else if (type === 'roleplay-chat') {
             // Simple stringify of history for the prompt
             const historyText = history.map((m: any) => `${m.role === 'user' ? 'Employee' : 'Manager'}: ${m.content}`).join('\n');
-            const scenarioPrompt = scenarioId === 'salary' ? "You are a tough manager denying a raise."
-                : scenarioId === 'leave' ? "You are a manager needing full team attendance."
-                    : "You are an angry client.";
+
+            const SCENARIO_PROMPTS: Record<string, string> = {
+                'salary': "You are a tough manager. The company budget is tight, and you are skeptical about giving a raise.",
+                'leave': "You are a manager who needs the team at full capacity for an upcoming deadline. Be reluctant to grant leave.",
+                'mistake': "You are an angry client who has just faced a service outage. Demand an explanation.",
+                'promotion': "You are a manager who needs convinced that the employee is ready for the next level. Ask for specific achievements.",
+                'decline-work': "You are a manager trying to assign a new urgent project. You are stressed and need someone to take it.",
+                'blocker': "You are a senior stakeholder who is unhappy about delays. You need a clear recovery plan.",
+                'conflict': "You are a colleague who believes your technical approach is correct. Disagree politely but firmly.",
+                'feedback': "You are a junior developer who thinks their code is fine. Be defensive initially.",
+                'small-talk': "You are a friendly US-based client at a coffee machine. Chat about sports, weather, or weekend plans."
+            };
+
+            const scenarioPrompt = SCENARIO_PROMPTS[scenarioId] || "You are a professional roleplay partner.";
 
             prompt = `System: ${scenarioPrompt}
-            System: Keep replies short (under 30 words). Be realistic.
+            System: Keep replies short (under 40 words). Be realistic, professional, but challenge the user to improve their communication.
             
             Conversation History:
             ${historyText}
             
-            Manager:`;
+            Manager/Partner:`;
         } else if (type === 'interview-coach') {
             prompt = `${INTERVIEW_COACH_SYSTEM_PROMPT}
 
@@ -175,25 +185,22 @@ Evaluate this answer and provide constructive feedback to help the candidate imp
         const text = await generateContent(prompt);
 
         // Update usage stats for all users (Premium & Free)
-        if (userId) {
+        if (userId && !userData?.isPremium) {
+            // We only need to import adminDb here if we are writing
+            const { adminDb } = await import('@/lib/firebase-admin');
             const updates: any = {
                 totalSessionsUsed: (userData?.totalSessionsUsed || 0) + 1,
                 lastSessionAt: new Date().toISOString(),
-                updatedAt: new Date().toISOString()
+                updatedAt: new Date().toISOString(),
+                credits: (userData?.credits || 0) - 1
             };
-
-            // Only decrement credits if NOT premium
-            if (!userData?.isPremium) {
-                updates.credits = (userData?.credits || 0) - 1;
-                console.log(`Credit decremented for user ${userId}. Remaining: ${updates.credits}`);
-            }
-
+            console.log(`Credit decremented for user ${userId}. Remaining: ${updates.credits}`);
             await adminDb.collection('users').doc(userId).update(updates);
         }
 
         // Log analytics for ALL users (Premium and Free)
         await trackActivity({
-            userId,
+            userId: userId || 'guest',
             feature: type, // e.g., 'translator', 'coach'
             creditsUsed: userData?.isPremium ? 0 : 1,
             metadata: {

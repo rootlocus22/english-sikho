@@ -11,9 +11,9 @@ export default function DashboardPage() {
             <div className="-mx-4 -mt-4 border-b border-slate-200 bg-white px-4 py-6 md:px-6 md:py-8">
                 <div className="flex items-start justify-between">
                     <div>
-                        <h1 className="mb-2 text-2xl font-bold text-slate-900 md:text-3xl">Fix My English</h1>
+                        <h1 className="mb-2 text-2xl font-bold text-slate-900 md:text-3xl">Apni English Sudharo</h1>
                         <p className="text-sm text-slate-600 md:text-base">
-                            Instantly translate 'Hinglish' to Corporate English or adjust your tone.
+                            Instantly translate 'Hinglish' to Corporate English using our AI tools.
                         </p>
                     </div>
                     <VoiceSettings />

@@ -61,6 +61,40 @@ export const SCENARIO_DATA = {
             "default_text": "Hi [Interviewer], Thank you for speaking with me today. I enjoyed learning about the [Role] and am excited about the possibility of joining the team. I look forward to hearing from you."
         }
     ],
+    "linkedIn": [
+        {
+            "slug": "connection-request",
+            "title": "Connection Request",
+            "description": "Send to someone you don't know well.",
+            "default_text": "Hi [Name], I came across your profile and was impressed by your work in [Field]. I would love to connect and keep up with your updates. Regards, [Your Name]"
+        },
+        {
+            "slug": "job-inquiry",
+            "title": "Job Inquiry DM",
+            "description": "Asking a recruiter/founder about roles.",
+            "default_text": "Hi [Name], I noticed you are hiring for [Role]. I have X years of experience in [Skill] and love what [Company] is doing in [Sector]. Would you be open to a quick chat? Profile attached."
+        },
+        {
+            "slug": "ask-referral",
+            "title": "Asking for Referral",
+            "description": "Polite way to ask an ex-colleague.",
+            "default_text": "Hi [Name], hope you are doing well! I saw an opening at your company for [Role]. Since we worked together at [Old Company], would you be comfortable referring me? I'd really appreciate it!"
+        }
+    ],
+    "slack": [
+        {
+            "slug": "status-update",
+            "title": "End of Day Update",
+            "description": "Clean, bulleted EOD update.",
+            "default_text": "*EOD Update*\n✅ Completed: [Task 1], [Task 2]\n🚧 In Progress: [Task 3]\n📅 Plan for Tmrw: [Task 4]\n🚫 Blockers: None"
+        },
+        {
+            "slug": "ask-help",
+            "title": "Asking for Technical Help",
+            "description": "Posting in a public channel.",
+            "default_text": "Hey team, I'm facing an issue with [Error/Service]. I've tried [Solution A] and [Solution B] but no luck. Has anyone faced this? Thread for details. 🧵"
+        }
+    ],
     "vocabulary": [
         {
             "slug": "accept-vs-except",
@@ -73,6 +107,12 @@ export const SCENARIO_DATA = {
             "title": "Loose vs Lose",
             "description": "Don't lose your mind over loose screws.",
             "default_text": "This shirt is too [loose]. I don't want to [lose] the game."
+        },
+        {
+            "slug": "affect-vs-effect",
+            "title": "Affect vs Effect",
+            "description": "Action vs Result.",
+            "default_text": "The rain will [affect] our plans. The [effect] of the change was positive."
         }
     ]
 };

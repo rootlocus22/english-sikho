@@ -30,17 +30,19 @@ export default function ToneRewriter({ initialValue = "" }: ToneRewriterProps) {
     const [isListening, setIsListening] = useState(false);
     const [recognition, setRecognition] = useState<any>(null);
     const [isPlaying, setIsPlaying] = useState(false);
-    const { credits, userId, openPaywall, decrementCredits, voicePreferences } = useUserStore();
+    const { credits, userId, openPaywall, decrementCredits, voicePreferences, guestUsageCount, incrementGuestUsage } = useUserStore();
 
     const handleRewrite = async () => {
         if (!input.trim()) return;
 
-        if (!userId) {
-            toast.error("Please login first!");
+        // Check Limits
+        if (!userId && guestUsageCount >= 3) {
+            openPaywall();
+            toast.error("Free attempts exhausted. Please login!");
             return;
         }
 
-        if (credits <= 0) {
+        if (userId && credits <= 0) {
             openPaywall();
             return;
         }
@@ -76,7 +78,12 @@ export default function ToneRewriter({ initialValue = "" }: ToneRewriterProps) {
             if (data.error) throw new Error(data.error);
 
             setOutput(data);
-            decrementCredits();
+
+            if (!userId) {
+                incrementGuestUsage();
+            } else {
+                decrementCredits();
+            }
 
             event({
                 action: "generate_content",
@@ -155,16 +162,16 @@ export default function ToneRewriter({ initialValue = "" }: ToneRewriterProps) {
                 <CardHeader className="space-y-1 pb-4">
                     <CardTitle className="flex items-center gap-2 text-lg md:text-xl text-slate-900">
                         <SlidersHorizontal className="w-5 h-5 text-blue-600" />
-                        Tone Slider
+                        Boss-Friendly Emailer
                     </CardTitle>
                     <CardDescription className="text-sm">
-                        Adjust the politeness level of your text
+                        Rude mat bano. Apni baat politely kaho.
                     </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-5 md:space-y-6">
                     <div className="relative">
                         <Textarea
-                            placeholder="e.g., I want the file now."
+                            placeholder="e.g., I want the file now. (Jo mann mein hai likho, hum fix kar denge)"
                             value={input}
                             onChange={(e) => setInput(e.target.value)}
                             className="min-h-[100px] md:min-h-[120px] text-sm md:text-base resize-none focus:border-blue-500 pr-12"
@@ -185,7 +192,7 @@ export default function ToneRewriter({ initialValue = "" }: ToneRewriterProps) {
                         </Button>
                     </div>
                     {isListening && (
-                        <p className="text-xs text-blue-600 animate-pulse">🎤 Listening... Speak now!</p>
+                        <p className="text-xs text-blue-600 animate-pulse">🎤 Sun raha hoon... Bolo!</p>
                     )}
 
                     <div className="space-y-4 bg-slate-50 p-4 md:p-5 rounded-lg border border-slate-200">
@@ -204,26 +211,26 @@ export default function ToneRewriter({ initialValue = "" }: ToneRewriterProps) {
                             className="w-full"
                         />
                         <div className="grid grid-cols-4 text-[10px] md:text-xs text-slate-500 font-medium">
-                            <span className="text-center">Rude</span>
-                            <span className="text-center">Casual</span>
-                            <span className="text-center">Professional</span>
-                            <span className="text-center">Polite</span>
+                            <span className="text-center">Rude 😡</span>
+                            <span className="text-center">Casual 🙂</span>
+                            <span className="text-center">Professional 👔</span>
+                            <span className="text-center">Polite 😇</span>
                         </div>
                     </div>
 
                     <Button
                         onClick={handleRewrite}
                         disabled={loading || !input.trim()}
-                        className="w-full h-11 md:h-12 text-sm md:text-base bg-blue-600 hover:bg-blue-700"
+                        className="w-full h-11 md:h-12 text-sm md:text-base bg-blue-600 hover:bg-blue-700 font-semibold shadow-sm"
                     >
                         {loading ? (
                             <>
                                 <Loader2 className="mr-2 h-4 w-4 md:h-5 md:w-5 animate-spin" />
-                                Rewriting...
+                                Fixing Tone...
                             </>
                         ) : (
                             <>
-                                Rewrite Text
+                                Fix My Tone ✨
                                 <ArrowRight className="ml-2 h-4 w-4" />
                             </>
                         )}

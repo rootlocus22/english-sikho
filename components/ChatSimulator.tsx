@@ -18,9 +18,20 @@ interface Message {
 }
 
 const SCENARIOS = [
-    { id: "salary", title: "Salary Negotiation", description: "Practice asking for a raise", icon: "💰" },
-    { id: "leave", title: "Asking for Leave", description: "Convince your manager", icon: "🏖️" },
-    { id: "mistake", title: "Explaining a Mistake", description: "Handle an angry client", icon: "⚠️" },
+    // Manager Interactions
+    { id: "salary", title: "Negotiate Salary", description: "Convince boss for a 30% hike", icon: "💰", category: "Manager" },
+    { id: "leave", title: "Ask for Leave", description: "Urgent leave during busy week", icon: "🏖️", category: "Manager" },
+    { id: "promotion", title: "Ask for Promotion", description: "Justify why you are ready", icon: "🚀", category: "Manager" },
+    { id: "decline-work", title: "Say 'No' to Work", description: "Decline polite but firm", icon: "🛑", category: "Manager" },
+
+    // Client / Stakeholder
+    { id: "mistake", title: "Explain a Mistake", description: "Pacify an angry client", icon: "⚠️", category: "External" },
+    { id: "blocker", title: "Report Delay", description: "Explain why project is late", icon: "⏳", category: "External" },
+    { id: "small-talk", title: "Small Talk", description: "Coffee chat with US client", icon: "☕", category: "External" },
+
+    // Colleagues
+    { id: "conflict", title: "Resolve Conflict", description: "Disagreement on technical approach", icon: "🤝", category: "Colleagues" },
+    { id: "feedback", title: "Give Feedback", description: "Constructive feedback to junior", icon: "📝", category: "Colleagues" },
 ];
 
 export default function ChatSimulator() {
@@ -40,6 +51,12 @@ export default function ChatSimulator() {
     const startScenario = (id: string) => {
         const selected = SCENARIOS.find(s => s.id === id);
         if (!selected) return;
+
+        event({
+            action: 'start_roleplay_scenario',
+            category: 'content',
+            label: id
+        });
 
         setScenario(id);
         setMessages([
@@ -125,22 +142,32 @@ export default function ChatSimulator() {
                 <CardHeader>
                     <CardTitle className="flex items-center gap-2 text-slate-900">
                         <MessageCircle className="w-6 h-6 text-blue-600" />
-                        Roleplay Gym
+                        Real-Life Practice
                     </CardTitle>
-                    <CardDescription>Choose a tough scenario to practice your communication skills.</CardDescription>
+                    <CardDescription>Interview se pehle, yahan galti karo. (Safe Space for Mistakes)</CardDescription>
                 </CardHeader>
-                <CardContent className="grid gap-4 md:grid-cols-3">
-                    {SCENARIOS.map(s => (
-                        <Button
-                            key={s.id}
-                            variant="outline"
-                            className="h-32 text-left flex flex-col items-start justify-center gap-2 hover:border-blue-300 hover:bg-blue-50 transition-all"
-                            onClick={() => startScenario(s.id)}
-                        >
-                            <span className="text-3xl mb-2">{s.icon}</span>
-                            <span className="font-semibold text-base">{s.title}</span>
-                            <span className="text-xs text-slate-600">{s.description}</span>
-                        </Button>
+                <CardContent className="space-y-6">
+                    {['Manager', 'External', 'Colleagues'].map(category => (
+                        <div key={category}>
+                            <h3 className="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-3 px-1">{category} Scenarios</h3>
+                            <div className="grid gap-3 md:grid-cols-3">
+                                {SCENARIOS.filter(s => s.category === category).map(s => (
+                                    <Button
+                                        key={s.id}
+                                        variant="outline"
+                                        className="h-28 text-left flex flex-col items-start justify-center gap-1.5 hover:border-blue-400 hover:bg-blue-50 hover:shadow-sm transition-all border-slate-200"
+                                        onClick={() => startScenario(s.id)}
+                                    >
+                                        <div className="flex items-center justify-between w-full">
+                                            <span className="text-2xl">{s.icon}</span>
+                                            <span className="text-[10px] bg-slate-100 text-slate-600 px-1.5 py-0.5 rounded-full">{s.category}</span>
+                                        </div>
+                                        <span className="font-semibold text-sm text-slate-900">{s.title}</span>
+                                        <span className="text-xs text-slate-500 line-clamp-1">{s.description}</span>
+                                    </Button>
+                                ))}
+                            </div>
+                        </div>
                     ))}
                 </CardContent>
             </Card>
@@ -157,7 +184,7 @@ export default function ChatSimulator() {
                         <span>{selectedScenario?.icon}</span>
                         {selectedScenario?.title}
                     </CardTitle>
-                    <CardDescription className="text-sm">Convince the AI manager.</CardDescription>
+                    <CardDescription className="text-sm">Convince the AI manager. (Bina dare baat karein)</CardDescription>
                 </div>
                 <Button variant="outline" size="sm" onClick={() => { setScenario(null); setMessages([]); }}>
                     Exit
@@ -196,7 +223,7 @@ export default function ChatSimulator() {
                 <Input
                     value={input}
                     onChange={(e) => setInput(e.target.value)}
-                    placeholder="Type your response..."
+                    placeholder="Type your response... (Kuch bhi try karo)"
                     onKeyDown={(e) => e.key === "Enter" && !loading && handleSend()}
                     className="flex-1"
                     disabled={loading}

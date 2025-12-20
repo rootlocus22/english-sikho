@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { useUserStore } from "@/lib/store";
@@ -10,15 +11,16 @@ import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 export default function PaywallModal() {
     const { isPaywallOpen, setPaywallOpen, userId } = useUserStore();
 
-    const handleLogin = async () => {
-        try {
-            const provider = new GoogleAuthProvider();
-            await signInWithPopup(auth, provider);
-            // Auth state listener in layout/provider will handle the rest (updating store)
-            setPaywallOpen(false);
-        } catch (e) {
-            console.error("Login failed", e);
-        }
+    const router = useRouter();
+
+    const handleLogin = () => {
+        setPaywallOpen(false);
+        router.push("/login"); // Direct to full login page
+    };
+
+    const handleUpgrade = () => {
+        setPaywallOpen(false);
+        router.push("/pricing");
     };
 
     return (
@@ -42,10 +44,10 @@ export default function PaywallModal() {
                 <div className="flex flex-col gap-3 py-4">
                     {!userId ? (
                         <Button onClick={handleLogin} className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold">
-                            Sign in with Google
+                            Go to Login Page
                         </Button>
                     ) : (
-                        <Button className="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold">
+                        <Button onClick={handleUpgrade} className="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold">
                             Upgrade to Premium (₹199/mo)
                         </Button>
                     )}

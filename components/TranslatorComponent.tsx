@@ -71,7 +71,13 @@ export default function TranslatorComponent() {
 
             if (response.ok) {
                 setResult(data);
-                // Credits are decremented on backend now, but keep client state in sync
+
+                if (!userId) {
+                    incrementGuestUsage();
+                } else {
+                    // Credits are decremented on backend, client sync happens via optimistic update
+                }
+
                 toast.success("Translation ready!");
                 event({
                     action: 'generate_content',
@@ -169,16 +175,16 @@ export default function TranslatorComponent() {
                 <CardHeader className="space-y-1 pb-4">
                     <CardTitle className="flex items-center gap-2 text-lg md:text-xl text-slate-900">
                         <Languages className="w-5 h-5 text-blue-600" />
-                        Desi-to-Corporate Translator
+                        WhatsApp se Professional Email
                     </CardTitle>
                     <CardDescription className="text-sm">
-                        Convert Hinglish to professional English
+                        Tooti-phooti English likho, hum perfect bana denge.
                     </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-4">
                     <div className="relative">
                         <Textarea
-                            placeholder="Type your Hinglish here... e.g. 'Sir salary badhana hai'"
+                            placeholder="Type Hinglish... e.g. 'Sir salary badhana hai thoda, 2 saal ho gaye'"
                             value={input}
                             onChange={(e) => setInput(e.target.value)}
                             className="min-h-[100px] md:min-h-[120px] text-sm md:text-base resize-none focus:border-blue-500 pr-12"
@@ -199,21 +205,21 @@ export default function TranslatorComponent() {
                         </Button>
                     </div>
                     {isListening && (
-                        <p className="text-xs text-blue-600 animate-pulse">🎤 Listening... Speak now!</p>
+                        <p className="text-xs text-blue-600 animate-pulse">🎤 Sun raha hoon... Bolo!</p>
                     )}
                     <Button
                         onClick={handleGenerate}
                         disabled={loading || !input.trim()}
-                        className="w-full h-11 md:h-12 text-sm md:text-base bg-blue-600 hover:bg-blue-700"
+                        className="w-full h-11 md:h-12 text-sm md:text-base bg-blue-600 hover:bg-blue-700 font-semibold shadow-sm"
                     >
                         {loading ? (
                             <>
                                 <Loader2 className="w-4 h-4 md:w-5 md:h-5 animate-spin mr-2" />
-                                Translating...
+                                Magic kar raha hoon...
                             </>
                         ) : (
                             <>
-                                Generate Versions
+                                Convert to Professional English ✨
                                 <ArrowRight className="w-4 h-4 ml-2" />
                             </>
                         )}
