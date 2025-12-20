@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { TrackedLink } from "@/components/ui/tracked-elements";
 import { ArrowRight, MessageSquare, Mic, PenTool, Sparkles } from "lucide-react";
 import { Metadata } from "next";
 
@@ -57,8 +58,14 @@ export default function ToolsPage() {
                 </div>
 
                 <div className="grid md:grid-cols-2 gap-8">
+
                     {TOOLS.map((tool) => (
-                        <Link key={tool.href} href={tool.href} className="group">
+                        <TrackedLink
+                            key={tool.href}
+                            href={tool.href}
+                            className="group"
+                            eventData={{ action: 'click_tool_card', category: 'navigation', label: tool.title }}
+                        >
                             <div className="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm hover:shadow-xl hover:border-blue-200 transition-all duration-300 h-full flex flex-col">
                                 <div className="flex items-start justify-between mb-6">
                                     <div className={`w-14 h-14 rounded-xl flex items-center justify-center ${tool.color}`}>
@@ -76,7 +83,7 @@ export default function ToolsPage() {
                                     {tool.description}
                                 </p>
                             </div>
-                        </Link>
+                        </TrackedLink>
                     ))}
                 </div>
             </div>

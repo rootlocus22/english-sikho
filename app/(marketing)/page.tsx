@@ -6,6 +6,7 @@ import Link from "next/link";
 import { Metadata } from 'next';
 import FeaturesSection from "@/components/FeaturesSection";
 import { ArrowRight, CheckCircle2, Star, Users, Bot, Mic, ShieldCheck, Zap, Globe, BrainCircuit, Sparkles } from "lucide-react";
+import { TrackedLink } from "@/components/ui/tracked-elements";
 
 export const metadata: Metadata = {
   title: 'EnglishGyani - AI English Speaking Coach for Indian Professionals',
@@ -103,17 +104,24 @@ export default function Home() {
             Forget boring video lectures. Practice <strong>real conversations</strong>, emails, and interviews with an AI that judges your grammar, not you.
           </p>
 
+
           <div className="flex flex-col sm:flex-row justify-center gap-5 mb-16">
-            <Link href="/signup">
+            <TrackedLink
+              href="/signup"
+              eventData={{ action: 'click_hero_cta', category: 'onboarding', label: 'start_practice_free' }}
+            >
               <Button size="lg" className="h-16 px-10 text-lg rounded-full shadow-xl shadow-primary/25 hover:shadow-2xl hover:shadow-primary/40 transition-all hover:-translate-y-1">
                 Free mein Practice Karein <ArrowRight className="ml-2 w-5 h-5" />
               </Button>
-            </Link>
-            <Link href="/features">
+            </TrackedLink>
+            <TrackedLink
+              href="/features"
+              eventData={{ action: 'click_hero_secondary', category: 'navigation', label: 'see_features' }}
+            >
               <Button size="lg" variant="outline" className="h-16 px-10 text-lg rounded-full border-2 hover:bg-accent/50 transition-all">
                 See How It Works
               </Button>
-            </Link>
+            </TrackedLink>
           </div>
 
           <div className="flex flex-wrap justify-center gap-x-8 gap-y-4 text-sm font-medium text-muted-foreground">
@@ -360,11 +368,14 @@ export default function Home() {
             Join 10,000+ professionals mastering English with AI. Bilkul free hai, aur bas 2 minute lagenge start karne mein.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-6">
-            <Link href="/signup">
-              <Button size="lg" variant="secondary" className="h-16 px-12 text-xl font-bold rounded-full shadow-2xl hover:shadow-white/20 hover:scale-105 transition-all">
+            <TrackedLink
+              href="/signup"
+              eventData={{ action: 'click_bottom_cta', category: 'onboarding', label: 'get_started_free_bottom' }}
+            >
+              <Button size="lg" variant="secondary" className="h-16 px-12 text-xl font-bold rounded-full shadow-2xl hover:shadow-white/20 hover:shadow-white/20 hover:scale-105 transition-all">
                 Get Started for Free
               </Button>
-            </Link>
+            </TrackedLink>
           </div>
           <p className="mt-8 text-blue-200/80 text-sm font-medium">No credit card required • Cancel anytime</p>
         </div>

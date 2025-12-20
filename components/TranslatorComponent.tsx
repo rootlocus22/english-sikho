@@ -8,6 +8,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/com
 import { Loader2, Copy, Languages, ArrowRight, Volume2, Mic, Square } from 'lucide-react';
 import { toast } from 'sonner';
 import { speakText, stopSpeaking, isSpeaking, startListening, isSpeechRecognitionSupported } from '@/lib/audioUtils';
+import { event } from '@/lib/analytics';
 
 interface TranslatorOutput {
     formal: string;
@@ -72,6 +73,12 @@ export default function TranslatorComponent() {
                 setResult(data);
                 // Credits are decremented on backend now, but keep client state in sync
                 toast.success("Translation ready!");
+                event({
+                    action: 'generate_content',
+                    category: 'ai_tool',
+                    label: 'translator',
+                    value: 1
+                });
             } else if (response.status === 403 && data.needsUpgrade) {
                 setPaywallOpen(true);
                 toast.error(data.error || "No credits remaining");

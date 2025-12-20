@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { SCENARIO_DATA } from "@/data/scenarios";
 import { Mail, BookA } from "lucide-react";
+import { TrackedLink } from "@/components/ui/tracked-elements";
 
 export default function TemplatesPage() {
     return (
@@ -22,14 +23,18 @@ export default function TemplatesPage() {
                         </h2>
                         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
                             {items.map((item) => (
-                                <Link key={item.slug} href={`/dashboard/templates/${category}/${item.slug}`}>
+                                <TrackedLink
+                                    key={item.slug}
+                                    href={`/dashboard/templates/${category}/${item.slug}`}
+                                    eventData={{ action: 'select_template', category: 'content', label: item.title }}
+                                >
                                     <Card className="h-full hover:shadow-md transition-shadow cursor-pointer hover:border-blue-300">
                                         <CardHeader>
                                             <CardTitle className="text-base">{item.title}</CardTitle>
                                             <CardDescription className="line-clamp-2">{item.description}</CardDescription>
                                         </CardHeader>
                                     </Card>
-                                </Link>
+                                </TrackedLink>
                             ))}
                         </div>
                     </div>

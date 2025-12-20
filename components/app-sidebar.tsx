@@ -36,6 +36,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
+import { TrackedLink } from "@/components/ui/tracked-elements";
 import { auth } from "@/lib/firebase";
 import { signOut } from "firebase/auth";
 import { useRouter } from "next/navigation";
@@ -140,13 +141,16 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                 <SidebarMenu>
                     <SidebarMenuItem>
                         <SidebarMenuButton size="lg" asChild>
-                            <Link href="/dashboard">
+                            <TrackedLink
+                                href="/dashboard"
+                                eventData={{ action: 'click_sidebar_logo', category: 'navigation', label: 'dashboard_home' }}
+                            >
                                 <img src="/logo.png" alt="EnglishGyani" className="h-12 w-12 rounded-xl shadow-md" />
                                 <div className="grid flex-1 text-left text-sm leading-tight">
                                     <span className="truncate font-semibold text-base">EnglishGyani</span>
                                     <span className="truncate text-xs">AI Coach</span>
                                 </div>
-                            </Link>
+                            </TrackedLink>
                         </SidebarMenuButton>
                     </SidebarMenuItem>
                 </SidebarMenu>
@@ -168,11 +172,15 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                             {isPremium ? "Enjoy unlimited sessions!" : `${credits} sessions aaj ke liye`}
                         </p>
                         {!isPremium && (
-                            <Link href="/dashboard/upgrade" onClick={handleNavClick}>
+                            <TrackedLink
+                                href="/dashboard/upgrade"
+                                onClick={handleNavClick}
+                                eventData={{ action: 'click_sidebar_upgrade', category: 'ecommerce', label: 'upgrade_to_pro' }}
+                            >
                                 <Button size="sm" className="w-full mt-3 text-xs bg-gradient-to-r from-blue-600 to-indigo-600 text-white hover:from-blue-700 hover:to-indigo-700 shadow-md">
                                     Upgrade to Pro 🚀
                                 </Button>
-                            </Link>
+                            </TrackedLink>
                         )}
                     </div>
                 </div>
@@ -184,13 +192,17 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                             {navMain.map((item) => (
                                 <SidebarMenuItem key={item.title}>
                                     <SidebarMenuButton asChild tooltip={item.titleHindi}>
-                                        <Link href={item.url} onClick={handleNavClick}>
+                                        <TrackedLink
+                                            href={item.url}
+                                            onClick={handleNavClick}
+                                            eventData={{ action: 'click_sidebar_item', category: 'navigation', label: item.title }}
+                                        >
                                             <item.icon />
                                             <span>{item.title}</span>
                                             {item.isPro && (
                                                 <Badge className="ml-auto bg-blue-600 text-white text-[10px]">PRO</Badge>
                                             )}
-                                        </Link>
+                                        </TrackedLink>
                                     </SidebarMenuButton>
                                 </SidebarMenuItem>
                             ))}

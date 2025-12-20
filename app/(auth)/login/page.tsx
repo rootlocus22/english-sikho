@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
+import { TrackedButton } from "@/components/ui/tracked-elements";
 import { Brain, CheckCircle2, Globe2, Sparkles, Star, Zap } from "lucide-react";
 import { signInWithPopup, GoogleAuthProvider, signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "@/lib/firebase";
@@ -255,12 +256,13 @@ function LoginPageContent() {
                     </div>
 
                     {/* Google Button */}
-                    <Button
+                    <TrackedButton
                         size="lg"
                         variant="outline"
                         className="w-full h-14 text-base font-medium relative bg-white hover:bg-gray-50 border-gray-300 text-gray-700 shadow-sm"
                         onClick={handleGoogleLogin}
                         disabled={loading}
+                        eventData={{ action: 'click_login_google', category: 'engagement', label: 'google_auth_attempt' }}
                     >
                         {loading ? (
                             <div className="absolute inset-0 flex items-center justify-center bg-white/50">
@@ -270,7 +272,7 @@ function LoginPageContent() {
                             <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google" className="w-5 h-5 mr-3" />
                         )}
                         Continue with Google
-                    </Button>
+                    </TrackedButton>
 
                     <div className="relative">
                         <div className="absolute inset-0 flex items-center">

@@ -4,6 +4,7 @@
 import { Check, X } from "lucide-react";
 import { useState } from "react";
 import { PRICING_PLANS, getMonthlyEquivalent, calculateSavings, getDiscountPercentage } from "@/lib/pricing";
+import { TrackedLink } from "@/components/ui/tracked-elements";
 
 export default function PricingPage() {
     const [duration, setDuration] = useState<'monthly' | 'quarterly' | 'yearly'>('yearly');
@@ -115,9 +116,13 @@ export default function PricingPage() {
                                 </li>
                             </ul>
 
-                            <a href="/signup" className="block w-full py-3 px-6 text-center rounded-lg border-2 border-slate-200 font-bold hover:bg-slate-50 transition-colors">
+                            <TrackedLink
+                                href="/signup"
+                                className="block w-full py-3 px-6 text-center rounded-lg border-2 border-slate-200 font-bold hover:bg-slate-50 transition-colors"
+                                eventData={{ action: 'click_pricing_cta', category: 'ecommerce', label: 'free_plan' }}
+                            >
                                 Start Free
-                            </a>
+                            </TrackedLink>
                         </div>
 
                         {/* Starter Plan */}
@@ -158,9 +163,13 @@ export default function PricingPage() {
                                 </li>
                             </ul>
 
-                            <a href="/dashboard/upgrade" className="block w-full py-3 text-center text-lg font-bold rounded-lg bg-slate-900 text-white hover:bg-slate-800 transition-colors">
+                            <TrackedLink
+                                href="/dashboard/upgrade"
+                                className="block w-full py-3 text-center text-lg font-bold rounded-lg bg-slate-900 text-white hover:bg-slate-800 transition-colors"
+                                eventData={{ action: 'click_pricing_cta', category: 'ecommerce', label: 'starter_plan' }}
+                            >
                                 Get Started
-                            </a>
+                            </TrackedLink>
                         </div>
 
                         {/* Pro Plan */}
@@ -214,9 +223,13 @@ export default function PricingPage() {
                                 </li>
                             </ul>
 
-                            <a href="/dashboard/upgrade" className="block w-full py-4 text-center text-lg font-bold rounded-lg bg-white text-blue-600 shadow-lg hover:bg-blue-50 transition-colors">
+                            <TrackedLink
+                                href="/dashboard/upgrade"
+                                className="block w-full py-4 text-center text-lg font-bold rounded-lg bg-white text-blue-600 shadow-lg hover:bg-blue-50 transition-colors"
+                                eventData={{ action: 'click_pricing_cta', category: 'ecommerce', label: 'pro_plan' }}
+                            >
                                 Upgrade to Pro 🚀
-                            </a>
+                            </TrackedLink>
 
                             <p className="text-xs text-center text-blue-100 mt-4">
                                 Secure payment via Razorpay • Cancel anytime

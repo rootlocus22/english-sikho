@@ -5,6 +5,7 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { ArrowRight, Calendar, Clock, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { TrackedLink } from '@/components/ui/tracked-elements';
 
 // Programmatic SEO Imports
 import { SEO_KEYWORDS } from "@/data/seo-keywords";
@@ -301,18 +302,20 @@ export default async function HybridPage({ params }: Props) {
                             {intent === 'general' && "Mastering English doesn't take years. With the right AI tools, you can improve your fluency in 30 days."}
                         </p>
                         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                            <Link
+                            <TrackedLink
                                 href="/dashboard"
                                 className="inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white transition-all duration-200 bg-blue-600 rounded-xl hover:bg-blue-700 hover:shadow-lg transform hover:-translate-y-1"
+                                eventData={{ action: 'click_topic_hero_cta', category: 'onboarding', label: slug }}
                             >
                                 Start Practicing Free
-                            </Link>
-                            <Link
+                            </TrackedLink>
+                            <TrackedLink
                                 href="/pricing"
                                 className="inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-slate-700 transition-all duration-200 bg-white border-2 border-slate-200 rounded-xl hover:bg-slate-50 hover:text-slate-900"
+                                eventData={{ action: 'click_topic_pricing_cta', category: 'ecommerce', label: slug }}
                             >
                                 View Plans
-                            </Link>
+                            </TrackedLink>
                         </div>
                     </div>
                 </div>
@@ -401,12 +404,13 @@ export default async function HybridPage({ params }: Props) {
                 {/* Final CTA */}
                 <div className="py-20 text-center px-6 bg-slate-50">
                     <h2 className="text-3xl font-bold text-slate-900 mb-6">Ready to upgrade your career?</h2>
-                    <Link
+                    <TrackedLink
                         href="/dashboard"
                         className="inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white transition-all duration-200 bg-blue-600 rounded-xl hover:bg-blue-700 shadow-blue-200 shadow-xl"
+                        eventData={{ action: 'click_topic_footer_cta', category: 'onboarding', label: slug }}
                     >
                         Get Started with {title}
-                    </Link>
+                    </TrackedLink>
                 </div>
             </div>
         );
