@@ -20,6 +20,7 @@ interface SpeakOptions {
     volume?: number;
     gender?: 'male' | 'female' | 'any';
     accent?: 'us' | 'uk' | 'in' | 'any';
+    voice?: SpeechSynthesisVoice; // Allow explicit voice object
     onEnd?: () => void;
     onError?: (error: any) => void;
 }
@@ -113,12 +114,21 @@ export const speakText = (text: string, options: SpeakOptions = {}): void => {
     const speakWithVoice = () => {
         const voices = window.speechSynthesis.getVoices();
         if (voices.length > 0) {
-            const selectedVoice = filterVoicesByPreferences(
-                voices,
-                utterance.lang,
-                options.gender,
-                options.accent
-            );
+            let selectedVoice: SpeechSynthesisVoice | null = null;
+
+            // 1. Explicit voice selection (if passed)
+            if (options.voice) {
+                selectedVoice = options.voice;
+            }
+            // 2. Auto-selection based on preferences
+            else {
+                selectedVoice = filterVoicesByPreferences(
+                    voices,
+                    utterance.lang,
+                    options.gender,
+                    options.accent
+                );
+            }
 
             if (selectedVoice) {
                 utterance.voice = selectedVoice;
@@ -248,4 +258,11 @@ export const getAvailableVoices = (): SpeechSynthesisVoice[] => {
  */
 export const getVoicesByLang = (lang: string): SpeechSynthesisVoice[] => {
     return getAvailableVoices().filter(voice => voice.lang.startsWith(lang));
+};
+
+/**
+ * Get voice by name
+ */
+export const getVoiceByName = (name: string): SpeechSynthesisVoice | undefined => {
+    return getAvailableVoices().find(voice => voice.name === name);
 };

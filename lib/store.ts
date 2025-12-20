@@ -22,6 +22,7 @@ interface UserState {
     voicePreferences: {
         gender: 'male' | 'female' | 'any';
         accent: 'us' | 'uk' | 'in' | 'any';
+        voiceName: string | null; // Specific voice name/URI
     };
     setVoicePreferences: (prefs: Partial<UserState['voicePreferences']>) => void;
     fetchUserProfile: (uid: string) => Promise<void>;
@@ -67,6 +68,7 @@ export const useUserStore = create<UserState>()(
             voicePreferences: {
                 gender: 'female',
                 accent: 'us',
+                voiceName: null,
             },
             setVoicePreferences: (prefs) => set((state) => ({
                 voicePreferences: { ...state.voicePreferences, ...prefs }

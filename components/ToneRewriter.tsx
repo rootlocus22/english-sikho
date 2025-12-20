@@ -18,6 +18,9 @@ const TONE_LABELS = {
     4: { label: "Polite", color: "text-purple-600" },
 };
 
+import { VoiceSelector } from "@/components/VoiceSelector";
+import { getVoiceByName } from "@/lib/audioUtils";
+
 interface ToneRewriterProps {
     initialValue?: string;
 }
@@ -142,8 +145,15 @@ export default function ToneRewriter({ initialValue = "" }: ToneRewriterProps) {
         }
 
         setIsPlaying(true);
+
+        // Get selected voice from preferences
+        const selectedVoice = voicePreferences.voiceName
+            ? getVoiceByName(voicePreferences.voiceName)
+            : undefined;
+
         speakText(text, {
             lang: 'en-US',
+            voice: selectedVoice,
             gender: voicePreferences.gender,
             accent: voicePreferences.accent,
             onEnd: () => setIsPlaying(false),
@@ -160,13 +170,24 @@ export default function ToneRewriter({ initialValue = "" }: ToneRewriterProps) {
         <div className="space-y-4 md:space-y-6">
             <Card className="shadow-sm border-slate-200">
                 <CardHeader className="space-y-1 pb-4">
-                    <CardTitle className="flex items-center gap-2 text-lg md:text-xl text-slate-900">
-                        <SlidersHorizontal className="w-5 h-5 text-blue-600" />
-                        Boss-Friendly Emailer
-                    </CardTitle>
-                    <CardDescription className="text-sm">
-                        Rude mat bano. Apni baat politely kaho.
-                    </CardDescription>
+                    <div className="flex justify-between items-start">
+                        <div>
+                            <CardTitle className="flex items-center gap-2 text-lg md:text-xl text-slate-900">
+                                <SlidersHorizontal className="w-5 h-5 text-blue-600" />
+                                Boss-Friendly Emailer
+                            </CardTitle>
+                            <CardDescription className="text-sm">
+                                Rude mat bano. Apni baat politely kaho.
+                            </CardDescription>
+                        </div>
+                        <div className="hidden md:block">
+                            <VoiceSelector />
+                        </div>
+                    </div>
+                    {/* Mobile Voice Selector */}
+                    <div className="md:hidden pt-2">
+                        <VoiceSelector />
+                    </div>
                 </CardHeader>
                 <CardContent className="space-y-5 md:space-y-6">
                     <div className="relative">

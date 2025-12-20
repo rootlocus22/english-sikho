@@ -10,6 +10,9 @@ import { toast } from 'sonner';
 import { speakText, stopSpeaking, isSpeaking, startListening, isSpeechRecognitionSupported } from '@/lib/audioUtils';
 import { event } from '@/lib/analytics';
 
+import { VoiceSelector } from '@/components/VoiceSelector';
+import { getVoiceByName } from '@/lib/audioUtils';
+
 interface TranslatorOutput {
     formal: string;
     persuasive: string;
@@ -157,8 +160,15 @@ export default function TranslatorComponent() {
         }
 
         setPlayingIndex(index);
+
+        // Get selected voice from preferences
+        const selectedVoice = voicePreferences.voiceName
+            ? getVoiceByName(voicePreferences.voiceName)
+            : undefined;
+
         speakText(text, {
             lang: 'en-US',
+            voice: selectedVoice,
             gender: voicePreferences.gender,
             accent: voicePreferences.accent,
             onEnd: () => setPlayingIndex(null),
@@ -173,13 +183,24 @@ export default function TranslatorComponent() {
         <div className="space-y-4 md:space-y-6">
             <Card className="shadow-sm border-slate-200">
                 <CardHeader className="space-y-1 pb-4">
-                    <CardTitle className="flex items-center gap-2 text-lg md:text-xl text-slate-900">
-                        <Languages className="w-5 h-5 text-blue-600" />
-                        WhatsApp se Professional Email
-                    </CardTitle>
-                    <CardDescription className="text-sm">
-                        Tooti-phooti English likho, hum perfect bana denge.
-                    </CardDescription>
+                    <div className="flex justify-between items-start">
+                        <div>
+                            <CardTitle className="flex items-center gap-2 text-lg md:text-xl text-slate-900">
+                                <Languages className="w-5 h-5 text-blue-600" />
+                                WhatsApp se Professional Email
+                            </CardTitle>
+                            <CardDescription className="text-sm">
+                                Tooti-phooti English likho, hum perfect bana denge.
+                            </CardDescription>
+                        </div>
+                        <div className="hidden md:block">
+                            <VoiceSelector />
+                        </div>
+                    </div>
+                    {/* Mobile Voice Selector */}
+                    <div className="md:hidden pt-2">
+                        <VoiceSelector />
+                    </div>
                 </CardHeader>
                 <CardContent className="space-y-4">
                     <div className="relative">
