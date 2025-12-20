@@ -52,6 +52,12 @@ const navMain = [
         icon: Mic,
     },
     {
+        title: "Speaking Coach",
+        titleHindi: "Awaaz Sudharo",
+        url: "/dashboard/coach",
+        icon: Mic,
+    },
+    {
         title: "Real-Life Practice",
         titleHindi: "Practice Kamra", // "Gym" -> "Kamra/Room" or "Arena" ? "Practice Gym" was "Practice Kamra". "Real-Life Practice" -> "Asli Practice"? Let's stick to "Real Roleplay".
         url: "/dashboard/gym",

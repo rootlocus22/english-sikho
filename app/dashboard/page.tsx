@@ -1,6 +1,5 @@
 "use client";
 
-import ToneRewriter from "@/components/ToneRewriter";
 import TranslatorComponent from "@/components/TranslatorComponent";
 import VoiceSettings from "@/components/VoiceSettings";
 
@@ -20,10 +19,9 @@ export default function DashboardPage() {
                 </div>
             </div>
 
-            {/* Tools Grid */}
-            <div className="grid lg:grid-cols-2 gap-6 md:gap-8">
+            {/* Tools Grid - Just Translator for Home */}
+            <div className="w-full">
                 <TranslatorComponent />
-                <ToneRewriter />
             </div>
         </div>
     );
