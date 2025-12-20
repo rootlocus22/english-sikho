@@ -52,7 +52,7 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
       />
       {/* Hero Section */}
-      <section className="relative overflow-hidden pt-20 pb-32 lg:pt-32 lg:pb-48">
+      <section className="relative overflow-hidden pt-28 pb-20 lg:pt-32 lg:pb-48">
         {/* innovative Background: Neural Grid + Floating Language Elements */}
         <div className="absolute inset-0 z-0 h-full w-full bg-gradient-to-b from-indigo-50/80 via-white to-white overflow-hidden">
           {/* Grid Pattern - High Contrast */}
@@ -61,24 +61,24 @@ export default function Home() {
           {/* Central Glow */}
           <div className="absolute left-1/2 top-0 -translate-x-1/2 z-0 h-[600px] w-[600px] rounded-full bg-indigo-500/10 blur-[100px]"></div>
 
-          {/* Floating Elements - Animated & Colorful */}
+          {/* Floating Elements - Animated & Colorful - HIDDEN ON MOBILE to prevent overlap */}
           {/* English 'Aa' - Top Left */}
-          <div className="absolute top-24 left-[5%] lg:left-[10%] p-6 bg-white shadow-xl shadow-indigo-200/40 rounded-3xl border border-indigo-100 -rotate-12 animate-bounce duration-[8000ms] z-10">
+          <div className="hidden md:block absolute top-24 left-[5%] lg:left-[10%] p-6 bg-white shadow-xl shadow-indigo-200/40 rounded-3xl border border-indigo-100 -rotate-12 animate-bounce duration-[8000ms] z-10">
             <span className="text-6xl font-extrabold text-indigo-600 drop-shadow-sm">Aa</span>
           </div>
 
           {/* Mic Icon - Bottom Right */}
-          <div className="absolute bottom-32 right-[5%] lg:right-[10%] p-6 bg-white shadow-xl shadow-purple-200/40 rounded-3xl border border-purple-100 rotate-12 animate-pulse duration-[4000ms] z-10">
+          <div className="hidden md:block absolute bottom-32 right-[5%] lg:right-[10%] p-6 bg-white shadow-xl shadow-purple-200/40 rounded-3xl border border-purple-100 rotate-12 animate-pulse duration-[4000ms] z-10">
             <Mic className="w-12 h-12 text-purple-600 drop-shadow-sm" />
           </div>
 
           {/* Hindi 'अ' - Top Right */}
-          <div className="absolute top-32 right-[8%] lg:right-[15%] p-6 bg-white shadow-xl shadow-pink-200/40 rounded-full border border-pink-100 rotate-6 animate-bounce duration-[10000ms] z-10">
+          <div className="hidden md:block absolute top-32 right-[8%] lg:right-[15%] p-6 bg-white shadow-xl shadow-pink-200/40 rounded-full border border-pink-100 rotate-6 animate-bounce duration-[10000ms] z-10">
             <span className="text-5xl font-extrabold text-pink-500 drop-shadow-sm">अ</span>
           </div>
 
           {/* Bot Icon - Bottom Left */}
-          <div className="absolute bottom-24 left-[8%] lg:left-[15%] p-5 bg-white shadow-xl shadow-blue-200/40 rounded-2xl border border-blue-100 -rotate-6 animate-pulse duration-[5000ms] z-10">
+          <div className="hidden md:block absolute bottom-24 left-[8%] lg:left-[15%] p-5 bg-white shadow-xl shadow-blue-200/40 rounded-2xl border border-blue-100 -rotate-6 animate-pulse duration-[5000ms] z-10">
             <Bot className="w-10 h-10 text-blue-600 drop-shadow-sm" />
           </div>
 
@@ -88,58 +88,62 @@ export default function Home() {
         </div>
 
         <div className="container mx-auto px-4 text-center max-w-5xl relative z-20">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-red-50 text-red-600 text-sm font-bold mb-8 border border-red-200 hover:bg-red-100/80 transition-colors cursor-default animate-pulse">
-            <Sparkles className="w-4 h-4" />
-            <span>Warning: Poor English costs 34% less salary (Sach hai ye!)</span>
+          <div className="inline-flex items-center justify-center gap-2 px-3 py-2 md:px-4 md:py-2 rounded-full bg-red-50 text-red-600 text-xs md:text-sm font-bold mb-6 md:mb-8 border border-red-200 hover:bg-red-100/80 transition-colors cursor-default animate-pulse w-full sm:w-auto flex-wrap">
+            <Sparkles className="w-3 h-3 md:w-4 md:h-4 shrink-0" />
+            <span className="break-words text-center leading-tight">Warning: Poor English costs 34% less salary</span>
           </div>
 
-          <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight text-foreground mb-8 leading-[1.1]">
+          <h1 className="text-4xl sm:text-5xl md:text-7xl font-extrabold tracking-tight text-foreground mb-6 md:mb-8 leading-[1.15] md:leading-[1.1]">
             English Seekho, <br className="hidden md:block" />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-indigo-500 to-purple-600">Career Badhao.</span>
           </h1>
 
-          <p className="text-xl md:text-2xl text-muted-foreground mb-12 max-w-3xl mx-auto leading-relaxed">
-            India's smartest AI English Coach. <strong>Sharmao mat, bas shuru karo.</strong> Fix MTI, Grammar, and Hesitation specifically for Indian professionals.
+          <p className="text-lg md:text-2xl text-muted-foreground mb-8 md:mb-12 max-w-3xl mx-auto leading-relaxed px-2">
+            India's smartest AI English Coach. <strong>Sharmao mat, bas shuru karo.</strong> Fix MTI, Grammar, and Hesitation for Indian professionals.
           </p>
 
 
-          <div className="flex flex-col sm:flex-row justify-center gap-5 mb-16">
+          <div className="flex flex-col sm:flex-row justify-center gap-4 md:gap-5 mb-12 md:mb-16 px-4 sm:px-0">
             <TrackedLink
               href="/signup"
               eventData={{ action: 'click_hero_cta', category: 'onboarding', label: 'start_practice_free' }}
+              className="w-full sm:w-auto"
             >
-              <Button size="lg" className="h-16 px-10 text-lg rounded-full shadow-xl shadow-primary/25 hover:shadow-2xl hover:shadow-primary/40 transition-all hover:-translate-y-1 bg-gradient-to-r from-primary to-indigo-600 border-none">
-                Start Speaking (Bilkul Free) <ArrowRight className="ml-2 w-5 h-5" />
+              <Button size="lg" className="w-full sm:w-auto h-14 md:h-16 px-8 md:px-10 text-base md:text-lg rounded-full shadow-xl shadow-primary/25 hover:shadow-2xl hover:shadow-primary/40 transition-all hover:-translate-y-1 bg-gradient-to-r from-primary to-indigo-600 border-none">
+                Start Speaking <span className="hidden sm:inline">(Bilkul Free)</span> <ArrowRight className="ml-2 w-5 h-5" />
               </Button>
             </TrackedLink>
             <TrackedLink
               href="/features"
               eventData={{ action: 'click_hero_secondary', category: 'navigation', label: 'see_features' }}
+              className="w-full sm:w-auto"
             >
-              <Button size="lg" variant="outline" className="h-16 px-10 text-lg rounded-full border-2 hover:bg-accent/50 transition-all">
+              <Button size="lg" variant="outline" className="w-full sm:w-auto h-14 md:h-16 px-8 md:px-10 text-base md:text-lg rounded-full border-2 hover:bg-accent/50 transition-all">
                 Kaise Kaam Karta Hai?
               </Button>
             </TrackedLink>
           </div>
 
-          <div className="flex flex-wrap justify-center gap-x-8 gap-y-4 text-sm font-medium text-muted-foreground bg-white/50 backdrop-blur-sm py-4 px-8 rounded-full border border-slate-200 inline-flex">
-            <div className="flex items-center gap-2">
-              <ShieldCheck className="w-5 h-5 text-green-600" />
+          <div className="flex flex-wrap justify-center gap-x-4 gap-y-3 md:gap-x-8 md:gap-y-4 text-xs md:text-sm font-medium text-muted-foreground bg-white/50 backdrop-blur-sm py-3 px-4 md:py-4 md:px-8 rounded-2xl md:rounded-full border border-slate-200 inline-flex mx-2">
+            <div className="flex items-center gap-1.5 md:gap-2">
+              <ShieldCheck className="w-4 h-4 md:w-5 md:h-5 text-green-600" />
               <span>Judgment Free Zone</span>
             </div>
-            <div className="flex items-center gap-2">
-              <span className="text-xl">🇮🇳</span>
+            <div className="w-px h-4 bg-slate-300 hidden sm:block"></div>
+            <div className="flex items-center gap-1.5 md:gap-2">
+              <span className="text-lg md:text-xl">🇮🇳</span>
               <span>Made for Bharat</span>
             </div>
-            <div className="flex items-center gap-2">
-              <Zap className="w-5 h-5 text-yellow-500" />
-              <span>Fix 'V vs W' & MTI</span>
+            <div className="w-px h-4 bg-slate-300 hidden sm:block"></div>
+            <div className="flex items-center gap-1.5 md:gap-2">
+              <Zap className="w-4 h-4 md:w-5 md:h-5 text-yellow-500" />
+              <span>Fix 'V vs W'</span>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Free Tools Section (High Intent) */}
+      {/* Free Tools Section (High Intent) - Adjusted padding */}
       <section className="py-10 bg-blue-50/50 border-y border-blue-100">
         <div className="container mx-auto px-4 max-w-6xl">
           <div className="flex flex-col md:flex-row items-center justify-between mb-8 gap-4">

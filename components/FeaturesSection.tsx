@@ -8,9 +8,9 @@ export default function FeaturesSection() {
         {
             id: "tone-changer",
             icon: <Terminal className="w-8 h-8 text-primary" />,
-            title: "Tone Changer",
-            subtitle: "Fix Your Tone Instantly",
-            desc: "Don't sound rude. Turn 'Do this now' into 'Could you please help with this?' in one click. 4 levels of politeness.",
+            title: "Boss-Friendly Emailer",
+            subtitle: "Rude mat bano",
+            desc: "Don't sound rude. 'Do this now' ko 'Could you please?' mein badlo one click mein.",
             image: "/images/tone-changer-demo.png",
             link: "/dashboard",
             checks: [
@@ -22,23 +22,23 @@ export default function FeaturesSection() {
         {
             id: "roleplay",
             icon: <Bot className="w-8 h-8 text-indigo-500" />,
-            title: "Roleplay Gym",
-            subtitle: "Practice Real Scenarios",
-            desc: "Simulate a salary negotiation, a difficult client call, or a job interview. Make mistakes here so you don't make them in real life.",
+            title: "Real-Life Practice",
+            subtitle: "Interview se pehle galti karo",
+            desc: "Simulate a salary negotiation, a difficult client call, or a job interview. Yahan galti karo taki real life mein na ho.",
             image: "/images/roleplay-gym-demo.png",
             link: "/dashboard/gym",
             checks: [
                 "Realistic AI Personas (Boss, Client, Recruiter)",
-                "Real-time feedback on your answers",
+                "Bina dare practice karo",
                 "Unlimited retries in a safe space"
             ]
         },
         {
             id: "reply-helper",
             icon: <Mail className="w-8 h-8 text-rose-500" />,
-            title: "Reply Helper",
-            subtitle: "Decode & Reply Smartly",
-            desc: "Confused by a passive-aggressive email? Upload a screenshot. AI explains the hidden meaning and drafts 3 professional replies.",
+            title: "Smart Reply",
+            subtitle: "Jawaab hum denge",
+            desc: "Confused by a passive-aggressive email? Screenshot upload karo. AI will explain the hidden meaning and draft 3 professional replies.",
             image: "/images/reply-helper-demo.png",
             link: "/dashboard/reply-helper",
             checks: [
@@ -50,9 +50,9 @@ export default function FeaturesSection() {
         {
             id: "speaking",
             icon: <Mic className="w-8 h-8 text-teal-500" />,
-            title: "Speaking Coach",
+            title: "Apna English Coach",
             subtitle: "Fix Your Pronunciation",
-            desc: "Speak freely. The AI listens, transcribes, and corrects your grammar and pronunciation instantly. It's like a tutor in your pocket.",
+            desc: "Speak freely. The AI listens and corrects your grammar instantly. Jeb mein personal tutor rakho.",
             image: "/images/speaking-coach-demo.png",
             link: "/dashboard/coach",
             checks: [
@@ -65,20 +65,20 @@ export default function FeaturesSection() {
 
     return (
         <section className="py-0 px-4">
-            <div className="container max-w-6xl mx-auto space-y-32">
+            <div className="container max-w-6xl mx-auto space-y-16 md:space-y-32">
                 {features.map((f, i) => (
-                    <div key={i} className={`flex flex-col md:flex-row gap-16 items-center ${i % 2 === 1 ? 'md:flex-row-reverse' : ''}`}>
-                        <div className="flex-1 space-y-8">
+                    <div key={i} className={`flex flex-col md:flex-row gap-8 md:gap-16 items-center ${i % 2 === 1 ? 'md:flex-row-reverse' : ''}`}>
+                        <div className="flex-1 space-y-6 md:space-y-8">
                             <div className="flex items-center gap-4">
                                 <div className="p-3 rounded-2xl bg-secondary/50 border border-secondary shadow-sm">
                                     {f.icon}
                                 </div>
-                                <span className="text-sm font-bold text-primary tracking-widest uppercase">{f.subtitle}</span>
+                                <span className="text-xs md:text-sm font-bold text-primary tracking-widest uppercase">{f.subtitle}</span>
                             </div>
 
                             <div>
-                                <h2 className="text-4xl font-extrabold text-foreground mb-4">{f.title}</h2>
-                                <p className="text-xl text-muted-foreground leading-relaxed">{f.desc}</p>
+                                <h2 className="text-3xl md:text-4xl font-extrabold text-foreground mb-3 md:mb-4">{f.title}</h2>
+                                <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">{f.desc}</p>
                             </div>
 
                             <ul className="space-y-4">

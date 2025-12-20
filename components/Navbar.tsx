@@ -32,8 +32,8 @@ export default function Navbar() {
                                     className="flex flex-col p-3 hover:bg-slate-50 rounded-lg transition-colors"
                                     eventData={{ action: 'click_nav_tool', category: 'navigation', label: 'whatsapp_tool' }}
                                 >
-                                    <span className="text-slate-900 font-semibold mb-0.5">WhatsApp to Email</span>
-                                    <span className="text-xs text-slate-500">Fix Hinglish messages</span>
+                                    <span className="text-slate-900 font-semibold mb-0.5">WhatsApp se Email</span>
+                                    <span className="text-xs text-slate-500">Toota-phoota likho, perfect paao</span>
                                 </TrackedLink>
                                 <TrackedLink
                                     href="/tools/self-introduction-generator"
@@ -41,7 +41,7 @@ export default function Navbar() {
                                     eventData={{ action: 'click_nav_tool', category: 'navigation', label: 'intro_generator' }}
                                 >
                                     <span className="text-slate-900 font-semibold mb-0.5">Self Introduction</span>
-                                    <span className="text-xs text-slate-500">For Interviews</span>
+                                    <span className="text-xs text-slate-500">Interview ke liye</span>
                                 </TrackedLink>
                                 <div className="h-px bg-slate-100 my-1" />
                                 <TrackedLink
@@ -49,14 +49,14 @@ export default function Navbar() {
                                     className="flex items-center justify-between p-3 hover:bg-slate-50 rounded-lg transition-colors text-blue-600"
                                     eventData={{ action: 'click_nav_all_tools', category: 'navigation', label: 'view_all' }}
                                 >
-                                    <span className="font-semibold">View All Tools</span>
+                                    <span className="font-semibold">Sabhi Tools Dekhein</span>
                                     <span className="text-lg">→</span>
                                 </TrackedLink>
                             </div>
                         </div>
                     </div>
 
-                    <Link href="/features" className="hover:text-primary transition-colors">Features</Link>
+                    <Link href="/features" className="hover:text-primary transition-colors">Kaise Kaam Karta Hai</Link>
                     <Link href="/pricing" className="hover:text-primary transition-colors">Pricing</Link>
                     <div className="h-4 w-px bg-border" />
                     <Link href="/login">
@@ -73,11 +73,11 @@ export default function Navbar() {
                         </DropdownMenuTrigger>
                         <DropdownMenuContent align="end" className="w-48">
                             <DropdownMenuItem asChild><Link href="/tools">Free Tools</Link></DropdownMenuItem>
-                            <DropdownMenuItem asChild><Link href="/tools/whatsapp-to-email">WhatsApp to Email</Link></DropdownMenuItem>
-                            <DropdownMenuItem asChild><Link href="/features">Features</Link></DropdownMenuItem>
+                            <DropdownMenuItem asChild><Link href="/tools/whatsapp-to-email">WhatsApp se Email</Link></DropdownMenuItem>
+                            <DropdownMenuItem asChild><Link href="/features">Kaise Kaam Karta Hai</Link></DropdownMenuItem>
                             <DropdownMenuItem asChild><Link href="/pricing">Pricing</Link></DropdownMenuItem>
                             <DropdownMenuItem asChild><Link href="/login">Log in</Link></DropdownMenuItem>
-                            <DropdownMenuItem asChild><Link href="/signup" className="text-primary font-bold">Sign up Free</Link></DropdownMenuItem>
+                            <DropdownMenuItem asChild><Link href="/signup" className="text-primary font-bold">Start Free</Link></DropdownMenuItem>
                         </DropdownMenuContent>
                     </DropdownMenu>
                 </div>
