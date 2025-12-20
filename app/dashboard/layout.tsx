@@ -170,7 +170,7 @@ export default function DashboardLayout({
                         </Breadcrumb>
                     </div>
                 </header>
-                <div className="flex flex-1 flex-col gap-4 p-4 md:p-6 bg-slate-50 min-h-[calc(100vh-4rem)]">
+                <div className="flex flex-1 flex-col gap-4 p-4 md:p-6 bg-slate-50 min-h-[calc(100vh-4rem)] overflow-x-hidden">
                     {children}
                 </div>
             </SidebarInset>

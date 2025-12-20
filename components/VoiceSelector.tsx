@@ -69,7 +69,7 @@ export function VoiceSelector() {
                 <SelectContent>
                     {voices.map((voice) => (
                         <SelectItem key={voice.name} value={voice.name} className="text-xs">
-                            {voice.name.replace("Microsoft ", "").replace("Google ", "")}
+                            {voice.name.replace(/Microsoft |Google /g, "")}
                             {voice.lang.includes("IN") ? " 🇮🇳" : ""}
                         </SelectItem>
                     ))}

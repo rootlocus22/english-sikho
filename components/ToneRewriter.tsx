@@ -231,7 +231,7 @@ export default function ToneRewriter({ initialValue = "" }: ToneRewriterProps) {
                             step={1}
                             className="w-full"
                         />
-                        <div className="grid grid-cols-4 text-[10px] md:text-xs text-slate-500 font-medium">
+                        <div className="grid grid-cols-2 md:grid-cols-4 gap-2 text-[10px] md:text-xs text-slate-500 font-medium">
                             <span className="text-center">Rude 😡</span>
                             <span className="text-center">Casual 🙂</span>
                             <span className="text-center">Professional 👔</span>
