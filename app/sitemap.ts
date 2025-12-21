@@ -89,6 +89,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
         priority: 0.95,
     }]
 
+    // Dictionary Hub
+    const dictionaryHub: MetadataRoute.Sitemap = [{
+        url: `${baseUrl}/meaning`,
+        lastModified: now,
+        changeFrequency: 'weekly' as const,
+        priority: 0.95,
+    }]
+
     // Phrase pages (Programmatic SEO - 213 Phrases)
     const allPhrases = getAllPhrases()
     const phrasePages: MetadataRoute.Sitemap = allPhrases.map((phrase) => ({
@@ -98,5 +106,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
         priority: 0.9, // High priority for SEO phrase pages
     }))
 
-    return [...staticPages, ...blogPages, ...topicPages, ...dictionaryPages, ...phrasebookHub, ...phrasePages]
+    return [...staticPages, ...blogPages, ...topicPages, ...dictionaryPages, ...dictionaryHub, ...phrasebookHub, ...phrasePages]
 }

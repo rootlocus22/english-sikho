@@ -56,6 +56,8 @@ export default function Navbar() {
                         </div>
                     </div>
 
+                    <Link href="/corporate-phrasebook" className="hover:text-primary transition-colors">Phrasebook</Link>
+                    <Link href="/meaning" className="hover:text-primary transition-colors">Dictionary</Link>
                     <Link href="/features" className="hover:text-primary transition-colors">Kaise Kaam Karta Hai</Link>
                     <Link href="/pricing" className="hover:text-primary transition-colors">Pricing</Link>
                     <div className="h-4 w-px bg-border" />
@@ -74,6 +76,8 @@ export default function Navbar() {
                         <DropdownMenuContent align="end" className="w-48">
                             <DropdownMenuItem asChild><Link href="/tools">Free Tools</Link></DropdownMenuItem>
                             <DropdownMenuItem asChild><Link href="/tools/whatsapp-to-email">WhatsApp se Email</Link></DropdownMenuItem>
+                            <DropdownMenuItem asChild><Link href="/corporate-phrasebook">Phrasebook</Link></DropdownMenuItem>
+                            <DropdownMenuItem asChild><Link href="/meaning">Dictionary</Link></DropdownMenuItem>
                             <DropdownMenuItem asChild><Link href="/features">Kaise Kaam Karta Hai</Link></DropdownMenuItem>
                             <DropdownMenuItem asChild><Link href="/pricing">Pricing</Link></DropdownMenuItem>
                             <DropdownMenuItem asChild><Link href="/login">Log in</Link></DropdownMenuItem>

@@ -11,13 +11,14 @@ export async function generateStaticParams() {
 }
 
 type Props = {
-    params: { word: string }
+    params: Promise<{ word: string }>
 }
 
 export async function generateMetadata(
     { params }: Props
 ): Promise<Metadata> {
-    const entry = VERNACULAR_DICTIONARY.find(e => e.slug === params.word);
+    const { word } = await params;
+    const entry = VERNACULAR_DICTIONARY.find(e => e.slug === word);
 
     if (!entry) {
         return {
@@ -25,24 +26,109 @@ export async function generateMetadata(
         };
     }
 
+    const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.englishgyani.com';
+    const canonicalUrl = `${baseUrl}/meaning/${entry.slug}`;
+
     return {
         title: `${entry.word} Meaning in Hindi & Tamil - Business English | EnglishGyani`,
-        description: `What is the meaning of "${entry.word}" in Hindi and Tamil? Learn how to use "${entry.word}" in office emails and meetings. Practice pronunciation for free.`,
+        description: `What is the meaning of "${entry.word}" in Hindi (${entry.hindiMeaning}) and Tamil (${entry.tamilMeaning})? Learn how to use "${entry.word}" in office emails and meetings. Practice pronunciation for free.`,
+        keywords: [
+            `${entry.word} meaning in Hindi`,
+            `${entry.word} meaning in Tamil`,
+            entry.hindiMeaning,
+            entry.tamilMeaning,
+            `business English ${entry.word}`,
+            `corporate vocabulary India`,
+            `${entry.word} pronunciation`
+        ],
         alternates: {
-            canonical: `/meaning/${entry.slug}`,
+            canonical: canonicalUrl,
+        },
+        robots: {
+            index: true,
+            follow: true,
+            nocache: false,
+            googleBot: {
+                index: true,
+                follow: true,
+                'max-image-preview': 'large',
+                'max-snippet': -1,
+            },
+        },
+        openGraph: {
+            title: `${entry.word} Meaning - Business English Dictionary`,
+            description: `Learn the meaning of "${entry.word}" in Hindi and Tamil with pronunciation and business examples`,
+            type: "article",
+            url: canonicalUrl,
+            siteName: 'EnglishGyani',
+        },
+        twitter: {
+            card: 'summary_large_image',
+            title: `${entry.word} Meaning - Hindi & Tamil`,
+            description: `${entry.hindiMeaning} | ${entry.tamilMeaning}`,
         },
     };
 }
 
-export default function WordPage({ params }: Props) {
-    const entry = VERNACULAR_DICTIONARY.find(e => e.slug === params.word);
+export default async function WordPage({ params }: Props) {
+    const { word } = await params;
+    const entry = VERNACULAR_DICTIONARY.find(e => e.slug === word);
 
     if (!entry) {
         notFound();
     }
 
+    // JSON-LD Schema for DefinedTerm
+    const schema = {
+        "@context": "https://schema.org",
+        "@type": "DefinedTerm",
+        "name": entry.word,
+        "description": entry.businessContext,
+        "inDefinedTermSet": "Business English Vocabulary",
+        "termCode": entry.slug
+    };
+
+    const faqSchema = {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": `What is the meaning of "${entry.word}" in Hindi?`,
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": `${entry.word} means "${entry.hindiMeaning}" in Hindi.`
+                }
+            },
+            {
+                "@type": "Question",
+                "name": `What is the meaning of "${entry.word}" in Tamil?`,
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": `${entry.word} means "${entry.tamilMeaning}" in Tamil.`
+                }
+            },
+            {
+                "@type": "Question",
+                "name": `How do you pronounce "${entry.word}"?`,
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": `${entry.word} is pronounced as "${entry.pronunciation}".`
+                }
+            }
+        ]
+    };
+
     return (
         <div className="min-h-screen bg-slate-50">
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+            />
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+            />
             {/* Hero Section */}
             <div className="bg-white border-b border-slate-200">
                 <div className="max-w-4xl mx-auto px-4 py-16 text-center">
