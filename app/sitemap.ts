@@ -2,6 +2,7 @@ import { MetadataRoute } from 'next'
 import { getAllPostSlugs } from '@/lib/blog'
 import { SEO_KEYWORDS } from '@/data/seo-keywords'
 import { VERNACULAR_DICTIONARY } from '@/data/vernacular-dictionary'
+import { getAllPhrases } from '@/lib/pseo-data'
 
 export default function sitemap(): MetadataRoute.Sitemap {
     const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.englishgyani.com'
@@ -80,5 +81,22 @@ export default function sitemap(): MetadataRoute.Sitemap {
         priority: 0.8,
     }))
 
-    return [...staticPages, ...blogPages, ...topicPages, ...dictionaryPages]
+    // Corporate Phrasebook Hub
+    const phrasebookHub: MetadataRoute.Sitemap = [{
+        url: `${baseUrl}/corporate-phrasebook`,
+        lastModified: now,
+        changeFrequency: 'weekly' as const,
+        priority: 0.95,
+    }]
+
+    // Phrase pages (Programmatic SEO - 213 Phrases)
+    const allPhrases = getAllPhrases()
+    const phrasePages: MetadataRoute.Sitemap = allPhrases.map((phrase) => ({
+        url: `${baseUrl}/phrases/${phrase.slug}`,
+        lastModified: now,
+        changeFrequency: 'monthly' as const,
+        priority: 0.9, // High priority for SEO phrase pages
+    }))
+
+    return [...staticPages, ...blogPages, ...topicPages, ...dictionaryPages, ...phrasebookHub, ...phrasePages]
 }
