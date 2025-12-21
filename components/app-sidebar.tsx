@@ -42,6 +42,7 @@ import { signOut } from "firebase/auth";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { LogOut } from "lucide-react";
+import BrandLogo from "@/components/BrandLogo";
 
 // Menu items
 const navMain = [
@@ -146,18 +147,11 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             <SidebarHeader>
                 <SidebarMenu>
                     <SidebarMenuItem>
-                        <SidebarMenuButton size="lg" asChild>
-                            <TrackedLink
-                                href="/dashboard"
-                                eventData={{ action: 'click_sidebar_logo', category: 'navigation', label: 'dashboard_home' }}
-                            >
-                                <img src="/logo.png" alt="EnglishGyani" className="h-12 w-12 rounded-xl shadow-md" />
-                                <div className="grid flex-1 text-left text-sm leading-tight">
-                                    <span className="truncate font-semibold text-base">EnglishGyani</span>
-                                    <span className="truncate text-xs">AI Coach</span>
-                                </div>
-                            </TrackedLink>
-                        </SidebarMenuButton>
+                        <BrandLogo
+                            href="/dashboard"
+                            showText
+                            eventData={{ action: 'click_sidebar_logo', category: 'navigation', label: 'dashboard_home' }}
+                        />
                     </SidebarMenuItem>
                 </SidebarMenu>
             </SidebarHeader>

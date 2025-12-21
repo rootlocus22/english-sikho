@@ -11,6 +11,7 @@ import { event, getClickId } from "@/lib/analytics";
 import { useRouter, useSearchParams } from "next/navigation";
 import { toast } from "sonner";
 import Link from "next/link";
+import BrandLogo from "@/components/BrandLogo";
 
 import { Suspense } from "react";
 
@@ -116,27 +117,24 @@ function SignupPageContent() {
         <div className="min-h-screen grid lg:grid-cols-2">
 
             {/* Left Side - Success Branding */}
-            <div className="hidden lg:flex flex-col justify-between bg-gradient-to-br from-purple-600 to-indigo-900 text-white p-12 relative overflow-hidden">
+            <div className="hidden lg:flex flex-col justify-between bg-gradient-to-br from-[#213E8C] to-[#0f1d3d] text-white p-12 relative overflow-hidden">
                 {/* Background Pattern */}
                 <div className="absolute inset-0 bg-[url('https://resumegyani.in/grid.svg')] opacity-20"></div>
 
                 {/* Animated Blobs */}
-                <div className="absolute top-24 -right-24 w-96 h-96 bg-pink-500 rounded-full blur-[128px] opacity-20 animate-pulse"></div>
-                <div className="absolute bottom-24 -left-24 w-80 h-80 bg-blue-500 rounded-full blur-[128px] opacity-20 animate-pulse delay-700"></div>
+                <div className="absolute top-24 -right-24 w-96 h-96 bg-[#3a5baa] rounded-full blur-[128px] opacity-20 animate-pulse"></div>
+                <div className="absolute bottom-24 -left-24 w-80 h-80 bg-[#2a4987] rounded-full blur-[128px] opacity-20 animate-pulse delay-700"></div>
 
                 {/* Header */}
                 <div className="relative z-10">
-                    <Link href="/" className="flex items-center gap-2 text-white/90 font-medium mb-8 hover:opacity-80 transition-opacity w-fit">
-                        <div className="bg-white/10 p-2 rounded-lg backdrop-blur-sm border border-white/10">
-                            <Brain className="w-6 h-6" />
-                        </div>
-                        EnglishGyani
-                    </Link>
+                    <div className="mb-8">
+                        <BrandLogo eventData={{ action: 'click_signup_logo', category: 'navigation', label: 'home_from_signup' }} />
+                    </div>
 
-                    <h1 className="text-5xl font-bold leading-tight mb-6 bg-gradient-to-r from-pink-200 to-indigo-200 bg-clip-text text-transparent">
+                    <h1 className="text-5xl font-bold leading-tight mb-6 bg-gradient-to-r from-blue-100 to-cyan-100 bg-clip-text text-transparent">
                         Start Your Journey to Fluency
                     </h1>
-                    <p className="text-xl text-indigo-100/80 max-w-lg leading-relaxed">
+                    <p className="text-xl text-blue-100/80 max-w-lg leading-relaxed">
                         Create your free account today and get 10 AI credits immediately.
                     </p>
                 </div>
@@ -166,12 +164,12 @@ function SignupPageContent() {
                         </div>
                         <div>
                             <div className="font-bold">Neha Singh</div>
-                            <div className="text-sm text-indigo-200">Marketing Manager</div>
+                            <div className="text-sm text-blue-200">Marketing Manager</div>
                         </div>
                     </div>
                 </div>
 
-                <div className="relative z-10 mt-8 text-sm text-indigo-200/60">
+                <div className="relative z-10 mt-8 text-sm text-blue-200/60">
                     No credit card required for signup.
                 </div>
             </div>
@@ -182,7 +180,7 @@ function SignupPageContent() {
                     {/* Form Header */}
                     <div className="text-center">
                         <div className="lg:hidden flex justify-center mb-6">
-                            <img src="/logo.png" alt="EnglishGyani" className="h-24 w-24 rounded-2xl shadow-xl" />
+                            <BrandLogo eventData={{ action: 'click_signup_logo_mobile', category: 'navigation', label: 'home_from_signup' }} />
                         </div>
                         <h2 className="text-3xl font-bold text-gray-900">Create Account</h2>
                         <p className="text-gray-600 mt-2 font-medium">Free credits aapka wait kar rahe hain!</p>

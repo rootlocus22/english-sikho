@@ -1,24 +1,20 @@
 import Link from "next/link";
-import { TrackedLink } from "@/components/ui/tracked-elements";
 import { Button } from "@/components/ui/button";
-import { Menu, Sparkles } from "lucide-react";
+import { Menu } from "lucide-react";
 import {
     DropdownMenu,
     DropdownMenuContent,
     DropdownMenuItem,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { TrackedLink } from "@/components/ui/tracked-elements";
+import BrandLogo from "@/components/BrandLogo";
 
 export default function Navbar() {
     return (
         <header className="fixed top-0 z-50 w-full border-b border-white/5 bg-background/50 backdrop-blur-xl supports-[backdrop-filter]:bg-background/50 transition-all duration-300">
-            <div className="container flex h-16 items-center justify-between max-w-7xl mx-auto px-4">
-                <Link href="/" className="flex items-center gap-2 font-bold text-xl tracking-tight text-foreground hover:opacity-80 transition-opacity">
-                    <div className="bg-primary/10 p-1.5 rounded-lg text-primary">
-                        <Sparkles className="w-5 h-5 fill-primary/20" />
-                    </div>
-                    <span>EnglishGyani</span>
-                </Link>
+            <div className="container flex h-20 items-center justify-between max-w-7xl mx-auto px-4">
+                <BrandLogo useNextImage eventData={{ action: 'click_nav_logo', category: 'navigation', label: 'home' }} />
                 <nav className="hidden md:flex items-center gap-6 text-sm font-medium text-muted-foreground">
                     <div className="relative group">
                         <button className="flex items-center gap-1 hover:text-primary transition-colors focus:outline-none">

@@ -38,7 +38,7 @@ export const metadata: Metadata = {
   publisher: "EnglishGyani",
   icons: {
     icon: '/favicon.png',
-    apple: '/logo.png',
+    apple: '/englishgyanilogo.png',
   },
   openGraph: {
     type: 'website',
@@ -94,7 +94,7 @@ const organizationJsonLd = {
   "@type": "Organization",
   "name": "EnglishGyani",
   "url": "https://www.englishgyani.com",
-  "logo": "https://www.englishgyani.com/logo.png",
+  "logo": "https://www.englishgyani.com/englishgyanilogo.png",
   "sameAs": [
     "https://twitter.com/englishgyani",
     "https://linkedin.com/company/englishgyani"

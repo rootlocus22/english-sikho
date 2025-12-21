@@ -11,6 +11,7 @@ import { event } from "@/lib/analytics";
 import { useRouter, useSearchParams } from "next/navigation";
 import { toast } from "sonner";
 import Link from "next/link";
+import BrandLogo from "@/components/BrandLogo";
 
 import { Suspense } from "react";
 
@@ -183,63 +184,90 @@ function LoginPageContent() {
         <div className="min-h-screen grid lg:grid-cols-2">
 
             {/* Left Side - Hero/Branding (Hidden on mobile) */}
-            <div className="hidden lg:flex flex-col justify-between bg-gradient-to-br from-indigo-600 to-purple-900 text-white p-12 relative overflow-hidden">
+            <div className="hidden lg:flex flex-col justify-between bg-gradient-to-br from-[#213E8C] to-[#0f1d3d] text-white p-12 relative overflow-hidden">
                 {/* Background Pattern */}
                 <div className="absolute inset-0 bg-[url('https://resumegyani.in/grid.svg')] opacity-20"></div>
 
                 {/* Floating Blobs */}
-                <div className="absolute -top-24 -left-24 w-96 h-96 bg-blue-500 rounded-full blur-[128px] opacity-30 animate-pulse"></div>
-                <div className="absolute top-1/2 -right-24 w-64 h-64 bg-purple-500 rounded-full blur-[128px] opacity-30 animate-pulse delay-1000"></div>
+                <div className="absolute -top-24 -left-24 w-96 h-96 bg-[#3a5baa] rounded-full blur-[128px] opacity-30 animate-pulse"></div>
+                <div className="absolute top-1/2 -right-24 w-64 h-64 bg-[#2a4987] rounded-full blur-[128px] opacity-30 animate-pulse delay-1000"></div>
 
                 {/* Header */}
                 <div className="relative z-10">
-                    <Link href="/" className="flex items-center gap-2 text-white/90 font-medium mb-8 hover:opacity-80 transition-opacity w-fit">
-                        <div className="bg-white/10 p-2 rounded-lg backdrop-blur-sm border border-white/10">
-                            <Brain className="w-6 h-6" />
-                        </div>
-                        EnglishGyani
-                    </Link>
+                    <div className="mb-8">
+                        <BrandLogo eventData={{ action: 'click_login_logo', category: 'navigation', label: 'home_from_login' }} />
+                    </div>
 
-                    <h1 className="text-5xl font-bold leading-tight mb-6 bg-gradient-to-r from-blue-200 to-indigo-200 bg-clip-text text-transparent">
-                        Master Professional English with AI
+                    <h1 className="text-5xl font-bold leading-tight mb-6 bg-gradient-to-r from-blue-100 to-cyan-100 bg-clip-text text-transparent">
+                        Welcome Back to Your English Journey
                     </h1>
                     <p className="text-xl text-blue-100/80 max-w-lg leading-relaxed">
-                        Join india's fastest growing community of professionals upgrading their communication skills.
+                        Continue improving your professional English with daily AI-powered practice sessions.
                     </p>
                 </div>
 
-                {/* Features List */}
+                {/* Feature Points */}
                 <div className="relative z-10 space-y-6">
-                    <FeatureItem icon={<Zap className="w-5 h-5 text-yellow-500" />} text="Instant AI Speech Analysis" />
-                    <FeatureItem icon={<Globe2 className="w-5 h-5 text-blue-400" />} text="Hinglish to Professional English" />
-                    <FeatureItem icon={<CheckCircle2 className="w-5 h-5 text-green-400" />} text="Daily Practice Scenarios" />
+                    <div className="flex items-start gap-4">
+                        <div className="bg-white/10 p-3 rounded-lg backdrop-blur-sm">
+                            <svg className="w-6 h-6 text-yellow-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z" />
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 className="font-bold text-lg mb-1">Daily Practice Sessions</h3>
+                            <p className="text-blue-100/70 text-sm">Resume your personalized learning path</p>
+                        </div>
+                    </div>
+
+                    <div className="flex items-start gap-4">
+                        <div className="bg-white/10 p-3 rounded-lg backdrop-blur-sm">
+                            <svg className="w-6 h-6 text-purple-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 className="font-bold text-lg mb-1">AI-Powered Feedback</h3>
+                            <p className="text-blue-100/70 text-sm">Get instant corrections and suggestions</p>
+                        </div>
+                    </div>
+
+                    <div className="flex items-start gap-4">
+                        <div className="bg-white/10 p-3 rounded-lg backdrop-blur-sm">
+                            <svg className="w-6 h-6 text-green-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 className="font-bold text-lg mb-1">Real Conversations</h3>
+                            <p className="text-blue-100/70 text-sm">Practice with workplace scenarios</p>
+                        </div>
+                    </div>
                 </div>
 
                 {/* Testimonial */}
-                <div className="relative z-10 bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/10 mt-12">
-                    <div className="flex gap-1 text-yellow-400 mb-3">
-                        <Star className="w-4 h-4 fill-current" />
-                        <Star className="w-4 h-4 fill-current" />
-                        <Star className="w-4 h-4 fill-current" />
-                        <Star className="w-4 h-4 fill-current" />
-                        <Star className="w-4 h-4 fill-current" />
+                <div className="relative z-10 bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
+                    <div className="flex gap-1 mb-3">
+                        {[...Array(5)].map((_, i) => (
+                            <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
+                        ))}
                     </div>
-                    <blockquote className="text-lg font-medium mb-4">
-                        "The Speaking Coach is a game changer! My confidence in meetings has doubled in just 2 weeks."
-                    </blockquote>
+                    <p className="text-blue-50 mb-4 italic leading-relaxed">
+                        "I use EnglishGyani every morning before work. My confidence in client calls has improved dramatically!"
+                    </p>
                     <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-400 to-purple-400 flex items-center justify-center font-bold text-sm">
-                            AD
+                        <div className="w-10 h-10 bg-gradient-to-br from-pink-400 to-purple-600 rounded-full flex items-center justify-center font-bold">
+                            NS
                         </div>
                         <div>
-                            <div className="font-bold">Amit Dubey</div>
-                            <div className="text-sm text-blue-200">Senior Developer at TechGlobal</div>
+                            <div className="font-bold">Neha Singh</div>
+                            <div className="text-sm text-blue-200">Marketing Manager</div>
                         </div>
                     </div>
                 </div>
 
                 <div className="relative z-10 mt-8 text-sm text-blue-200/60">
-                    Trusted by 10,000+ Indians 🇮🇳
+                    Secure login • Your data is encrypted
                 </div>
             </div>
 
@@ -249,7 +277,7 @@ function LoginPageContent() {
                     {/* Form Header */}
                     <div className="text-center">
                         <div className="lg:hidden flex justify-center mb-6">
-                            <img src="/logo.png" alt="EnglishGyani" className="h-24 w-24 rounded-2xl shadow-xl" />
+                            <BrandLogo eventData={{ action: 'click_login_logo_mobile', category: 'navigation', label: 'home_from_login' }} />
                         </div>
                         <h2 className="text-3xl font-bold text-gray-900">Welcome Back</h2>
                         <p className="text-gray-600 mt-2 font-medium">Apni learning journey continue karein</p>
@@ -340,7 +368,7 @@ function LoginPageContent() {
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
     );
 }
 
