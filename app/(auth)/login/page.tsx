@@ -165,13 +165,24 @@ function LoginPageContent() {
                 });
             }
 
-            toast.success(`Welcome back ${user.displayName || 'Gyani'}!`);
+            // Track login event
             event({
                 action: "login",
                 category: "engagement",
                 label: "email_login"
             });
-            router.push(redirectUrl);
+
+            // Check if user has completed onboarding
+            const { hasCompletedOnboarding } = await import("@/lib/userProfile");
+            const completed = await hasCompletedOnboarding(user.uid);
+
+            if (!completed) {
+                toast.success("Welcome back! Let's personalize your experience.");
+                router.push('/onboarding');
+            } else {
+                toast.success(`Welcome back ${user.displayName || 'Gyani'}!`);
+                router.push(redirectUrl);
+            }
         } catch (error: any) {
             console.error("Login error:", error);
             toast.error(error.message || "Login failed");

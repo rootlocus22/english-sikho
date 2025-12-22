@@ -104,7 +104,7 @@ function SignupPageContent() {
             });
 
             toast.success(`Welcome, ${name}!`);
-            router.push(redirectUrl);
+            router.push('/onboarding');
         } catch (error: any) {
             console.error("Signup error:", error);
             toast.error(error.message || "Signup failed");

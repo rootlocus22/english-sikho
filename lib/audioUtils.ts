@@ -93,7 +93,7 @@ const filterVoicesByPreferences = (
 };
 
 /**
- * Text-to-Speech: Speak text aloud with improved quality
+ * Text-to-Speech: Speak text aloud with improved quality and natural punctuation handling
  */
 export const speakText = (text: string, options: SpeakOptions = {}): void => {
     if (!isSpeechSynthesisSupported()) {
@@ -105,10 +105,21 @@ export const speakText = (text: string, options: SpeakOptions = {}): void => {
     // Cancel any ongoing speech
     window.speechSynthesis.cancel();
 
-    const utterance = new SpeechSynthesisUtterance(text);
+    // Improve text for natural speech - add pauses for punctuation
+    let processedText = text
+        // Add brief pause after commas
+        .replace(/,\s*/g, ', ')
+        // Add longer pause after periods
+        .replace(/\.\s*/g, '. ')
+        // Add pause after line breaks
+        .replace(/\n/g, '. ')
+        // Handle question marks and exclamations
+        .replace(/([!?])\s*/g, '$1 ');
 
-    // Set language first
-    utterance.lang = options.lang || 'en-US';
+    const utterance = new SpeechSynthesisUtterance(processedText);
+
+    // Set language first (default to Indian English)
+    utterance.lang = options.lang || 'en-IN';
 
     // Function to select and speak with best voice
     const speakWithVoice = () => {
@@ -120,25 +131,65 @@ export const speakText = (text: string, options: SpeakOptions = {}): void => {
             if (options.voice) {
                 selectedVoice = options.voice;
             }
-            // 2. Auto-selection based on preferences
+            // 2. Auto-selection: FORCE female Indian voices
             else {
-                selectedVoice = filterVoicesByPreferences(
-                    voices,
-                    utterance.lang,
-                    options.gender,
-                    options.accent
-                );
+                const accent = options.accent || 'in';
+                const gender = options.gender || 'female';
+
+                // Lists to categorize voices
+                const femaleNames = ['neerja', 'female', 'kavya', 'aditi', 'shreya', 'heera', 'lekha'];
+                const maleNames = ['rishi', 'male', 'arjun', 'aadish', 'om', 'deepak'];
+
+                // Helper to check if voice is female
+                const isFemaleVoice = (voice: SpeechSynthesisVoice) => {
+                    const name = voice.name.toLowerCase();
+                    if (femaleNames.some(n => name.includes(n))) return true;
+                    if (maleNames.some(n => name.includes(n))) return false;
+                    return !name.includes('male');
+                };
+
+                // Try to find best female Indian English voice
+                selectedVoice =
+                    // First: Google Indian English female
+                    voices.find(v =>
+                        v.name.includes('Google') &&
+                        v.lang.includes('IN') &&
+                        isFemaleVoice(v)
+                    ) ||
+                    // Second: Any Indian female voice (not Microsoft)
+                    voices.find(v =>
+                        v.lang.includes('IN') &&
+                        !v.name.includes('Microsoft') &&
+                        isFemaleVoice(v)
+                    ) ||
+                    // Third: Any Google Indian voice
+                    voices.find(v =>
+                        v.name.includes('Google') &&
+                        v.lang.includes('IN')
+                    ) ||
+                    // Fourth: Use preference-based filtering
+                    filterVoicesByPreferences(
+                        voices,
+                        utterance.lang,
+                        gender,
+                        accent
+                    ) ||
+                    // Last resort: any Indian voice
+                    voices.find(v => v.lang.includes('IN')) ||
+                    null;
             }
 
             if (selectedVoice) {
                 utterance.voice = selectedVoice;
-                console.log('Selected voice:', selectedVoice.name, selectedVoice.lang);
+                console.log('🔊 Using voice:', selectedVoice.name, '|', selectedVoice.lang);
+            } else {
+                console.warn('❌ No suitable female voice found, using browser default');
             }
         }
 
-        // Improved defaults for natural speech
-        utterance.rate = options.rate !== undefined ? options.rate : 1.0; // Normal speed
-        utterance.pitch = options.pitch !== undefined ? options.pitch : 1.0; // Normal pitch
+        // Natural speech settings
+        utterance.rate = options.rate !== undefined ? options.rate : 0.95; // Slightly slower for clarity
+        utterance.pitch = options.pitch !== undefined ? options.pitch : 1.0;
         utterance.volume = options.volume || 1.0;
 
         // Event handlers

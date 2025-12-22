@@ -9,6 +9,11 @@ interface UserState {
         photoURL: string | null;
         isPremium: boolean;
         credits: number;
+        // Gamification
+        lessonsCompleted?: number;
+        currentStreak?: number;
+        lastLessonDate?: string;
+        completedLessons?: string[];
     } | null;
     setUserData: (data: UserState['userData']) => void;
     credits: number;
@@ -23,9 +28,14 @@ interface UserState {
         gender: 'male' | 'female' | 'any';
         accent: 'us' | 'uk' | 'in' | 'any';
         voiceName: string | null; // Specific voice name/URI
+        rate?: number; // Speech rate (0.5 - 2.0)
+        volume?: number; // Volume (0.0 - 1.0)
     };
     setVoicePreferences: (prefs: Partial<UserState['voicePreferences']>) => void;
     fetchUserProfile: (uid: string) => Promise<void>;
+    // Gamification methods
+    completeLesson: (lessonId: string) => Promise<void>;
+    calculateStreak: () => number;
 }
 
 import { persist } from 'zustand/middleware';
@@ -67,8 +77,10 @@ export const useUserStore = create<UserState>()(
             openPaywall: () => set({ isPaywallOpen: true }),
             voicePreferences: {
                 gender: 'female',
-                accent: 'us',
+                accent: 'in', // Indian English by default
                 voiceName: null,
+                rate: 1.0,
+                volume: 1.0,
             },
             setVoicePreferences: (prefs) => set((state) => ({
                 voicePreferences: { ...state.voicePreferences, ...prefs }
@@ -86,7 +98,11 @@ export const useUserStore = create<UserState>()(
                                 displayName: data.displayName,
                                 photoURL: data.photoURL,
                                 isPremium: data.isPremium || false,
-                                credits: data.credits || 0
+                                credits: data.credits || 0,
+                                lessonsCompleted: data.lessonsCompleted || 0,
+                                currentStreak: data.currentStreak || 0,
+                                lastLessonDate: data.lastLessonDate,
+                                completedLessons: data.completedLessons || []
                             },
                             credits: data.credits || 0
                         });
@@ -94,6 +110,71 @@ export const useUserStore = create<UserState>()(
                 } catch (error) {
                     console.error("Error fetching user profile:", error);
                 }
+            },
+            // Complete a lesson and update progress
+            completeLesson: async (lessonId: string) => {
+                const userId = get().userId;
+                const userData = get().userData;
+                if (!userData) return;
+
+                const completedLessons = userData.completedLessons || [];
+                if (completedLessons.includes(lessonId)) return;
+
+                const newCompletedLessons = [...completedLessons, lessonId];
+                const today = new Date().toISOString().split('T')[0];
+                const lessonsCompleted = (userData.lessonsCompleted || 0) + 1;
+
+                // Calculate streak
+                const lastDate = userData.lastLessonDate;
+                let currentStreak = userData.currentStreak || 0;
+
+                if (lastDate) {
+                    const lastDateObj = new Date(lastDate);
+                    const todayObj = new Date(today);
+                    const diffDays = Math.floor((todayObj.getTime() - lastDateObj.getTime()) / (1000 * 60 * 60 * 24));
+
+                    if (diffDays === 1) currentStreak += 1;
+                    else if (diffDays === 0) currentStreak = currentStreak;
+                    else currentStreak = 1;
+                } else {
+                    currentStreak = 1;
+                }
+
+                const updatedData = {
+                    ...userData,
+                    lessonsCompleted,
+                    currentStreak,
+                    lastLessonDate: today,
+                    completedLessons: newCompletedLessons
+                };
+
+                set({ userData: updatedData });
+
+                if (userId) {
+                    try {
+                        const { db } = await import("./firebase");
+                        const { doc, updateDoc } = await import("firebase/firestore");
+                        await updateDoc(doc(db, "users", userId), {
+                            lessonsCompleted,
+                            currentStreak,
+                            lastLessonDate: today,
+                            completedLessons: newCompletedLessons
+                        });
+                    } catch (error) {
+                        console.error("Error updating lesson progress:", error);
+                    }
+                }
+            },
+            calculateStreak: () => {
+                const userData = get().userData;
+                if (!userData?.lastLessonDate) return 0;
+
+                const today = new Date().toISOString().split('T')[0];
+                const lastDate = userData.lastLessonDate;
+                const diffDays = Math.floor((new Date(today).getTime() - new Date(lastDate).getTime()) / (1000 * 60 * 60 * 24));
+
+                if (diffDays > 1) return 0;
+                return userData.currentStreak || 0;
             }
         }),
         {

@@ -24,6 +24,7 @@ import {
     SidebarProvider,
     SidebarTrigger,
 } from "@/components/ui/sidebar"
+import { VoiceSelector } from "@/components/VoiceSelector"
 
 export default function DashboardLayout({
     children,
@@ -154,7 +155,7 @@ export default function DashboardLayout({
             <AppSidebar />
             <SidebarInset>
                 <header className="sticky top-0 z-10 flex h-16 shrink-0 items-center gap-2 border-b border-white/20 px-4 bg-white/70 backdrop-blur-md shadow-sm">
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-2 flex-1">
                         <SidebarTrigger className="-ml-1" />
                         <Separator orientation="vertical" className="h-4" />
                         <Breadcrumb>
@@ -168,6 +169,10 @@ export default function DashboardLayout({
                                 </BreadcrumbItem>
                             </BreadcrumbList>
                         </Breadcrumb>
+                    </div>
+                    {/* Voice Selector - Central Control */}
+                    <div className="flex items-center gap-2">
+                        <VoiceSelector />
                     </div>
                 </header>
                 <div className="flex flex-1 flex-col gap-4 p-4 md:p-6 bg-slate-50 min-h-[calc(100vh-4rem)] overflow-x-hidden">

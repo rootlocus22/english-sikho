@@ -15,6 +15,10 @@ import {
     Briefcase,
     TrendingUp,
     Award,
+    GraduationCap,
+    BookText,
+    Mail,
+    Coffee,
 } from "lucide-react"
 
 import {
@@ -44,7 +48,39 @@ import { toast } from "sonner";
 import { LogOut } from "lucide-react";
 import BrandLogo from "@/components/BrandLogo";
 
-// Menu items
+// Learning features - NEW!
+const learningFeatures = [
+    {
+        title: "Grammar Basics",
+        titleHindi: "Grammar Seekho",
+        url: "/dashboard/grammar-basics",
+        icon: GraduationCap,
+        creditCost: 2,
+    },
+    {
+        title: "Vocabulary Builder",
+        titleHindi: "Shabd Badhao",
+        url: "/dashboard/vocabulary",
+        icon: BookText,
+        creditCost: 2,
+    },
+    {
+        title: "First Day at Work",
+        titleHindi: "Office Taiyari",
+        url: "/dashboard/first-day",
+        icon: Coffee,
+        creditCost: 2,
+    },
+    {
+        title: "Email Course",
+        titleHindi: "Email Likhna",
+        url: "/dashboard/email-course",
+        icon: Mail,
+        creditCost: 2,
+    },
+];
+
+// Menu items for tools
 const navMain = [
     {
         title: "Apna English Coach",
@@ -60,7 +96,7 @@ const navMain = [
     },
     {
         title: "Real-Life Practice",
-        titleHindi: "Practice Kamra", // "Gym" -> "Kamra/Room" or "Arena" ? "Practice Gym" was "Practice Kamra". "Real-Life Practice" -> "Asli Practice"? Let's stick to "Real Roleplay".
+        titleHindi: "Practice Kamra",
         url: "/dashboard/gym",
         icon: Dumbbell,
     },
@@ -185,6 +221,35 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                     </div>
                 </div>
 
+                {/* Learning Features Section - NEW! */}
+                <SidebarGroup>
+                    <SidebarGroupLabel>Learn / Seekho</SidebarGroupLabel>
+                    <SidebarGroupContent>
+                        <SidebarMenu>
+                            {learningFeatures.map((item) => (
+                                <SidebarMenuItem key={item.title}>
+                                    <SidebarMenuButton asChild tooltip={item.titleHindi}>
+                                        <TrackedLink
+                                            href={item.url}
+                                            onClick={handleNavClick}
+                                            eventData={{ action: 'click_sidebar_learn', category: 'learning', label: item.title }}
+                                        >
+                                            <item.icon />
+                                            <span>{item.title}</span>
+                                            {!isPremium && (
+                                                <Badge className="ml-auto bg-green-100 text-green-700 text-[10px] border-green-300">
+                                                    {item.creditCost}💎
+                                                </Badge>
+                                            )}
+                                        </TrackedLink>
+                                    </SidebarMenuButton>
+                                </SidebarMenuItem>
+                            ))}
+                        </SidebarMenu>
+                    </SidebarGroupContent>
+                </SidebarGroup>
+
+                {/* Tools Section */}
                 <SidebarGroup>
                     <SidebarGroupLabel>Tools / Saadhan</SidebarGroupLabel>
                     <SidebarGroupContent>
