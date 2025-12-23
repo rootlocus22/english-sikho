@@ -110,6 +110,18 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        {/* Enhanced Voice Announcement for Screen Readers */}
+        <div
+          role="status"
+          aria-live="polite" aria-atomic="true"
+          className="sr-only"
+        />
+        <Script id="json-ld-website" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+        <Script id="json-ld-org" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }} />
+      </head>
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground min-h-screen`}
+      >
         <Script
           strategy="afterInteractive"
           src="https://www.googletagmanager.com/gtag/js?id=G-PWJGKD3QD7"
@@ -134,19 +146,6 @@ export default function RootLayout({
             })(window, document, "clarity", "script", "p03xhgw5cr");
           `}
         </Script>
-
-        {/* Enhanced Voice Announcement for Screen Readers */}
-        <div
-          role="status"
-          aria-live="polite" aria-atomic="true"
-          className="sr-only"
-        />
-        <Script id="json-ld-website" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-        <Script id="json-ld-org" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }} />
-      </head>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground min-h-screen`}
-      >
         <AnalyticsTracker />
         {children}
         <PaywallModal />
@@ -156,3 +155,4 @@ export default function RootLayout({
     </html>
   );
 }
+
