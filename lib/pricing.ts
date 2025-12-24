@@ -17,7 +17,14 @@ export const PRICING_PLANS = {
             'No daily limits'
         ],
         creditsPerMonth: 999999,
-        popular: false
+        popular: false,
+        allowedFeatures: [
+            'unlimited_ai_sessions',
+            'translator_basic',
+            'speaking_coach_basic',
+            'practice_gym',
+            'email_support'
+        ]
     },
     pro: {
         name: 'Pro',
@@ -37,7 +44,23 @@ export const PRICING_PLANS = {
             'Certificate of completion'
         ],
         creditsPerMonth: 999999,
-        popular: true
+        popular: true,
+        allowedFeatures: [
+            'unlimited_ai_sessions',
+            'translator_basic',
+            'translator_advanced',
+            'speaking_coach_basic',
+            'speaking_coach_advanced',
+            'practice_gym',
+            'email_support',
+            'priority_support',
+            'interview_prep',
+            'business_templates',
+            'roleplay_scenarios',
+            'pronunciation_analysis',
+            'analytics',
+            'certificates'
+        ]
     }
 } as const;
 

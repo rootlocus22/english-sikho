@@ -7,7 +7,7 @@ import { PRICING_PLANS, getMonthlyEquivalent, calculateSavings, getDiscountPerce
 import { TrackedLink } from "@/components/ui/tracked-elements";
 
 export default function PricingPage() {
-    const [duration, setDuration] = useState<'monthly' | 'quarterly' | 'yearly'>('yearly');
+    const [duration, setDuration] = useState<'monthly' | 'quarterly' | 'yearly'>('monthly');
 
 
     // FAQ Schema
@@ -37,22 +37,22 @@ export default function PricingPage() {
 
 
 
-            <main className="flex-1 py-20 px-4">
+            <main className="flex-1 py-10 md:py-20 px-4">
                 <div className="container max-w-6xl mx-auto">
                     {/* Header */}
-                    <div className="text-center mb-12">
-                        <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
+                    <div className="text-center mb-8 md:mb-12">
+                        <h1 className="text-3xl md:text-5xl font-bold text-slate-900 mb-4">
                             English Seekho, <span className="text-blue-600">Chai ke daam mein!</span> ☕
                         </h1>
-                        <p className="text-xl text-slate-600 mb-8">
+                        <p className="text-lg md:text-xl text-slate-600 mb-8">
                             97% cheaper than coaching. Unlimited practice. Real results.
                         </p>
 
-                        {/* Duration Toggle */}
-                        <div className="inline-flex bg-white border-2 border-slate-200 rounded-lg p-1 shadow-sm">
+                        {/* Duration Toggle - Updated for single row on mobile */}
+                        <div className="grid grid-cols-3 gap-1 bg-white border-2 border-slate-200 rounded-lg p-1 shadow-sm w-full max-w-md mx-auto sm:inline-flex sm:w-auto sm:gap-0 sm:block">
                             <button
                                 onClick={() => setDuration('monthly')}
-                                className={`px-6 py-2 rounded-md font-medium transition-all ${duration === 'monthly'
+                                className={`px-2 py-2 sm:px-6 rounded-md font-medium transition-all text-xs sm:text-base flex items-center justify-center ${duration === 'monthly'
                                     ? 'bg-blue-600 text-white shadow-md'
                                     : 'text-slate-600 hover:text-slate-900'
                                     }`}
@@ -61,37 +61,41 @@ export default function PricingPage() {
                             </button>
                             <button
                                 onClick={() => setDuration('quarterly')}
-                                className={`px-6 py-2 rounded-md font-medium transition-all ${duration === 'quarterly'
+                                className={`px-2 py-2 sm:px-6 rounded-md font-medium transition-all text-xs sm:text-base flex flex-col sm:flex-row items-center justify-center ${duration === 'quarterly'
                                     ? 'bg-blue-600 text-white shadow-md'
                                     : 'text-slate-600 hover:text-slate-900'
                                     }`}
                             >
                                 Quarterly
-                                <span className="ml-1 text-xs bg-green-100 text-green-700 px-1.5 py-0.5 rounded">Save 11%</span>
+                                <span className={`sm:ml-1 text-[10px] sm:text-xs px-1.5 py-0.5 rounded leading-none mt-1 sm:mt-0 ${duration === 'quarterly' ? 'bg-white/20 text-white' : 'bg-green-100 text-green-700'}`}>
+                                    -11%
+                                </span>
                             </button>
                             <button
                                 onClick={() => setDuration('yearly')}
-                                className={`px-6 py-2 rounded-md font-medium transition-all ${duration === 'yearly'
+                                className={`px-2 py-2 sm:px-6 rounded-md font-medium transition-all text-xs sm:text-base flex flex-col sm:flex-row items-center justify-center ${duration === 'yearly'
                                     ? 'bg-blue-600 text-white shadow-md'
                                     : 'text-slate-600 hover:text-slate-900'
                                     }`}
                             >
                                 Yearly
-                                <span className="ml-1 text-xs bg-green-100 text-green-700 px-1.5 py-0.5 rounded">Save 16%</span>
+                                <span className={`sm:ml-1 text-[10px] sm:text-xs px-1.5 py-0.5 rounded leading-none mt-1 sm:mt-0 ${duration === 'yearly' ? 'bg-white/20 text-white' : 'bg-green-100 text-green-700'}`}>
+                                    -16%
+                                </span>
                             </button>
                         </div>
                     </div>
 
                     {/* Pricing Cards */}
-                    <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                    <div className="grid md:grid-cols-3 gap-6 md:gap-8 max-w-5xl mx-auto">
 
                         {/* Free Plan */}
-                        <div className="bg-white rounded-2xl p-8 border border-slate-200 shadow-sm">
-                            <h3 className="text-2xl font-bold text-slate-900 mb-2">Free</h3>
-                            <div className="text-4xl font-bold text-slate-900 mb-4">
+                        <div className="bg-white rounded-2xl p-6 md:p-8 border border-slate-200 shadow-sm order-2 md:order-1">
+                            <h3 className="text-xl md:text-2xl font-bold text-slate-900 mb-2">Free</h3>
+                            <div className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
                                 ₹0
                             </div>
-                            <p className="text-slate-600 mb-6">Try karke dekho</p>
+                            <p className="text-slate-600 mb-6 font-medium">Try karke dekho</p>
 
                             <ul className="space-y-3 mb-8">
                                 <li className="flex gap-3 text-slate-700 text-sm">
@@ -126,10 +130,10 @@ export default function PricingPage() {
                         </div>
 
                         {/* Starter Plan */}
-                        <div className="bg-white rounded-2xl p-8 border-2 border-slate-300 shadow-lg">
-                            <h3 className="text-2xl font-bold text-slate-900 mb-2">Starter</h3>
+                        <div className="bg-white rounded-2xl p-6 md:p-8 border-2 border-slate-300 shadow-lg order-3 md:order-2">
+                            <h3 className="text-xl md:text-2xl font-bold text-slate-900 mb-2">Starter</h3>
                             <div className="mb-4">
-                                <div className="text-4xl font-bold text-slate-900">
+                                <div className="text-3xl md:text-4xl font-bold text-slate-900">
                                     ₹{PRICING_PLANS.starter[duration]}
                                 </div>
                                 {duration !== 'monthly' && (
@@ -138,7 +142,7 @@ export default function PricingPage() {
                                     </p>
                                 )}
                             </div>
-                            <p className="text-slate-600 mb-6">Perfect for daily practice</p>
+                            <p className="text-slate-600 mb-6 font-medium">Perfect for daily practice</p>
 
                             <ul className="space-y-3 mb-8 text-sm">
                                 <li className="flex gap-3 text-slate-900 font-medium">
@@ -173,14 +177,14 @@ export default function PricingPage() {
                         </div>
 
                         {/* Pro Plan */}
-                        <div className="bg-gradient-to-br from-blue-600 to-indigo-600 rounded-2xl p-8 shadow-xl relative overflow-hidden ring-4 ring-blue-100">
+                        <div className="bg-gradient-to-br from-blue-600 to-indigo-600 rounded-2xl p-6 md:p-8 shadow-xl relative overflow-hidden ring-4 ring-blue-100 order-1 md:order-3 transform md:-translate-y-4">
                             <div className="absolute top-0 right-0 bg-amber-400 text-slate-900 text-xs font-bold px-3 py-1 rounded-bl-lg">
                                 MOST POPULAR
                             </div>
 
-                            <h3 className="text-2xl font-bold text-white mb-2">Pro</h3>
+                            <h3 className="text-xl md:text-2xl font-bold text-white mb-2">Pro</h3>
                             <div className="mb-4">
-                                <div className="text-4xl font-bold text-white">
+                                <div className="text-3xl md:text-4xl font-bold text-white">
                                     ₹{PRICING_PLANS.pro[duration]}
                                 </div>
                                 {duration !== 'monthly' && (
@@ -194,7 +198,7 @@ export default function PricingPage() {
                                     </>
                                 )}
                             </div>
-                            <p className="text-blue-100 mb-6">For serious learners</p>
+                            <p className="text-blue-100 mb-6 font-medium">For serious learners</p>
 
                             <ul className="space-y-3 mb-8 text-sm">
                                 <li className="flex gap-3 text-white font-medium">
@@ -238,17 +242,15 @@ export default function PricingPage() {
                     </div>
 
                     {/* Comparison with Alternatives */}
-                    <div className="mt-20 bg-white rounded-2xl p-8 shadow-sm border border-slate-200 max-w-4xl mx-auto">
-                        <h2 className="text-2xl font-bold text-center mb-6">Why EnglishGyani is Better</h2>
-                        <div className="grid md:grid-cols-3 gap-6 text-center">
-                            <div>
+                    <div className="mt-12 md:mt-20 bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-slate-200 max-w-4xl mx-auto">
+                        <h2 className="text-xl md:text-2xl font-bold text-center mb-6">Why EnglishGyani is Better</h2>
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                            <div className="p-4 rounded-lg bg-slate-50 md:bg-transparent">
                                 <p className="text-slate-600 text-sm mb-2">Traditional Coaching</p>
                                 <p className="text-3xl font-bold text-slate-900">₹5,000+</p>
                                 <p className="text-xs text-slate-500 mt-1">per month</p>
-
-
                             </div>
-                            <div>
+                            <div className="p-4 rounded-lg bg-slate-50 md:bg-transparent">
                                 <p className="text-slate-600 text-sm mb-2">Other Apps</p>
                                 <p className="text-3xl font-bold text-slate-900">₹299-599</p>
                                 <p className="text-xs text-slate-500 mt-1">limited features</p>
@@ -263,34 +265,34 @@ export default function PricingPage() {
 
 
                     {/* Enterprise Section */}
-                    <div className="mt-20 bg-slate-900 rounded-2xl p-10 text-center text-white max-w-5xl mx-auto">
-                        <h2 className="text-3xl font-bold mb-4">Looking for Team Access?</h2>
-                        <p className="text-slate-300 text-lg max-w-2xl mx-auto mb-8">
+                    <div className="mt-12 md:mt-20 bg-slate-900 rounded-2xl p-6 md:p-10 text-center text-white max-w-5xl mx-auto">
+                        <h2 className="text-2xl md:text-3xl font-bold mb-4">Looking for Team Access?</h2>
+                        <p className="text-slate-300 text-base md:text-lg max-w-2xl mx-auto mb-8">
                             We provide centralized billing, employee progress tracking, and custom scenario creation for companies.
                             Perfect for BPOs, Sales Teams, and Universities.
                         </p>
-                        <div className="grid md:grid-cols-3 gap-6 text-left max-w-3xl mx-auto mb-8">
-                            <div className="flex gap-3">
+                        <div className="grid md:grid-cols-3 gap-4 md:gap-6 text-left max-w-3xl mx-auto mb-8">
+                            <div className="flex gap-3 items-center justify-center md:justify-start">
                                 <Check className="w-6 h-6 text-green-400 shrink-0" />
                                 <span>Admin Dashboard</span>
                             </div>
-                            <div className="flex gap-3">
+                            <div className="flex gap-3 items-center justify-center md:justify-start">
                                 <Check className="w-6 h-6 text-green-400 shrink-0" />
                                 <span>Bulk Discounts</span>
                             </div>
-                            <div className="flex gap-3">
+                            <div className="flex gap-3 items-center justify-center md:justify-start">
                                 <Check className="w-6 h-6 text-green-400 shrink-0" />
                                 <span>Custom Branded Examples</span>
                             </div>
                         </div>
-                        <a href="/contact" className="inline-block bg-white text-slate-900 px-8 py-3 rounded-lg font-bold hover:bg-blue-50 transition-colors">
+                        <a href="/contact" className="inline-block w-full md:w-auto bg-white text-slate-900 px-8 py-3 rounded-lg font-bold hover:bg-blue-50 transition-colors">
                             Contact Sales
                         </a>
                     </div>
 
                     {/* FAQ */}
 
-                    <div className="max-w-3xl mx-auto mt-20">
+                    <div className="max-w-3xl mx-auto mt-12 md:mt-20">
                         <h2 className="text-2xl font-bold text-center mb-8">Frequently Asked Questions</h2>
                         <div className="space-y-4">
                             <FaqItem q="Kya refund mil sakta hai?" a="Haan, agar aap khush nahi hain toh 7 days ke andar full refund maang sake hain. No questions asked." />

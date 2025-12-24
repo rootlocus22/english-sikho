@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { generateContent } from '@/lib/gemini';
 import { trackActivity } from '@/lib/analytics-server';
+import { PRICING_PLANS, type PricingTier } from '@/lib/pricing';
 
 const TRANSLATOR_SYSTEM_PROMPT = `You are an expert Corporate English Coach for Indian professionals. You understand Hindi, Tamil, Telugu, and 'Hinglish'. Your goal is to take informal or broken input and output perfectly grammatically correct, professional English options.
 Output ONLY a valid JSON object with the following keys:
@@ -70,6 +71,8 @@ export async function POST(req: NextRequest) {
     try {
         // Extract userId from headers (set by middleware or client)
         const userId = req.headers.get('x-user-id');
+        const body = await req.json(); // Read body early to determine type for permission check
+        const { type } = body;
 
         // Use Admin SDK to fetch user data if userId exists
         let userData: any = null;
@@ -94,8 +97,82 @@ export async function POST(req: NextRequest) {
 
             userData = userDoc.data();
 
-            // Enforce credit limits for non-premium users
-            if (!userData?.isPremium && (userData?.credits || 0) <= 0) {
+            // 1. Check Subscription Validity (Expiration)
+            let isPremium = userData?.isPremium || false;
+            if (isPremium && userData?.subscription?.endDate) {
+                const endDate = new Date(userData.subscription.endDate);
+                if (endDate < new Date()) {
+                    isPremium = false; // Expired
+                    // Optionally update DB here to reflect expiry immediately, but pure logic check is safer
+                }
+            }
+
+            // 2. Check Feature Permissions
+            // Map API types to configuration features
+            const FEATURE_MAPPING: Record<string, string> = {
+                'interview-coach': 'interview_prep',
+                'roleplay-chat': 'roleplay_scenarios',
+                'coach': 'speaking_coach_basic', // or advanced? Stick to basic for general coach
+                'translator': 'translator_basic',
+                'tone-rewrite': 'business_templates', // Assuming this falls under business tools
+                'image-analysis': 'business_templates'
+            };
+
+            const requiredFeature = FEATURE_MAPPING[type];
+            if (requiredFeature) {
+                // Determine user's tier
+                const tier = (userData?.subscription?.tier || 'starter') as PricingTier;
+                const planConfig = PRICING_PLANS[tier];
+
+                // Check if feature is allowed for this plan
+                // @ts-ignore
+                const isFeatureAllowed = planConfig?.allowedFeatures?.includes(requiredFeature);
+
+                // CRITICAL: If feature is NOT allowed (e.g. Starter trying Interview Prep), BLOCK even if they have credits.
+                // UNLESS they are a distinct 'free' user who hasn't subscribed? 
+                // Currently 'starter' is the lowest paid tier. Free users might not have subscription object.
+                // Assuming Free users have NO features allowed except maybe trial ones.
+
+                // If user is NOT premium (Free/Expired), they rely on credits, BUT they still can't access Pro-only features.
+                // Free/Starter users should NOT access Interview Prep.
+
+                // If the feature is NOT in their plan (e.g. Starter user accessing Interview Prep)
+                if (isPremium && !isFeatureAllowed) {
+                    return NextResponse.json({
+                        error: `Your current ${tier} plan does not include this feature. Please upgrade to Pro!`,
+                        needsUpgrade: true,
+                        tier: tier
+                    }, { status: 403 });
+                }
+
+                // If NOT premium (Free user), check if feature is in Starter (base plan) or if it's generally Pro-only.
+                // Actually, Free users are below Starter. 
+                // Let's assume Free users are limited by Credits AND Feature Gating of 'Starter' features? 
+                // Or are Free users allowed to try everything with credits?
+                // User request: "users who purchases lower plans can purchase upper plans... both by tike bound and feature bound"
+                // This implies strictly enforcing limits.
+
+                if (!isPremium) {
+                    // Check if this feature is strictly Pro-only (not in Starter)
+                    // If it's a Pro-only feature, block Free users too?
+                    // Let's assume Free users = ~Starter features but with credits.
+                    // But Interview Prep is Pro. So Free users shouldn't access it either.
+
+                    const starterFeatures = PRICING_PLANS['starter'].allowedFeatures;
+                    // @ts-ignore
+                    if (!starterFeatures.includes(requiredFeature)) {
+                        return NextResponse.json({
+                            error: "This feature is available on the Pro plan.",
+                            needsUpgrade: true
+                        }, { status: 403 });
+                    }
+                }
+            }
+
+            // 3. Enforce Credit Limits (if not premium OR if premium but limited credits on basic plan?)
+            // Actually, plans have 'creditsPerMonth: 999999'. So active plan = unlimited credits effectively.
+            // If !isPremium (Free or Expired), check credits.
+            if (!isPremium && (userData?.credits || 0) <= 0) {
                 return NextResponse.json({
                     error: "No credits remaining. Upgrade to Pro for unlimited access!",
                     needsUpgrade: true,
@@ -106,9 +183,8 @@ export async function POST(req: NextRequest) {
         // If no userId, we treat as "Guest" and allow usage (client manages the 3-limit locally)
 
 
-        // Read body ONCE and destructure all possible fields
-        const body = await req.json();
-        const { type, input, target, toneLevel, history, scenarioId, imageBase64, question, userAnswer, category } = body;
+        // Read body body was already read above
+        const { input, target, toneLevel, history, scenarioId, imageBase64, question, userAnswer, category } = body;
 
         if (!process.env.GEMINI_API_KEY) {
             return NextResponse.json({ error: "Gemini API Key missing" }, { status: 500 });

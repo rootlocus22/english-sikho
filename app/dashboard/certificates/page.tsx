@@ -14,7 +14,7 @@ import { toast } from 'sonner';
 import jsPDF from 'jspdf';
 
 export default function CertificatesPage() {
-    const { userId, userData } = useUserStore();
+    const { userId, userData, hasFeature } = useUserStore();
     const router = useRouter();
     const [achievements, setAchievements] = useState<{ achieved: string[]; progress: Record<string, number> }>({ achieved: [], progress: {} });
 
@@ -33,7 +33,7 @@ export default function CertificatesPage() {
     }, [userData]);
 
     // Check Pro access
-    if (!userData?.isPremium) {
+    if (!hasFeature('certificates')) {
         return (
             <div className="max-w-3xl mx-auto py-12 px-4 text-center">
                 <div className="bg-gradient-to-br from-amber-50 to-yellow-50 rounded-2xl p-12 border-2 border-amber-200">
@@ -197,8 +197,8 @@ export default function CertificatesPage() {
                         <Card
                             key={milestone.id}
                             className={`relative overflow-hidden transition-all ${isAchieved
-                                    ? 'border-2 shadow-lg'
-                                    : 'border border-slate-200 opacity-75'
+                                ? 'border-2 shadow-lg'
+                                : 'border border-slate-200 opacity-75'
                                 }`}
                             style={isAchieved ? {
                                 borderImage: `linear-gradient(135deg, var(--tw-gradient-stops)) 1`,

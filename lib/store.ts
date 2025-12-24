@@ -1,4 +1,5 @@
 import { create } from 'zustand';
+import { PRICING_PLANS, PricingTier } from './pricing';
 
 interface UserState {
     userId: string | null;
@@ -9,6 +10,14 @@ interface UserState {
         photoURL: string | null;
         isPremium: boolean;
         credits: number;
+        // Subscription details
+        subscription?: {
+            tier: PricingTier;
+            plan: string;
+            status: string;
+            startDate: string;
+            endDate: string;
+        };
         // Gamification
         lessonsCompleted?: number;
         currentStreak?: number;
@@ -36,6 +45,8 @@ interface UserState {
     // Gamification methods
     completeLesson: (lessonId: string) => Promise<void>;
     calculateStreak: () => number;
+    // Feature Gating
+    hasFeature: (feature: string) => boolean;
 }
 
 import { persist } from 'zustand/middleware';
@@ -92,13 +103,24 @@ export const useUserStore = create<UserState>()(
                     const userDoc = await getDoc(doc(db, "users", uid));
                     if (userDoc.exists()) {
                         const data = userDoc.data();
+
+                        // Check subscription validity
+                        let isPremium = data.isPremium || false;
+                        if (data.subscription?.endDate) {
+                            const endDate = new Date(data.subscription.endDate);
+                            if (endDate < new Date()) {
+                                isPremium = false; // Subscription expired
+                            }
+                        }
+
                         set({
                             userData: {
                                 email: data.email,
                                 displayName: data.displayName,
                                 photoURL: data.photoURL,
-                                isPremium: data.isPremium || false,
+                                isPremium: isPremium,
                                 credits: data.credits || 0,
+                                subscription: data.subscription, // Store full subscription data
                                 lessonsCompleted: data.lessonsCompleted || 0,
                                 currentStreak: data.currentStreak || 0,
                                 lastLessonDate: data.lastLessonDate,
@@ -175,6 +197,22 @@ export const useUserStore = create<UserState>()(
 
                 if (diffDays > 1) return 0;
                 return userData.currentStreak || 0;
+            },
+            hasFeature: (feature: string) => {
+                const userData = get().userData;
+                if (!userData?.isPremium || !userData.subscription) {
+                    // Free users might have some allowed features if we add a 'free' plan to pricing
+                    // For now, assume free users have no premium features
+                    return false;
+                }
+
+                const tier = userData.subscription.tier as PricingTier;
+                const planConfig = PRICING_PLANS[tier];
+
+                if (!planConfig) return false;
+
+                // @ts-ignore - allowedFeatures exists on the updated config
+                return planConfig.allowedFeatures?.includes(feature) || false;
             }
         }),
         {

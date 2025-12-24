@@ -19,7 +19,7 @@ import { Button } from '@/components/ui/button';
 const COLORS = ['#3b82f6', '#8b5cf6', '#ec4899', '#f59e0b', '#10b981', '#6366f1'];
 
 export default function AnalyticsPage() {
-    const { userId, userData } = useUserStore();
+    const { userId, userData, hasFeature } = useUserStore();
     const router = useRouter();
     const [analytics, setAnalytics] = useState<AnalyticsData | null>(null);
     const [loading, setLoading] = useState(true);
@@ -44,7 +44,7 @@ export default function AnalyticsPage() {
     }, [userId]);
 
     // Check Pro access
-    if (!userData?.isPremium) {
+    if (!hasFeature('analytics')) {
         return (
             <div className="max-w-3xl mx-auto py-12 px-4 text-center">
                 <div className="bg-gradient-to-br from-indigo-50 to-purple-50 rounded-2xl p-12 border-2 border-indigo-200">

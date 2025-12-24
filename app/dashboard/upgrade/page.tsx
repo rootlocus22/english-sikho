@@ -19,7 +19,7 @@ export default function UpgradePage() {
     const router = useRouter();
     const { userId, userData } = useUserStore();
     const [loading, setLoading] = useState(false);
-    const [duration, setDuration] = useState<'monthly' | 'quarterly' | 'yearly'>('yearly');
+    const [duration, setDuration] = useState<'monthly' | 'quarterly' | 'yearly'>('monthly');
 
     const handlePayment = async (tier: 'starter' | 'pro', selectedDuration: 'monthly' | 'quarterly' | 'yearly') => {
         if (!userId) {
@@ -98,12 +98,14 @@ export default function UpgradePage() {
         }
     };
 
-    // If already premium, show message
-    if (userData?.isPremium) {
+    // If already Pro, show message
+    const isPro = userData?.isPremium && userData?.subscription?.tier === 'pro';
+
+    if (isPro) {
         return (
             <div className="max-w-2xl mx-auto py-12 text-center">
                 <Crown className="w-16 h-16 text-amber-500 mx-auto mb-4" />
-                <h1 className="text-3xl font-bold mb-4">You're Already Premium! 🎉</h1>
+                <h1 className="text-3xl font-bold mb-4">You're Already a Pro Member! 🎉</h1>
                 <p className="text-slate-600 mb-6">
                     You have unlimited access to all features.
                 </p>
@@ -114,63 +116,71 @@ export default function UpgradePage() {
         );
     }
 
+    // Check if user is on Starter plan
+    const isStarter = userData?.isPremium && userData?.subscription?.tier === 'starter';
+
     return (
-        <div className="max-w-6xl mx-auto py-8 px-4 space-y-8">
+        <div className="max-w-6xl mx-auto py-6 md:py-8 px-4 space-y-6 md:space-y-8">
             {/* Header */}
             <div className="text-center space-y-4">
-                <h1 className="text-4xl font-bold text-slate-900">
+                <h1 className="text-3xl md:text-4xl font-bold text-slate-900">
                     Upgrade Your English Journey 🚀
                 </h1>
-                <p className="text-xl text-slate-600 max-w-2xl mx-auto">
+                <p className="text-lg md:text-xl text-slate-600 max-w-2xl mx-auto">
                     Unlock unlimited AI practice and become a confident English speaker. Choose the plan that works for you.
                 </p>
 
                 {/* Duration Toggle */}
-                <div className="inline-flex bg-white border-2 border-slate-200 rounded-lg p-1 shadow-sm">
+                {/* Duration Toggle - Updated for single row on mobile */}
+                <div className="grid grid-cols-3 gap-1 bg-white border-2 border-slate-200 rounded-lg p-1 shadow-sm w-full max-w-md mx-auto sm:inline-flex sm:w-auto sm:gap-0 sm:block">
                     <button
                         onClick={() => setDuration('monthly')}
-                        className={`px-6 py-2 rounded-md font-medium transition-all ${duration === 'monthly'
-                                ? 'bg-blue-600 text-white shadow-md'
-                                : 'text-slate-600 hover:text-slate-900'
+                        className={`px-2 py-2 sm:px-6 rounded-md font-medium transition-all text-xs sm:text-base flex items-center justify-center ${duration === 'monthly'
+                            ? 'bg-blue-600 text-white shadow-md'
+                            : 'text-slate-600 hover:text-slate-900'
                             }`}
                     >
                         Monthly
                     </button>
                     <button
                         onClick={() => setDuration('quarterly')}
-                        className={`px-6 py-2 rounded-md font-medium transition-all ${duration === 'quarterly'
-                                ? 'bg-blue-600 text-white shadow-md'
-                                : 'text-slate-600 hover:text-slate-900'
+                        className={`px-2 py-2 sm:px-6 rounded-md font-medium transition-all text-xs sm:text-base flex flex-col sm:flex-row items-center justify-center ${duration === 'quarterly'
+                            ? 'bg-blue-600 text-white shadow-md'
+                            : 'text-slate-600 hover:text-slate-900'
                             }`}
                     >
                         Quarterly
-                        <span className="ml-1 text-xs bg-green-100 text-green-700 px-1.5 py-0.5 rounded">Save 11%</span>
+                        <span className={`sm:ml-1 text-[10px] sm:text-xs px-1.5 py-0.5 rounded leading-none mt-1 sm:mt-0 ${duration === 'quarterly' ? 'bg-white/20 text-white' : 'bg-green-100 text-green-700'}`}>
+                            -11%
+                        </span>
                     </button>
                     <button
                         onClick={() => setDuration('yearly')}
-                        className={`px-6 py-2 rounded-md font-medium transition-all ${duration === 'yearly'
-                                ? 'bg-blue-600 text-white shadow-md'
-                                : 'text-slate-600 hover:text-slate-900'
+                        className={`px-2 py-2 sm:px-6 rounded-md font-medium transition-all text-xs sm:text-base flex flex-col sm:flex-row items-center justify-center ${duration === 'yearly'
+                            ? 'bg-blue-600 text-white shadow-md'
+                            : 'text-slate-600 hover:text-slate-900'
                             }`}
                     >
                         Yearly
-                        <span className="ml-1 text-xs bg-green-100 text-green-700 px-1.5 py-0.5 rounded">Save 16%</span>
+                        <span className={`sm:ml-1 text-[10px] sm:text-xs px-1.5 py-0.5 rounded leading-none mt-1 sm:mt-0 ${duration === 'yearly' ? 'bg-white/20 text-white' : 'bg-green-100 text-green-700'}`}>
+                            -16%
+                        </span>
                     </button>
                 </div>
             </div>
 
             {/* Pricing Cards */}
-            <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 max-w-5xl mx-auto">
                 {/* Starter Plan */}
-                <Card className="border-2 border-slate-300 shadow-lg hover:shadow-xl transition-shadow">
-                    <CardHeader className="text-center pb-8">
+                <Card className="border-2 border-slate-300 shadow-lg hover:shadow-xl transition-shadow order-2 md:order-1">
+                    <CardHeader className="text-center pb-6 md:pb-8">
                         <div className="inline-flex items-center justify-center w-12 h-12 bg-slate-100 rounded-full mb-4 mx-auto">
                             <Zap className="w-6 h-6 text-slate-700" />
                         </div>
                         <CardTitle className="text-2xl font-bold mb-2">Starter</CardTitle>
                         <CardDescription>Perfect for daily practice</CardDescription>
                         <div className="mt-6">
-                            <div className="text-5xl font-bold text-slate-900">
+                            <div className="text-4xl md:text-5xl font-bold text-slate-900">
                                 ₹{PRICING_PLANS.starter[duration]}
                             </div>
                             {duration !== 'monthly' && (
@@ -185,7 +195,7 @@ export default function UpgradePage() {
                             {PRICING_PLANS.starter.features.map((feature, i) => (
                                 <li key={i} className="flex items-start gap-3">
                                     <Check className="w-5 h-5 text-blue-600 shrink-0 mt-0.5" />
-                                    <span className="text-slate-700">{feature}</span>
+                                    <span className="text-slate-700 text-sm md:text-base">{feature}</span>
                                 </li>
                             ))}
                         </ul>
@@ -194,26 +204,26 @@ export default function UpgradePage() {
                             disabled={loading}
                             className="w-full h-12 bg-slate-900 hover:bg-slate-800 text-white font-semibold"
                         >
-                            {loading ? 'Processing...' : 'Get Starter'}
+                            {loading ? 'Processing...' : isStarter ? 'Current Plan' : 'Get Starter'}
                         </Button>
                     </CardContent>
                 </Card>
 
                 {/* Pro Plan */}
-                <Card className="border-2 border-blue-600 shadow-xl hover:shadow-2xl transition-shadow relative">
-                    <div className="absolute -top-4 left-1/2 -translate-x-1/2">
+                <Card className="border-2 border-blue-600 shadow-xl hover:shadow-2xl transition-shadow relative order-1 md:order-2">
+                    <div className="absolute -top-4 left-1/2 -translate-x-1/2 w-max">
                         <span className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white text-sm font-bold px-4 py-1 rounded-full shadow-lg">
                             MOST POPULAR
                         </span>
                     </div>
-                    <CardHeader className="text-center pb-8 pt-8">
+                    <CardHeader className="text-center pb-6 md:pb-8 pt-8">
                         <div className="inline-flex items-center justify-center w-12 h-12 bg-gradient-to-br from-blue-100 to-indigo-100 rounded-full mb-4 mx-auto">
                             <Crown className="w-6 h-6 text-blue-600" />
                         </div>
                         <CardTitle className="text-2xl font-bold mb-2">Pro</CardTitle>
                         <CardDescription>For serious learners</CardDescription>
                         <div className="mt-6">
-                            <div className="text-5xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
+                            <div className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
                                 ₹{PRICING_PLANS.pro[duration]}
                             </div>
                             {duration !== 'monthly' && (
@@ -233,7 +243,7 @@ export default function UpgradePage() {
                             {PRICING_PLANS.pro.features.map((feature, i) => (
                                 <li key={i} className="flex items-start gap-3">
                                     <Check className="w-5 h-5 text-blue-600 shrink-0 mt-0.5" />
-                                    <span className="text-slate-700 font-medium">{feature}</span>
+                                    <span className="text-slate-700 font-medium text-sm md:text-base">{feature}</span>
                                 </li>
                             ))}
                         </ul>
@@ -242,7 +252,7 @@ export default function UpgradePage() {
                             disabled={loading}
                             className="w-full h-12 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold shadow-lg"
                         >
-                            {loading ? 'Processing...' : 'Get Pro 🚀'}
+                            {loading ? 'Processing...' : isStarter ? 'Upgrade to Pro 🚀' : 'Get Pro 🚀'}
                         </Button>
                         <p className="text-xs text-center text-slate-500">
                             ✓ Secure payment via Razorpay • No auto-renewal
@@ -252,20 +262,20 @@ export default function UpgradePage() {
             </div>
 
             {/* Comparison Table */}
-            <div className="bg-blue-50 rounded-2xl p-8 mt-12">
-                <h2 className="text-2xl font-bold text-center mb-6">Why EnglishGyani?</h2>
-                <div className="grid md:grid-cols-3 gap-6 text-center max-w-4xl mx-auto">
-                    <div>
+            <div className="bg-blue-50 rounded-2xl p-6 md:p-8 mt-8 md:mt-12">
+                <h2 className="text-xl md:text-2xl font-bold text-center mb-6">Why EnglishGyani?</h2>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center max-w-4xl mx-auto">
+                    <div className="p-4 rounded-lg bg-white/50 md:bg-transparent">
                         <p className="text-slate-600 text-sm mb-2">Traditional Coaching</p>
                         <p className="text-3xl font-bold text-slate-400 line-through">₹5,000+</p>
                         <p className="text-xs text-slate-500 mt-1">per month</p>
                     </div>
-                    <div>
+                    <div className="p-4 rounded-lg bg-white/50 md:bg-transparent">
                         <p className="text-slate-600 text-sm mb-2">Other Apps</p>
                         <p className="text-3xl font-bold text-slate-400">₹299-599</p>
                         <p className="text-xs text-slate-500 mt-1">limited features</p>
                     </div>
-                    <div className="bg-white rounded-lg p-4 border-2 border-blue-600">
+                    <div className="bg-white rounded-lg p-4 border-2 border-blue-600 shadow-sm">
                         <p className="text-blue-900 text-sm mb-2 font-semibold">EnglishGyani Pro</p>
                         <p className="text-3xl font-bold text-blue-600">₹{getMonthlyEquivalent('pro', duration)}</p>
                         <p className="text-xs text-blue-700 mt-1 font-medium">unlimited everything!</p>
@@ -274,8 +284,8 @@ export default function UpgradePage() {
             </div>
 
             {/* Trust Signals */}
-            <div className="text-center space-y-4 pt-8">
-                <div className="flex items-center justify-center gap-6 text-sm text-slate-600">
+            <div className="text-center space-y-4 pt-4 md:pt-8">
+                <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 text-sm text-slate-600">
                     <span className="flex items-center gap-2">
                         <Check className="w-4 h-4 text-green-600" />
                         7-day money-back guarantee

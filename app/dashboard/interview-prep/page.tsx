@@ -18,7 +18,7 @@ import { event } from '@/lib/analytics';
 import { INTERVIEW_CATEGORIES, type InterviewQuestion } from '@/data/interview-questions';
 
 export default function InterviewPrepPage() {
-    const { userId, userData } = useUserStore();
+    const { userId, userData, hasFeature } = useUserStore();
     const router = useRouter();
 
     const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
@@ -101,7 +101,7 @@ export default function InterviewPrepPage() {
     };
 
     // Check if user has access
-    if (!userData?.isPremium) {
+    if (!hasFeature('interview_prep')) {
         return (
             <div className="max-w-3xl mx-auto py-12 px-4 text-center">
                 <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-12 border-2 border-blue-200">

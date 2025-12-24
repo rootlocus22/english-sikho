@@ -53,15 +53,22 @@ export async function POST(req: NextRequest) {
           userData = userDoc.data();
         }
       }
-    }
 
-    // Enforce credit limits ONLY if we have a valid logged-in user
-    if (userId && userData && !userData.isPremium && (userData.credits || 0) <= 0) {
-      return NextResponse.json({
-        error: "No credits remaining. Upgrade to Pro for unlimited access!",
-        needsUpgrade: true,
-        credits: 0
-      }, { status: 403 });
+      // Check Expiration
+      if (userData?.isPremium && userData?.subscription?.endDate) {
+        if (new Date(userData.subscription.endDate) < new Date()) {
+          userData.isPremium = false; // Treat as expired
+        }
+      }
+
+      // Enforce credit limits ONLY if we have a valid logged-in user
+      if (userId && userData && !userData.isPremium && (userData.credits || 0) <= 0) {
+        return NextResponse.json({
+          error: "No credits remaining. Upgrade to Pro for unlimited access!",
+          needsUpgrade: true,
+          credits: 0
+        }, { status: 403 });
+      }
     }
 
     const body = await req.json();
