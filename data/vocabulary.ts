@@ -69,6 +69,198 @@ export const vocabularyCategories: VocabularyCategory[] = [
                 hindiMeaning: 'सुपुर्दगी योग्य वस्तु',
                 category: 'general-business',
                 difficulty: 'intermediate'
+            },
+            {
+                word: 'Milestone',
+                meaning: 'A significant stage or event in a project',
+                example: 'We reached an important milestone by completing the first phase.',
+                hindiMeaning: 'मील का पत्थर - परियोजना में महत्वपूर्ण चरण',
+                category: 'general-business',
+                difficulty: 'intermediate'
+            },
+            {
+                word: 'Followup',
+                meaning: 'To check on the progress of something previously discussed',
+                example: 'I will follow up with you next week about the proposal.',
+                hindiMeaning: 'अनुवर्ती कार्यवाही करना',
+                category: 'general-business',
+                difficulty: 'beginner'
+            },
+            {
+                word: 'Leverage',
+                meaning: 'To use something to maximum advantage',
+                example: 'We can leverage this technology to improve efficiency.',
+                hindiMeaning: 'लाभ उठाना',
+                category: 'general-business',
+                difficulty: 'advanced'
+            },
+            {
+                word: 'Proactive',
+                meaning: 'Taking action in advance to prevent problems',
+                example: 'We need to be proactive about addressing customer concerns.',
+                hindiMeaning: 'सक्रिय - पहले से कार्यवाही करना',
+                category: 'general-business',
+                difficulty: 'intermediate'
+            },
+            {
+                word: 'Accountability',
+                meaning: 'Responsibility for outcomes and actions',
+                example: 'Team members must take accountability for their tasks.',
+                hindiMeaning: 'जवाबदेही',
+                category: 'general-business',
+                difficulty: 'intermediate'
+            },
+            {
+                word: 'Initiative',
+                meaning: 'The ability to take action without being told',
+                example: 'She showed great initiative by starting the project early.',
+                hindiMeaning: 'पहल करना',
+                category: 'general-business',
+                difficulty: 'beginner'
+            },
+            {
+                word: 'Collaborate',
+                meaning: 'To work together with others',
+                example: 'Let us collaborate on this presentation.',
+                hindiMeaning: 'सहयोग करना - मिलकर काम करना',
+                category: 'general-business',
+                difficulty: 'beginner'
+            },
+            {
+                word: 'Feedback',
+                meaning: 'Comments or information about how well someone is doing',
+                example: 'I would appreciate your feedback on my presentation.',
+                hindiMeaning: 'प्रतिक्रिया - सुझाव या टिप्पणी',
+                category: 'general-business',
+                difficulty: 'beginner'
+            },
+            {
+                word: 'Optimize',
+                meaning: 'To make something as effective as possible',
+                example: 'We need to optimize our workflow for better productivity.',
+                hindiMeaning: 'अनुकूलित करना',
+                category: 'general-business',
+                difficulty: 'intermediate'
+            },
+            {
+                word: 'Prioritize',
+                meaning: 'To arrange tasks in order of importance',
+                example: 'Let us prioritize the urgent tasks first.',
+                hindiMeaning: 'प्राथमिकता देना',
+                category: 'general-business',
+                difficulty: 'beginner'
+            },
+            {
+                word: 'Revenue',
+                meaning: 'Income generated from business activities',
+                example: 'Our revenue increased by 25% this quarter.',
+                hindiMeaning: 'राजस्व - आय',
+                category: 'general-business',
+                difficulty: 'intermediate'
+            },
+            {
+                word: 'Streamline',
+                meaning: 'To make a process more efficient by simplifying it',
+                example: 'We streamlined the approval process to save time.',
+                hindiMeaning: 'सुव्यवस्थित करना',
+                category: 'general-business',
+                difficulty: 'advanced'
+            },
+            {
+                word: 'Bottleneck',
+                meaning: 'A point where flow is restricted, causing delays',
+                example: 'The approval process has become a bottleneck.',
+                hindiMeaning: 'अड़चन - बाधा',
+                category: 'general-business',
+                difficulty: 'intermediate'
+            },
+            {
+                word: 'Consensus',
+                meaning: 'General agreement among a group',
+                example: 'We reached consensus on the new policy.',
+                hindiMeaning: 'सहमति - आम सहमति',
+                category: 'general-business',
+                difficulty: 'intermediate'
+            },
+            {
+                word: 'Delegate',
+                meaning: 'To assign responsibility to someone else',
+                example: 'I will delegate this task to my team member.',
+                hindiMeaning: 'प्रतिनिधि बनाना - जिम्मेदारी सौंपना',
+                category: 'general-business',
+                difficulty: 'intermediate'
+            },
+            {
+                word: 'Implementation',
+                meaning: 'The process of putting a plan into action',
+                example: 'The implementation phase will begin next month.',
+                hindiMeaning: 'क्रियान्वयन',
+                category: 'general-business',
+                difficulty: 'intermediate'
+            },
+            {
+                word: 'Bandwidth',
+                meaning: 'Available capacity or resources to handle tasks',
+                example: 'I do not have the bandwidth to take on another project right now.',
+                hindiMeaning: 'क्षमता - उपलब्ध समय और संसाधन',
+                category: 'general-business',
+                difficulty: 'intermediate'
+            },
+            {
+                word: 'Synergy',
+                meaning: 'The combined power of a group working together',
+                example: 'The synergy between our teams led to great results.',
+                hindiMeaning: 'तालमेल - मिलकर काम करने की शक्ति',
+                category: 'general-business',
+                difficulty: 'advanced'
+            },
+            {
+                word: 'Scalable',
+                meaning: 'Capable of being enlarged or expanded',
+                example: 'We need a scalable solution that can grow with the company.',
+                hindiMeaning: 'बढ़ाने योग्य',
+                category: 'general-business',
+                difficulty: 'advanced'
+            },
+            {
+                word: 'Actionable',
+                meaning: 'Something that can be acted upon',
+                example: 'We need actionable recommendations, not just observations.',
+                hindiMeaning: 'कार्यशील - जिस पर अमल किया जा सके',
+                category: 'general-business',
+                difficulty: 'advanced'
+            },
+            {
+                word: 'Feasibility',
+                meaning: 'How practical or possible something is',
+                example: 'We need to check the feasibility of this project.',
+                hindiMeaning: 'व्यवहार्यता - संभवता',
+                category: 'general-business',
+                difficulty: 'advanced'
+            },
+            {
+                word: 'Alignment',
+                meaning: 'Agreement or coordination between parties',
+                example: 'We need better alignment between sales and marketing teams.',
+                hindiMeaning: 'संरेखण - तालमेल',
+                category: 'general-business',
+                difficulty: 'advanced'
+            },
+            {
+                word: 'Insights',
+                meaning: 'Deep understanding or perspective gained from data or experience',
+                example: 'The analytics provided valuable insights into customer behavior.',
+                hindiMeaning: 'अंतर्दृष्टि - गहरी समझ',
+                category: 'general-business',
+                difficulty: 'intermediate'
+            },
+            {
+                word: 'Transparent',
+                meaning: 'Open and honest in communication',
+                example: 'We maintain transparent communication with all stakeholders.',
+                hindiMeaning: 'पारदर्शी - खुला और स्पष्ट',
+                category: 'general-business',
+                difficulty: 'intermediate'
             }
         ]
     },

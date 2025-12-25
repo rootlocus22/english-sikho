@@ -369,6 +369,769 @@ export const grammarLessons: GrammarLesson[] = [
                 explanation: '"Discuss" doesn\'t take "about". Just "discuss something".'
             }
         ]
+    },
+    {
+        id: 'future-simple',
+        title: 'Future Simple Tense',
+        description: 'Learn to talk about future plans and predictions',
+        level: 'beginner',
+        duration: 15,
+        topics: ['Future plans', 'Predictions', 'Decisions'],
+        content: [
+            {
+                type: 'explanation',
+                text: 'Future Simple (will) is used for:\n• Predictions: "The meeting will start at 3 PM"\n• Instant decisions: "I\'ll call him now"\n• Promises: "I will send the report today"\n• Offers: "I\'ll help you with this"'
+            },
+            {
+                type: 'explanation',
+                text: 'Structure:\n• Will + base verb\n  I/You/He/She/It/We/They + will + verb\n\nExample: I will complete, He will attend'
+            },
+            {
+                type: 'example',
+                text: '✅ I will finish the task by tomorrow.\n✅ She will join the team next month.\n✅ They will launch the product in Q2.\n\n❌ I will to finish (No "to" after will)\n❌ He will going (Wrong - use "go")'
+            },
+            {
+                type: 'tip',
+                text: 'Tip: Use "will" for decisions made at the moment of speaking. Use "going to" for pre-planned decisions.'
+            }
+        ],
+        exercises: [
+            {
+                question: 'I ____ the client tomorrow morning.',
+                options: ['will call', 'will to call', 'will calling', 'am will call'],
+                correctAnswer: 0,
+                explanation: 'Use "will + base verb". Don\'t add "to" or "-ing".'
+            },
+            {
+                question: 'The conference ____ at 9 AM sharp.',
+                options: ['will start', 'will starts', 'will be start', 'will starting'],
+                correctAnswer: 0,
+                explanation: 'Use "will + base verb". No "s" is added after will.'
+            },
+            {
+                question: 'She ____ you the details soon.',
+                options: ['will send', 'will sends', 'will be send', 'will sending'],
+                correctAnswer: 0,
+                explanation: 'Correct: will + send (base form).'
+            },
+            {
+                question: 'They ____ the project by December.',
+                options: ['will complete', 'will completes', 'will to complete', 'are will complete'],
+                correctAnswer: 0,
+                explanation: 'Will + complete (no "s", no "to").'
+            },
+            {
+                question: 'We ____ our decision next week.',
+                options: ['will announce', 'will announces', 'will announcing', 'will to announce'],
+                correctAnswer: 0,
+                explanation: 'Will + announce (base form).'
+            }
+        ]
+    },
+    {
+        id: 'going-to-future',
+        title: 'Going To Future',
+        description: 'Express planned future actions',
+        level: 'beginner',
+        duration: 15,
+        topics: ['Plans', 'Intentions', 'Future with evidence'],
+        content: [
+            {
+                type: 'explanation',
+                text: 'Going to is used for:\n• Pre-planned decisions: "I\'m going to apply for that job"\n• Intentions: "We\'re going to expand to new markets"\n• Predictions with evidence: "Look at those clouds - it\'s going to rain"'
+            },
+            {
+                type: 'explanation',
+                text: 'Structure:\n• am/is/are + going to + base verb\n\nI am going to work\nHe/She/It is going to work\nYou/We/They are going to work'
+            },
+            {
+                type: 'example',
+                text: '✅ I\'m going to attend the workshop.\n✅ She\'s going to start a new project.\n✅ They\'re going to hire 20 people.\n\n❌ I going to attend (Missing "am")\n❌ She is going attend (Missing "to")'
+            },
+            {
+                type: 'tip',
+                text: 'Tip: Will vs Going to - Use "going to" when you\'ve already decided. Use "will" for instant decisions.'
+            }
+        ],
+        exercises: [
+            {
+                question: 'I ____ to apply for the manager position.',
+                options: ['am going', 'will going', 'going', 'am go'],
+                correctAnswer: 0,
+                explanation: 'Use "am going to" for planned decisions.'
+            },
+            {
+                question: 'They ____ going to launch the product soon.',
+                options: ['are', 'is', 'am', 'will'],
+                correctAnswer: 0,
+                explanation: 'Use "are" with "They".'
+            },
+            {
+                question: 'She ____ to resign next month.',
+                options: ['is going', 'are going', 'am going', 'will going'],
+                correctAnswer: 0,
+                explanation: 'Use "is going to" with "She".'
+            },
+            {
+                question: 'We ____ restructure the department.',
+                options: ['are going to', 'is going to', 'am going to', 'going to'],
+                correctAnswer: 0,
+                explanation: 'We + are going to + base verb.'
+            },
+            {
+                question: 'What ____ you going to do about this issue?',
+                options: ['are', 'is', 'am', 'will'],
+                correctAnswer: 0,
+                explanation: 'Question form: What are you going to do?'
+            }
+        ]
+    },
+    {
+        id: 'present-perfect',
+        title: 'Present Perfect Tense',
+        description: 'Connect past actions to the present',
+        level: 'beginner',
+        duration: 20,
+        topics: ['Experience', 'Unfinished time', 'Recent actions'],
+        content: [
+            {
+                type: 'explanation',
+                text: 'Present Perfect is used for:\n• Experience: "I have worked with many clients"\n• Actions in unfinished time: "I have sent 5 emails today"\n• Recent actions: "She has just joined the team"\n• Actions continuing to now: "We have been partners since 2020"'
+            },
+            {
+                type: 'explanation',
+                text: 'Structure:\n• have/has + past participle\n\nI/You/We/They + have + worked\nHe/She/It + has + worked\n\nCommon past participles:\nwork → worked, go → gone, write → written,\nsee → seen, do → done, make → made'
+            },
+            {
+                type: 'example',
+                text: '✅ I have completed the training.\n✅ She has worked here for 3 years.\n✅ They have launched 5 products.\n\n❌ I have complete (Need past participle "completed")\n❌ She have worked (Use "has" with she)'
+            },
+            {
+                type: 'tip',
+                text: 'Tip: Use "since" with specific time (since 2020) and "for" with duration (for 3 years).'
+            }
+        ],
+        exercises: [
+            {
+                question: 'I ____ three meetings today already.',
+                options: ['have attended', 'has attended', 'attended', 'am attending'],
+                correctAnswer: 0,
+                explanation: 'Present Perfect shows action in unfinished time (today is not finished).'
+            },
+            {
+                question: 'She ____ with our company since 2018.',
+                options: ['has been', 'have been', 'is', 'was'],
+                correctAnswer: 0,
+                explanation: 'Use "has" with "she" + "been" (past participle of be).'
+            },
+            {
+                question: 'We ____ the client yet.',
+                options: ['haven\'t contacted', 'didn\'t contact', 'don\'t contact', 'aren\'t contacting'],
+                correctAnswer: 0,
+                explanation: 'Use Present Perfect with "yet" (negative).'
+            },
+            {
+                question: '____ you ever worked in sales?',
+                options: ['Have', 'Has', 'Did', 'Do'],
+                correctAnswer: 0,
+                explanation: 'Question with "ever" uses Present Perfect: Have you ever...?'
+            },
+            {
+                question: 'They ____ just announced the results.',
+                options: ['have', 'has', 'are', 'did'],
+                correctAnswer: 0,
+                explanation: 'Use "have" with "They" + "just" uses Present Perfect.'
+            },
+            {
+                question: 'He ____ his report already.',
+                options: ['has submitted', 'have submitted', 'submitted', 'is submitting'],
+                correctAnswer: 0,
+                explanation: 'He + has + past participle. "Already" indicates Present Perfect.'
+            }
+        ]
+    },
+    {
+        id: 'modal-verbs',
+        title: 'Modal Verbs: Can, Should, Must',
+        description: 'Express ability, advice, and obligation',
+        level: 'beginner',
+        duration: 20,
+        topics: ['Ability', 'Advice', 'Obligation', 'Permission'],
+        content: [
+            {
+                type: 'explanation',
+                text: 'Modal Verbs:\n\n• CAN - ability, permission\n  "I can speak English", "Can I leave early?"\n\n• SHOULD - advice, recommendation\n  "You should update your resume"\n\n• MUST - strong obligation, necessity\n  "You must attend the meeting"'
+            },
+            {
+                type: 'explanation',
+                text: 'Structure:\n• Modal + base verb (no "to", no "s")\n\nI/You/He/She/It/We/They + can/should/must + work\n\n✅ She can manage\n❌ She can manages\n❌ She can to manage'
+            },
+            {
+                type: 'example',
+                text: '✅ I can handle this project.\n✅ You should check the email.\n✅ We must submit the form today.\n\n❌ I can to handle (No "to")\n❌ He cans speak (No "s" after modal)\n❌ You should to check (No "to")'
+            },
+            {
+                type: 'tip',
+                text: 'Tip: Must = strong obligation (from speaker). Have to = external obligation. Should = advice (not as strong).'
+            }
+        ],
+        exercises: [
+            {
+                question: 'You ____ read the guidelines before starting.',
+                options: ['should', 'should to', 'shoulds', 'are should'],
+                correctAnswer: 0,
+                explanation: 'Modal + base verb. No "to", no "s".'
+            },
+            {
+                question: 'She ____ speak three languages fluently.',
+                options: ['can', 'cans', 'can to', 'is can'],
+                correctAnswer: 0,
+                explanation: 'Can + base verb (speak). No "s" after modal.'
+            },
+            {
+                question: 'We ____ complete this by Friday.',
+                options: ['must', 'musts', 'must to', 'are must'],
+                correctAnswer: 0,
+                explanation: 'Must + complete (base form).'
+            },
+            {
+                question: '____ I use your laptop for a moment?',
+                options: ['Can', 'Should', 'Must', 'Am'],
+                correctAnswer: 0,
+                explanation: 'Use "Can" to ask for permission.'
+            },
+            {
+                question: 'You ____ not share confidential information.',
+                options: ['must', 'can', 'should', 'may'],
+                correctAnswer: 0,
+                explanation: 'Must not = strong prohibition (it\'s forbidden).'
+            },
+            {
+                question: 'They ____ improve their communication skills.',
+                options: ['should', 'can', 'must', 'may'],
+                correctAnswer: 0,
+                explanation: 'Should = advice/recommendation.'
+            }
+        ]
+    },
+    {
+        id: 'conditionals-first',
+        title: 'First Conditional (Real Future)',
+        description: 'Talk about real possibilities in the future',
+        level: 'beginner',
+        duration: 20,
+        topics: ['Real possibilities', 'Future conditions', 'Cause and effect'],
+        content: [
+            {
+                type: 'explanation',
+                text: 'First Conditional is used for:\n• Real future possibilities\n• Cause and effect in the future\n\nStructure:\nIf + present simple, will + base verb\n\nExample: "If you work hard, you will succeed"'
+            },
+            {
+                type: 'explanation',
+                text: 'Common Uses:\n• Making promises: "If you help me, I\'ll help you"\n• Warnings: "If you don\'t submit on time, you will miss the deadline"\n• Plans: "If I get the job, I will move to Mumbai"'
+            },
+            {
+                type: 'example',
+                text: '✅ If she calls, I will answer.\n✅ If we finish early, we will go home.\n✅ I will help you if you ask me.\n\n❌ If she will call (Use present, not future in "if" clause)\n❌ If we will finish (Wrong tense in "if" clause)'
+            },
+            {
+                type: 'tip',
+                text: 'Tip: Never use "will" in the "if" part! Use present simple after "if".'
+            }
+        ],
+        exercises: [
+            {
+                question: 'If you ____ the meeting, send me your notes.',
+                options: ['attend', 'will attend', 'attended', 'are attending'],
+                correctAnswer: 0,
+                explanation: 'Use present simple after "if" in First Conditional.'
+            },
+            {
+                question: 'We ____ the deadline if we start now.',
+                options: ['will meet', 'meet', 'met', 'are meeting'],
+                correctAnswer: 0,
+                explanation: 'Use "will + base verb" in the main clause.'
+            },
+            {
+                question: 'If she ____ the offer, she will regret it.',
+                options: ['rejects', 'will reject', 'rejected', 'reject'],
+                correctAnswer: 0,
+                explanation: 'Present simple (rejects) after "if".'
+            },
+            {
+                question: 'They will hire you if you ____ the interview.',
+                options: ['pass', 'will pass', 'passed', 'are passing'],
+                correctAnswer: 0,
+                explanation: 'Present simple in the "if" clause.'
+            },
+            {
+                question: 'If I ____ more details, I ____ you immediately.',
+                options: ['get, will inform', 'will get, inform', 'get, inform', 'will get, will inform'],
+                correctAnswer: 0,
+                explanation: 'If + present, will + base verb.'
+            }
+        ]
+    },
+    {
+        id: 'passive-voice',
+        title: 'Passive Voice Construction',
+        description: 'Learn when and how to use passive voice professionally',
+        level: 'beginner',
+        duration: 20,
+        topics: ['Passive sentences', 'Formal writing', 'Professional communication'],
+        content: [
+            {
+                type: 'explanation',
+                text: 'Passive Voice is used when:\n• The action is more important than who did it\n• We don\'t know who did the action\n• We want to sound formal/professional\n\nStructure:\nbe (am/is/are/was/were) + past participle\n\nActive: The team completed the project.\nPassive: The project was completed (by the team).'
+            },
+            {
+                type: 'explanation',
+                text: 'Common Uses in Business:\n• "The meeting has been scheduled for Monday"\n• "Your application was received yesterday"\n• "The report will be sent by Friday"\n• "Several candidates were interviewed"'
+            },
+            {
+                type: 'example',
+                text: '✅ The email was sent this morning.\n✅ New policies have been implemented.\n✅ The document is being reviewed.\n\n❌ The email sent (Missing "was")\n❌ New policies implemented (Missing "have been")'
+            },
+            {
+                type: 'tip',
+                text: 'Tip: Use passive voice in formal emails and reports. Use active voice for clarity and directness.'
+            }
+        ],
+        exercises: [
+            {
+                question: 'The contract ____ by both parties yesterday.',
+                options: ['was signed', 'signed', 'is signed', 'has signed'],
+                correctAnswer: 0,
+                explanation: 'Past passive: was + past participle (signed).'
+            },
+            {
+                question: 'Your request ____ being processed.',
+                options: ['is', 'was', 'has', 'will'],
+                correctAnswer: 0,
+                explanation: 'Present continuous passive: is being processed.'
+            },
+            {
+                question: 'All employees ____ informed about the change.',
+                options: ['will be', 'will', 'are will', 'be will'],
+                correctAnswer: 0,
+                explanation: 'Future passive: will be + past participle.'
+            },
+            {
+                question: 'The project ____ completed ahead of schedule.',
+                options: ['was', 'is', 'has', 'been'],
+                correctAnswer: 0,
+                explanation: 'Simple past passive: was completed.'
+            },
+            {
+                question: 'A decision ____ been made yet.',
+                options: ['hasn\'t', 'hasn\'t been', 'wasn\'t', 'isn\'t'],
+                correctAnswer: 0,
+                explanation: 'Present perfect passive: hasn\'t been made.'
+            },
+            {
+                question: 'The files ____ uploaded to the cloud.',
+                options: ['are being', 'is being', 'was being', 'been'],
+                correctAnswer: 0,
+                explanation: 'Present continuous passive with plural subject.'
+            }
+        ]
+    },
+    {
+        id: 'reported-speech',
+        title: 'Reported Speech (Indirect Speech)',
+        description: 'Report what someone said without quoting directly',
+        level: 'beginner',
+        duration: 20,
+        topics: ['Reporting statements', 'Reporting questions', 'Tense changes'],
+        content: [
+            {
+                type: 'explanation',
+                text: 'Reported Speech reports what someone said without using their exact words.\n\nDirect: He said, "I am busy."\nReported: He said (that) he was busy.\n\nKey Changes:\n• Present → Past\n• Will → Would\n• Can → Could'
+            },
+            {
+                type: 'explanation',
+                text: 'Common Reporting Verbs:\n• say/said: "He said he was ready"\n• tell/told: "She told me to wait"\n• ask/asked: "He asked if I was available"\n• explain/explained: "She explained that it was urgent"'
+            },
+            {
+                type: 'example',
+                text: '✅ She said she would call me.\n✅ He told me he was working late.\n✅ They asked if I could help.\n\n❌ She said she will call (Should be "would")\n❌ He told he was working (Missing "me")'
+            },
+            {
+                type: 'tip',
+                text: 'Tip: Use "told" when mentioning the listener (told me/him/her). Use "said" without mentioning the listener or with "that".'
+            }
+        ],
+        exercises: [
+            {
+                question: 'Direct: "I will send the report." → Reported: She said she ____ the report.',
+                options: ['would send', 'will send', 'sends', 'sent'],
+                correctAnswer: 0,
+                explanation: 'Will → would in reported speech.'
+            },
+            {
+                question: 'Direct: "I am working on it." → Reported: He said he ____ on it.',
+                options: ['was working', 'is working', 'works', 'worked'],
+                correctAnswer: 0,
+                explanation: 'Present continuous → past continuous in reported speech.'
+            },
+            {
+                question: 'She ____ me she couldn\'t attend the meeting.',
+                options: ['told', 'said', 'asked', 'spoke'],
+                correctAnswer: 0,
+                explanation: 'Use "told" with an object (me, him, her).'
+            },
+            {
+                question: 'They ____ that they needed more time.',
+                options: ['said', 'told', 'asked', 'spoke'],
+                correctAnswer: 0,
+                explanation: 'Use "said" with "that" (no object needed).'
+            },
+            {
+                question: 'He asked me ____ I had finished the task.',
+                options: ['if', 'that', 'what', 'when'],
+                correctAnswer: 0,
+                explanation: 'Use "if" or "whether" for yes/no questions in reported speech.'
+            }
+        ]
+    },
+    {
+        id: 'phrasal-verbs',
+        title: 'Common Workplace Phrasal Verbs',
+        description: 'Master essential phrasal verbs used in professional settings',
+        level: 'beginner',
+        duration: 25,
+        topics: ['Workplace expressions', 'Professional language', 'Common phrases'],
+        content: [
+            {
+                type: 'explanation',
+                text: 'Phrasal Verbs are verb + preposition combinations with special meanings:\n\nCommon Workplace Phrasal Verbs:\n• Call off = cancel: "We called off the meeting"\n• Bring up = mention: "She brought up a good point"\n• Follow up = check on: "I\'ll follow up with you tomorrow"\n• Set up = arrange: "Let\'s set up a meeting"'
+            },
+            {
+                type: 'explanation',
+                text: 'More Essential Ones:\n• Take on = accept (responsibility): "I\'ll take on this project"\n• Carry out = execute: "We need to carry out this task"\n• Point out = indicate: "He pointed out an error"\n• Work out = solve: "We worked out a solution"\n• Fill in = substitute: "Can you fill in for me?"\n• Hand in = submit: "Please hand in your reports"'
+            },
+            {
+                type: 'example',
+                text: '✅ Let\'s set up a call for Monday.\n✅ I need to follow up on that email.\n✅ She brought up an important issue.\n✅ We had to call off the event.\n\n❌ Let\'s set a call (Missing "up")\n❌ I need to follow that email (Missing "up")'
+            },
+            {
+                type: 'tip',
+                text: 'Tip: Phrasal verbs are more informal. For formal writing, use single-word alternatives: arrange (set up), cancel (call off), mention (bring up).'
+            }
+        ],
+        exercises: [
+            {
+                question: 'We need to ____ this issue in tomorrow\'s meeting.',
+                options: ['bring up', 'bring', 'take up', 'put'],
+                correctAnswer: 0,
+                explanation: 'Bring up = mention or raise a topic for discussion.'
+            },
+            {
+                question: 'Can you ____ for me while I\'m on leave?',
+                options: ['fill in', 'fill', 'work in', 'take in'],
+                correctAnswer: 0,
+                explanation: 'Fill in = temporarily do someone\'s job.'
+            },
+            {
+                question: 'Let\'s ____ a meeting for next week.',
+                options: ['set up', 'set', 'put up', 'make up'],
+                correctAnswer: 0,
+                explanation: 'Set up = arrange or organize.'
+            },
+            {
+                question: 'I\'ll ____ with the client after the presentation.',
+                options: ['follow up', 'follow', 'call up', 'check'],
+                correctAnswer: 0,
+                explanation: 'Follow up = check on progress or continue communication.'
+            },
+            {
+                question: 'He ____ an important mistake in the report.',
+                options: ['pointed out', 'pointed', 'showed up', 'found'],
+                correctAnswer: 0,
+                explanation: 'Point out = indicate or draw attention to something.'
+            },
+            {
+                question: 'We had to ____ the launch due to technical issues.',
+                options: ['call off', 'call', 'put off', 'take off'],
+                correctAnswer: 0,
+                explanation: 'Call off = cancel an event or plan.'
+            },
+            {
+                question: 'She decided to ____ the new project.',
+                options: ['take on', 'take', 'bring on', 'put on'],
+                correctAnswer: 0,
+                explanation: 'Take on = accept responsibility for something.'
+            }
+        ]
+    },
+    {
+        id: 'relative-clauses',
+        title: 'Relative Clauses (Who, Which, That)',
+        description: 'Combine sentences and add information smoothly',
+        level: 'beginner',
+        duration: 20,
+        topics: ['Connecting ideas', 'Defining clauses', 'Professional writing'],
+        content: [
+            {
+                type: 'explanation',
+                text: 'Relative Clauses add information about nouns:\n\n• WHO - for people\n  "The employee who joined last month"\n\n• WHICH - for things\n  "The report which was sent yesterday"\n\n• THAT - for both people and things (more common)\n  "The person that/who called", "The file that/which is missing"'
+            },
+            {
+                type: 'explanation',
+                text: 'Usage:\n• Defining clause (essential info): No commas\n  "The candidate who has experience will get the job"\n\n• Non-defining clause (extra info): Use commas\n  "John, who has 10 years of experience, got promoted"'
+            },
+            {
+                type: 'example',
+                text: '✅ The manager who leads our team is excellent.\n✅ The project that we started is complete.\n✅ The office, which is downtown, is very modern.\n\n❌ The manager which leads (Use "who" for people)\n❌ The person what called (Use "who/that", not "what")'
+            },
+            {
+                type: 'tip',
+                text: 'Tip: "That" is more common in speech. "Which" is more formal. "Who" is always for people.'
+            }
+        ],
+        exercises: [
+            {
+                question: 'The candidate ____ we interviewed yesterday was impressive.',
+                options: ['who/that', 'which', 'what', 'whose'],
+                correctAnswer: 0,
+                explanation: 'Use "who" or "that" for people.'
+            },
+            {
+                question: 'The software ____ you recommended is very useful.',
+                options: ['which/that', 'who', 'what', 'whose'],
+                correctAnswer: 0,
+                explanation: 'Use "which" or "that" for things.'
+            },
+            {
+                question: 'This is the employee ____ laptop was stolen.',
+                options: ['whose', 'who', 'which', 'that'],
+                correctAnswer: 0,
+                explanation: 'Use "whose" to show possession.'
+            },
+            {
+                question: 'The deadline ____ was set last week is approaching.',
+                options: ['that/which', 'who', 'what', 'whose'],
+                correctAnswer: 0,
+                explanation: 'Use "that" or "which" for things (deadline).'
+            },
+            {
+                question: 'People ____ work remotely need good internet.',
+                options: ['who/that', 'which', 'what', 'whose'],
+                correctAnswer: 0,
+                explanation: 'Use "who" or "that" for people.'
+            }
+        ]
+    },
+    {
+        id: 'word-order',
+        title: 'English Word Order & Sentence Structure',
+        description: 'Build grammatically correct sentences with proper word order',
+        level: 'beginner',
+        duration: 20,
+        topics: ['Sentence structure', 'Word order', 'Clarity'],
+        content: [
+            {
+                type: 'explanation',
+                text: 'Basic English Word Order:\nSVO = Subject + Verb + Object\n\n✅ I (S) send (V) emails (O).\n✅ She (S) manages (V) the team (O).\n\nNever: Object + Subject + Verb (common mistake for Indian speakers)'
+            },
+            {
+                type: 'explanation',
+                text: 'Adding Time and Place:\nRule: Time comes BEFORE place (or at the end)\n\n✅ I work from home on Mondays.\n✅ On Mondays, I work from home.\n❌ I work on Mondays from home. (Awkward)\n\nGeneral rule: S + V + O + Manner + Place + Time\n"She drives her car carefully to office every day"'
+            },
+            {
+                type: 'example',
+                text: '✅ I sent the email yesterday.\n✅ Yesterday, I sent the email.\n✅ We will meet at the office tomorrow.\n\n❌ Yesterday I the email sent. (Wrong order)\n❌ I the email yesterday sent. (Wrong order)\n❌ Sent I the email yesterday. (Wrong order)'
+            },
+            {
+                type: 'tip',
+                text: 'Tip: Common Indian English mistake - placing time/place in the middle. Always put time at the beginning or end of the sentence.'
+            }
+        ],
+        exercises: [
+            {
+                question: 'Choose the correct sentence:',
+                options: [
+                    'I will call you tomorrow.',
+                    'I will you call tomorrow.',
+                    'Tomorrow I you will call.',
+                    'Will I call tomorrow you.'
+                ],
+                correctAnswer: 0,
+                explanation: 'Correct order: Subject + will + verb + object + time.'
+            },
+            {
+                question: 'Arrange: (the report / she / yesterday / submitted)',
+                options: [
+                    'She submitted the report yesterday.',
+                    'Yesterday she the report submitted.',
+                    'She the report yesterday submitted.',
+                    'The report she submitted yesterday.'
+                ],
+                correctAnswer: 0,
+                explanation: 'S + V + O + Time: She submitted the report yesterday.'
+            },
+            {
+                question: 'Choose the correct sentence:',
+                options: [
+                    'We have a meeting at 3 PM in the conference room.',
+                    'We at 3 PM have a meeting in the conference room.',
+                    'We have in the conference room a meeting at 3 PM.',
+                    'At 3 PM we in the conference room have a meeting.'
+                ],
+                correctAnswer: 0,
+                explanation: 'S + V + O + Time + Place (or time can come first).'
+            },
+            {
+                question: 'Correct the order: (I / going / am / tomorrow / there)',
+                options: [
+                    'I am going there tomorrow.',
+                    'Tomorrow I there am going.',
+                    'I am tomorrow going there.',
+                    'There I am going tomorrow.'
+                ],
+                correctAnswer: 0,
+                explanation: 'S + am + going + place + time.'
+            },
+            {
+                question: 'Choose correct: "He plays tennis..."',
+                options: [
+                    'every Sunday in the park.',
+                    'in the park every Sunday.',
+                    'every in the park Sunday.',
+                    'Sunday every park in the.'
+                ],
+                correctAnswer: 0,
+                explanation: 'Time + Place OR Place + Time (both are okay, but time first is more common).'
+            }
+        ]
+    },
+    {
+        id: 'common-confusions',
+        title: 'Commonly Confused Words',
+        description: 'Master tricky word pairs that are often confused',
+        level: 'beginner',
+        duration: 25,
+        topics: ['Word choice', 'Common mistakes', 'Clarity'],
+        content: [
+            {
+                type: 'explanation',
+                text: 'Affect vs Effect:\n• Affect (verb) = to influence\n  "This will affect our sales"\n• Effect (noun) = result\n  "The effect was positive"\n\nIts vs It\'s:\n• Its = belonging to it\n  "The company increased its revenue"\n• It\'s = it is\n  "It\'s a great opportunity"'
+            },
+            {
+                type: 'explanation',
+                text: 'Their vs There vs They\'re:\n• Their = belonging to them\n  "Their office is modern"\n• There = place\n  "The file is over there"\n• They\'re = they are\n  "They\'re attending the meeting"\n\nYour vs You\'re:\n• Your = belonging to you\n  "Your presentation was excellent"\n• You\'re = you are\n  "You\'re doing great work"'
+            },
+            {
+                type: 'example',
+                text: '✅ The policy will affect employee morale.\n✅ The effect of the policy was positive.\n✅ The company announced its quarterly results.\n✅ It\'s important to meet deadlines.\n\n❌ The policy will effect morale. (Wrong - use affect)\n❌ Its important to meet deadlines. (Wrong - use it\'s)'
+            },
+            {
+                type: 'tip',
+                text: 'Tip: To check "it\'s" vs "its", expand to "it is". If it makes sense, use "it\'s". Same trick works for "you\'re" (you are) and "they\'re" (they are).'
+            }
+        ],
+        exercises: [
+            {
+                question: 'How will this decision ____ our project timeline?',
+                options: ['affect', 'effect', 'effects', 'affects'],
+                correctAnswer: 0,
+                explanation: 'Affect (verb) = to influence or impact.'
+            },
+            {
+                question: 'The ____ of the training was immediately visible.',
+                options: ['effect', 'affect', 'effects', 'affects'],
+                correctAnswer: 0,
+                explanation: 'Effect (noun) = result or outcome.'
+            },
+            {
+                question: 'The company improved ____ customer service.',
+                options: ['its', 'it\'s', 'its\'', 'it'],
+                correctAnswer: 0,
+                explanation: 'Its (possessive, no apostrophe) = belonging to the company.'
+            },
+            {
+                question: '____ a good time to discuss this.',
+                options: ['It\'s', 'Its', 'Its\'', 'It'],
+                correctAnswer: 0,
+                explanation: 'It\'s = It is (contraction with apostrophe).'
+            },
+            {
+                question: '____ team will present first.',
+                options: ['Their', 'There', 'They\'re', 'Thier'],
+                correctAnswer: 0,
+                explanation: 'Their (possessive) = belonging to them.'
+            },
+            {
+                question: '____ going to announce the results soon.',
+                options: ['They\'re', 'Their', 'There', 'Thier'],
+                correctAnswer: 0,
+                explanation: 'They\'re = They are (contraction).'
+            },
+            {
+                question: '____ presentation skills have improved significantly.',
+                options: ['Your', 'You\'re', 'Your\'e', 'You'],
+                correctAnswer: 0,
+                explanation: 'Your (possessive) = belonging to you.'
+            }
+        ]
+    },
+    {
+        id: 'advanced-punctuation',
+        title: 'Professional Punctuation',
+        description: 'Master semicolons, colons, and dashes for professional writing',
+        level: 'beginner',
+        duration: 20,
+        topics: ['Punctuation', 'Professional writing', 'Clarity'],
+        content: [
+            {
+                type: 'explanation',
+                text: 'Semicolon (;) - Connects related complete sentences:\n\n✅ "The project is complete; we can now move forward."\n✅ "I sent the email; however, I haven\'t received a reply."\n\nUse semicolon instead of period when sentences are closely related.'
+            },
+            {
+                type: 'explanation',
+                text: 'Colon (:) - Introduces a list or explanation:\n\n✅ "We need three things: focus, dedication, and teamwork."\n✅ "Here\'s the problem: we\'re over budget."\n\nDash (—) - Adds emphasis or interruption:\n✅ "The deadline — which was moved up — is tomorrow."\n✅ "She has one goal — to become a manager."'
+            },
+            {
+                type: 'example',
+                text: '✅ The meeting went well; everyone agreed on the plan.\n✅ We have two options: delay or cancel.\n✅ The report — all 50 pages — needs review.\n\n❌ The meeting went well, everyone agreed. (Use semicolon or period)\n❌ We need; focus and teamwork. (Wrong - use colon before list)'
+            },
+            {
+                type: 'tip',
+                text: 'Tip: Semicolons are professional and sophisticated. Use them to show relationships between ideas without starting a new sentence.'
+            }
+        ],
+        exercises: [
+            {
+                question: 'The presentation is ready__we can start.',
+                options: ['; (semicolon)', ': (colon)', '— (dash)', ', (comma)'],
+                correctAnswer: 0,
+                explanation: 'Use semicolon to connect two related complete sentences.'
+            },
+            {
+                question: 'We need the following documents__resume, cover letter, and references.',
+                options: [': (colon)', '; (semicolon)', '— (dash)', ', (comma)'],
+                correctAnswer: 0,
+                explanation: 'Use colon to introduce a list.'
+            },
+            {
+                question: 'The deadline__which is non-negotiable__is Friday.',
+                options: ['— (dash)', ': (colon)', '; (semicolon)', ', (comma)'],
+                correctAnswer: 0,
+                explanation: 'Use dashes to add emphasis or set off interrupting information.'
+            },
+            {
+                question: 'I finished the report__however, it needs your approval.',
+                options: ['; (semicolon)', ': (colon)', '— (dash)', ', (comma)'],
+                correctAnswer: 0,
+                explanation: 'Use semicolon before "however" when connecting sentences.'
+            },
+            {
+                question: 'She has one goal__to lead the team.',
+                options: ['— (dash) or : (colon)', '; (semicolon)', ', (comma)', '. (period)'],
+                correctAnswer: 0,
+                explanation: 'Both dash and colon work to introduce an explanation or elaboration.'
+            }
+        ]
     }
 ];
 
