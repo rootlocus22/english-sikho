@@ -317,6 +317,198 @@ export const vocabularyCategories: VocabularyCategory[] = [
                 hindiMeaning: 'पुराना कोड - जो बदलना मुश्किल हो',
                 category: 'it-technology',
                 difficulty: 'advanced'
+            },
+            {
+                word: 'Frontend',
+                meaning: 'The client-side of an application that users interact with',
+                example: 'I am working on the frontend design.',
+                hindiMeaning: 'फ्रंटएंड - यूजर को दिखने वाला हिस्सा',
+                category: 'it-technology',
+                difficulty: 'beginner'
+            },
+            {
+                word: 'Backend',
+                meaning: 'The server-side of an application that handles logic and data',
+                example: 'The backend team is optimizing the database queries.',
+                hindiMeaning: 'बैकएंड - सर्वर की तरफ का काम',
+                category: 'it-technology',
+                difficulty: 'beginner'
+            },
+            {
+                word: 'Database',
+                meaning: 'An organized collection of data',
+                example: 'We store user information in the database.',
+                hindiMeaning: 'डेटाबेस - डेटा का संग्रह',
+                category: 'it-technology',
+                difficulty: 'beginner'
+            },
+            {
+                word: 'Cloud',
+                meaning: 'Remote servers accessed over the internet for storage and computing',
+                example: 'We migrated our application to the cloud.',
+                hindiMeaning: 'क्लाउड - इंटरनेट पर सर्वर',
+                category: 'it-technology',
+                difficulty: 'intermediate'
+            },
+            {
+                word: 'DevOps',
+                meaning: 'Practices combining software development and IT operations',
+                example: 'Our DevOps team automates the deployment process.',
+                hindiMeaning: 'डेवऑप्स - डेवलपमेंट और ऑपरेशन का संयोजन',
+                category: 'it-technology',
+                difficulty: 'advanced'
+            },
+            {
+                word: 'Microservices',
+                meaning: 'Architecture where application is built as small independent services',
+                example: 'We are breaking our monolith into microservices.',
+                hindiMeaning: 'माइक्रोसर्विसेज - छोटी स्वतंत्र सेवाओं का समूह',
+                category: 'it-technology',
+                difficulty: 'advanced'
+            },
+            {
+                word: 'Refactor',
+                meaning: 'Restructuring code without changing its behavior',
+                example: 'We should refactor this module for better readability.',
+                hindiMeaning: 'रिफैक्टर - कोड को सुधारना',
+                category: 'it-technology',
+                difficulty: 'intermediate'
+            },
+            {
+                word: 'Scalability',
+                meaning: 'Ability of a system to handle growing workload',
+                example: 'Scalability is a key requirement for this application.',
+                hindiMeaning: 'स्केलेबिलिटी - बढ़ती मांग को संभालने की क्षमता',
+                category: 'it-technology',
+                difficulty: 'advanced'
+            },
+            {
+                word: 'Authentication',
+                meaning: 'Process of verifying user identity',
+                example: 'We need to implement two-factor authentication.',
+                hindiMeaning: 'प्रमाणीकरण - पहचान की जांच',
+                category: 'it-technology',
+                difficulty: 'intermediate'
+            },
+            {
+                word: 'Encryption',
+                meaning: 'Converting data into code to prevent unauthorized access',
+                example: 'All passwords are stored using encryption.',
+                hindiMeaning: 'एन्क्रिप्शन - डेटा को सुरक्षित कोड में बदलना',
+                category: 'it-technology',
+                difficulty: 'intermediate'
+            },
+            {
+                word: 'Cache',
+                meaning: 'Temporary storage to speed up data access',
+                example: 'We cache frequently accessed data.',
+                hindiMeaning: 'कैश - तेज़ी के लिए अस्थायी संग्रहण',
+                category: 'it-technology',
+                difficulty: 'intermediate'
+            },
+            {
+                word: 'Load Balancer',
+                meaning: 'Distributes traffic across multiple servers',
+                example: 'The load balancer ensures high availability.',
+                hindiMeaning: 'लोड बैलेंसर - ट्रैफिक को सर्वरों में बांटना',
+                category: 'it-technology',
+                difficulty: 'advanced'
+            },
+            {
+                word: 'Continuous Integration',
+                meaning: 'Automatically testing code changes',
+                example: 'We use continuous integration to catch bugs early.',
+                hindiMeaning: 'सतत एकीकरण - कोड की स्वचालित जांच',
+                category: 'it-technology',
+                difficulty: 'advanced'
+            },
+            {
+                word: 'Version Control',
+                meaning: 'System for tracking changes in code',
+                example: 'We use Git for version control.',
+                hindiMeaning: 'संस्करण नियंत्रण - कोड के बदलावों को ट्रैक करना',
+                category: 'it-technology',
+                difficulty: 'intermediate'
+            },
+            {
+                word: 'Framework',
+                meaning: 'Pre-built software foundation for development',
+                example: 'React is a popular JavaScript framework.',
+                hindiMeaning: 'फ्रेमवर्क - पहले से बना सॉफ्टवेयर ढांचा',
+                category: 'it-technology',
+                difficulty: 'beginner'
+            },
+            {
+                word: 'Debugging',
+                meaning: 'Finding and fixing errors in code',
+                example: 'I spent the morning debugging the login issue.',
+                hindiMeaning: 'डीबगिंग - कोड में गड़बड़ी ढूंढना और ठीक करना',
+                category: 'it-technology',
+                difficulty: 'beginner'
+            },
+            {
+                word: 'Deployment',
+                meaning: 'The process of making software available for use',
+                example: 'The deployment is scheduled for Saturday night.',
+                hindiMeaning: 'डिप्लॉयमेंट - सॉफ्टवेयर को लाइव करना',
+                category: 'it-technology',
+                difficulty: 'beginner'
+            },
+            {
+                word: 'Rollback',
+                meaning: 'Reverting to a previous version of software',
+                example: 'We had to rollback due to critical bugs.',
+                hindiMeaning: 'रोलबैक - पुराने वर्शन पर वापस जाना',
+                category: 'it-technology',
+                difficulty: 'intermediate'
+            },
+            {
+                word: 'Latency',
+                meaning: 'Delay in data transmission',
+                example: 'We need to reduce API latency.',
+                hindiMeaning: 'विलंबता - डेटा में देरी',
+                category: 'it-technology',
+                difficulty: 'advanced'
+            },
+            {
+                word: 'Throughput',
+                meaning: 'Amount of data processed in a given time',
+                example: 'We increased system throughput by 50%.',
+                hindiMeaning: 'थ्रूपुट - एक समय में प्रोसेस होने वाला डेटा',
+                category: 'it-technology',
+                difficulty: 'advanced'
+            },
+            {
+                word: 'Unit Test',
+                meaning: 'Testing individual components of code',
+                example: 'Please write unit tests for this function.',
+                hindiMeaning: 'यूनिट टेस्ट - कोड के छोटे हिस्सों की जांच',
+                category: 'it-technology',
+                difficulty: 'intermediate'
+            },
+            {
+                word: 'Integration',
+                meaning: 'Combining different systems or components',
+                example: 'We completed the payment gateway integration.',
+                hindiMeaning: 'एकीकरण - अलग सिस्टम को जोड़ना',
+                category: 'it-technology',
+                difficulty: 'intermediate'
+            },
+            {
+                word: 'Agile',
+                meaning: 'Iterative development methodology',
+                example: 'Our team follows Agile methodology.',
+                hindiMeaning: 'एजाइल - तेज़ और लचीला विकास तरीका',
+                category: 'it-technology',
+                difficulty: 'intermediate'
+            },
+            {
+                word: 'Sandbox',
+                meaning: 'Testing environment isolated from production',
+                example: 'Please test the changes in sandbox first.',
+                hindiMeaning: 'सैंडबॉक्स - टेस्टिंग के लिए अलग वातावरण',
+                category: 'it-technology',
+                difficulty: 'intermediate'
             }
         ]
     },
@@ -373,6 +565,190 @@ export const vocabularyCategories: VocabularyCategory[] = [
                 hindiMeaning: 'देनदारी - कंपनी का कर्ज या दायित्व',
                 category: 'finance',
                 difficulty: 'intermediate'
+            },
+            {
+                word: 'Budget',
+                meaning: 'A plan for spending and saving money',
+                example: 'We need to stay within the allocated budget.',
+                hindiMeaning: 'बजट - खर्च की योजना',
+                category: 'finance',
+                difficulty: 'beginner'
+            },
+            {
+                word: 'Expense',
+                meaning: 'Money spent on business operations',
+                example: 'Travel expenses will be reimbursed.',
+                hindiMeaning: 'खर्च - व्यय',
+                category: 'finance',
+                difficulty: 'beginner'
+            },
+            {
+                word: 'Cash Flow',
+                meaning: 'Movement of money in and out of business',
+                example: 'We need to improve our cash flow management.',
+                hindiMeaning: 'नकदी प्रवाह - पैसों का आना जाना',
+                category: 'finance',
+                difficulty: 'intermediate'
+            },
+            {
+                word: 'Quarterly',
+                meaning: 'Happening every three months',
+                example: 'We have quarterly financial reviews.',
+                hindiMeaning: 'त्रैमासिक - हर तीन महीने में',
+                category: 'finance',
+                difficulty: 'beginner'
+            },
+            {
+                word: 'Audit',
+                meaning: 'Official examination of financial records',
+                example: 'The annual audit will begin next month.',
+                hindiMeaning: 'लेखा परीक्षा - वित्तीय रिकॉर्ड की जांच',
+                category: 'finance',
+                difficulty: 'intermediate'
+            },
+            {
+                word: 'Accounts Payable',
+                meaning: 'Money owed by company to suppliers',
+                example: 'Accounts payable has increased this month.',
+                hindiMeaning: 'देय खाते - कंपनी को जो पैसे देने हैं',
+                category: 'finance',
+                difficulty: 'intermediate'
+            },
+            {
+                word: 'Accounts Receivable',
+                meaning: 'Money owed to company by customers',
+                example: 'We need to collect accounts receivable faster.',
+                hindiMeaning: 'प्राप्य खाते - कंपनी को जो पैसे मिलने हैं',
+                category: 'finance',
+                difficulty: 'intermediate'
+            },
+            {
+                word: 'Reimbursement',
+                meaning: 'Repayment of money spent on behalf of company',
+                example: 'Submit your travel expenses for reimbursement.',
+                hindiMeaning: 'प्रतिपूर्ति - खर्च की वापसी',
+                category: 'finance',
+                difficulty: 'beginner'
+            },
+            {
+                word: 'Depreciation',
+                meaning: 'Decrease in asset value over time',
+                example: 'We calculate depreciation on all equipment.',
+                hindiMeaning: 'मूल्यह्रास - संपत्ति की कीमत में कमी',
+                category: 'finance',
+                difficulty: 'advanced'
+            },
+            {
+                word: 'Equity',
+                meaning: 'Ownership value in a company',
+                example: 'The founders hold 60% equity.',
+                hindiMeaning: 'इक्विटी - कंपनी में मालिकाना हिस्सा',
+                category: 'finance',
+                difficulty: 'intermediate'
+            },
+            {
+                word: 'Balance Sheet',
+                meaning: 'Statement of assets, liabilities, and equity',
+                example: 'The balance sheet looks healthy.',
+                hindiMeaning: 'बैलेंस शीट - संपत्ति और देनदारी का विवरण',
+                category: 'finance',
+                difficulty: 'intermediate'
+            },
+            {
+                word: 'Profit and Loss',
+                meaning: 'Statement showing income and expenses',
+                example: 'Review the profit and loss statement.',
+                hindiMeaning: 'लाभ और हानि - आय और खर्च का विवरण',
+                category: 'finance',
+                difficulty: 'beginner'
+            },
+            {
+                word: 'Write-off',
+                meaning: 'Removing bad debt from accounts',
+                example: 'We had to write-off some uncollectable debts.',
+                hindiMeaning: 'राइट-ऑफ - बुरे कर्ज को हटाना',
+                category: 'finance',
+                difficulty: 'advanced'
+            },
+            {
+                word: 'Capital',
+                meaning: 'Financial assets or resources',
+                example: 'We need more capital to expand.',
+                hindiMeaning: 'पूंजी - वित्तीय संसाधन',
+                category: 'finance',
+                difficulty: 'beginner'
+            },
+            {
+                word: 'Dividend',
+                meaning: 'Payment to shareholders from profits',
+                example: 'The company declared a dividend of Rs. 10 per share.',
+                hindiMeaning: 'लाभांश - शेयरधारकों को लाभ से भुगतान',
+                category: 'finance',
+                difficulty: 'intermediate'
+            },
+            {
+                word: 'Fiscal Year',
+                meaning: 'A one-year period for financial reporting',
+                example: 'Our fiscal year ends in March.',
+                hindiMeaning: 'वित्तीय वर्ष - वित्त रिपोर्टिंग के लिए एक साल',
+                category: 'finance',
+                difficulty: 'intermediate'
+            },
+            {
+                word: 'Liquidity',
+                meaning: 'Ability to convert assets to cash quickly',
+                example: 'The company has good liquidity.',
+                hindiMeaning: 'तरलता - संपत्ति को नकद में बदलने की क्षमता',
+                category: 'finance',
+                difficulty: 'advanced'
+            },
+            {
+                word: 'Overhead',
+                meaning: 'Ongoing business expenses',
+                example: 'We need to reduce overhead costs.',
+                hindiMeaning: 'ओवरहेड - व्यवसाय के नियमित खर्च',
+                category: 'finance',
+                difficulty: 'intermediate'
+            },
+            {
+                word: 'Payroll',
+                meaning: 'List of employees and their salaries',
+                example: 'Payroll is processed on the last day of each month.',
+                hindiMeaning: 'पेरोल - कर्मचारियों के वेतन की सूची',
+                category: 'finance',
+                difficulty: 'beginner'
+            },
+            {
+                word: 'Tax Deduction',
+                meaning: 'Amount subtracted from income before calculating tax',
+                example: 'Check your tax deductions on the salary slip.',
+                hindiMeaning: 'कर कटौती - टैक्स के लिए आय से घटाई गई रकम',
+                category: 'finance',
+                difficulty: 'beginner'
+            },
+            {
+                word: 'Variance',
+                meaning: 'Difference between planned and actual figures',
+                example: 'There is a variance in the budget numbers.',
+                hindiMeaning: 'प्रसरण - योजना और वास्तविकता में अंतर',
+                category: 'finance',
+                difficulty: 'advanced'
+            },
+            {
+                word: 'Amortization',
+                meaning: 'Gradual repayment of debt or spreading cost',
+                example: 'The loan amortization is over 5 years.',
+                hindiMeaning: 'परिशोधन - कर्ज या खर्च का धीरे-धीरे भुगतान',
+                category: 'finance',
+                difficulty: 'advanced'
+            },
+            {
+                word: 'Accrual',
+                meaning: 'Recording expenses when incurred, not when paid',
+                example: 'We use accrual accounting method.',
+                hindiMeaning: 'उपार्जन - खर्च को होते ही रिकॉर्ड करना',
+                category: 'finance',
+                difficulty: 'advanced'
             }
         ]
     },
