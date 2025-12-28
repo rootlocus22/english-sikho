@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { TrackedButton } from "@/components/ui/tracked-elements";
 import { Brain, CheckCircle2, Globe2, Sparkles, Star, Zap } from "lucide-react";
-import { signInWithPopup, GoogleAuthProvider, signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithPopup, GoogleAuthProvider, signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
 import { auth } from "@/lib/firebase";
 import { useUserStore } from "@/lib/store";
 import { event } from "@/lib/analytics";
@@ -16,9 +16,10 @@ import BrandLogo from "@/components/BrandLogo";
 import { Suspense } from "react";
 
 function LoginPageContent() {
-    const { setUserId, setUserData } = useUserStore();
+    const { setUserId, setUserData, fetchUserProfile } = useUserStore();
     const router = useRouter();
     const [loading, setLoading] = useState(false);
+    const [checkingAuth, setCheckingAuth] = useState(true);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
@@ -32,6 +33,38 @@ function LoginPageContent() {
             toast.info(message);
         }
     }, [message]);
+
+    // Check for existing session
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, async (user: any) => {
+            if (user) {
+                // User is already logged in
+                // Ensure store has data
+                if (!useUserStore.getState().userData) {
+                    setUserId(user.uid);
+                    await fetchUserProfile(user.uid);
+                }
+
+                toast.success(`Welcome back!`);
+                router.push(redirectUrl);
+            } else {
+                setCheckingAuth(false);
+            }
+        });
+
+        return () => unsubscribe();
+    }, [router, redirectUrl, setUserId, fetchUserProfile]);
+
+    if (checkingAuth) {
+        return (
+            <div className="min-h-screen flex items-center justify-center bg-gray-50">
+                <div className="flex flex-col items-center gap-4">
+                    <div className="w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
+                    <p className="text-gray-500 font-medium">Checking session...</p>
+                </div>
+            </div>
+        );
+    }
 
     const handleGoogleLogin = async () => {
         setLoading(true);
