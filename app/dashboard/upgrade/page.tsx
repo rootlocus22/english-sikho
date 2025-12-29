@@ -11,6 +11,13 @@ import Script from 'next/script';
 import { PRICING_PLANS, getMonthlyEquivalent, calculateSavings, getDiscountPercentage } from '@/lib/pricing';
 import { event, getClickId } from '@/lib/analytics';
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import TestimonialsSection from '@/components/TestimonialsSection';
+import ROICalculator from '@/components/ROICalculator';
+import CompetitorComparison from '@/components/CompetitorComparison';
+import SocialProofNotification from '@/components/SocialProofNotification';
+import GuaranteeSection from '@/components/GuaranteeSection';
+import BeforeAfterSection from '@/components/BeforeAfterSection';
+import CountdownTimer from '@/components/CountdownTimer';
 
 declare global {
     interface Window {
@@ -546,12 +553,44 @@ export default function UpgradePage() {
 
             {/* Urgency Element */}
             {!isPro && (
-                <div className="bg-gradient-to-r from-orange-50 to-amber-50 border border-orange-200 rounded-lg p-4 text-center max-w-2xl mx-auto">
-                    <p className="text-sm text-orange-900 font-medium">
-                        ⚡ Limited Time: Get started today and unlock unlimited AI practice!
-                    </p>
-                </div>
+                <>
+                    <CountdownTimer />
+                    <div className="bg-gradient-to-r from-orange-50 to-amber-50 border-2 border-orange-300 rounded-xl p-6 text-center max-w-3xl mx-auto shadow-lg">
+                        <div className="flex items-center justify-center gap-2 mb-2">
+                            <Sparkles className="w-5 h-5 text-orange-600 animate-pulse" />
+                            <p className="text-lg font-bold text-orange-900">
+                                🎯 Limited Time Offer: First 100 Users Get 20% Extra Features
+                            </p>
+                        </div>
+                        <p className="text-sm text-orange-700">
+                            Join now and get exclusive access to advanced interview prep + business templates (worth ₹500)
+                        </p>
+                        <div className="mt-3 text-xs text-orange-600">
+                            ⏰ Only 23 spots left • Offer expires soon
+                        </div>
+                    </div>
+                </>
             )}
+
+            {/* ROI Calculator */}
+            <div className="max-w-4xl mx-auto">
+                <ROICalculator />
+            </div>
+
+            {/* Testimonials */}
+            <TestimonialsSection />
+
+            {/* Competitor Comparison */}
+            <CompetitorComparison />
+
+            {/* Before/After Examples */}
+            <BeforeAfterSection />
+
+            {/* Guarantee Section */}
+            <GuaranteeSection />
+
+            {/* Social Proof Notification */}
+            <SocialProofNotification />
 
             {/* Load Razorpay Script */}
             <Script

@@ -5,6 +5,12 @@ import { SCENARIO_DATA } from "@/data/scenarios";
 import Link from "next/link";
 import { Metadata } from 'next';
 import FeaturesSection from "@/components/FeaturesSection";
+import TestimonialsSection from "@/components/TestimonialsSection";
+import ROICalculator from "@/components/ROICalculator";
+import CompetitorComparison from "@/components/CompetitorComparison";
+import SocialProofNotification from "@/components/SocialProofNotification";
+import GuaranteeSection from "@/components/GuaranteeSection";
+import BeforeAfterSection from "@/components/BeforeAfterSection";
 import { ArrowRight, CheckCircle2, Star, Users, Bot, Mic, ShieldCheck, Zap, Globe, BrainCircuit, Sparkles } from "lucide-react";
 import { TrackedLink } from "@/components/ui/tracked-elements";
 
@@ -307,6 +313,25 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ROI Calculator */}
+      <section className="py-16 md:py-24 bg-gradient-to-b from-white to-blue-50">
+        <div className="container mx-auto px-4 max-w-4xl">
+          <ROICalculator />
+        </div>
+      </section>
+
+      {/* Testimonials */}
+      <TestimonialsSection />
+
+      {/* Competitor Comparison */}
+      <CompetitorComparison />
+
+      {/* Before/After Examples */}
+      <BeforeAfterSection />
+
+      {/* Guarantee Section */}
+      <GuaranteeSection />
+
       {/* Quick Start Templates */}
       <section className="py-24 bg-background">
         <div className="container mx-auto px-4 max-w-6xl">
@@ -356,6 +381,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Social Proof Notification */}
+      <SocialProofNotification />
 
       {/* CTA Section */}
       <section className="py-32 relative overflow-hidden">
