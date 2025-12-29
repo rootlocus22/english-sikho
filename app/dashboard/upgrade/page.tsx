@@ -204,7 +204,7 @@ export default function UpgradePage() {
                 prefill: {
                     email: userData?.email || '',
                     name: userData?.displayName || '',
-                    contact: userData?.phoneNumber || '', // Add phone if available
+                    contact: '', // Phone number can be added by user in Razorpay modal
                 },
                 theme: {
                     color: '#2563eb',
