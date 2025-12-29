@@ -20,15 +20,15 @@ export default function ROICalculator() {
     return (
         <Card className="bg-gradient-to-br from-green-50 to-emerald-50 border-2 border-green-200">
             <CardHeader>
-                <div className="flex items-center gap-3 mb-2">
-                    <div className="p-2 bg-green-100 rounded-lg">
-                        <TrendingUp className="w-6 h-6 text-green-600" />
+                <div className="flex items-center gap-2 sm:gap-3 mb-2">
+                    <div className="p-1.5 sm:p-2 bg-green-100 rounded-lg">
+                        <TrendingUp className="w-5 h-5 sm:w-6 sm:h-6 text-green-600" />
                     </div>
-                    <CardTitle className="text-2xl font-bold text-slate-900">
+                    <CardTitle className="text-xl sm:text-2xl font-bold text-slate-900">
                         Calculate Your ROI
                     </CardTitle>
                 </div>
-                <p className="text-slate-600">
+                <p className="text-sm sm:text-base text-slate-600">
                     See how improving English can boost your salary
                 </p>
             </CardHeader>
@@ -69,34 +69,34 @@ export default function ROICalculator() {
                     </div>
                 </div>
 
-                <div className="bg-white rounded-xl p-6 border-2 border-green-200 space-y-4">
-                    <div className="flex items-center justify-between">
-                        <span className="text-slate-600">Potential Salary Increase</span>
-                        <span className="text-2xl font-bold text-green-600">
+                <div className="bg-white rounded-xl p-4 sm:p-6 border-2 border-green-200 space-y-4">
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+                        <span className="text-sm sm:text-base text-slate-600">Potential Salary Increase</span>
+                        <span className="text-xl sm:text-2xl font-bold text-green-600">
                             +₹{annualIncrease.toLocaleString('en-IN')}/year
                         </span>
                     </div>
-                    <div className="flex items-center justify-between">
-                        <span className="text-slate-600">Total Increase ({years} {years === 1 ? 'year' : 'years'})</span>
-                        <span className="text-2xl font-bold text-green-700">
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+                        <span className="text-sm sm:text-base text-slate-600">Total Increase ({years} {years === 1 ? 'year' : 'years'})</span>
+                        <span className="text-xl sm:text-2xl font-bold text-green-700">
                             ₹{totalIncrease.toLocaleString('en-IN')}
                         </span>
                     </div>
                     <div className="border-t border-slate-200 pt-4">
-                        <div className="flex items-center justify-between mb-2">
-                            <span className="text-slate-600">Investment (EnglishGyani Pro)</span>
-                            <span className="text-lg font-semibold text-slate-700">
+                        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-2">
+                            <span className="text-sm sm:text-base text-slate-600">Investment (EnglishGyani Pro)</span>
+                            <span className="text-base sm:text-lg font-semibold text-slate-700">
                                 ₹{investment.toLocaleString('en-IN')}
                             </span>
                         </div>
-                        <div className="flex items-center justify-between pt-4 border-t border-green-200">
-                            <span className="text-lg font-bold text-slate-900">Net Return</span>
-                            <span className="text-3xl font-bold text-green-600">
+                        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 pt-4 border-t border-green-200">
+                            <span className="text-base sm:text-lg font-bold text-slate-900">Net Return</span>
+                            <span className="text-2xl sm:text-3xl font-bold text-green-600">
                                 ₹{roi.toLocaleString('en-IN')}
                             </span>
                         </div>
-                        <div className="mt-2 text-right">
-                            <span className="text-sm text-green-600 font-semibold">
+                        <div className="mt-2 text-left sm:text-right">
+                            <span className="text-xs sm:text-sm text-green-600 font-semibold">
                                 {roiPercent > 0 ? '+' : ''}{roiPercent}% ROI
                             </span>
                         </div>

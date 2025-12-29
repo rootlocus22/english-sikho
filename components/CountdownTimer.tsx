@@ -30,23 +30,23 @@ export default function CountdownTimer() {
     }, []);
 
     return (
-        <Card className="bg-gradient-to-r from-red-500 to-orange-500 text-white border-none p-4">
-            <div className="flex items-center justify-center gap-4">
-                <span className="text-sm font-semibold">⚡ Limited Time Offer Ends In:</span>
-                <div className="flex items-center gap-2">
-                    <div className="bg-white/20 rounded-lg px-3 py-2 min-w-[50px] text-center">
-                        <div className="text-2xl font-bold">{String(timeLeft.hours).padStart(2, '0')}</div>
-                        <div className="text-xs opacity-90">Hours</div>
+        <Card className="bg-gradient-to-r from-red-500 to-orange-500 text-white border-none p-3 md:p-4">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4">
+                <span className="text-xs sm:text-sm font-semibold text-center sm:text-left">⚡ Limited Time Offer Ends In:</span>
+                <div className="flex items-center gap-1 sm:gap-2">
+                    <div className="bg-white/20 rounded-lg px-2 sm:px-3 py-1.5 sm:py-2 min-w-[45px] sm:min-w-[50px] text-center">
+                        <div className="text-lg sm:text-2xl font-bold">{String(timeLeft.hours).padStart(2, '0')}</div>
+                        <div className="text-[10px] sm:text-xs opacity-90">Hrs</div>
                     </div>
-                    <span className="text-xl font-bold">:</span>
-                    <div className="bg-white/20 rounded-lg px-3 py-2 min-w-[50px] text-center">
-                        <div className="text-2xl font-bold">{String(timeLeft.minutes).padStart(2, '0')}</div>
-                        <div className="text-xs opacity-90">Minutes</div>
+                    <span className="text-lg sm:text-xl font-bold">:</span>
+                    <div className="bg-white/20 rounded-lg px-2 sm:px-3 py-1.5 sm:py-2 min-w-[45px] sm:min-w-[50px] text-center">
+                        <div className="text-lg sm:text-2xl font-bold">{String(timeLeft.minutes).padStart(2, '0')}</div>
+                        <div className="text-[10px] sm:text-xs opacity-90">Min</div>
                     </div>
-                    <span className="text-xl font-bold">:</span>
-                    <div className="bg-white/20 rounded-lg px-3 py-2 min-w-[50px] text-center">
-                        <div className="text-2xl font-bold">{String(timeLeft.seconds).padStart(2, '0')}</div>
-                        <div className="text-xs opacity-90">Seconds</div>
+                    <span className="text-lg sm:text-xl font-bold">:</span>
+                    <div className="bg-white/20 rounded-lg px-2 sm:px-3 py-1.5 sm:py-2 min-w-[45px] sm:min-w-[50px] text-center">
+                        <div className="text-lg sm:text-2xl font-bold">{String(timeLeft.seconds).padStart(2, '0')}</div>
+                        <div className="text-[10px] sm:text-xs opacity-90">Sec</div>
                     </div>
                 </div>
             </div>

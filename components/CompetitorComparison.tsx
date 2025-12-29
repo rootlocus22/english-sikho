@@ -90,7 +90,8 @@ export default function CompetitorComparison() {
                     </p>
                 </div>
 
-                <div className="overflow-x-auto">
+                {/* Desktop Table View */}
+                <div className="hidden md:block overflow-x-auto">
                     <div className="min-w-[800px]">
                         <table className="w-full bg-white rounded-xl border-2 border-slate-200 shadow-lg overflow-hidden">
                             <thead>
@@ -129,6 +130,39 @@ export default function CompetitorComparison() {
                             </tbody>
                         </table>
                     </div>
+                </div>
+
+                {/* Mobile Card View */}
+                <div className="md:hidden space-y-4">
+                    {competitors.map((comp, i) => (
+                        <Card key={i} className={`p-4 ${comp.highlight ? 'border-2 border-blue-600 bg-blue-50' : 'border-2 border-slate-200'}`}>
+                            <div className={`text-center mb-4 pb-4 border-b ${comp.highlight ? 'border-blue-200' : 'border-slate-200'}`}>
+                                <h3 className={`text-lg font-bold ${comp.highlight ? 'text-blue-900' : 'text-slate-900'}`}>
+                                    {comp.name}
+                                </h3>
+                                <p className={`text-sm mt-1 ${comp.highlight ? 'text-blue-700' : 'text-slate-600'}`}>
+                                    {comp.price}
+                                </p>
+                                {comp.highlight && (
+                                    <span className="inline-block mt-2 px-3 py-1 bg-blue-600 text-white text-xs font-bold rounded-full">
+                                        BEST VALUE
+                                    </span>
+                                )}
+                            </div>
+                            <div className="space-y-3">
+                                {Object.entries(featureLabels).map(([key, label]) => (
+                                    <div key={key} className="flex items-center justify-between">
+                                        <span className="text-sm text-slate-700">{label}</span>
+                                        {comp.features[key as keyof typeof comp.features] ? (
+                                            <Check className="w-5 h-5 text-green-600" />
+                                        ) : (
+                                            <X className="w-5 h-5 text-slate-300" />
+                                        )}
+                                    </div>
+                                ))}
+                            </div>
+                        </Card>
+                    ))}
                 </div>
 
                 <div className="mt-12 grid md:grid-cols-3 gap-6">
