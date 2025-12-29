@@ -10,8 +10,10 @@ import OnboardingBanner from "@/components/onboarding/OnboardingBanner";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { TrackedLink } from "@/components/ui/tracked-elements";
-import { ArrowRight, BookOpen, Trophy, Zap, ExternalLink, Mail } from "lucide-react";
+import { ArrowRight, BookOpen, Trophy, Zap, ExternalLink, Mail, Flame } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
+import DailyGoals from "@/components/DailyGoals";
+import QuickActions from "@/components/QuickActions";
 
 // Feature mapping for personalized recommendations
 const featureMap: Record<string, { title: string; href: string; description: string; icon: any }> = {
@@ -73,7 +75,7 @@ const featureMap: Record<string, { title: string; href: string; description: str
 
 export default function DashboardPage() {
     const router = useRouter();
-    const { userId } = useUserStore();
+    const { userId, userData } = useUserStore();
     const [profile, setProfile] = useState<UserProfile | null>(null);
     const [loading, setLoading] = useState(true);
 
@@ -145,6 +147,47 @@ export default function DashboardPage() {
                     <VoiceSettings />
                 </div>
             </div>
+
+            {/* Daily Goals & Streak */}
+            {userId && (
+                <div className="grid md:grid-cols-2 gap-4">
+                    <DailyGoals />
+                    <Card className="bg-gradient-to-br from-orange-50 to-red-50 dark:from-orange-950 dark:to-red-950 border-orange-200">
+                        <div className="p-4 sm:p-6">
+                            <div className="flex items-center justify-between mb-4">
+                                <div className="flex items-center gap-2 sm:gap-3">
+                                    <div className="p-2 sm:p-3 bg-orange-100 dark:bg-orange-900 rounded-lg">
+                                        <Flame className="w-5 h-5 sm:w-6 sm:h-6 text-orange-600 dark:text-orange-300" />
+                                    </div>
+                                    <div>
+                                        <h3 className="font-bold text-base sm:text-lg">Current Streak</h3>
+                                        <p className="text-xs sm:text-sm text-muted-foreground">Keep practicing daily!</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="text-center py-3 sm:py-4">
+                                <div className="text-4xl sm:text-5xl font-bold text-orange-600 mb-2">
+                                    {userData?.currentStreak || 0}
+                                </div>
+                                <p className="text-xs sm:text-sm text-muted-foreground">Days in a row</p>
+                            </div>
+                            {userData && userData.currentStreak && userData.currentStreak > 0 && (
+                                <div className="mt-3 sm:mt-4 pt-3 sm:pt-4 border-t">
+                                    <p className="text-xs text-muted-foreground text-center">
+                                        🔥 {userData.currentStreak === 1 ? 'Great start!' : 
+                                            userData.currentStreak < 7 ? 'Keep it going!' :
+                                            userData.currentStreak < 30 ? 'You\'re on fire!' :
+                                            'Incredible dedication!'}
+                                    </p>
+                                </div>
+                            )}
+                        </div>
+                    </Card>
+                </div>
+            )}
+
+            {/* Quick Actions */}
+            <QuickActions />
 
             {/* Personalized Recommendations */}
             {profile && recommendedFeatures.length > 0 && (

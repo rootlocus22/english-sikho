@@ -10,6 +10,7 @@ import { Progress } from "@/components/ui/progress";
 import { TrackedLink } from "@/components/ui/tracked-elements";
 import { ArrowRight, BookOpen, Trophy, Zap, Star } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import DailyWordChallenge from "@/components/DailyWordChallenge";
 
 export default function VocabularyPage() {
     const { userId } = useUserStore();
@@ -71,25 +72,8 @@ export default function VocabularyPage() {
                 <Progress value={progress} className="h-3" />
             </Card>
 
-            {/* Daily Word */}
-            <Card className="p-6 bg-gradient-to-r from-blue-600 to-purple-600 text-white">
-                <div className="flex items-start justify-between">
-                    <div>
-                        <div className="flex items-center gap-2 mb-2">
-                            <Zap className="w-5 h-5" />
-                            <span className="font-medium">Word of the Day</span>
-                        </div>
-                        <h3 className="text-3xl font-bold mb-2">Stakeholder</h3>
-                        <p className="text-white/90 mb-4">
-                            A person or group with an interest in a company's success
-                        </p>
-                    </div>
-                    <Button variant="secondary">
-                        Learn Now
-                        <ArrowRight className="w-4 h-4 ml-2" />
-                    </Button>
-                </div>
-            </Card>
+            {/* Daily Word - Interactive */}
+            <DailyWordChallenge />
 
             {/* Categories */}
             <div className="space-y-6">

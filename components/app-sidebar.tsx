@@ -78,6 +78,34 @@ const learningFeatures = [
         icon: Mail,
         creditCost: 2,
     },
+    {
+        title: "MTI Pronunciation Drills",
+        titleHindi: "Awaaz Sudharo",
+        url: "/dashboard/mti-drills",
+        icon: Mic,
+        creditCost: 2,
+    },
+    {
+        title: "Quick Reference",
+        titleHindi: "Jaldi Dhundho",
+        url: "/dashboard/quick-reference",
+        icon: BookOpen,
+        creditCost: 0,
+    },
+    {
+        title: "Common Mistakes",
+        titleHindi: "Galtiyan Seekho",
+        url: "/dashboard/common-mistakes",
+        icon: BookOpen,
+        creditCost: 0,
+    },
+    {
+        title: "Thinking in English",
+        titleHindi: "English Mein Socho",
+        url: "/dashboard/thinking-english",
+        icon: Brain,
+        creditCost: 0,
+    },
 ];
 
 // Menu items for tools
