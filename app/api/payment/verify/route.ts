@@ -84,13 +84,48 @@ export async function POST(req: NextRequest) {
                     });
 
                     console.log("Payment logged and user updated successfully");
-                } catch (dbError) {
+                } catch (dbError: any) {
                     console.error("Firestore Update Error:", dbError);
+                    // Log to payment_logs even if user update fails
+                    try {
+                        const { adminDb } = await import("@/lib/firebase-admin");
+                        if (adminDb) {
+                            await adminDb.collection("payment_logs").doc(razorpay_payment_id).set({
+                                userId,
+                                orderId: razorpay_order_id,
+                                razorpayPaymentId: razorpay_payment_id,
+                                razorpayOrderId: razorpay_order_id,
+                                razorpaySignature: razorpay_signature,
+                                amount: amount || 299,
+                                currency: 'INR',
+                                status: 'success',
+                                tier: tier || 'pro',
+                                duration: duration || 'monthly',
+                                timestamp: new Date().toISOString(),
+                                error: dbError.message,
+                                metadata: {
+                                    error: 'User update failed but payment verified'
+                                }
+                            }, { merge: true });
+                        }
+                    } catch (logError) {
+                        console.error("Failed to log payment error:", logError);
+                    }
+                    // Still return success since payment was verified
                 }
             }
 
-            return NextResponse.json({ status: "success", message: "Payment verified" });
+            return NextResponse.json({ 
+                status: "success", 
+                message: "Payment verified",
+                payment_id: razorpay_payment_id
+            });
         } else {
+            console.error("Payment signature verification failed", {
+                order_id: razorpay_order_id,
+                payment_id: razorpay_payment_id,
+                userId
+            });
             return NextResponse.json(
                 { status: "failure", message: "Invalid signature" },
                 { status: 400 }

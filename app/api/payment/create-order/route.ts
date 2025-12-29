@@ -24,23 +24,35 @@ export async function POST(req: NextRequest) {
         if (userId) {
             try {
                 const { adminDb } = await import("@/lib/firebase-admin");
-                await adminDb?.collection("payment_logs").doc(order.id).set({
-                    userId,
-                    orderId: order.id,
-                    razorpayOrderId: order.id,
-                    amount,
-                    currency,
-                    status: 'pending',
-                    tier: tier || 'pro',
-                    duration: duration || 'monthly',
-                    timestamp: new Date().toISOString(),
-                    metadata: {}
-                });
+                if (adminDb) {
+                    await adminDb.collection("payment_logs").doc(order.id).set({
+                        userId,
+                        orderId: order.id,
+                        razorpayOrderId: order.id,
+                        amount,
+                        currency,
+                        status: 'pending',
+                        tier: tier || 'pro',
+                        duration: duration || 'monthly',
+                        timestamp: new Date().toISOString(),
+                        metadata: {
+                            createdAt: new Date().toISOString()
+                        }
+                    });
+                }
             } catch (logError) {
                 console.error("Payment log error:", logError);
                 // Don't fail the order creation if logging fails
             }
         }
+
+        console.log("Order created successfully:", {
+            orderId: order.id,
+            amount,
+            userId,
+            tier,
+            duration
+        });
 
         return NextResponse.json(order);
     } catch (error: any) {
