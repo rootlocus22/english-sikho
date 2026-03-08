@@ -57,15 +57,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ]
 
     // Blog pages (SEO content) - dynamic from markdown
+    const blogSlugs = new Set(blogPosts.map((p) => p.slug))
     const blogPages: MetadataRoute.Sitemap = blogPosts.map((post) => ({
         url: `${baseUrl}/learn/${post.slug}`,
-        lastModified: now, // Could ideally read file mtime
+        lastModified: now,
         changeFrequency: 'monthly' as const,
         priority: 0.8,
     }))
 
-    // Topic pages (Programmatic SEO - Keywords)
-    const topicPages: MetadataRoute.Sitemap = SEO_KEYWORDS.map((item) => ({
+    // Topic pages (Programmatic SEO - Keywords); skip slugs that exist as blog posts to avoid duplicate URLs
+    const topicPages: MetadataRoute.Sitemap = SEO_KEYWORDS.filter((item) => !blogSlugs.has(item.slug)).map((item) => ({
         url: `${baseUrl}/learn/${item.slug}`,
         lastModified: now,
         changeFrequency: 'weekly' as const,

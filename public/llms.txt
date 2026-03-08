@@ -1,0 +1,45 @@
+# EnglishGyani
+
+> AI-powered English coaching for Indian professionals. Practice speaking, writing, corporate communication, and interviews with personalized AI feedback. Built for India: supports Hindi/Tamil, MTI (Mother Tongue Influence) drills, and real office scenarios. Free to start; Pro from ₹499/month.
+
+Key facts:
+- Product: Speaking Coach, Practice Gym (roleplay), Interview Prep, Email Course, Grammar, Vocabulary, MTI pronunciation drills
+- Content: Learning hub (guides + topic pages), Business English dictionary (words with Hindi/Tamil meanings), Corporate phrasebook (professional phrases)
+- Tools: Self-introduction generator, interview Q&A pages, email templates (sick leave, resignation, salary negotiation, leave request, apology to client)
+- Company: EnglishGyani EdTech Pvt Ltd. India-focused; no refunds (digital product).
+
+## Product
+
+- [Home](https://www.englishgyani.com): Main landing and signup
+- [Features](https://www.englishgyani.com/features): Product features and differentiators
+- [Pricing](https://www.englishgyani.com/pricing): Plans, FAQ, refund policy summary
+- [Login](https://www.englishgyani.com/login): Sign in
+
+## Learning content
+
+- [English Learning Hub](https://www.englishgyani.com/learn): Guides and topic pages for corporate English, Hinglish-to-English, fluency
+- [Business English Dictionary](https://www.englishgyani.com/meaning): Essential business words with Hindi & Tamil meanings and pronunciation
+- [Corporate Phrasebook](https://www.englishgyani.com/corporate-phrasebook): Professional phrases and usage for office communication
+
+## Tools & templates
+
+- [Self Introduction Generator](https://www.englishgyani.com/tools/self-introduction-generator): AI-generated self-intro for interviews
+- [Why Should We Hire You](https://www.englishgyani.com/interview/why-should-we-hire-you): Interview answer guide
+- [Strengths and Weaknesses](https://www.englishgyani.com/interview/strengths-and-weaknesses): Interview answer guide
+- [Top 10 Interview Questions](https://www.englishgyani.com/interview/top-10-interview-questions)
+- [Sick Leave Email](https://www.englishgyani.com/templates/sick-leave-email): Template and generator
+- [Resignation Letter Generator](https://www.englishgyani.com/templates/resignation-letter-generator)
+- [Salary Negotiation Email](https://www.englishgyani.com/templates/salary-negotiation-email)
+- [Request for Leave](https://www.englishgyani.com/templates/request-for-leave)
+- [Apology Letter to Client](https://www.englishgyani.com/templates/apology-letter-to-client)
+
+## Contact
+
+- Support / general: contact page and WhatsApp linked from [Contact](https://www.englishgyani.com/contact)
+- Email: partners@englishgyani.com (partnerships), corporate@englishgyani.com (B2B), careers@englishgyani.com (jobs)
+- WhatsApp: +91 8431256903 (linked from site footer and contact page)
+
+## Optional
+
+- [Refund Policy](https://www.englishgyani.com/refund-policy): No refunds; digital product
+- [Sitemap](https://www.englishgyani.com/sitemap.xml): Full list of indexable URLs

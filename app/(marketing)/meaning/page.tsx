@@ -4,11 +4,18 @@ import { Metadata } from 'next';
 import { Book, BookOpen, Languages, Search, CheckCircle2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
+const wordCount = VERNACULAR_DICTIONARY.length;
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.englishgyani.com';
+
 export const metadata: Metadata = {
-    title: "Business English Dictionary - 127 Words in Hindi & Tamil | EnglishGyani",
-    description: "Learn 127 essential business English words with meanings in Hindi and Tamil. Complete pronunciation guide, examples, and usage tips for Indian professionals.",
-    alternates: {
-        canonical: '/meaning',
+    title: `Business English Dictionary - ${wordCount} Words in Hindi & Tamil | EnglishGyani`,
+    description: `Learn ${wordCount} essential business English words with meanings in Hindi and Tamil. Complete pronunciation guide, examples, and usage tips for Indian professionals.`,
+    alternates: { canonical: `${baseUrl}/meaning` },
+    openGraph: {
+        title: `Business English Dictionary - ${wordCount} Words | EnglishGyani`,
+        description: `Learn ${wordCount} essential business English words with meanings in Hindi and Tamil. Free for Indian professionals.`,
+        url: `${baseUrl}/meaning`,
+        type: 'website',
     },
     keywords: [
         'business English dictionary',
@@ -16,7 +23,7 @@ export const metadata: Metadata = {
         'English words meaning in Hindi',
         'English words meaning in Tamil',
         'business English India',
-        'professional vocabulary'
+        'professional vocabulary',
     ],
 };
 
@@ -51,7 +58,7 @@ export default function DictionaryHub() {
                 <div className="container mx-auto px-4 text-center max-w-5xl relative z-20">
                     <div className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-purple-50 text-purple-600 text-sm font-bold mb-6 border border-purple-200">
                         <BookOpen className="w-4 h-4" />
-                        <span>127 Business Words | Hindi + Tamil</span>
+                        <span>{wordCount} Business Words | Hindi + Tamil</span>
                     </div>
 
                     <h1 className="text-4xl sm:text-5xl md:text-7xl font-extrabold tracking-tight text-foreground mb-6 md:mb-8 leading-[1.15] md:leading-[1.1]">
@@ -60,7 +67,7 @@ export default function DictionaryHub() {
                     </h1>
 
                     <p className="text-lg md:text-2xl text-muted-foreground mb-8 md:mb-12 max-w-3xl mx-auto leading-relaxed px-2">
-                        <strong>127 essential corporate words</strong> with meanings in Hindi & Tamil, pronunciation guides, and real business examples.
+                        <strong>{wordCount} essential corporate words</strong> with meanings in Hindi & Tamil, pronunciation guides, and real business examples.
                     </p>
 
                     <div className="flex flex-col sm:flex-row justify-center gap-4 mb-12 px-4 sm:px-0">
@@ -160,7 +167,7 @@ export default function DictionaryHub() {
                             Many professionals struggle with corporate jargon and formal terminology, leading to miscommunication and missed opportunities.
                         </p>
                         <p className="text-lg text-slate-700 leading-relaxed">
-                            Our dictionary helps you master 127 essential words across three categories:
+                            Our dictionary helps you master {wordCount} essential words across three categories:
                         </p>
                         <ul className="space-y-3">
                             <li className="text-lg"><strong>Business Nouns ({counts.noun})</strong>: Key concepts like Milestone, Synergy, Compliance, Revenue, Strategy</li>
@@ -199,7 +206,7 @@ export default function DictionaryHub() {
                         Master Business Vocabulary
                     </h2>
                     <p className="text-xl text-purple-100 mb-10 max-w-2xl mx-auto">
-                        127 words × Daily practice = Corporate communication confidence. Start learning today!
+                        {wordCount} words × Daily practice = Corporate communication confidence. Start learning today!
                     </p>
                     <div className="flex flex-col sm:flex-row justify-center gap-4">
                         <Link href="/signup">

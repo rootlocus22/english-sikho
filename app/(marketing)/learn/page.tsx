@@ -1,10 +1,22 @@
 import { getSortedPostsData } from '@/lib/blog';
+import { SEO_KEYWORDS } from '@/data/seo-keywords';
 import Link from 'next/link';
 import { format } from 'date-fns';
+import type { Metadata } from 'next';
 
-export const metadata = {
-    title: 'English Learning Hub | EnglishGyani',
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.englishgyani.com';
+
+export const metadata: Metadata = {
+    title: 'English Learning Hub',
     description: 'Master Corporate English, Email Writing, and more with our expert guides for Indian professionals.',
+    alternates: { canonical: `${baseUrl}/learn` },
+    openGraph: {
+        title: 'English Learning Hub | EnglishGyani',
+        description: 'Master Corporate English, Email Writing, and more with our expert guides for Indian professionals.',
+        url: `${baseUrl}/learn`,
+        type: 'website',
+    },
+    keywords: ['English learning', 'Corporate English', 'Email writing', 'English guides', 'Indian professionals', 'Hinglish to English'],
 };
 
 export default function LearnPage() {
@@ -54,6 +66,33 @@ export default function LearnPage() {
                     <div className="text-center py-12">
                         <p className="text-slate-500">New content coming soon! Check back later.</p>
                     </div>
+                )}
+
+                {/* Programmatic topic guides - internal linking for SEO */}
+                {SEO_KEYWORDS.length > 0 && (
+                    <section className="mt-16 pt-16 border-t border-slate-200">
+                        <h2 className="text-2xl font-bold text-slate-900 mb-2">Explore by topic</h2>
+                        <p className="text-slate-600 mb-6 max-w-2xl">
+                            Practical guides on spoken English, courses, writing, and more—curated for Indian professionals.
+                        </p>
+                        <ul className="grid gap-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+                            {SEO_KEYWORDS.slice(0, 32).map((item) => (
+                                <li key={item.slug}>
+                                    <Link
+                                        href={`/learn/${item.slug}`}
+                                        className="text-slate-700 hover:text-blue-600 hover:underline text-sm"
+                                    >
+                                        {item.title}
+                                    </Link>
+                                </li>
+                            ))}
+                        </ul>
+                        {SEO_KEYWORDS.length > 32 && (
+                            <p className="mt-4 text-slate-500 text-sm">
+                                +{SEO_KEYWORDS.length - 32} more topics — use search or browse below.
+                            </p>
+                        )}
+                    </section>
                 )}
             </div>
         </div>
