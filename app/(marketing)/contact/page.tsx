@@ -104,15 +104,15 @@ export default function ContactPage() {
                                 </p>
                             </div>
                             <div className="p-4 border border-slate-200 rounded-lg">
-                                <h4 className="font-bold text-slate-900">How to cancel my subscription?</h4>
+                                <h4 className="font-bold text-slate-900">Is it a one-time payment? Will any money be auto-deducted?</h4>
                                 <p className="text-slate-600 text-sm mt-1">
-                                    Go to Dashboard Settings Billing. Click on "Cancel Plan". Your access will continue until the billing cycle ends.
+                                    Yes — one-time payment only. You pay once for the plan you choose (1 month, 3 months, or 1 year). No money is auto-deducted later. No surprise charges. We don&apos;t save your card for future payments.
                                 </p>
                             </div>
                             <div className="p-4 border border-slate-200 rounded-lg">
                                 <h4 className="font-bold text-slate-900">Do you offer refunds?</h4>
                                 <p className="text-slate-600 text-sm mt-1">
-                                    Yes, we offer a 7-day money-back guarantee for all new subscriptions. Email us if you are not satisfied.
+                                    No. EnglishGyani is a digital product. All sales are final. We do not offer refunds once you have purchased and accessed the service. See our <a href="/refund-policy" className="text-blue-600 hover:underline">Refund Policy</a> for full details.
                                 </p>
                             </div>
                             <div className="p-4 border border-slate-200 rounded-lg">

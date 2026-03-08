@@ -18,12 +18,12 @@ export default function PricingPage() {
             {
                 "@type": "Question",
                 "name": "Can I get a refund?",
-                "acceptedAnswer": { "@type": "Answer", "text": "Yes, if you are not satisfied, you can request a full refund within 7 days. No questions asked." }
+                "acceptedAnswer": { "@type": "Answer", "text": "No. EnglishGyani is a digital product. All sales are final. We do not offer refunds once you have purchased and accessed the service. See our Refund Policy for details." }
             },
             {
                 "@type": "Question",
-                "name": "Can I cancel anytime?",
-                "acceptedAnswer": { "@type": "Answer", "text": "Absolutely. You can cancel your subscription anytime from your dashboard." }
+                "name": "Is it a one-time payment? Will any money be auto-deducted?",
+                "acceptedAnswer": { "@type": "Answer", "text": "Yes. You pay once for the plan you choose (e.g. 1 month, 3 months, or 1 year). No money is auto-deducted later. No surprise charges. No subscription renewal unless you choose to buy again." }
             }
         ]
     };
@@ -44,8 +44,11 @@ export default function PricingPage() {
                         <h1 className="text-3xl md:text-5xl font-bold text-slate-900 mb-4">
                             English Seekho, <span className="text-blue-600">Chai ke daam mein!</span> ☕
                         </h1>
-                        <p className="text-lg md:text-xl text-slate-600 mb-8">
+                        <p className="text-lg md:text-xl text-slate-600 mb-4">
                             97% cheaper than coaching. Unlimited practice. Real results.
+                        </p>
+                        <p className="text-sm font-semibold text-green-700 bg-green-50 border border-green-200 rounded-lg px-4 py-2 inline-block mb-8">
+                            ✓ One-time payment only • No auto-deduction • No surprise charges
                         </p>
 
                         {/* Duration Toggle - Updated for single row on mobile */}
@@ -174,6 +177,9 @@ export default function PricingPage() {
                             >
                                 Get Started
                             </TrackedLink>
+                            <p className="text-xs text-center text-slate-500 mt-3">
+                                One-time payment • No auto-deduction
+                            </p>
                         </div>
 
                         {/* Pro Plan */}
@@ -236,7 +242,7 @@ export default function PricingPage() {
                             </TrackedLink>
 
                             <p className="text-xs text-center text-blue-100 mt-4">
-                                Secure payment via Razorpay • Cancel anytime
+                                One-time payment via Razorpay • No auto-deduction • No surprise charges
                             </p>
                         </div>
                     </div>
@@ -295,8 +301,8 @@ export default function PricingPage() {
                     <div className="max-w-3xl mx-auto mt-12 md:mt-20">
                         <h2 className="text-2xl font-bold text-center mb-8">Frequently Asked Questions</h2>
                         <div className="space-y-4">
-                            <FaqItem q="Kya refund mil sakta hai?" a="Haan, agar aap khush nahi hain toh 7 days ke andar full refund maang sake hain. No questions asked." />
-                            <FaqItem q="Kya main kabhi bhi cancel kar sakta hoon?" a="Bilkul! Aap kabhi bhi cancel kar sakte hain. Quarterly aur yearly plans ka remaining amount refund nahi hoga, but monthly plan kabhi bhi cancel ho sakta hai." />
+                            <FaqItem q="Kya refund mil sakta hai?" a="Nahi. EnglishGyani digital product hai. Purchase ke baad refund nahi milta. Full details Refund Policy mein hai." />
+                            <FaqItem q="Kya ye one-time payment hai? Koi paisa auto deduct hoga?" a="Haan. Aap jis plan ke liye pay karte ho (1 month, 3 months, ya 1 year), sirf utna hi charge hota hai. Baad mein koi paisa auto-deduct nahi hota. No surprise charges. Jab chahe dobara buy karo." />
                             <FaqItem q="Payment methods kya hain?" a="UPI (GPay, PhonePe), Credit/Debit Card, Net Banking - sab chalta hai. Razorpay ke through 100% secure payment." />
                             <FaqItem q="Free vs Starter vs Pro - kya difference hai?" a="Free mein 10 credits milte hain trial ke liye. Starter mein unlimited sessions with basic features. Pro mein everything unlimited plus advanced AI features for interviews and business English." />
                         </div>

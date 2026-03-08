@@ -50,21 +50,28 @@ export default function TermsPage() {
                     </section>
 
                     <section>
-                        <h2 className="text-xl font-semibold text-slate-800 mb-3">4. Intellectual Property</h2>
+                        <h2 className="text-xl font-semibold text-slate-800 mb-3">4. Payments — One-Time Only, No Auto-Deduction</h2>
+                        <p>
+                            All paid plans (Starter, Pro) are <strong>one-time payments</strong>. You pay once for the plan and duration you choose (e.g. 1 month, 3 months, or 1 year). <strong>No money will be auto-deducted after your purchase. No surprise charges.</strong> We do not store your payment method for recurring billing. If you want to extend or renew access after your plan ends, you may purchase again at your discretion. Refunds are not offered for our digital services; see our <Link href="/refund-policy" className="text-blue-600 hover:underline">Refund Policy</Link> for details.
+                        </p>
+                    </section>
+
+                    <section>
+                        <h2 className="text-xl font-semibold text-slate-800 mb-3">5. Intellectual Property</h2>
                         <p>
                             All content, features, and functionality (including our AI models and learning materials) are owned by Nyquist Tech and are protected by copyright and other intellectual property laws.
                         </p>
                     </section>
 
                     <section>
-                        <h2 className="text-xl font-semibold text-slate-800 mb-3">5. Limitation of Liability</h2>
+                        <h2 className="text-xl font-semibold text-slate-800 mb-3">6. Limitation of Liability</h2>
                         <p>
                             EnglishGyani is an educational tool. We are not liable for any consequential damages arising from the use or inability to use our services.
                         </p>
                     </section>
 
                     <section>
-                        <h2 className="text-xl font-semibold text-slate-800 mb-3">6. Contact Us</h2>
+                        <h2 className="text-xl font-semibold text-slate-800 mb-3">7. Contact Us</h2>
                         <p>
                             For any questions regarding these Terms, please contact us at:
                         </p>

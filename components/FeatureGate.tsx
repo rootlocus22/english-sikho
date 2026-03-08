@@ -50,6 +50,7 @@ export function FeatureGate({
                 <p className="text-slate-600 mb-6 max-w-md mx-auto">
                     {featureDescription}. Upgrade to {requiredTier === 'pro' ? 'Pro' : 'Starter'} for unlimited access!
                 </p>
+                <p className="text-xs text-slate-500 mb-4">One-time payment. No auto-deduction. No surprise charges.</p>
                 <Link href="/dashboard/upgrade">
                     <Button className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white">
                         Upgrade to {requiredTier === 'pro' ? 'Pro' : 'Starter'} 🚀

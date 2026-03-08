@@ -476,7 +476,7 @@ export default function UpgradePage() {
                         </Button>
                         <div className="space-y-2">
                             <p className="text-xs text-center text-slate-500">
-                                ✓ Secure payment via Razorpay • No auto-renewal
+                                ✓ One-time payment only • No auto-deduction • No surprise charges
                             </p>
                             <div className="flex items-center justify-center gap-4 text-xs text-slate-400">
                                 <span className="flex items-center gap-1">
@@ -521,10 +521,14 @@ export default function UpgradePage() {
 
             {/* Trust Signals */}
             <div className="text-center space-y-4 pt-4 md:pt-8">
-                <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 text-sm text-slate-600">
+                <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 text-sm text-slate-600 flex-wrap">
                     <span className="flex items-center gap-2">
                         <Check className="w-4 h-4 text-green-600" />
-                        7-day money-back guarantee
+                        One-time payment • No auto-deduction
+                    </span>
+                    <span className="flex items-center gap-2">
+                        <Check className="w-4 h-4 text-green-600" />
+                        Digital product — all sales final
                     </span>
                     <span className="flex items-center gap-2">
                         <Check className="w-4 h-4 text-green-600" />
@@ -627,11 +631,11 @@ export default function UpgradePage() {
                         </div>
                         <div className="flex items-start gap-3 text-sm">
                             <Check className="w-5 h-5 text-green-600 shrink-0 mt-0.5" />
-                            <span>7-day money-back guarantee</span>
+                            <span>Digital product — all sales final (no refunds). See Refund Policy.</span>
                         </div>
                         <div className="flex items-start gap-3 text-sm">
                             <Check className="w-5 h-5 text-green-600 shrink-0 mt-0.5" />
-                            <span>No auto-renewal - cancel anytime</span>
+                            <span>One-time payment only. No money will be auto-deducted. No surprise charges.</span>
                         </div>
                         <div className="flex items-start gap-3 text-sm">
                             <Check className="w-5 h-5 text-green-600 shrink-0 mt-0.5" />

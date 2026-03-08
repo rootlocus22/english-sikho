@@ -67,6 +67,7 @@ export default function CertificatesPage() {
                     >
                         Upgrade to Pro 🚀
                     </Button>
+                    <p className="mt-3 text-sm text-slate-500">One-time payment. No auto-deduction. No surprise charges.</p>
                 </div>
             </div>
         );

@@ -30,17 +30,12 @@ export default function ProfilePage() {
         loadFullProfile();
     }, [userId]);
 
-    const getRenewalDate = () => {
-        if (!fullUserData?.subscription?.renewalDate) return null;
+    const getPlanEndDate = () => {
+        const raw = fullUserData?.subscription?.endDate ?? fullUserData?.subscription?.renewalDate;
+        if (!raw) return null;
         try {
-            // Handle string or Firestore Timestamp
-            const renewalDate = fullUserData.subscription.renewalDate;
-            if (typeof renewalDate === 'string') {
-                return new Date(renewalDate);
-            }
-            if (renewalDate.toDate) {
-                return renewalDate.toDate();
-            }
+            if (typeof raw === 'string') return new Date(raw);
+            if (raw.toDate) return raw.toDate();
             return null;
         } catch {
             return null;
@@ -84,7 +79,7 @@ export default function ProfilePage() {
             {/* Page Header */}
             <div className="-mx-4 -mt-4 border-b border-slate-200 bg-white px-4 py-6 md:px-6 md:py-8">
                 <h1 className="text-2xl font-bold text-slate-900 md:text-3xl">My Profile</h1>
-                <p className="text-sm text-slate-600 md:text-base">Manage your account and subscription</p>
+                <p className="text-sm text-slate-600 md:text-base">Manage your account and plan</p>
             </div>
 
             {/* User Info Card */}
@@ -115,7 +110,7 @@ export default function ProfilePage() {
                     <CardTitle className="flex items-center justify-between">
                         <span className="flex items-center gap-2">
                             <Crown className="w-5 h-5 text-amber-500" />
-                            Subscription Plan
+                            Your Plan
                         </span>
                         {userData?.isPremium ? (
                             <Badge className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white">
@@ -147,18 +142,19 @@ export default function ProfilePage() {
                         </div>
                     </div>
 
-                    {/* Renewal Info for Premium */}
-                    {userData?.isPremium && getRenewalDate() && (
-                        <div className="flex items-start gap-3 p-4 border border-orange-200 bg-orange-50 rounded-lg">
-                            <Calendar className="w-5 h-5 text-orange-600 mt-0.5" />
+                    {/* Plan validity for Premium (one-time payment — no auto-renewal) */}
+                    {userData?.isPremium && getPlanEndDate() && (
+                        <div className="flex items-start gap-3 p-4 border border-slate-200 bg-slate-50 rounded-lg">
+                            <Calendar className="w-5 h-5 text-slate-600 mt-0.5" />
                             <div className="flex-1">
-                                <p className="text-sm font-medium text-orange-900">Next Renewal</p>
-                                <p className="text-orange-700">{formatDate(getRenewalDate())}</p>
+                                <p className="text-sm font-medium text-slate-900">Plan valid until</p>
+                                <p className="text-slate-700">{formatDate(getPlanEndDate())}</p>
                                 {fullUserData?.subscription?.amount && (
-                                    <p className="text-sm text-orange-600 mt-1">
-                                        Amount: ₹{fullUserData.subscription.amount} ({fullUserData.subscription.plan || 'monthly'})
+                                    <p className="text-sm text-slate-600 mt-1">
+                                        One-time payment: ₹{fullUserData.subscription.amount} ({fullUserData.subscription.plan || 'monthly'})
                                     </p>
                                 )}
+                                <p className="text-xs text-slate-500 mt-2">No auto-renewal. No surprise charges. To continue after this date, you can purchase again.</p>
                             </div>
                         </div>
                     )}
@@ -174,6 +170,9 @@ export default function ProfilePage() {
                                     Upgrade to Pro 🚀
                                 </Button>
                             </Link>
+                            <p className="text-xs text-slate-500 mt-3 text-center">
+                                One-time payment. No auto-deduction. No surprise charges.
+                            </p>
                         </div>
                     )}
                 </CardContent>

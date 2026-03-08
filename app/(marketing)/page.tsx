@@ -403,7 +403,7 @@ export default function Home() {
               </Button>
             </TrackedLink>
           </div>
-          <p className="mt-8 text-blue-200/80 text-sm font-medium">No credit card required • Cancel anytime</p>
+          <p className="mt-8 text-blue-200/80 text-sm font-medium">No credit card required • One-time payment • No auto-deduction • No surprise charges</p>
         </div>
       </section>
 

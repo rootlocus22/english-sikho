@@ -153,7 +153,7 @@ export function CreditGate({
 
                         {/* Info */}
                         <p className="text-xs text-gray-500">
-                            💡 Pro members get unlimited access to all features!
+                            💡 One-time payment. No auto-deduction. No surprise charges. Pro members get unlimited access!
                         </p>
                     </div>
                 </Card>
