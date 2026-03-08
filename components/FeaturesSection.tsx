@@ -51,14 +51,14 @@ export default function FeaturesSection() {
             id: "speaking",
             icon: <Mic className="w-8 h-8 text-teal-500" />,
             title: "Apna English Coach",
-            subtitle: "Fix Your Pronunciation",
-            desc: "Speak freely. The AI listens and corrects your grammar instantly. Jeb mein personal tutor rakho.",
+            subtitle: "Fix Pronunciation & Accent",
+            desc: "Speak freely. AI corrects grammar and analyses your accent (MTI patterns). Hear the same sentence in American, British, or Indian accent — compare and improve.",
             image: "/images/speaking-coach-demo.png",
             link: "/dashboard/coach",
             checks: [
-                "Live Grammar Correction",
-                "Pronunciation Analysis",
-                "Fluency Scoring"
+                "Live Grammar & Vocabulary Feedback",
+                "Accent Analysis (MTI patterns, clarity score)",
+                "Hear Your Text in US / UK / Indian / Australian Accent"
             ]
         }
     ];

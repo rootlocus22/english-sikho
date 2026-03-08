@@ -63,7 +63,7 @@ export default function QuickReference() {
         .filter(([category]) => !selectedCategory || category === selectedCategory)
         .map(([category, phrases]) => [
             category,
-            phrases.filter(p => 
+            phrases.filter(p =>
                 p.hindi.toLowerCase().includes(searchQuery.toLowerCase()) ||
                 p.english.toLowerCase().includes(searchQuery.toLowerCase()) ||
                 p.context.toLowerCase().includes(searchQuery.toLowerCase())
@@ -116,54 +116,60 @@ export default function QuickReference() {
 
             {/* Phrases */}
             <div className="space-y-4 sm:space-y-6">
-                {filteredPhrases.map(([category, phrases]) => (
-                    <Card key={category}>
-                        <CardHeader className="p-4 sm:p-6">
-                            <CardTitle className="text-lg sm:text-xl">{category}</CardTitle>
-                        </CardHeader>
-                        <CardContent className="p-4 sm:p-6 pt-0">
-                            <div className="space-y-2 sm:space-y-3">
-                                {phrases.map((phrase, index) => {
-                                    const uniqueIndex = `${category}-${index}`;
-                                    return (
-                                        <div
-                                            key={index}
-                                            className="p-3 sm:p-4 border rounded-lg hover:bg-slate-50 dark:hover:bg-slate-900 transition-colors"
-                                        >
-                                            <div className="flex items-start justify-between gap-2 sm:gap-4">
-                                                <div className="flex-1 space-y-1.5 sm:space-y-2 min-w-0">
-                                                    <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
-                                                        <span className="text-xs sm:text-sm font-medium text-muted-foreground break-words">
-                                                            {phrase.hindi}
-                                                        </span>
-                                                        <Badge variant="outline" className="text-[10px] sm:text-xs shrink-0">
-                                                            {phrase.context}
-                                                        </Badge>
+                {filteredPhrases.map((entry) => {
+                    const category = entry[0] as string;
+                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                    const phrases = entry[1] as any[];
+
+                    return (
+                        <Card key={category}>
+                            <CardHeader className="p-4 sm:p-6">
+                                <CardTitle className="text-lg sm:text-xl">{category}</CardTitle>
+                            </CardHeader>
+                            <CardContent className="p-4 sm:p-6 pt-0">
+                                <div className="space-y-2 sm:space-y-3">
+                                    {phrases.map((phrase, index) => {
+                                        const uniqueIndex = `${category}-${index}`;
+                                        return (
+                                            <div
+                                                key={index}
+                                                className="p-3 sm:p-4 border rounded-lg hover:bg-slate-50 dark:hover:bg-slate-900 transition-colors"
+                                            >
+                                                <div className="flex items-start justify-between gap-2 sm:gap-4">
+                                                    <div className="flex-1 space-y-1.5 sm:space-y-2 min-w-0">
+                                                        <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
+                                                            <span className="text-xs sm:text-sm font-medium text-muted-foreground break-words">
+                                                                {phrase.hindi}
+                                                            </span>
+                                                            <Badge variant="outline" className="text-[10px] sm:text-xs shrink-0">
+                                                                {phrase.context}
+                                                            </Badge>
+                                                        </div>
+                                                        <p className="text-sm sm:text-base font-semibold text-slate-900 dark:text-slate-100 break-words">
+                                                            {phrase.english}
+                                                        </p>
                                                     </div>
-                                                    <p className="text-sm sm:text-base font-semibold text-slate-900 dark:text-slate-100 break-words">
-                                                        {phrase.english}
-                                                    </p>
+                                                    <Button
+                                                        variant="ghost"
+                                                        size="sm"
+                                                        onClick={() => handleCopy(phrase.english, uniqueIndex)}
+                                                        className="shrink-0 h-8 w-8 p-0"
+                                                    >
+                                                        {copiedIndex === uniqueIndex ? (
+                                                            <Check className="w-4 h-4 text-green-600" />
+                                                        ) : (
+                                                            <Copy className="w-4 h-4" />
+                                                        )}
+                                                    </Button>
                                                 </div>
-                                                <Button
-                                                    variant="ghost"
-                                                    size="sm"
-                                                    onClick={() => handleCopy(phrase.english, uniqueIndex)}
-                                                    className="shrink-0 h-8 w-8 p-0"
-                                                >
-                                                    {copiedIndex === uniqueIndex ? (
-                                                        <Check className="w-4 h-4 text-green-600" />
-                                                    ) : (
-                                                        <Copy className="w-4 h-4" />
-                                                    )}
-                                                </Button>
                                             </div>
-                                        </div>
-                                    );
-                                })}
-                            </div>
-                        </CardContent>
-                    </Card>
-                ))}
+                                        );
+                                    })}
+                                </div>
+                            </CardContent>
+                        </Card>
+                    );
+                })}
             </div>
 
             {filteredPhrases.length === 0 && (

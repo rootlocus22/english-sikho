@@ -56,7 +56,8 @@ export default function RefundPolicy() {
                         </p>
                         <p className="mt-4 p-4 bg-slate-50 rounded-lg border border-slate-100">
                             <strong>Contact Support:</strong><br />
-                            Email: <a href="mailto:support@nyquisttech.com" className="text-blue-600 hover:underline">support@nyquisttech.com</a><br />
+                            WhatsApp: <a href="https://wa.me/918431256903?text=Hi%2C%20I%20need%20help%20with%20a%20refund" target="_blank" rel="noopener noreferrer" className="text-green-600 hover:underline font-medium">+91 84312 56903</a> (Fastest)<br />
+                            Email: <a href="mailto:info@nyquisttech.com" className="text-blue-600 hover:underline">info@nyquisttech.com</a><br />
                             Phone: +91 84312 56903<br />
                             Address: Bengaluru, Karnataka, India
                         </p>

@@ -8,9 +8,19 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { TrackedButton, TrackedLink } from "@/components/ui/tracked-elements";
-import { ArrowLeft, ArrowRight, BookOpen, Lightbulb, Mail, Trophy, Eye, EyeOff } from "lucide-react";
+import { ArrowLeft, ArrowRight, BookOpen, Lightbulb, Mail, Trophy, Eye, EyeOff, Sparkles, Loader2 } from "lucide-react";
 import { toast } from "sonner";
 import { notFound } from "next/navigation";
+import { saveProgress, loadProgress } from "@/lib/progress-sync";
+import { Badge } from "@/components/ui/badge";
+
+interface EmailFeedback {
+    score: number;
+    tone: string;
+    grammar: string;
+    structure: string;
+    suggestions: string;
+}
 
 export default function EmailLessonPage({ params }: { params: Promise<{ lessonId: string }> }) {
     const { lessonId } = use(params);
@@ -20,6 +30,8 @@ export default function EmailLessonPage({ params }: { params: Promise<{ lessonId
     const [userEmail, setUserEmail] = useState('');
     const [showSample, setShowSample] = useState(false);
     const [showHints, setShowHints] = useState(false);
+    const [isAnalyzing, setIsAnalyzing] = useState(false);
+    const [feedback, setFeedback] = useState<EmailFeedback | null>(null);
 
     const lesson = getEmailLessonById(lessonId);
 
@@ -27,19 +39,75 @@ export default function EmailLessonPage({ params }: { params: Promise<{ lessonId
         notFound();
     }
 
-    const handleComplete = () => {
-        // Save to localStorage
-        const saved = localStorage.getItem(`email-course-progress-${userId}`);
-        const completed = saved ? JSON.parse(saved) : [];
+    const handleAnalyzeEmail = async () => {
+        if (!userEmail.trim()) return;
+        setIsAnalyzing(true);
+        setFeedback(null);
 
-        if (!completed.includes(lessonId)) {
-            completed.push(lessonId);
-            localStorage.setItem(`email-course-progress-${userId}`, JSON.stringify(completed));
+        try {
+            const response = await fetch('/api/ai/coach', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    ...(userId ? { 'x-user-id': userId } : {}),
+                },
+                body: JSON.stringify({
+                    type: 'tone-rewrite',
+                    input: `EMAIL_EVALUATION
+Lesson: "${lesson.title}"
+Scenario: "${lesson.practice.scenario}"
+User's Email Draft:
+"${userEmail}"
+
+Evaluate this email for: tone (professional?), grammar, structure (subject, greeting, body, closing), and overall quality.
+Score 0-100.
+
+Return JSON:
+{
+  "rewritten": "Score: X/100 | Tone: [feedback] | Grammar: [feedback] | Structure: [feedback] | Tips: [specific improvement suggestions]",
+  "explanation": "Overall assessment"
+}`,
+                    toneLevel: 3,
+                }),
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                const parts = (data.rewritten || '').split('|').map((s: string) => s.trim());
+                const scoreMatch = parts[0]?.match(/(\d+)/);
+
+                setFeedback({
+                    score: scoreMatch ? Math.min(100, parseInt(scoreMatch[1])) : 65,
+                    tone: parts.find((p: string) => p.toLowerCase().startsWith('tone'))?.replace(/^tone:\s*/i, '') || 'Acceptable',
+                    grammar: parts.find((p: string) => p.toLowerCase().startsWith('grammar'))?.replace(/^grammar:\s*/i, '') || 'Review needed',
+                    structure: parts.find((p: string) => p.toLowerCase().startsWith('structure'))?.replace(/^structure:\s*/i, '') || 'Could be improved',
+                    suggestions: parts.find((p: string) => p.toLowerCase().startsWith('tips'))?.replace(/^tips:\s*/i, '') || data.explanation || '',
+                });
+            }
+        } catch (error) {
+            console.error('Failed to analyze email:', error);
+            toast.error('Could not analyze your email. Please try again.');
+        } finally {
+            setIsAnalyzing(false);
+        }
+    };
+
+    const handleComplete = async () => {
+        if (userId) {
+            const progress = await loadProgress(userId);
+            const completed = [...new Set([...progress.emailCourseCompleted, lessonId])];
+            await saveProgress(userId, { emailCourseCompleted: completed });
+        } else {
+            const saved = localStorage.getItem(`email-course-progress-${userId}`);
+            const completed = saved ? JSON.parse(saved) : [];
+            if (!completed.includes(lessonId)) {
+                completed.push(lessonId);
+                localStorage.setItem(`email-course-progress-${userId}`, JSON.stringify(completed));
+            }
         }
 
-        toast.success("🎉 Lesson completed!");
+        toast.success("Lesson completed!");
 
-        // Find next lesson
         const currentIndex = emailLessons.findIndex(l => l.id === lessonId);
         if (currentIndex < emailLessons.length - 1) {
             const nextLesson = emailLessons[currentIndex + 1];
@@ -159,6 +227,51 @@ export default function EmailLessonPage({ params }: { params: Promise<{ lessonId
                         Try writing the email yourself before viewing the sample.
                     </p>
                 </div>
+
+                {/* AI Feedback Button */}
+                {userEmail.trim().length > 20 && (
+                    <Button
+                        onClick={handleAnalyzeEmail}
+                        variant="outline"
+                        className="w-full border-purple-200 text-purple-700 hover:bg-purple-50"
+                        disabled={isAnalyzing}
+                    >
+                        {isAnalyzing ? (
+                            <><Loader2 className="w-4 h-4 mr-2 animate-spin" />Analyzing Your Email...</>
+                        ) : (
+                            <><Sparkles className="w-4 h-4 mr-2" />Get AI Feedback on Your Email</>
+                        )}
+                    </Button>
+                )}
+
+                {/* AI Feedback */}
+                {feedback && (
+                    <div className="space-y-3 border-2 border-purple-200 rounded-lg p-4 bg-purple-50/50 dark:bg-purple-950/50">
+                        <div className="flex items-center gap-2">
+                            <Sparkles className="w-5 h-5 text-purple-600" />
+                            <h3 className="font-bold text-purple-900 dark:text-purple-200">AI Feedback</h3>
+                            <Badge variant={feedback.score >= 70 ? 'default' : 'secondary'}>
+                                {feedback.score}/100
+                            </Badge>
+                        </div>
+                        <div className="grid gap-2 text-sm">
+                            <div className="bg-white dark:bg-slate-900 rounded p-3">
+                                <span className="font-semibold">Tone: </span>{feedback.tone}
+                            </div>
+                            <div className="bg-white dark:bg-slate-900 rounded p-3">
+                                <span className="font-semibold">Grammar: </span>{feedback.grammar}
+                            </div>
+                            <div className="bg-white dark:bg-slate-900 rounded p-3">
+                                <span className="font-semibold">Structure: </span>{feedback.structure}
+                            </div>
+                            {feedback.suggestions && (
+                                <div className="bg-yellow-50 dark:bg-yellow-950 rounded p-3 border border-yellow-200">
+                                    <span className="font-semibold">Tips: </span>{feedback.suggestions}
+                                </div>
+                            )}
+                        </div>
+                    </div>
+                )}
 
                 {/* Sample Email */}
                 <div>

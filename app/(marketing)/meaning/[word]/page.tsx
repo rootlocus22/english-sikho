@@ -210,6 +210,24 @@ export default async function WordPage({ params }: Props) {
                         like internal team meetings before using it in client presentations.
                     </p>
 
+                    {/* Inline Engagement Booster - Sticky on Mobile logic handled by position */}
+                    <div className="bg-gradient-to-r from-blue-600 to-indigo-600 rounded-xl p-6 text-white my-8 not-prose shadow-lg">
+                        <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+                            <div>
+                                <h4 className="text-xl font-bold mb-1">Prove you can say it!</h4>
+                                <p className="text-blue-100 text-sm">
+                                    AI will listen to your pronunciation of <strong>"{entry.word}"</strong> and give instant feedback.
+                                </p>
+                            </div>
+                            <Link href={`/dashboard/gym?topic=${entry.slug}&ref=meaning_inline`}>
+                                <div className="px-6 py-3 bg-white text-blue-600 font-bold rounded-full shadow hover:bg-blue-50 transition-colors flex items-center gap-2 whitespace-nowrap">
+                                    <Mic className="w-4 h-4" />
+                                    Try Speaking (Free)
+                                </div>
+                            </Link>
+                        </div>
+                    </div>
+
                     <div className="bg-blue-50 p-6 rounded-lg border-l-4 border-blue-600 not-prose my-8">
                         <h4 className="text-lg font-bold text-blue-900 mb-2">🚀 Interview Tip</h4>
                         <p className="text-blue-800">

@@ -306,6 +306,19 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             <SidebarFooter>
                 <SidebarMenu>
                     <SidebarMenuItem>
+                        <SidebarMenuButton asChild tooltip="WhatsApp Support">
+                            <a
+                                href="https://wa.me/918431256903?text=Hi%20EnglishGyani%2C%20I%20need%20help"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-green-600"
+                            >
+                                <LifeBuoy />
+                                <span>Need Help? WhatsApp Us</span>
+                            </a>
+                        </SidebarMenuButton>
+                    </SidebarMenuItem>
+                    <SidebarMenuItem>
                         <SidebarMenuButton size="lg" className="data-[state=open]:bg-sidebar-accent">
                             <Avatar className="h-8 w-8 rounded-lg">
                                 <AvatarImage src={photoURL || ""} alt={displayName || "User"} />

@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { generateContent } from '@/lib/gemini';
 import { trackActivity } from '@/lib/analytics-server';
+import { getLearnerProfile, buildContextBlock } from '@/lib/learner-profile';
 
 const COACH_SYSTEM_PROMPT = `You are an expert English Speaking Coach for Indian professionals. Your goal is to analyze spoken English transcripts and provide constructive feedback.
 CRITICAL: You must provide a VARIABLY DYNAMIC SCORE (0-100) based on specific criteria. Do NOT default to safe numbers like 65, 70, or 75.
@@ -33,7 +34,19 @@ Output ONLY a valid JSON object with the following structure:
       "context": "string" // Example usage
     }
   ],
-  "confidenceAnalysis": "string" // Assessment of confidence based on speech patterns.
+  "confidenceAnalysis": "string", // Assessment of confidence based on speech patterns.
+  "accentAnalysis": {
+    "detectedInfluence": "string", // e.g. "Hindi", "Tamil", "Bengali", "Telugu", "Neutral/Minimal MTI"
+    "accentScore": number, // 0-100, how neutral/clear the accent is (100 = native-like clarity)
+    "mtiPatterns": [
+      {
+        "pattern": "string", // The specific MTI pattern detected, e.g. "Retroflex T/D sounds"
+        "example": "string", // Word or phrase from the transcript showing this pattern
+        "tip": "string" // Specific actionable tip to improve
+      }
+    ],
+    "overallAccentNote": "string" // 1-2 sentence summary of accent characteristics and one key improvement area
+  }
 }
 Do not include \`\`\`json or any other text.`;
 
@@ -82,7 +95,19 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Transcript too short" }, { status: 400 });
     }
 
-    const prompt = `${COACH_SYSTEM_PROMPT}\n\nUser's Spoken Text: "${transcript}"`;
+    let learnerContext = '';
+    if (userId) {
+        try {
+            const profile = await getLearnerProfile(userId);
+            if (profile) {
+                learnerContext = `\n\n${buildContextBlock(profile)}\nUse this context to personalize your feedback. If you notice patterns from their weak areas, call them out specifically.\n`;
+            }
+        } catch (e) {
+            console.error('Failed to load learner profile:', e);
+        }
+    }
+
+    const prompt = `${COACH_SYSTEM_PROMPT}${learnerContext}\n\nUser's Spoken Text: "${transcript}"`;
     const text = await generateContent(prompt);
 
     // Clean up markdown

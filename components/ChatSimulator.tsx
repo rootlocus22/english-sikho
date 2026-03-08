@@ -145,6 +145,10 @@ export default function ChatSimulator() {
                         Real-Life Practice
                     </CardTitle>
                     <CardDescription>Interview se pehle, yahan galti karo. (Safe Space for Mistakes)</CardDescription>
+                    {/* Inline Credit Counter */}
+                    <div className="mt-2 flex items-center gap-2 bg-blue-50 w-fit px-3 py-1 rounded-full border border-blue-100">
+                        <span className="text-xs font-bold text-blue-700">Credits Remaining: {credits}</span>
+                    </div>
                 </CardHeader>
                 <CardContent className="space-y-6">
                     {['Manager', 'External', 'Colleagues'].map(category => (

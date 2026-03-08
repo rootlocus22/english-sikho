@@ -200,13 +200,12 @@ export const useUserStore = create<UserState>()(
             },
             hasFeature: (feature: string) => {
                 const userData = get().userData;
-                if (!userData?.isPremium || !userData.subscription) {
-                    // Free users might have some allowed features if we add a 'free' plan to pricing
-                    // For now, assume free users have no premium features
+                if (!userData?.isPremium) {
                     return false;
                 }
 
-                const tier = userData.subscription.tier as PricingTier;
+                // If subscription exists, use its tier; otherwise treat premium as Pro (all features)
+                const tier = (userData.subscription?.tier || 'pro') as PricingTier;
                 const planConfig = PRICING_PLANS[tier];
 
                 if (!planConfig) return false;

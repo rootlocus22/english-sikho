@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { generateContent } from '@/lib/gemini';
 import { trackActivity } from '@/lib/analytics-server';
 import { PRICING_PLANS, type PricingTier } from '@/lib/pricing';
+import { getLearnerProfile, buildContextBlock } from '@/lib/learner-profile';
 
 const TRANSLATOR_SYSTEM_PROMPT = `You are an expert Corporate English Coach for Indian professionals. You understand Hindi, Tamil, Telugu, and 'Hinglish'. Your goal is to take informal or broken input and output perfectly grammatically correct, professional English options.
 Output ONLY a valid JSON object with the following keys:
@@ -190,16 +191,28 @@ export async function POST(req: NextRequest) {
             return NextResponse.json({ error: "Gemini API Key missing" }, { status: 500 });
         }
 
+        let learnerContext = '';
+        if (userId) {
+            try {
+                const profile = await getLearnerProfile(userId);
+                if (profile) {
+                    learnerContext = `\n\n${buildContextBlock(profile)}\nUse this context to personalize your feedback. Reference their weak areas and past mistakes when relevant.\n`;
+                }
+            } catch (e) {
+                console.error('Failed to load learner profile:', e);
+            }
+        }
+
         let prompt = "";
         if (type === 'translator') {
-            prompt = `${TRANSLATOR_SYSTEM_PROMPT}\n\nInput: "${input}"`;
+            prompt = `${TRANSLATOR_SYSTEM_PROMPT}${learnerContext}\n\nInput: "${input}"`;
         } else if (type === 'coach') {
-            prompt = `${COACH_SYSTEM_PROMPT}\n\nTarget Text: "${target}"\nSpoken Text: "${input}"`;
+            prompt = `${COACH_SYSTEM_PROMPT}${learnerContext}\n\nTarget Text: "${target}"\nSpoken Text: "${input}"`;
         } else if (type === 'tone-rewrite') {
-            prompt = `${REWRITE_SYSTEM_PROMPT}\n\nInput: "${input}"\nTone Level: ${toneLevel}`;
+            prompt = `${REWRITE_SYSTEM_PROMPT}${learnerContext}\n\nInput: "${input}"\nTone Level: ${toneLevel}`;
         } else if (type === 'roleplay-chat') {
             // Simple stringify of history for the prompt
-            const historyText = history.map((m: any) => `${m.role === 'user' ? 'Employee' : 'Manager'}: ${m.content}`).join('\n');
+            const historyText = (history || []).map((m: any) => `${m.role === 'user' ? 'Employee' : 'Manager'}: ${m.content}`).join('\n');
 
             const SCENARIO_PROMPTS: Record<string, string> = {
                 'salary': "You are a tough manager. The company budget is tight, and you are skeptical about giving a raise.",
@@ -216,14 +229,14 @@ export async function POST(req: NextRequest) {
             const scenarioPrompt = SCENARIO_PROMPTS[scenarioId] || "You are a professional roleplay partner.";
 
             prompt = `System: ${scenarioPrompt}
-            System: Keep replies short (under 40 words). Be realistic, professional, but challenge the user to improve their communication.
+            System: Keep replies short (under 40 words). Be realistic, professional, but challenge the user to improve their communication.${learnerContext}
             
             Conversation History:
             ${historyText}
             
             Manager/Partner:`;
         } else if (type === 'interview-coach') {
-            prompt = `${INTERVIEW_COACH_SYSTEM_PROMPT}
+            prompt = `${INTERVIEW_COACH_SYSTEM_PROMPT}${learnerContext}
 
 Interview Question: "${question}"
 Candidate's Answer: "${userAnswer}"
@@ -277,12 +290,12 @@ Evaluate this answer and provide constructive feedback to help the candidate imp
         // Log analytics for ALL users (Premium and Free)
         await trackActivity({
             userId: userId || 'guest',
-            feature: type, // e.g., 'translator', 'coach'
+            feature: type,
             creditsUsed: userData?.isPremium ? 0 : 1,
             metadata: {
                 hasImage: !!imageBase64,
                 scenarioId,
-                toneLevel
+                toneLevel,
             }
         });
 
@@ -323,6 +336,16 @@ Evaluate this answer and provide constructive feedback to help the candidate imp
 
         try {
             const jsonResponse = JSON.parse(cleanText);
+
+            if ((type === 'interview-coach' || type === 'coach') && jsonResponse.score != null) {
+                trackActivity({
+                    userId: userId || 'guest',
+                    feature: `${type}-score`,
+                    creditsUsed: 0,
+                    metadata: { score: jsonResponse.score }
+                }).catch(() => {});
+            }
+
             return NextResponse.json(jsonResponse);
         } catch (e) {
             console.error("JSON Parse Error", cleanText.substring(0, 500));

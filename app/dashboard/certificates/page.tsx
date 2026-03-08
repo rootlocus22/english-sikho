@@ -19,18 +19,34 @@ export default function CertificatesPage() {
     const [achievements, setAchievements] = useState<{ achieved: string[]; progress: Record<string, number> }>({ achieved: [], progress: {} });
 
     useEffect(() => {
-        if (!userData) return;
+        if (!userData || !userId) return;
 
-        // Get basic stats and check milestones
-        const stats = getBasicStats(userData);
-        const milestoneData = checkMilestones({
-            totalSessionsUsed: stats.totalSessions,
-            currentStreak: 0, // TODO: Calculate from activity
-            averageScore: 85 // TODO: Calculate from scores
-        });
+        async function loadRealAnalytics() {
+            try {
+                const { getUserAnalytics } = await import('@/lib/analytics-data');
+                const analytics = await getUserAnalytics(userId!);
+                
+                const milestoneData = checkMilestones({
+                    totalSessionsUsed: analytics.totalSessions,
+                    currentStreak: analytics.currentStreak,
+                    averageScore: analytics.averageScore,
+                });
 
-        setAchievements(milestoneData);
-    }, [userData]);
+                setAchievements(milestoneData);
+            } catch (error) {
+                console.error('Failed to load analytics for certificates:', error);
+                const stats = getBasicStats(userData);
+                const milestoneData = checkMilestones({
+                    totalSessionsUsed: stats.totalSessions,
+                    currentStreak: 0,
+                    averageScore: 0,
+                });
+                setAchievements(milestoneData);
+            }
+        }
+
+        loadRealAnalytics();
+    }, [userData, userId]);
 
     // Check Pro access
     if (!hasFeature('certificates')) {

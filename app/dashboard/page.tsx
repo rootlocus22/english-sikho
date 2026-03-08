@@ -144,9 +144,29 @@ export default function DashboardPage() {
                             </>
                         )}
                     </div>
-                    <VoiceSettings />
                 </div>
             </div>
+
+            {/* Welcome Challenge - High Priority for New/Free Users */}
+            {!loading && userData?.credits === 10 && !userData?.isPremium && (
+                <Card className="bg-gradient-to-r from-indigo-600 to-blue-600 text-white border-none shadow-xl">
+                    <div className="p-6 md:p-8 flex flex-col md:flex-row items-center justify-between gap-6">
+                        <div className="space-y-2 text-center md:text-left">
+                            <h3 className="text-2xl font-bold">🎯 Your First Challenge!</h3>
+                            <p className="text-blue-100 max-w-xl text-lg">
+                                You have <span className="font-bold text-white bg-white/20 px-2 rounded">10 Free Credits</span>.
+                                Don't let them go to waste. Try a 2-minute mock interview now!
+                            </p>
+                        </div>
+                        <Button
+                            onClick={() => router.push('/dashboard/interview-prep')}
+                            className="bg-white text-blue-600 font-bold hover:bg-white/90 shadow-lg text-lg px-8 py-6 h-auto rounded-full transition-transform hover:scale-105"
+                        >
+                            Start Challenge <ArrowRight className="ml-2 w-5 h-5" />
+                        </Button>
+                    </div>
+                </Card>
+            )}
 
             {/* Daily Goals & Streak */}
             {userId && (
@@ -174,10 +194,10 @@ export default function DashboardPage() {
                             {userData && userData.currentStreak && userData.currentStreak > 0 && (
                                 <div className="mt-3 sm:mt-4 pt-3 sm:pt-4 border-t">
                                     <p className="text-xs text-muted-foreground text-center">
-                                        🔥 {userData.currentStreak === 1 ? 'Great start!' : 
+                                        🔥 {userData.currentStreak === 1 ? 'Great start!' :
                                             userData.currentStreak < 7 ? 'Keep it going!' :
-                                            userData.currentStreak < 30 ? 'You\'re on fire!' :
-                                            'Incredible dedication!'}
+                                                userData.currentStreak < 30 ? 'You\'re on fire!' :
+                                                    'Incredible dedication!'}
                                     </p>
                                 </div>
                             )}

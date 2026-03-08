@@ -88,7 +88,8 @@ function LoginPageContent() {
                     displayName: data.displayName,
                     photoURL: data.photoURL,
                     isPremium: data.isPremium || false,
-                    credits: data.credits ?? 10
+                    credits: data.credits ?? 10,
+                    subscription: data.subscription
                 });
             } else {
                 // If user doesn't exist (e.g. first login via Google without explicit signup flow), create doc
@@ -161,7 +162,8 @@ function LoginPageContent() {
                     displayName: data.displayName,
                     photoURL: data.photoURL,
                     isPremium: data.isPremium || false,
-                    credits: data.credits ?? 10
+                    credits: data.credits ?? 10,
+                    subscription: data.subscription
                 });
             } else {
                 // Fallback if doc missing

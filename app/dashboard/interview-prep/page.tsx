@@ -259,6 +259,14 @@ export default function InterviewPrepPage() {
                 </Badge>
             </div>
 
+            {/* Credit Warning/Display for focused mode */}
+            <div className="flex justify-end -mt-4 mb-2">
+                <div className="flex items-center gap-2 bg-indigo-50 px-3 py-1 rounded-full border border-indigo-100">
+                    <div className="w-2 h-2 bg-indigo-500 rounded-full animate-pulse"></div>
+                    <span className="text-xs font-bold text-indigo-700">Available Credits: {userData?.credits || 0}</span>
+                </div>
+            </div>
+
             {/* Question Card */}
             <Card className="border-2 border-blue-200 shadow-lg">
                 <CardHeader className="bg-blue-50">

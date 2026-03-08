@@ -1,12 +1,13 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef, useCallback } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
-import { Mic, Volume2, CheckCircle2, XCircle, Play } from 'lucide-react';
+import { Mic, MicOff, CheckCircle2, XCircle, Loader2 } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { HelpTooltip, HELP_CONTENT } from '@/components/ContextualHelp';
+import { AudioButton } from '@/components/audio/AudioButton';
 
 const mtiDrills = [
     {
@@ -96,8 +97,12 @@ export default function MTIDrills() {
     const [selectedDrill, setSelectedDrill] = useState<string | null>(null);
     const [currentWordIndex, setCurrentWordIndex] = useState(0);
     const [isRecording, setIsRecording] = useState(false);
+    const [isAnalyzing, setIsAnalyzing] = useState(false);
     const [score, setScore] = useState(0);
     const [attempts, setAttempts] = useState(0);
+    const [lastFeedback, setLastFeedback] = useState<string | null>(null);
+    const [lastCorrect, setLastCorrect] = useState<boolean | null>(null);
+    const recognitionRef = useRef<any>(null);
 
     const drill = selectedDrill ? mtiDrills.find(d => d.id === selectedDrill) : null;
     const currentWord = drill?.examples[currentWordIndex];
@@ -107,27 +112,129 @@ export default function MTIDrills() {
         setCurrentWordIndex(0);
         setScore(0);
         setAttempts(0);
+        setLastFeedback(null);
+        setLastCorrect(null);
+    };
+
+    const analyzePronunciation = useCallback(async (transcript: string, targetWord: string, soundType: string) => {
+        setIsAnalyzing(true);
+        try {
+            const response = await fetch('/api/ai/coach', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    type: 'coach',
+                    input: transcript,
+                    target: targetWord,
+                }),
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                const isCorrect = data.score >= 60;
+                const spokenLower = transcript.toLowerCase().trim();
+                const targetLower = targetWord.toLowerCase().trim();
+                const wordMatch = spokenLower === targetLower || spokenLower.includes(targetLower);
+
+                if (wordMatch && isCorrect) {
+                    setScore(prev => prev + 1);
+                    setLastCorrect(true);
+                    setLastFeedback(data.feedback || `Good pronunciation of "${targetWord}"!`);
+                } else if (wordMatch) {
+                    setLastCorrect(true);
+                    setScore(prev => prev + 1);
+                    setLastFeedback(`Word recognized! ${data.feedback || `Focus on the ${soundType} sound.`}`);
+                } else {
+                    setLastCorrect(false);
+                    setLastFeedback(
+                        `You said "${transcript}" — try to clearly say "${targetWord}". ` +
+                        `Focus on the ${soundType} sound. ${data.analysis || ''}`
+                    );
+                }
+            } else {
+                fallbackAnalysis(transcript, targetWord, soundType);
+            }
+        } catch {
+            fallbackAnalysis(transcript, targetWord, soundType);
+        } finally {
+            setIsAnalyzing(false);
+        }
+    }, []);
+
+    const fallbackAnalysis = (transcript: string, targetWord: string, soundType: string) => {
+        const spokenLower = transcript.toLowerCase().trim();
+        const targetLower = targetWord.toLowerCase().trim();
+        const isCorrect = spokenLower === targetLower || spokenLower.includes(targetLower);
+
+        setLastCorrect(isCorrect);
+        if (isCorrect) {
+            setScore(prev => prev + 1);
+            setLastFeedback(`Good! "${targetWord}" recognized correctly.`);
+        } else {
+            setLastFeedback(
+                `You said "${transcript}" instead of "${targetWord}". Focus on the ${soundType} sound.`
+            );
+        }
     };
 
     const handleRecord = () => {
+        if (!currentWord) return;
+
+        const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
+        if (!SpeechRecognition) {
+            setLastFeedback('Speech recognition is not supported in this browser. Try Chrome.');
+            return;
+        }
+
+        setLastFeedback(null);
+        setLastCorrect(null);
         setIsRecording(true);
-        // In real implementation, this would use Web Speech API
-        setTimeout(() => {
+        setAttempts(prev => prev + 1);
+
+        const recognition = new SpeechRecognition();
+        recognition.lang = 'en-US';
+        recognition.continuous = false;
+        recognition.interimResults = false;
+        recognition.maxAlternatives = 1;
+        recognitionRef.current = recognition;
+
+        recognition.onresult = (event: any) => {
+            const transcript = event.results[0][0].transcript;
             setIsRecording(false);
-            setAttempts(prev => prev + 1);
-            // Simulate scoring - in real app, use AI to analyze pronunciation
-            const isCorrect = Math.random() > 0.3; // 70% chance for demo
-            if (isCorrect) {
-                setScore(prev => prev + 1);
+            analyzePronunciation(transcript, currentWord.word, currentWord.correct);
+        };
+
+        recognition.onerror = () => {
+            setIsRecording(false);
+            setLastFeedback('Could not hear you clearly. Please try again, speaking closer to the microphone.');
+        };
+
+        recognition.onend = () => {
+            setIsRecording(false);
+        };
+
+        recognition.start();
+
+        setTimeout(() => {
+            if (recognitionRef.current) {
+                recognitionRef.current.stop();
             }
-        }, 2000);
+        }, 4000);
+    };
+
+    const handleStopRecording = () => {
+        if (recognitionRef.current) {
+            recognitionRef.current.stop();
+        }
+        setIsRecording(false);
     };
 
     const handleNext = () => {
+        setLastFeedback(null);
+        setLastCorrect(null);
         if (drill && currentWordIndex < drill.examples.length - 1) {
             setCurrentWordIndex(prev => prev + 1);
         } else {
-            // Drill complete
             setSelectedDrill(null);
             setCurrentWordIndex(0);
         }
@@ -153,7 +260,6 @@ export default function MTIDrills() {
                         <Progress value={progress} className="mt-3 sm:mt-4" />
                     </CardHeader>
                     <CardContent className="space-y-4 sm:space-y-6 p-4 sm:p-6">
-                        {/* Current Word Practice */}
                         <div className="bg-blue-50 dark:bg-blue-950 rounded-lg p-4 sm:p-6 text-center">
                             <h3 className="text-2xl sm:text-3xl font-bold mb-2 break-words">{currentWord?.word}</h3>
                             <p className="text-xs sm:text-sm text-muted-foreground mb-3 sm:mb-4">
@@ -162,33 +268,56 @@ export default function MTIDrills() {
                             </p>
                             
                             <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 mb-3 sm:mb-4">
-                                <Button variant="outline" size="sm" className="w-full sm:w-auto sm:size-lg">
-                                    <Play className="w-4 h-4 mr-2" />
-                                    Listen
-                                </Button>
+                                <AudioButton
+                                    text={currentWord?.word || ''}
+                                    variant="outline"
+                                    size="default"
+                                />
                                 <Button 
-                                    size="sm" 
-                                    onClick={handleRecord}
-                                    disabled={isRecording}
-                                    className={`w-full sm:w-auto sm:size-lg ${isRecording ? 'bg-red-500' : ''}`}
+                                    size="default" 
+                                    onClick={isRecording ? handleStopRecording : handleRecord}
+                                    disabled={isAnalyzing}
+                                    className={`w-full sm:w-auto ${isRecording ? 'bg-red-500 hover:bg-red-600' : ''}`}
                                 >
-                                    <Mic className="w-4 h-4 mr-2" />
-                                    {isRecording ? 'Recording...' : 'Record'}
+                                    {isAnalyzing ? (
+                                        <><Loader2 className="w-4 h-4 mr-2 animate-spin" />Analyzing...</>
+                                    ) : isRecording ? (
+                                        <><MicOff className="w-4 h-4 mr-2" />Stop Recording</>
+                                    ) : (
+                                        <><Mic className="w-4 h-4 mr-2" />Record Your Voice</>
+                                    )}
                                 </Button>
                             </div>
+
+                            {lastFeedback && (
+                                <div className={`mt-4 p-3 rounded-lg text-sm text-left ${
+                                    lastCorrect
+                                        ? 'bg-green-100 dark:bg-green-900 border border-green-300 text-green-800 dark:text-green-200'
+                                        : 'bg-red-100 dark:bg-red-900 border border-red-300 text-red-800 dark:text-red-200'
+                                }`}>
+                                    <div className="flex items-start gap-2">
+                                        {lastCorrect ? (
+                                            <CheckCircle2 className="w-5 h-5 shrink-0 mt-0.5" />
+                                        ) : (
+                                            <XCircle className="w-5 h-5 shrink-0 mt-0.5" />
+                                        )}
+                                        <p>{lastFeedback}</p>
+                                    </div>
+                                </div>
+                            )}
 
                             {attempts > 0 && (
                                 <div className="mt-4">
                                     <p className="text-sm text-muted-foreground">
-                                        Accuracy: <strong className="text-green-600">{accuracy}%</strong>
+                                        Accuracy: <strong className={accuracy >= 50 ? 'text-green-600' : 'text-red-600'}>{accuracy}%</strong>
+                                        <span className="ml-2">({score}/{attempts} correct)</span>
                                     </p>
                                 </div>
                             )}
                         </div>
 
-                        {/* Tips */}
                         <div className="bg-yellow-50 dark:bg-yellow-950 rounded-lg p-4">
-                            <h4 className="font-bold mb-2">💡 Tips:</h4>
+                            <h4 className="font-bold mb-2">Tips:</h4>
                             <ul className="space-y-1 text-sm">
                                 {drill.tips.map((tip, i) => (
                                     <li key={i}>• {tip}</li>
@@ -259,4 +388,3 @@ export default function MTIDrills() {
         </div>
     );
 }
-

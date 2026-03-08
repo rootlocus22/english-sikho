@@ -5,8 +5,9 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
 import { Badge } from '@/components/ui/badge';
-import { XCircle, CheckCircle2, AlertTriangle, TrendingUp } from 'lucide-react';
+import { XCircle, CheckCircle2, AlertTriangle, TrendingUp, Sparkles, Loader2 } from 'lucide-react';
 import { useUserStore } from '@/lib/store';
+import { loadProgress, saveProgress } from '@/lib/progress-sync';
 
 const commonMistakes = [
     {
@@ -91,17 +92,31 @@ const commonMistakes = [
     }
 ];
 
+interface QuizQuestion {
+    mistake: string;
+    options: string[];
+    correctIndex: number;
+}
+
 export default function CommonMistakesTracker() {
     const { userId } = useUserStore();
     const [learnedMistakes, setLearnedMistakes] = useState<Set<string>>(new Set());
     const [currentMistakeIndex, setCurrentMistakeIndex] = useState(0);
     const [showAnswer, setShowAnswer] = useState(false);
+    const [showQuiz, setShowQuiz] = useState(false);
+    const [quizQuestions, setQuizQuestions] = useState<QuizQuestion[]>([]);
+    const [quizIndex, setQuizIndex] = useState(0);
+    const [quizAnswer, setQuizAnswer] = useState<number | null>(null);
+    const [quizScore, setQuizScore] = useState(0);
+    const [loadingQuiz, setLoadingQuiz] = useState(false);
 
     useEffect(() => {
-        const saved = localStorage.getItem(`mistakes-learned-${userId}`);
-        if (saved) {
-            setLearnedMistakes(new Set(JSON.parse(saved)));
-        }
+        if (!userId) return;
+        loadProgress(userId).then((progress) => {
+            if (progress.mistakesLearned.length > 0) {
+                setLearnedMistakes(new Set(progress.mistakesLearned));
+            }
+        });
     }, [userId]);
 
     const currentMistake = commonMistakes[currentMistakeIndex];
@@ -112,9 +127,11 @@ export default function CommonMistakesTracker() {
         const newLearned = new Set(learnedMistakes);
         newLearned.add(currentMistake.id);
         setLearnedMistakes(newLearned);
-        localStorage.setItem(`mistakes-learned-${userId}`, JSON.stringify([...newLearned]));
+
+        if (userId) {
+            saveProgress(userId, { mistakesLearned: [...newLearned] });
+        }
         
-        // Move to next unlearned mistake
         const nextUnlearned = commonMistakes.findIndex(m => !newLearned.has(m.id));
         if (nextUnlearned !== -1) {
             setCurrentMistakeIndex(nextUnlearned);
@@ -134,6 +151,119 @@ export default function CommonMistakesTracker() {
         setShowAnswer(false);
     };
 
+    const generateQuiz = () => {
+        setLoadingQuiz(true);
+        const learnedList = commonMistakes.filter(m => learnedMistakes.has(m.id));
+        const quizSource = learnedList.length >= 3 ? learnedList : commonMistakes.slice(0, 5);
+
+        const questions: QuizQuestion[] = quizSource
+            .sort(() => Math.random() - 0.5)
+            .slice(0, 3)
+            .map(m => {
+                const wrongOptions = commonMistakes
+                    .filter(other => other.id !== m.id)
+                    .sort(() => Math.random() - 0.5)
+                    .slice(0, 2)
+                    .map(other => other.mistake);
+
+                const options = [m.correct, ...wrongOptions].sort(() => Math.random() - 0.5);
+                return {
+                    mistake: m.mistake,
+                    options,
+                    correctIndex: options.indexOf(m.correct),
+                };
+            });
+
+        setQuizQuestions(questions);
+        setQuizIndex(0);
+        setQuizAnswer(null);
+        setQuizScore(0);
+        setShowQuiz(true);
+        setLoadingQuiz(false);
+    };
+
+    const handleQuizAnswer = (index: number) => {
+        setQuizAnswer(index);
+        if (index === quizQuestions[quizIndex].correctIndex) {
+            setQuizScore(prev => prev + 1);
+        }
+    };
+
+    const handleNextQuizQuestion = () => {
+        if (quizIndex < quizQuestions.length - 1) {
+            setQuizIndex(prev => prev + 1);
+            setQuizAnswer(null);
+        } else {
+            setShowQuiz(false);
+        }
+    };
+
+    if (showQuiz && quizQuestions.length > 0) {
+        const q = quizQuestions[quizIndex];
+        const isLastQuestion = quizIndex === quizQuestions.length - 1;
+        const isAnswered = quizAnswer !== null;
+
+        return (
+            <div className="space-y-4 sm:space-y-6">
+                <div className="flex items-center justify-between">
+                    <Button variant="ghost" onClick={() => setShowQuiz(false)}>← Back</Button>
+                    <Badge variant="secondary">Question {quizIndex + 1}/{quizQuestions.length}</Badge>
+                </div>
+
+                <Card>
+                    <CardHeader>
+                        <CardTitle className="flex items-center gap-2">
+                            <Sparkles className="w-5 h-5 text-purple-600" />
+                            Quick Quiz
+                        </CardTitle>
+                        <p className="text-muted-foreground">
+                            What&apos;s the correct way to say:
+                        </p>
+                    </CardHeader>
+                    <CardContent className="space-y-4">
+                        <div className="bg-red-50 dark:bg-red-950 border-2 border-red-200 rounded-lg p-4 text-center">
+                            <p className="text-lg font-bold text-red-700 dark:text-red-300">&quot;{q.mistake}&quot;</p>
+                        </div>
+
+                        <div className="space-y-2">
+                            {q.options.map((option, i) => {
+                                let variant: 'outline' | 'default' | 'destructive' = 'outline';
+                                let extraClass = '';
+                                if (isAnswered) {
+                                    if (i === q.correctIndex) {
+                                        extraClass = 'border-green-500 bg-green-50 dark:bg-green-950';
+                                    } else if (i === quizAnswer && i !== q.correctIndex) {
+                                        extraClass = 'border-red-500 bg-red-50 dark:bg-red-950';
+                                    }
+                                }
+
+                                return (
+                                    <Button
+                                        key={i}
+                                        variant={variant}
+                                        className={`w-full justify-start text-left h-auto py-3 ${extraClass}`}
+                                        onClick={() => !isAnswered && handleQuizAnswer(i)}
+                                        disabled={isAnswered}
+                                    >
+                                        {isAnswered && i === q.correctIndex && <CheckCircle2 className="w-4 h-4 mr-2 text-green-600" />}
+                                        {isAnswered && i === quizAnswer && i !== q.correctIndex && <XCircle className="w-4 h-4 mr-2 text-red-600" />}
+                                        {option}
+                                    </Button>
+                                );
+                            })}
+                        </div>
+
+                        {isAnswered && (
+                            <Button onClick={handleNextQuizQuestion} className="w-full">
+                                {isLastQuestion ? `Finish (Score: ${quizScore + (quizAnswer === q.correctIndex ? 1 : 0)}/${quizQuestions.length})` : 'Next Question'}
+                            </Button>
+                        )}
+                    </CardContent>
+                </Card>
+            </div>
+        );
+    }
+
     return (
         <div className="space-y-4 sm:space-y-6">
             <div className="text-center space-y-2 px-2">
@@ -143,7 +273,6 @@ export default function CommonMistakesTracker() {
                 </p>
             </div>
 
-            {/* Progress */}
             <Card>
                 <CardContent className="p-4 sm:p-6">
                     <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4 mb-3 sm:mb-4">
@@ -153,16 +282,23 @@ export default function CommonMistakesTracker() {
                                 {learnedMistakes.size} of {commonMistakes.length} mistakes learned
                             </p>
                         </div>
-                        <div className="text-left sm:text-right">
-                            <div className="text-xl sm:text-2xl font-bold">{Math.round(progress)}%</div>
-                            <div className="text-xs text-muted-foreground">Complete</div>
+                        <div className="flex items-center gap-3">
+                            {learnedMistakes.size >= 3 && (
+                                <Button size="sm" variant="outline" onClick={generateQuiz} disabled={loadingQuiz}>
+                                    {loadingQuiz ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : <Sparkles className="w-4 h-4 mr-2" />}
+                                    Take Quiz
+                                </Button>
+                            )}
+                            <div className="text-left sm:text-right">
+                                <div className="text-xl sm:text-2xl font-bold">{Math.round(progress)}%</div>
+                                <div className="text-xs text-muted-foreground">Complete</div>
+                            </div>
                         </div>
                     </div>
                     <Progress value={progress} className="h-2" />
                 </CardContent>
             </Card>
 
-            {/* Current Mistake */}
             <Card>
                 <CardHeader className="p-4 sm:p-6">
                     <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 sm:gap-4">
@@ -176,42 +312,38 @@ export default function CommonMistakesTracker() {
                     </div>
                 </CardHeader>
                 <CardContent className="space-y-3 sm:space-y-4 p-4 sm:p-6 pt-0">
-                    {/* Mistake */}
                     <div className="bg-red-50 dark:bg-red-950 border-2 border-red-200 dark:border-red-800 rounded-lg p-3 sm:p-4">
                         <div className="flex items-start gap-2 mb-2">
                             <XCircle className="w-4 h-4 sm:w-5 sm:h-5 text-red-600 shrink-0 mt-0.5" />
                             <div className="min-w-0 flex-1">
-                                <p className="text-xs sm:text-sm font-medium text-red-900 dark:text-red-200 mb-1">❌ Common Mistake:</p>
-                                <p className="text-base sm:text-lg font-bold text-red-700 dark:text-red-300 break-words">"{currentMistake.mistake}"</p>
+                                <p className="text-xs sm:text-sm font-medium text-red-900 dark:text-red-200 mb-1">Common Mistake:</p>
+                                <p className="text-base sm:text-lg font-bold text-red-700 dark:text-red-300 break-words">&quot;{currentMistake.mistake}&quot;</p>
                             </div>
                         </div>
                     </div>
 
                     {showAnswer ? (
                         <>
-                            {/* Correct Version */}
                             <div className="bg-green-50 dark:bg-green-950 border-2 border-green-200 dark:border-green-800 rounded-lg p-3 sm:p-4">
                                 <div className="flex items-start gap-2 mb-2">
                                     <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5 text-green-600 shrink-0 mt-0.5" />
                                     <div className="min-w-0 flex-1">
-                                        <p className="text-xs sm:text-sm font-medium text-green-900 dark:text-green-200 mb-1">✅ Correct:</p>
-                                        <p className="text-base sm:text-lg font-bold text-green-700 dark:text-green-300 break-words">"{currentMistake.correct}"</p>
+                                        <p className="text-xs sm:text-sm font-medium text-green-900 dark:text-green-200 mb-1">Correct:</p>
+                                        <p className="text-base sm:text-lg font-bold text-green-700 dark:text-green-300 break-words">&quot;{currentMistake.correct}&quot;</p>
                                     </div>
                                 </div>
                             </div>
 
-                            {/* Explanation */}
                             <div className="bg-blue-50 dark:bg-blue-950 border border-blue-200 dark:border-blue-800 rounded-lg p-3 sm:p-4">
                                 <div className="flex items-start gap-2">
                                     <AlertTriangle className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600 shrink-0 mt-0.5" />
                                     <div className="min-w-0 flex-1">
-                                        <p className="text-xs sm:text-sm font-medium text-blue-900 dark:text-blue-200 mb-1">💡 Why it's wrong:</p>
+                                        <p className="text-xs sm:text-sm font-medium text-blue-900 dark:text-blue-200 mb-1">Why it&apos;s wrong:</p>
                                         <p className="text-xs sm:text-sm text-blue-700 dark:text-blue-300 break-words">{currentMistake.explanation}</p>
                                     </div>
                                 </div>
                             </div>
 
-                            {/* Actions */}
                             <div className="flex flex-col sm:flex-row gap-2">
                                 <Button
                                     variant="outline"
@@ -263,7 +395,6 @@ export default function CommonMistakesTracker() {
                 </CardContent>
             </Card>
 
-            {/* Stats */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
                 <Card>
                     <CardContent className="p-3 sm:p-4 text-center">
@@ -290,4 +421,3 @@ export default function CommonMistakesTracker() {
         </div>
     );
 }
-

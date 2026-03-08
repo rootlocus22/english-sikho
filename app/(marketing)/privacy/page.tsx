@@ -58,7 +58,7 @@ export default function PrivacyPage() {
                     <section>
                         <h2 className="text-xl font-semibold text-slate-800 mb-3">4. Your Rights</h2>
                         <p>
-                            You have the right to request access to your data or request deletion of your account. Please contact us at support@nyquisttech.com for such requests.
+                            You have the right to request access to your data or request deletion of your account. Please contact us at <a href="mailto:info@nyquisttech.com" className="text-blue-600 hover:underline">info@nyquisttech.com</a> or <a href="https://wa.me/918431256903" target="_blank" rel="noopener noreferrer" className="text-green-600 hover:underline">WhatsApp us</a> for such requests.
                         </p>
                     </section>
 
@@ -67,7 +67,8 @@ export default function PrivacyPage() {
                         <p>
                             <strong>Nyquist Tech</strong><br />
                             Bengaluru, Karnataka, India<br />
-                            Email: support@nyquisttech.com<br />
+                            Email: <a href="mailto:info@nyquisttech.com" className="text-blue-600 hover:underline">info@nyquisttech.com</a><br />
+                            WhatsApp: <a href="https://wa.me/918431256903" target="_blank" rel="noopener noreferrer" className="text-green-600 hover:underline">+91 84312 56903</a><br />
                             Phone: +91 84312 56903
                         </p>
                     </section>

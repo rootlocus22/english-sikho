@@ -119,15 +119,7 @@ export default function Home() {
                 Start Speaking <span className="hidden sm:inline">(Bilkul Free)</span> <ArrowRight className="ml-2 w-5 h-5" />
               </Button>
             </TrackedLink>
-            <TrackedLink
-              href="/features"
-              eventData={{ action: 'click_hero_secondary', category: 'navigation', label: 'see_features' }}
-              className="w-full sm:w-auto"
-            >
-              <Button size="lg" variant="outline" className="w-full sm:w-auto h-14 md:h-16 px-8 md:px-10 text-base md:text-lg rounded-full border-2 hover:bg-accent/50 transition-all">
-                Kaise Kaam Karta Hai?
-              </Button>
-            </TrackedLink>
+            {/* Secondary CTA removed to reduce choice paralysis */}
           </div>
 
           <div className="flex flex-wrap justify-center gap-x-4 gap-y-3 md:gap-x-8 md:gap-y-4 text-xs md:text-sm font-medium text-muted-foreground bg-white/50 backdrop-blur-sm py-3 px-4 md:py-4 md:px-8 rounded-2xl md:rounded-full border border-slate-200 inline-flex mx-2">
@@ -137,13 +129,13 @@ export default function Home() {
             </div>
             <div className="w-px h-4 bg-slate-300 hidden sm:block"></div>
             <div className="flex items-center gap-1.5 md:gap-2">
-              <span className="text-lg md:text-xl">🇮🇳</span>
-              <span>Made for Bharat</span>
+              <Zap className="w-4 h-4 md:w-5 md:h-5 text-yellow-500" />
+              <span>Fix 'V vs W' & Accent</span>
             </div>
             <div className="w-px h-4 bg-slate-300 hidden sm:block"></div>
             <div className="flex items-center gap-1.5 md:gap-2">
-              <Zap className="w-4 h-4 md:w-5 md:h-5 text-yellow-500" />
-              <span>Fix 'V vs W'</span>
+              <Globe className="w-4 h-4 md:w-5 md:h-5 text-indigo-500" />
+              <span>Hear in US/UK/IN accent</span>
             </div>
           </div>
         </div>
@@ -280,15 +272,19 @@ export default function Home() {
                   <ul className="space-y-5">
                     <li className="flex items-start gap-4">
                       <span className="flex items-center justify-center w-8 h-8 rounded-full bg-green-100 text-green-600 font-bold text-sm">✓</span>
-                      <span className="text-lg text-slate-800 font-medium">Practice <strong>Interviews & Salary Negotation</strong></span>
+                      <span className="text-lg text-slate-800 font-medium">Practice <strong>Interviews & Salary Negotiation</strong> with AI</span>
                     </li>
                     <li className="flex items-start gap-4">
                       <span className="flex items-center justify-center w-8 h-8 rounded-full bg-green-100 text-green-600 font-bold text-sm">✓</span>
-                      <span className="text-lg text-slate-800 font-medium">Fix "V vs W" & MTI issues</span>
+                      <span className="text-lg text-slate-800 font-medium">Fix &quot;V vs W&quot;, MTI & <strong>Accent</strong> — hear your text in US/UK/Indian accent</span>
                     </li>
                     <li className="flex items-start gap-4">
                       <span className="flex items-center justify-center w-8 h-8 rounded-full bg-green-100 text-green-600 font-bold text-sm">✓</span>
                       <span className="text-lg text-slate-800 font-medium">Socho Hindi mein, BOLO English mein</span>
+                    </li>
+                    <li className="flex items-start gap-4">
+                      <span className="flex items-center justify-center w-8 h-8 rounded-full bg-green-100 text-green-600 font-bold text-sm">✓</span>
+                      <span className="text-lg text-slate-800 font-medium"><strong>Certificates</strong> & Progress analytics — track streaks, scores & milestones</span>
                     </li>
                     <li className="flex items-start gap-4">
                       <span className="flex items-center justify-center w-8 h-8 rounded-full bg-green-100 text-green-600 font-bold text-sm">✓</span>
@@ -449,5 +445,3 @@ function SparklesIcon(props: any) {
     </svg>
   )
 }
-
-

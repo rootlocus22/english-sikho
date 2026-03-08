@@ -77,17 +77,22 @@ export default function GrammarLessonPage({ params }: { params: Promise<{ lesson
         }
     };
 
-    const handleComplete = () => {
-        // Save to localStorage
-        const saved = localStorage.getItem(`grammar-progress-${userId}`);
-        const completed = saved ? JSON.parse(saved) : [];
-
-        if (!completed.includes(lessonId)) {
-            completed.push(lessonId);
-            localStorage.setItem(`grammar-progress-${userId}`, JSON.stringify(completed));
+    const handleComplete = async () => {
+        if (userId) {
+            const { loadProgress, saveProgress } = await import('@/lib/progress-sync');
+            const progress = await loadProgress(userId);
+            const completed = [...new Set([...progress.grammarCompleted, lessonId])];
+            await saveProgress(userId, { grammarCompleted: completed });
+        } else {
+            const saved = localStorage.getItem(`grammar-progress-${userId}`);
+            const completed = saved ? JSON.parse(saved) : [];
+            if (!completed.includes(lessonId)) {
+                completed.push(lessonId);
+                localStorage.setItem(`grammar-progress-${userId}`, JSON.stringify(completed));
+            }
         }
 
-        toast.success("🎉 Lesson completed!");
+        toast.success("Lesson completed!");
 
         // Find next lesson
         const currentIndex = grammarLessons.findIndex(l => l.id === lessonId);

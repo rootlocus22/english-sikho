@@ -8,6 +8,7 @@ import { getUserData } from "@/lib/firestore";
 import { useUserStore } from "@/lib/store";
 import { Loader2 } from "lucide-react";
 import { doc, onSnapshot } from "firebase/firestore";
+import { Sparkles } from "lucide-react";
 
 import { AppSidebar } from "@/components/app-sidebar"
 import {
@@ -33,7 +34,7 @@ export default function DashboardLayout({
 }) {
     const [loading, setLoading] = useState(true);
     const router = useRouter();
-    const { userId, setUserId, setUserData } = useUserStore();
+    const { userId, setUserId, setUserData, userData } = useUserStore();
 
     // Real-time Firestore listener for credit updates
     useEffect(() => {
@@ -51,7 +52,8 @@ export default function DashboardLayout({
                     displayName: data.displayName,
                     photoURL: data.photoURL,
                     isPremium: data.isPremium || false,
-                    credits: data.credits || 0
+                    credits: data.credits || 0,
+                    subscription: data.subscription
                 });
             }
         }, (error) => {
@@ -91,12 +93,14 @@ export default function DashboardLayout({
                     const userData = await getUserData(user.uid);
                     if (userData) {
                         console.log("User data fetched from Firestore:", userData);
+                        const data = userData as { subscription?: { tier: string; plan: string; status: string; startDate: string; endDate: string } };
                         setUserData({
                             email: userData.email,
                             displayName: userData.displayName,
                             photoURL: userData.photoURL,
                             isPremium: userData.isPremium,
-                            credits: userData.credits
+                            credits: userData.credits,
+                            subscription: data.subscription ? { ...data.subscription, tier: data.subscription.tier as 'starter' | 'pro' } : undefined
                         });
                     } else {
                         // User not found in Firestore, might be new user
@@ -170,8 +174,17 @@ export default function DashboardLayout({
                             </BreadcrumbList>
                         </Breadcrumb>
                     </div>
-                    {/* Voice Selector - Central Control */}
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-3">
+                        {/* Credit Display - Visible on Mobile & Desktop */}
+                        <div className="flex items-center gap-1.5 px-3 py-1.5 bg-blue-50 border border-blue-200 rounded-full shadow-sm">
+                            <Sparkles className="w-4 h-4 text-blue-600 fill-blue-600 animate-pulse" />
+                            <div className="flex flex-col leading-none">
+                                <span className="text-[10px] uppercase font-bold text-blue-400">Credits</span>
+                                <span className="text-sm font-bold text-blue-700">
+                                    {userData?.isPremium ? "∞" : (userData?.credits || 0)}
+                                </span>
+                            </div>
+                        </div>
                         <VoiceSelector />
                     </div>
                 </header>

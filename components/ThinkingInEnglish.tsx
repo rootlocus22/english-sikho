@@ -5,7 +5,8 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { Badge } from '@/components/ui/badge';
-import { Brain, CheckCircle2, Lightbulb, ArrowRight } from 'lucide-react';
+import { Brain, CheckCircle2, Lightbulb, ArrowRight, Loader2, Sparkles } from 'lucide-react';
+import { useUserStore } from '@/lib/store';
 
 const exercises = [
     {
@@ -75,10 +76,22 @@ const exercises = [
     }
 ];
 
+interface AIFeedback {
+    score: number;
+    grammarFeedback: string;
+    fluencyFeedback: string;
+    thinkingInEnglish: string;
+    suggestions: string[];
+    improvedVersion: string;
+}
+
 export default function ThinkingInEnglish() {
+    const { userId } = useUserStore();
     const [selectedExercise, setSelectedExercise] = useState<string | null>(null);
     const [userResponse, setUserResponse] = useState('');
     const [showExample, setShowExample] = useState(false);
+    const [isAnalyzing, setIsAnalyzing] = useState(false);
+    const [feedback, setFeedback] = useState<AIFeedback | null>(null);
 
     const exercise = selectedExercise ? exercises.find(e => e.id === selectedExercise) : null;
 
@@ -86,19 +99,86 @@ export default function ThinkingInEnglish() {
         setSelectedExercise(exerciseId);
         setUserResponse('');
         setShowExample(false);
+        setFeedback(null);
     };
 
-    const handleSubmit = () => {
-        if (!userResponse.trim()) return;
-        // In real app, this would analyze the response
-        // For now, just show feedback
-        alert('Great job! You\'re thinking in English. Keep practicing daily!');
+    const handleSubmit = async () => {
+        if (!userResponse.trim() || !exercise) return;
+        setIsAnalyzing(true);
+        setFeedback(null);
+
+        try {
+            const response = await fetch('/api/ai/coach', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    ...(userId ? { 'x-user-id': userId } : {}),
+                },
+                body: JSON.stringify({
+                    type: 'translator',
+                    input: `THINKING_IN_ENGLISH_EVALUATION
+Exercise: "${exercise.title}" - ${exercise.prompt}
+User's Response: "${userResponse}"
+
+Evaluate this response as a "Thinking in English" exercise for an Indian professional. 
+Score 0-100 based on:
+- Grammar correctness (30%)
+- Natural English flow/fluency (30%)  
+- Whether they seem to be thinking in English vs translating from Hindi (20%)
+- Vocabulary range (20%)
+
+Look for signs of Hindi-to-English translation: unnatural word order, literal Hindi idiom translations, missing articles, incorrect prepositions.
+
+Return JSON:
+{
+  "formal": "Score: X/100",
+  "persuasive": "Grammar: [feedback] | Fluency: [feedback] | Thinking Pattern: [assessment of whether thinking in English or translating] | Suggestions: [tip1; tip2; tip3] | Improved: [improved version of their text]",
+  "casualProfessional": "Well done!"
+}`
+                }),
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                
+                const scoreMatch = data.formal?.match(/(\d+)/);
+                const score = scoreMatch ? parseInt(scoreMatch[1]) : 65;
+
+                const parts = (data.persuasive || '').split('|').map((s: string) => s.trim());
+                const grammarPart = parts.find((p: string) => p.toLowerCase().startsWith('grammar'))?.replace(/^grammar:\s*/i, '') || 'Good effort!';
+                const fluencyPart = parts.find((p: string) => p.toLowerCase().startsWith('fluency'))?.replace(/^fluency:\s*/i, '') || 'Keep practicing for more natural flow.';
+                const thinkingPart = parts.find((p: string) => p.toLowerCase().startsWith('thinking'))?.replace(/^thinking\s*pattern:\s*/i, '') || 'Shows some direct English thinking.';
+                const suggestionsPart = parts.find((p: string) => p.toLowerCase().startsWith('suggestion'))?.replace(/^suggestions:\s*/i, '') || '';
+                const improvedPart = parts.find((p: string) => p.toLowerCase().startsWith('improved'))?.replace(/^improved:\s*/i, '') || '';
+
+                setFeedback({
+                    score: Math.min(100, Math.max(0, score)),
+                    grammarFeedback: grammarPart,
+                    fluencyFeedback: fluencyPart,
+                    thinkingInEnglish: thinkingPart,
+                    suggestions: suggestionsPart ? suggestionsPart.split(';').map((s: string) => s.trim()).filter(Boolean) : [],
+                    improvedVersion: improvedPart,
+                });
+            }
+        } catch (error) {
+            console.error('Failed to analyze response:', error);
+            setFeedback({
+                score: 0,
+                grammarFeedback: 'Could not analyze your response. Please try again.',
+                fluencyFeedback: '',
+                thinkingInEnglish: '',
+                suggestions: [],
+                improvedVersion: '',
+            });
+        } finally {
+            setIsAnalyzing(false);
+        }
     };
 
     if (exercise) {
         return (
             <div className="space-y-6">
-                <Button variant="ghost" onClick={() => setSelectedExercise(null)}>
+                <Button variant="ghost" onClick={() => { setSelectedExercise(null); setFeedback(null); }}>
                     ← Back to Exercises
                 </Button>
 
@@ -108,7 +188,6 @@ export default function ThinkingInEnglish() {
                         <p className="text-muted-foreground">{exercise.description}</p>
                     </CardHeader>
                     <CardContent className="space-y-6">
-                        {/* Prompt */}
                         <div className="bg-blue-50 dark:bg-blue-950 rounded-lg p-4 border border-blue-200">
                             <div className="flex items-start gap-2 mb-2">
                                 <Brain className="w-5 h-5 text-blue-600 shrink-0 mt-0.5" />
@@ -119,12 +198,11 @@ export default function ThinkingInEnglish() {
                             </div>
                         </div>
 
-                        {/* Tips */}
                         <div className="bg-yellow-50 dark:bg-yellow-950 rounded-lg p-4 border border-yellow-200">
                             <div className="flex items-start gap-2 mb-3">
                                 <Lightbulb className="w-5 h-5 text-yellow-600 shrink-0 mt-0.5" />
                                 <div>
-                                    <p className="font-semibold text-yellow-900 dark:text-yellow-200 mb-2">💡 Tips:</p>
+                                    <p className="font-semibold text-yellow-900 dark:text-yellow-200 mb-2">Tips:</p>
                                     <ul className="space-y-1 text-sm text-yellow-800 dark:text-yellow-300">
                                         {exercise.tips.map((tip, i) => (
                                             <li key={i}>• {tip}</li>
@@ -134,7 +212,6 @@ export default function ThinkingInEnglish() {
                             </div>
                         </div>
 
-                        {/* Text Area */}
                         <div>
                             <label className="block text-sm font-semibold mb-2">
                                 Write your response (think directly in English):
@@ -146,11 +223,10 @@ export default function ThinkingInEnglish() {
                                 className="min-h-[200px]"
                             />
                             <p className="text-xs text-muted-foreground mt-2">
-                                💡 Tip: Don't think in Hindi first. Think directly in English!
+                                Tip: Don&apos;t think in Hindi first. Think directly in English!
                             </p>
                         </div>
 
-                        {/* Example */}
                         <div>
                             <Button
                                 variant="outline"
@@ -162,21 +238,76 @@ export default function ThinkingInEnglish() {
                             {showExample && (
                                 <div className="mt-3 bg-green-50 dark:bg-green-950 rounded-lg p-4 border border-green-200">
                                     <p className="text-sm font-semibold text-green-900 dark:text-green-200 mb-2">Example Response:</p>
-                                    <p className="text-sm text-green-800 dark:text-green-300 italic">"{exercise.example}"</p>
+                                    <p className="text-sm text-green-800 dark:text-green-300 italic">&quot;{exercise.example}&quot;</p>
                                 </div>
                             )}
                         </div>
 
-                        {/* Submit */}
                         <Button
                             onClick={handleSubmit}
                             className="w-full"
                             size="lg"
-                            disabled={!userResponse.trim()}
+                            disabled={!userResponse.trim() || isAnalyzing}
                         >
-                            Submit Response
-                            <CheckCircle2 className="w-4 h-4 ml-2" />
+                            {isAnalyzing ? (
+                                <><Loader2 className="w-4 h-4 mr-2 animate-spin" />Analyzing Your English...</>
+                            ) : (
+                                <>Get AI Feedback<Sparkles className="w-4 h-4 ml-2" /></>
+                            )}
                         </Button>
+
+                        {feedback && (
+                            <div className="space-y-4 border-t pt-6">
+                                <div className="flex items-center gap-3 mb-4">
+                                    <Sparkles className="w-6 h-6 text-purple-600" />
+                                    <h3 className="text-xl font-bold">AI Feedback</h3>
+                                    <Badge variant={feedback.score >= 70 ? 'default' : 'secondary'} className="text-lg px-3 py-1">
+                                        {feedback.score}/100
+                                    </Badge>
+                                </div>
+
+                                <div className="grid gap-3">
+                                    {feedback.grammarFeedback && (
+                                        <div className="bg-blue-50 dark:bg-blue-950 rounded-lg p-4 border border-blue-200">
+                                            <p className="font-semibold text-blue-900 dark:text-blue-200 text-sm mb-1">Grammar</p>
+                                            <p className="text-sm text-blue-800 dark:text-blue-300">{feedback.grammarFeedback}</p>
+                                        </div>
+                                    )}
+
+                                    {feedback.fluencyFeedback && (
+                                        <div className="bg-purple-50 dark:bg-purple-950 rounded-lg p-4 border border-purple-200">
+                                            <p className="font-semibold text-purple-900 dark:text-purple-200 text-sm mb-1">Fluency</p>
+                                            <p className="text-sm text-purple-800 dark:text-purple-300">{feedback.fluencyFeedback}</p>
+                                        </div>
+                                    )}
+
+                                    {feedback.thinkingInEnglish && (
+                                        <div className="bg-green-50 dark:bg-green-950 rounded-lg p-4 border border-green-200">
+                                            <p className="font-semibold text-green-900 dark:text-green-200 text-sm mb-1">Thinking Pattern</p>
+                                            <p className="text-sm text-green-800 dark:text-green-300">{feedback.thinkingInEnglish}</p>
+                                        </div>
+                                    )}
+
+                                    {feedback.suggestions.length > 0 && (
+                                        <div className="bg-yellow-50 dark:bg-yellow-950 rounded-lg p-4 border border-yellow-200">
+                                            <p className="font-semibold text-yellow-900 dark:text-yellow-200 text-sm mb-2">Suggestions</p>
+                                            <ul className="space-y-1 text-sm text-yellow-800 dark:text-yellow-300">
+                                                {feedback.suggestions.map((s, i) => (
+                                                    <li key={i}>• {s}</li>
+                                                ))}
+                                            </ul>
+                                        </div>
+                                    )}
+
+                                    {feedback.improvedVersion && (
+                                        <div className="bg-emerald-50 dark:bg-emerald-950 rounded-lg p-4 border border-emerald-200">
+                                            <p className="font-semibold text-emerald-900 dark:text-emerald-200 text-sm mb-1">Improved Version</p>
+                                            <p className="text-sm text-emerald-800 dark:text-emerald-300 italic">&quot;{feedback.improvedVersion}&quot;</p>
+                                        </div>
+                                    )}
+                                </div>
+                            </div>
+                        )}
                     </CardContent>
                 </Card>
             </div>
@@ -228,4 +359,3 @@ export default function ThinkingInEnglish() {
         </div>
     );
 }
-

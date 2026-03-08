@@ -26,7 +26,49 @@ interface SpeakOptions {
 }
 
 /**
- * Filter voices by gender and accent preferences
+ * Map locale to language codes for strict matching (accent preview)
+ */
+const LOCALE_CODES: Record<string, string[]> = {
+    'en-US': ['en-US', 'en_US'],
+    'en-GB': ['en-GB', 'en_GB'],
+    'en-IN': ['en-IN', 'en_IN', 'hi-IN'],
+    'en-AU': ['en-AU', 'en_AU'],
+};
+
+/**
+ * Select the best voice for a specific locale (for accent comparison).
+ * Only considers voices that match the requested locale — no fallback to other accents.
+ */
+function selectVoiceForLocale(
+    voices: SpeechSynthesisVoice[],
+    locale: string,
+    gender: 'male' | 'female' | 'any' = 'female'
+): SpeechSynthesisVoice | null {
+    const codes = LOCALE_CODES[locale] || [locale];
+    const matched = voices.filter(v => codes.some(c => v.lang.includes(c)));
+    if (matched.length === 0) return null;
+
+    const femaleNames = ['female', 'woman', 'samantha', 'karen', 'victoria', 'salli', 'joanna', 'kendra', 'kimberly', 'ivy', 'heather', 'fiona', 'moira', 'zira', 'neerja', 'kavya', 'aditi'];
+    const maleNames = ['male', 'man', 'daniel', 'david', 'mark', 'alex', 'justin', 'matthew', 'joey', 'russell', 'brian', 'fred', 'oliver', 'rishi', 'arjun'];
+
+    if (gender !== 'any') {
+        const byGender = matched.filter(v => {
+            const n = v.name.toLowerCase();
+            if (gender === 'female') return femaleNames.some(name => n.includes(name));
+            return maleNames.some(name => n.includes(name));
+        });
+        if (byGender.length > 0) {
+            const preferred = byGender.find(v => v.name.includes('Google') || v.name.includes('Microsoft') || v.name.includes('Samantha') || v.name.includes('Daniel'));
+            return preferred || byGender[0];
+        }
+    }
+
+    const preferred = matched.find(v => v.name.includes('Google') || v.name.includes('Microsoft') || v.name.includes('Samantha') || v.name.includes('Daniel') || v.name.includes('Karen'));
+    return preferred || matched[0];
+}
+
+/**
+ * Filter voices by gender and accent preferences (general use)
  */
 const filterVoicesByPreferences = (
     voices: SpeechSynthesisVoice[],
@@ -126,55 +168,37 @@ export const speakText = (text: string, options: SpeakOptions = {}): void => {
         const voices = window.speechSynthesis.getVoices();
         if (voices.length > 0) {
             let selectedVoice: SpeechSynthesisVoice | null = null;
+            const requestedLang = options.lang || 'en-IN';
+            const gender = options.gender || 'female';
 
             // 1. Explicit voice selection (if passed)
             if (options.voice) {
                 selectedVoice = options.voice;
             }
-            // 2. Auto-selection: FORCE female Indian voices
+            // 2. Accent preview: when a specific locale is requested, use only voices for that locale so each accent sounds distinct
+            else if (LOCALE_CODES[requestedLang]) {
+                selectedVoice = selectVoiceForLocale(voices, requestedLang, gender);
+                if (!selectedVoice) {
+                    const accentMap: Record<string, 'us' | 'uk' | 'in'> = { 'en-US': 'us', 'en-GB': 'uk', 'en-IN': 'in', 'en-AU': 'us' };
+                    selectedVoice = filterVoicesByPreferences(voices, requestedLang, gender, accentMap[requestedLang] || 'any');
+                }
+            }
+            // 3. Default: prefer Indian English (rest of app)
             else {
                 const accent = options.accent || 'in';
-                const gender = options.gender || 'female';
-
-                // Lists to categorize voices
                 const femaleNames = ['neerja', 'female', 'kavya', 'aditi', 'shreya', 'heera', 'lekha'];
                 const maleNames = ['rishi', 'male', 'arjun', 'aadish', 'om', 'deepak'];
-
-                // Helper to check if voice is female
                 const isFemaleVoice = (voice: SpeechSynthesisVoice) => {
                     const name = voice.name.toLowerCase();
                     if (femaleNames.some(n => name.includes(n))) return true;
                     if (maleNames.some(n => name.includes(n))) return false;
                     return !name.includes('male');
                 };
-
-                // Try to find best female Indian English voice
                 selectedVoice =
-                    // First: Google Indian English female
-                    voices.find(v =>
-                        v.name.includes('Google') &&
-                        v.lang.includes('IN') &&
-                        isFemaleVoice(v)
-                    ) ||
-                    // Second: Any Indian female voice (not Microsoft)
-                    voices.find(v =>
-                        v.lang.includes('IN') &&
-                        !v.name.includes('Microsoft') &&
-                        isFemaleVoice(v)
-                    ) ||
-                    // Third: Any Google Indian voice
-                    voices.find(v =>
-                        v.name.includes('Google') &&
-                        v.lang.includes('IN')
-                    ) ||
-                    // Fourth: Use preference-based filtering
-                    filterVoicesByPreferences(
-                        voices,
-                        utterance.lang,
-                        gender,
-                        accent
-                    ) ||
-                    // Last resort: any Indian voice
+                    voices.find(v => v.name.includes('Google') && v.lang.includes('IN') && isFemaleVoice(v)) ||
+                    voices.find(v => v.lang.includes('IN') && !v.name.includes('Microsoft') && isFemaleVoice(v)) ||
+                    voices.find(v => v.name.includes('Google') && v.lang.includes('IN')) ||
+                    filterVoicesByPreferences(voices, utterance.lang, gender, accent) ||
                     voices.find(v => v.lang.includes('IN')) ||
                     null;
             }
@@ -183,7 +207,7 @@ export const speakText = (text: string, options: SpeakOptions = {}): void => {
                 utterance.voice = selectedVoice;
                 console.log('🔊 Using voice:', selectedVoice.name, '|', selectedVoice.lang);
             } else {
-                console.warn('❌ No suitable female voice found, using browser default');
+                console.warn('❌ No suitable voice found for', requestedLang, ', using browser default');
             }
         }
 

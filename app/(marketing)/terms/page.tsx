@@ -71,7 +71,8 @@ export default function TermsPage() {
                         <p className="mt-4">
                             <strong>Nyquist Tech</strong><br />
                             Bengaluru, Karnataka, India<br />
-                            Email: support@nyquisttech.com<br />
+                            Email: <a href="mailto:info@nyquisttech.com" className="text-blue-600 hover:underline">info@nyquisttech.com</a><br />
+                            WhatsApp: <a href="https://wa.me/918431256903" target="_blank" rel="noopener noreferrer" className="text-green-600 hover:underline">+91 84312 56903</a><br />
                             Phone: +91 84312 56903
                         </p>
                     </section>
